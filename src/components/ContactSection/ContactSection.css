@@ -1,0 +1,15 @@
+.card-CoreValueCard {
+    background-color: var(--background_color);
+    border: none;
+    color: white;
+    transition: 1s all ease;
+}
+
+.card-CoreValueCard:hover {
+    background-color: var(--color);
+    color: var(--background_color);
+}
+
+.card-CoreValueCard-body {
+    text-align: center;
+}

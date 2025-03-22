@@ -1,0 +1,140 @@
+.bg-priciple{
+    background-color: lightblue ;
+}
+.bg-property{
+    background-color: #4199eb;
+}
+.bg-hoa{
+    background-color: #ff8d7d;
+}
+.bg-home{
+    background-color:#f0e9a9 ;
+}
+.payment_break .circle{
+    width: 12px;
+    height: 11px;
+    border-radius: 50%;
+}
+.payment_break .text{
+    border-bottom: 1.7px dotted gray;
+}
+.payment_break span{
+    color: gray;
+}
+.getapprove{
+    padding: 11px 27px;
+    margin-bottom: 10px;
+}
+
+
+/* Unique Down Payment Modal Styling */
+.downpayment-card {
+    width: 400px; /* Fixed width */
+    margin: 0 auto; /* Center the modal */
+    background-color: white; /* White background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    padding: 20px; /* Padding for content inside */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .downpayment-card h2 {
+    font-size: 1.25rem; /* Font size for the heading */
+    font-weight: 600; /* Semi-bold for heading */
+    margin-bottom: 1rem; /* Space below the heading */
+  }
+  
+  .downpayment-card .form-control {
+    border: 1px solid #ccc; /* Light border */
+    padding: 10px; /* Add padding for the inputs */
+    border-radius: 5px; /* Slightly rounded corners */
+    font-size: 1rem; /* Increase font size */
+  }
+  
+  .downpayment-card .form-control[readonly] {
+    background-color: #f8f9fa; /* Slight background color for readonly fields */
+  }
+  
+  .downpayment-card .d-flex.align-items-center.mb-4 {
+    margin-bottom: 20px; /* Space between rows */
+  }
+  
+  .downpayment-card label {
+    font-size: 0.9rem; /* Smaller label text */
+    font-weight: 500; /* Medium weight for labels */
+  }
+  
+  .downpayment-card input[type="range"] {
+    -webkit-appearance: none; /* Remove default appearance */
+    width: 100%; /* Full width slider */
+    height: 6px; /* Height of the slider */
+    background: #ddd; /* Light background color */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  .downpayment-card input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px; /* Thumb size */
+    height: 15px;
+    background: #007bff; /* Blue thumb */
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .downpayment-card input[type="range"]::-moz-range-thumb {
+    width: 15px; /* Thumb size */
+    height: 15px;
+    background: #007bff; /* Blue thumb */
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .downpayment-card .btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Button padding */
+    border-radius: 5px; /* Rounded button */
+    font-size: 1rem; /* Font size */
+  }
+  
+  .downpayment-card .btn-secondary {
+    background-color: #6c757d; /* Bootstrap secondary color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .downpayment-card .btn-secondary:hover, 
+  .downpayment-card .btn-primary:hover {
+    opacity: 0.9; /* Slight hover effect */
+  }
+  
+  /* Styling for the bottom section */
+  .downpayment-card .d-flex.justify-content-between {
+    margin-top: 1rem; /* Space above buttons */
+  }
+
+  @media screen and (min-width: 768px) {
+  
+    .payment_cal_buttons .col:nth-child(1) .downpayment-card {
+      position: relative;
+      left: 58%;
+      top: 16px;
+  }
+  
+  .payment_cal_buttons .col:nth-child(2) .downpayment-card {
+    position: relative;
+    left: -55%;
+    top: 16px;
+  }
+  
+  .payment_cal_buttons .col:nth-child(3) .downpayment-card {
+    position: relative;
+    left: -168%;
+    top: 16px;
+  }
+  
+  }
+  
+  

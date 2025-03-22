@@ -1,0 +1,391 @@
+.agent-profile-container {
+  padding: 20px;
+  background-color: #f4f4f2;
+}
+
+.back-link {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.agent-row {
+  /* background-color: #4a4035;   */
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.agent-details-card {
+  background-color: #4a4035;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+.logo-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.redfin-principal {
+  color: #d1c7b7; /* Match the color */
+  font-size: 14px;
+}
+
+.logo {
+  font-size: 18px;
+  color: white;
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.agent-name {
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.license,
+.homes-closed,
+.contact-details {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.view-more {
+  color: white;
+  font-size: 14px;
+  display: block;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.contact-button {
+  background-color: #e12d2f;
+  border: none;
+  font-size: 16px;
+  padding: 10px 25px;
+  margin: 20px 0;
+}
+
+.contact-button:hover {
+  background-color: #c92526;
+}
+
+.agent-image {
+  max-width: 85%;
+  border-radius: 10px;
+  object-fit: cover;
+  aspect-ratio: 3/3;
+}
+
+.sales-stats {
+  margin-top: 30px;
+}
+
+.sales-stats h5 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.sales-stats p {
+  color: gray;
+  font-size: 16px;
+}
+
+/* Customize mobile and desktop specific styling */
+@media (max-width: 768px) {
+  .agent-details-card {
+    text-align: center;
+  }
+
+  .logo-section {
+    justify-content: center;
+  }
+}
+
+.border_bottom_set {
+  width: 150px;
+  border-bottom: 2px solid white;
+  margin-top: 25px;
+}
+.set_width_height_margin {
+  margin-top: -35vh;
+}
+.border_left_set {
+  border-left: 2px solid red;
+  height: 50px;
+}
+
+.border_sec_bottom_set {
+  width: 150px;
+  border-bottom: 2px solid black;
+  margin-bottom: 25px;
+}
+.bg_icon_section {
+  background-color: #ab8462;
+}
+.set_images_svg_width {
+  width: 230px;
+}
+
+.review-carousel {
+  background-color: #f5f3ef;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+}
+
+.carousel-review {
+  padding: 20px;
+  font-size: 1.25rem;
+}
+
+.review-text {
+  font-weight: 500;
+  line-height: 1.5;
+  font-size: 1.5rem;
+  position: relative;
+  color: #333;
+}
+
+.quote-mark {
+  color: #8b5b3e;
+  font-size: 2.5rem;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+.review-author {
+  margin-top: 10px;
+  font-style: italic;
+  color: #777;
+}
+
+.see-reviews-btn {
+  margin-top: 15px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.control-btn {
+  font-size: 1.5rem;
+  color: #333;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.carousel-pagination {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.pagination-dot.active {
+  background-color: #8b5b3e;
+}
+
+.pagination-text {
+  margin-left: 10px;
+  color: #333;
+  font-weight: bold;
+}
+
+.promo-container {
+  position: relative;
+  background-image: url("../../assets/images/Owner-Dashboard/Sell\ with\ Redfin/AboutPremierDesktop.jpg"); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  width: 100%;
+}
+
+.promo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, 0.5);  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo-content {
+  color: white;
+  padding: 20px;
+  text-align: left;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.promo-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.promo-subtitle {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.promo-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.promo-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.promo-button:hover {
+  background-color: #ccc;
+}
+
+.team-contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f5f1;
+}
+
+.team-section {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.team-members {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-member img {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  background-color: #eae4da;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 8px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.contact-form label {
+  margin-bottom: 5px;
+  color: #8b5b3e;
+}
+
+.contact-form input,
+.contact-form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.checkbox-group {
+  margin-bottom: 15px;
+}
+
+.checkbox-group label {
+  margin-right: 10px;
+}
+
+.contact-button {
+  padding: 10px 20px;
+  /* background-color: ; */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.contact-button:hover {
+  /* background-color: #a32c2c; */
+}
+
+.contact-agent-image {
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-agent-image img {
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+.contact-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.chat-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.contact-details {
+  text-align: right;
+}
+
+.chat-component {
+  margin-top: 20px;
+}

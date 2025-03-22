@@ -1,0 +1,157 @@
+.investor-page {
+  overflow-x: hidden;
+
+  .investor-main {
+    background-image: url('../images/investor 01.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    color: white;
+  }
+
+  .btn-investor {
+    border: 5px solid var(--color);
+    color: white;
+    border-radius: 0;
+    font-weight: 700;
+    padding: 10px;
+    letter-spacing: 2px;
+    background-color: transparent;
+  }
+
+  .btn-investor:hover {
+    border: 5px solid var(--color);
+    background: var(--color);
+    color: white;
+    border-radius: 0;
+    font-weight: 700;
+    padding: 10px;
+  }
+
+  .card {
+    border: none;
+  }
+
+  .card a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 20px;
+    color: var(--color);
+  }
+
+  .card:hover {
+    border: none;
+    background: var(--color);
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover a {
+    color: white;
+  }
+
+  .bg-second-section {
+    background-image: url('../images/investor 02.jpg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-blend-mode: multiply;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .presentation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .presentation-image {
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    position: relative;
+  }
+
+  .presentation-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .pagination-container .btn {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  .pagination-container input {
+    width: 50px;
+    text-align: center;
+    margin: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .download-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .download-btn a {
+    background-color: var(--color);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .download-btn a i {
+    margin-right: 10px;
+  }
+
+  .btn-download {
+    background: var(--color);
+    padding: 10px;
+    color: white;
+    font-weight: 700;
+  }
+
+  @media (max-width: 767px) {
+    .download-btn a {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .pagination-container {
+      flex-direction: column;
+    }
+  }
+}

@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+.associate-agent{
+
+    .associate-agent{
+        height: fit-content;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+            url('../../../assets/images/img_agent_career/greg-rivers-rChFUMwAe7E-unsplash.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        padding: 50px;
+        padding-block: 120px;
+        margin-top: 50px;
+    }
+    
+    .associate-agent-title {
+        font-size: 56px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+    
+    
+    
+    
+    /* Mobile and tablet responsiveness */
+    @media (max-width: 768px) {
+        .associate-agent-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+    
+      
+    
+     
+    }
+    
+    @media (max-width: 576px) {
+        .associate-agent-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+    
+    
+    }
+
+
+    /* Applying the background color */
+    .bg-color-oap {
+        background-color: #f2f2f2 !important;
+    }
+
+    /* Styling for the dotted line and navigation progress */
+    .border-dotted {
+        border-left: 2px dotted #000;
+        padding-left: 25px;
+        margin-left: 10px;
+        position: relative;
+    }
+    .mid-transform-card{
+        border: 1px solid rgb(61, 57, 53);
+        box-shadow: rgba(36, 28, 21, 0.24) 0px 16px 24px 0px;
+        background-color: #FFF;
+        transform: scale(1.1);
+        z-index: 2;
+    }
+
+    .custome-nav-progress {
+        position: absolute;
+        left: -22px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        background-color: #fff;
+        border: 2px solid #000;
+        border-radius: 50%;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .progress-step {
+        margin-bottom: 30px;
+    }
+
+    .progress-step h4 {
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .progress-step p {
+        margin-bottom: 0;
+        font-size: 1rem;
+    }
+    .discover-ba-section{
+        background-color: #3d3935;
+    }
+
+    /* Responsive behavior */
+    @media (max-width: 768px) {
+        .border-dotted {
+            margin-left: 0;
+            padding-left: 15px;
+        }
+
+        .custome-nav-progress {
+            left: -18px;
+            
+            width: 30px;
+            height: 30px;
+            font-size: 14px;
+        }
+
+        .progress-step h4 {
+            font-size: 1rem;
+        }
+
+        .progress-step p {
+            font-size: 0.9rem;
+        }
+        
+        
+    }
+    
+}
+

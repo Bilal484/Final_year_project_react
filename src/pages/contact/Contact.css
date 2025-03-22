@@ -1,0 +1,40 @@
+ * {
+    margin: 0;
+    padding: 0;
+}
+
+.contact-parent {
+    .hero-container-contact {
+        height: 400px;
+        background: url("../../assets/images/contact-hero.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-icon {
+        font-size: 30px !important;
+        padding-bottom: 5px;
+    }
+
+    .span-heading-contact {
+        color: #0c2640;
+        margin-top: 10px;
+    }
+
+    .icon-share-contact {
+        font-size: 20px;
+        padding-top: 0;
+    }
+
+    .contact-way-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border-bottom: 1px solid rgb(0 0 0 / 55.5%);
+        padding-bottom: 20px;
+    }
+}

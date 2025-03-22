@@ -1,0 +1,57 @@
+#contracter {
+    background-image: linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)), url("../../../assets/images/contracter.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: var(--color-gray);
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contracter a {
+    color: white;
+    background: var(--background_color);
+}
+
+#contracter a:hover,
+#contracter a:focus {
+    color: white;
+    background: var(--color);
+}
+
+#hero .btn {
+    background-color: var(--background_color);
+    border: none;
+}
+
+#hero .btn:hover,
+#hero .btn:focus {
+    background-color: var(--hover_bg_color);
+    color: var(--color-gray);
+}
+
+#about img {
+    border-radius: 10px;
+}
+
+#services .fs-1 {
+    color: var(--color);
+}
+
+#contact .form-control {
+    border-radius: 0;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+}
+
+.divider {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #cacaca;
+    margin: 0 15px;
+}

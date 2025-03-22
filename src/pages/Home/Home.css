@@ -1,0 +1,50 @@
+.card-container {
+    width: 24%; /* Adjusts the width for four cards in a row */
+    margin: 0%; /* Provides some space around each card */
+    transition: transform 0.3s; /* Smooth transform effect */
+}
+
+.card-container:hover {
+    transform: scale(1.05); /* Scales the card on hover */
+    z-index: 10; /* Ensures the card is above others on hover */
+}
+
+@media (max-width: 992px) {
+    .card-container {
+        width: 48%; /* Two cards per row on medium screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .card-container {
+        width: 100%; /* One card per row on small screens */
+    }
+}
+
+/* Additional styling for CharacterCard if needed */
+.character-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.character-card img {
+    width: 100%;
+    display: block;
+}
+
+.character-card:hover .card-description {
+    visibility: visible;
+    opacity: 1;
+}
+
+.card-description {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white;
+    width: 100%;
+    padding: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}

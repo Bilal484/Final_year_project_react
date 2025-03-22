@@ -1,0 +1,162 @@
+/* Chat Container Styling */
+.chat-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 600px; /* Adjust the width as per your design */
+  max-height: 900px;
+  background-color: #333;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  height: 570px;
+}
+
+/* Automatically Opened */
+.open {
+  transform: translateY(0);
+}
+
+/* Closed state (if needed) */
+.closed {
+  transform: translateY(100%);
+}
+
+/* Chat Sidebar Styling */
+.chat-sidebar {
+  background-color: black;
+  overflow-y: auto;
+  padding: 15px;
+  border-right: 1px solid #555;
+}
+
+.chat-sidebar h5 {
+  color: #fff;
+}
+
+.active-chat {
+  background-color: #61dafb !important;
+  color: #fff;
+}
+
+.chat-sidebar .list-group-item {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.chat-sidebar .list-group-item:hover {
+  background-color: #555;
+}
+
+/* Chat Section Styling */
+.chat-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-header {
+  background-color: #495057;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #555;
+  border-radius: 20px;
+}
+.chat-header_11 {
+  background-color: #61dafb;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #61dafb;
+}
+
+.chat-messages .message-container {
+  margin-bottom: 10px;
+}
+
+.message-bubble {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.message-container.text-end .message-bubble {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.message-container.text-start .message-bubble {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+.message-bubble small {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  color: #aaa;
+}
+
+/* Chat Input Styling */
+.chat-input {
+  background-color: #61dafb;
+  padding: 10px;
+  border-top: 1px solid #555;
+}
+
+.chat-input input {
+  background-color: #333;
+  color: #fff;
+  border: none;
+}
+
+.chat-input input::placeholder {
+  color: #999;
+}
+
+.chat-input button {
+  border: none;
+}
+
+.chat-input button:focus {
+  outline: none;
+}
+
+.chat-input .emoji-picker {
+  position: absolute;
+  bottom: 50px;
+  right: 10px;
+}
+
+/* Modal Styling */
+.modal-content {
+  background-color: #444;
+  color: #fff;
+  border: none;
+}
+
+.modal-footer button {
+  border: none;
+}
+
+.modal-footer button:focus {
+  outline: none;
+}
+
+/* Smooth Scrolling for Messages */
+.chat-messages {
+  scroll-behavior: smooth;
+}

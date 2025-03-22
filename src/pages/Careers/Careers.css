@@ -1,0 +1,54 @@
+.careers-container {
+    min-height: 100vh;
+}
+
+.hero-section {
+    
+    background: linear-gradient(45deg, #115e59, #047857);
+    padding: 80px 0;
+}
+
+.department-card {
+    height: 100%;
+    transition: transform 0.3s ease;
+    background-color: white;
+}
+
+.department-card:hover {
+    transform: translateY(-5px);
+}
+
+.department-card a {
+    color: var(--text-color);
+}
+
+.department-card a:hover {
+    color: var(--primary-color);
+}
+
+.benefit-card {
+    height: 100%;
+    background-color: white;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-row .display-3 {
+    color: white;
+}
+
+.stats-row p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.openings-section .fas {
+    transition: transform 0.3s ease;
+}
+
+.openings-section a:hover .fas {
+    transform: translateX(5px);
+}

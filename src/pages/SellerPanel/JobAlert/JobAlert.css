@@ -1,0 +1,50 @@
+.container-job-alert-custom {
+    margin-top: 150px !important;
+}
+
+.bg-card-custom {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.offcanvas-body-custom {
+    overflow-y: auto;
+    height: calc(100% - 60px);
+}
+
+.offcanvas-footer-custom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+}
+
+.text-destructive-custom {
+    color: #dc3545;
+}
+
+.text-muted-foreground-custom {
+    color: #6c757d;
+}
+
+.modal-header-custom {
+    border-bottom: none;
+}
+
+.form-control-custom {
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+}
+
+.form-select-custom {
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+}

@@ -1,0 +1,26 @@
+/* WhyZNet Custom Styles */
+
+.bg-light {
+    background-color: #f9f9f9 !important;
+}
+
+.comparison-table table {
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 1rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.comparison-table .table-primary {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+}
+
+.comparison-table .table-bordered {
+    border: 2px solid #ddd;
+}

@@ -1,0 +1,108 @@
+.hero-section-CommunityImpact {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('../../assets/images/img_agent_career/H1-img-2.jpg') center/cover no-repeat;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.section-title {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.impact-stat {
+    padding: 20px;
+}
+
+.impact-stat h3 {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.initiative-content {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.initiative-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.initiative-list li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+}
+
+.initiative-list li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.program-timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.program-item {
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.impact-quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.highlight-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.highlight-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cta-buttons .btn {
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 300px;
+    }
+
+    .impact-stat {
+        margin-bottom: 30px;
+    }
+
+    .initiative-content {
+        margin-bottom: 30px;
+    }
+}

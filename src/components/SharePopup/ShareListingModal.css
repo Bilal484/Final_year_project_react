@@ -1,0 +1,50 @@
+.share-listing-modal .modal-content {
+    border-radius: 8px;
+    background-color: var(--background_color);
+    color: var(--color_white);
+}
+
+.share-listing-modal .modal-header {
+    border-bottom: none;
+}
+
+.share-listing-modal .modal-footer {
+    border-top: none;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-gray);
+}
+
+.social-icons {
+    display: contents;
+    gap: 10px;
+    font-size: 1.5rem;
+    color: var(--color);
+}
+
+.social-icons i:hover {
+    color: var(--hover_bg_color);
+    cursor: pointer;
+}
+
+.modal-body .form-control {
+    border-radius: 4px;
+    background-color: var(--color-gray);
+    color: var(--background_color);
+    border: 1px solid var(--color);
+}
+
+.modal-body .form-control::placeholder {
+    color: var(--background_color);
+}
+
+.share-listing-modal .btn-danger {
+    background-color: var(--color);
+    border-color: var(--hover_bg_color);
+    border-radius: 4px;
+    padding: 0.5rem 1.5rem;
+}
+
+.share-listing-modal .btn-danger:hover {
+    background-color: var(--hover_bg_color);
+    border-color: var(--color);
+}

@@ -1,0 +1,103 @@
+/* Container for upcoming events */
+.container {
+    max-width: 1200px;
+}
+
+/* Event card styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    /* Hover effect for card */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Text and Title Styles */
+.card-title {
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Skeleton loader styles */
+.skeleton-text {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    height: 20px;
+    width: 100%;
+    /* margin-bottom: 10px; */
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-text:nth-child(1) {
+    width: 60%;
+}
+
+.skeleton-text:nth-child(2) {
+    width: 80%;
+}
+
+.skeleton-text:nth-child(3) {
+    width: 50%;
+}
+
+/* Pulse animation for skeleton loader */
+@keyframes pulse {
+    0% {
+        background-color: #e0e0e0;
+    }
+
+    50% {
+        background-color: #f0f0f0;
+    }
+
+    100% {
+        background-color: #e0e0e0;
+    }
+}
+
+/* Event icon styles */
+.text-muted {
+    font-size: 0.9rem;
+}
+
+.text-muted .me-2 {
+    /* margin-right: 8px; */
+}
+
+button.show_more_layoutSet {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #0056b3;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.show_more_layoutSet:hover {
+    background-color: #004085;
+}
+
+/* Adjust responsiveness */
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 1 1 100%;
+    }
+}

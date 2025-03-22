@@ -1,0 +1,97 @@
+/* Favorites Container */
+.favourite-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+.favorites-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.header-title h2 {
+  font-size: 24px;
+}
+
+.add-search-partner {
+  font-size: 14px;
+}
+
+.action-buttons a {
+  font-size: 14px;
+}
+
+/* Card Styles */
+.list-card, .favorite-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.list-card:hover, .favorite-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-card img, .favorite-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Badge Style */
+.badge-primary {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #0c2640;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+}
+
+/* Card Body */
+.card-body {
+  padding: 15px;
+}
+
+.card-body h6, .card-title {
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.card-body p, .card-text {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* Carousel Images */
+.favorite-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Map */
+.map iframe {
+  border-radius: 8px;
+}
+
+a.carousel-control-next {
+  background-color: #0c2640;
+}
+
+
+a.carousel-control-prev {
+  background-color: #0c2640;
+}

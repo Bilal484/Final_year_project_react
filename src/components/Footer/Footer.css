@@ -1,0 +1,27 @@
+footer {
+    ul {
+        li {
+            a {
+                font-size: 12px;
+            }
+        }
+    }
+
+    p{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    footer h6 {
+        margin-top: 1rem;
+    }
+    
+    footer .list-unstyled {
+        margin-bottom: 1.5rem;
+    }
+    
+    footer .social-icons {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,11 @@
+.section-header {
+    display: flex;
+    align-items: center;
+}
+
+.divider {
+    flex-grow: 1; /* Allows the divider to take up available space */
+    height: 2px; /* Thickness of the line */
+    background-color: #cacaca; /* Color of the line (change as needed) */
+    margin: 0 15px; /* Adjust margin to control space around the line */
+}

@@ -1,0 +1,178 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+.career-agent {
+
+
+
+
+    .career-agent.full-screen-overlay-hero {
+        height: fit-content;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url('../../../assets/images/img_agent_career/house-2469110_1920.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        padding: 50px;
+        padding-block: 130px;
+        margin-top: 50px;
+    }
+
+    .career-agent.custom-title-display-heading {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .career-agent.unique-search-bar-wrapper {
+        width: 50%;
+        max-width: 650px;
+    }
+
+    .career-agent.unique-search-bar-wrapper input.career-agent.unique-input-textbox {
+        height: 55px;
+        font-size: 18px;
+        border: none;
+        border-radius: 0;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .career-agent.unique-search-bar-wrapper button.career-agent.custom-btn-search-action {
+        height: 55px;
+        font-size: 18px;
+        border: none;
+        border-radius: 0;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    #headingState {
+        background-color: white !important;
+    }
+
+    .bg-color-talent-community {
+        background-color: #f2f2f2;
+    }
+
+    /* Mobile and tablet responsiveness */
+    @media (max-width: 768px) {
+        .career-agent.custom-title-display-heading {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .career-agent.unique-search-bar-wrapper {
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .career-agent.unique-search-bar-wrapper input.career-agent.unique-input-textbox,
+        .career-agent.unique-search-bar-wrapper button.career-agent.custom-btn-search-action {
+            font-size: 16px;
+            height: 50px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .career-agent.custom-title-display-heading {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .career-agent.unique-search-bar-wrapper {
+            width: 100%;
+            padding: 0 15px;
+        }
+
+        .career-agent.unique-search-bar-wrapper input.career-agent.unique-input-textbox,
+        .career-agent.unique-search-bar-wrapper button.career-agent.custom-btn-search-action {
+            font-size: 14px;
+            height: 45px;
+        }
+    }
+
+
+
+    .header .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 3rem;
+    }
+
+    .job-listings .card {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .job-listings .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .culture .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .talent-community {
+        height: fit-content;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+            url('../../../assets/images/img_agent_career/talent_community_banner_img-1706757483238.png');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 50px;
+        padding-block: 130px;
+        margin-top: 50px;
+    }
+
+    .talent-community-title {
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+
+
+
+    /* Mobile and tablet responsiveness */
+    @media (max-width: 768px) {
+        .talent-community-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+
+
+
+    }
+
+    @media (max-width: 576px) {
+        .talent-community-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+
+    }
+
+}

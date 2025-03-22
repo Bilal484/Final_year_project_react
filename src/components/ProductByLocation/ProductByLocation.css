@@ -1,0 +1,29 @@
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Ensures the content doesn't overflow the rounded corners */
+    transition: transform 0.2s ease-in-out; /* Smooth transform effect */
+}
+
+.product-card:hover {
+    transform: scale(1.03); /* Slightly enlarges the card on hover */
+}
+
+.product-info {
+    background: white;
+    padding: 15px;
+    text-align: left;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.action-icon {
+    cursor: pointer;
+}

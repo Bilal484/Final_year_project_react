@@ -1,0 +1,118 @@
+/* Main container */
+.start-offer-container {
+    text-align: center;
+    margin: 100px auto;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+  }
+  
+  /* Search box container */
+  .search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* For dropdown positioning */
+  }
+  
+  /* Search input field */
+  .search-input {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+  
+  .search-input:focus {
+    border-color: #007bff; /* Focus border color */
+  }
+  
+  /* Search button */
+  .search-btn {
+    background-color: #d32f2f;
+    padding: 12px 20px;
+    border: none;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-btn i {
+    font-size: 18px;
+  }
+  
+  .search-btn:hover {
+    background-color: #b71c1c;
+  }
+  
+  /* Dropdown suggestions */
+  .dropdown-suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+  }
+  
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .product-suggestion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .product-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-title {
+    font-weight: bold;
+  }
+  
+  .product-location {
+    font-size: 12px;
+    color: gray;
+  }
+  
+  .product-price {
+    color: green;
+  }
+  

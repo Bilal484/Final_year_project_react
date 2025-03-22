@@ -1,0 +1,54 @@
+.date_button button{
+    padding: 5px 30px;
+    line-height: 23px;
+    font-size: 14px;
+    background-color: white !important;
+    border: 1px solid rgba(0, 0, 0, 0.324);
+    color: black !important;
+}
+.date_button button:focus{
+    background-color: #0c264023 !important;
+    border: 2px solid #0c2640;
+    color: #0c2640 !important;
+    box-shadow: unset;
+}
+.date_button button:hover{
+    border-color: #1a5f65;
+    
+}
+
+.tour_btn button{
+    width: 100%;
+    font-size: 13px;
+    padding: 15px 5px;
+    background-color: white !important;
+    border: 1px solid rgba(0, 0, 0, 0.324);
+    color: black !important;
+    
+}
+.tour_btn button:focus{
+    background-color: #0c264023 !important;
+    border: 2px solid #0c2640;
+    color: #0c2640 !important;
+    box-shadow: unset;
+}
+.tour_btn button:hover{
+    border-color: #1a5f65;
+    
+}
+
+.req_btn{
+    padding: 10px 0;
+    font-weight: 600;
+}
+.offer_btn{
+    background-color: transparent !important;
+    border: 2px solid #0c2640 !important;
+    color: black !important;
+    padding: 10px 0;
+    font-weight: 600;
+
+}
+.fs-13{
+    font-size: 13px;
+}

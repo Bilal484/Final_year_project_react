@@ -1,0 +1,5 @@
+.carousel-inner {
+    overflow: visible !important;
+    overflow-x: clip !important;
+    overflow-clip-margin: .25rem;
+}

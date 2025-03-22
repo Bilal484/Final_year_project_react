@@ -1,0 +1,250 @@
+.blog {
+    .featured img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .news-card img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .news-card h6 {
+        font-size: 1rem;
+    }
+
+    .carasoul-blog {
+        background: rgba(255, 235, 209, 0.877);
+        border-radius: 15px;
+        padding: 10px 20px;
+
+        /* Custom styles */
+        h5 {
+            font-weight: bold;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .carousel-control-prev-icon {
+            background-color: var(--color);
+        }
+
+        .carousel-control-next-icon {
+            background-color: var(--color);
+        }
+
+        .carousel-inner img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .section-header hr {
+        flex-grow: 1;
+        height: 2px;
+        border: none;
+        background-color: #0b0b0b;
+        margin: 0 15px;
+    }
+
+    .see-more-link {
+        font-size: 1rem;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .see-more-link:hover {
+        text-decoration: underline;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .card img {
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-body a {
+        color: var(--color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .card {
+        transition: 1s all ease;
+
+        &:hover {
+            box-shadow: rgb(38 57 77) 0 20px 30px -10px;
+        }
+    }
+
+    .btn-blog {
+        background-color: var(--color);
+        font-weight: 700;
+        color: white;
+    }
+
+    .btn-blog:hover {
+        background-color: var(--hover_bg_color);
+        font-weight: 700;
+        color: white;
+    }
+
+    /* Background and padding */
+    .subscription-section {
+        background-color: #f4f2eb;
+        padding: 40px 0;
+
+        /* Styling for the email input and button */
+        .form-control {
+            border: 1px solid #000;
+            border-radius: 0;
+        }
+
+        .btn-subscribe {
+            background-color: #fff;
+            border: 1px solid #000;
+            border-radius: 0;
+            padding: 6px 12px;
+        }
+
+        .btn-subscribe svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Align text and email input */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .form-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .form-container form {
+                display: flex;
+                width: 100%;
+            }
+
+            .form-container input {
+                flex-grow: 1;
+            }
+
+            .form-container button {
+                flex-shrink: 0;
+            }
+
+            .social-icons {
+                flex-direction: column;
+            }
+        }
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        padding: 20px;
+        flex-direction: row;
+    }
+
+    .social-icons a {
+        color: white;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-decoration: none;
+    }
+
+    .twitter {
+        background-color: #1da1f2;
+    }
+
+    .facebook {
+        background-color: #4267b2;
+    }
+
+    .pinterest {
+        background-color: #e60023;
+    }
+
+    .linkedin {
+        background-color: #0077b5;
+    }
+
+    .youtube {
+        background-color: #f00;
+    }
+
+    .instagram {
+        background-color: #262626;
+    }
+
+    .social-icons a:hover {
+        opacity: 0.8;
+    }
+
+    .end-section {
+        background-image: url('../images/blog 09.jpg');
+        height: 300px;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: rgba(0, 0, 0, 0.2);
+        background-blend-mode: multiply;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-attachment: fixed;
+    }
+
+    @media (max-width: 767px) {
+        .social-icons {
+            flex-direction: column;
+        }
+    }
+}

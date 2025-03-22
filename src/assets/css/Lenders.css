@@ -1,0 +1,106 @@
+:root {
+    --background_color: #0c2640;
+    --color: #09aab0;
+    --color_white: white;
+    --hover_bg_color: #09aab0;
+    --color-gray: #f5f5f5;
+    --font_family: 'Arial', sans-serif;
+}
+
+.flipper {
+    #lenders {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url("../images/blog 03.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        color: var(--color-gray);
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #flipper .btn {
+        background-color: var(--background_color);
+        border: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    #flipper .btn:hover {
+        background-color: var(--hover_bg_color);
+        color: var(--color-gray);
+    }
+
+    .card {
+        background-color: var(--background_color);
+        color: var(--color-gray);
+        transition: 1s all ease;
+    }
+
+    .card:hover {
+        background-color: var(--hover_bg_color);
+        color: black;
+        transform: scale(1.1);
+    }
+
+    .card .card-title {
+        font-weight: bold;
+    }
+
+    /* Background and padding */
+    .subscription-section {
+        background-color: #f4f2eb;
+        padding: 40px 0;
+    }
+
+    /* Styling for the email input and button */
+    .subscription-section .form-control {
+        border: 1px solid #000;
+        border-radius: 0;
+    }
+
+    .subscription-section .btn-subscribe {
+        background-color: #fff;
+        border: 1px solid #000;
+        border-radius: 0;
+        padding: 6px 12px;
+    }
+
+    .subscription-section .btn-subscribe svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Align text and email input */
+    .subscription-section .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        .subscription-section .form-container {
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .subscription-section .form-container form {
+            display: flex;
+            width: 100%;
+        }
+
+        .subscription-section .form-container input {
+            flex-grow: 1;
+        }
+
+        .subscription-section .form-container button {
+            flex-shrink: 0;
+        }
+
+        .subscription-section .social-icons {
+            flex-direction: column;
+        }
+    }
+}

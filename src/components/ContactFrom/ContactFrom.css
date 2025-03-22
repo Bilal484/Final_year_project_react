@@ -1,0 +1,32 @@
+.contact-support {
+    background-color: #f8fafc;
+}
+
+.contact-options .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.support-form-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query affecting contact section */
+@media (max-width: 768px) {
+    .contact-support .row {
+        flex-direction: column-reverse;
+    }
+    
+    .support-form-card {
+        margin-bottom: 2rem;
+    }
+}

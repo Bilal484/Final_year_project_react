@@ -1,0 +1,30 @@
+/* Appointments.css */
+.home_cards .card {
+    width: 100%;
+    max-width: 350px; /* Set max-width for the card */
+    height: 380px; /* Fixed height for the card */
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .home_cards .card img {
+    height: 200px; /* Set fixed height for the images */
+    object-fit: cover; /* Ensure the image covers the space without distortion */
+  }
+  
+  .carousel-inner {
+    height: 200px; /* Ensure the carousel container is of fixed height */
+  }
+  
+  /* .card-body {
+    height: 150px; 
+    overflow-y: auto; 
+  }
+   */
+  .carousel-control-prev, 
+  .carousel-control-next {
+    filter: invert(100%); /* Ensure carousel controls are visible */
+  }
+  

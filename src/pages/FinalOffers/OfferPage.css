@@ -1,0 +1,57 @@
+.offer-container {
+    padding: 20px;
+}
+
+.custom-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.custom-card {
+    border: none;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.custom-card-image {
+    object-fit: cover;
+    height: 400px;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.custom-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.custom-desc {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.custom-location, .custom-price {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.phone-input, .offer-input, .comments-input {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.form-section {
+    margin-top: 30px;
+}

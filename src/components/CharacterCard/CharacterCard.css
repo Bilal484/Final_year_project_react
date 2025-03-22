@@ -1,0 +1,103 @@
+.character-card {
+    width: 400px;
+    height: 450px;
+    position: relative;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border: 1px solid #ddd;
+    transition: transform 0.3s;
+}
+
+.character-card:hover {
+    transform: scale(1.02);
+}
+
+.image-section img.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-blend-mode:color-burn ;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.05);
+}
+
+.image-section img.card-img:hover {
+    transform: scale(1);
+}
+
+.overlay-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, #282c34, rgba(97, 218, 251, 0.5));
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.character-card:hover .overlay-section {
+    opacity: 1;
+}
+
+.overlay-content {
+    transform: translateY(30px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.character-card:hover .overlay-content {
+    transform: translateY(0);
+}
+
+.overlay-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.overlay-description {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.hover-btn:hover {
+    background-color: #61dafb !important;
+    color: #282c34 !important;
+}
+
+.bottom-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: #282c34;
+    color:  white;
+    text-align: left;
+    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+
+.character-card:hover .bottom-section {
+    bottom: -10px;
+    opacity: 0;
+}
+
+.bottom-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.bottom-description {
+    font-size: 0.9rem;
+    margin: 0;
+}

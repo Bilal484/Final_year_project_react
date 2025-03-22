@@ -1,0 +1,75 @@
+.day-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: center;
+    margin: 0px 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.day-card.active,
+.day-card:hover {
+    transform: scale(1.1);
+    background-color: #f0f0f0;
+}
+
+.day-card.active {
+    border-color: #007bff;
+    background-color: #e0f0ff;
+}
+
+.date-nav {
+    cursor: pointer;
+}
+
+.not-sure-checkbox {
+    margin: 20px 0;
+}
+
+.date-heading {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.separator {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.separator:before,
+.separator:after {
+    content: "";
+    display: block;
+    width: 40%;
+    height: 1px;
+    background: #ccc;
+    position: absolute;
+    top: 50%;
+}
+
+.separator:before {
+    left: 0;
+}
+
+.separator:after {
+    right: 0;
+}
+
+.separator span {
+    background: white;
+    padding: 0 10px;
+}
+
+@media (min-width:320px) and (max-width:768px) {
+    .dic_date_responsive {
+        display: flex;
+        flex-wrap: wrap;
+
+        .dic_date_responsive_child {
+            flex-grow: 1;
+            flex-basis: 200;
+        }
+    }
+}

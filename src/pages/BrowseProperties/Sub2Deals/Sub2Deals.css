@@ -1,0 +1,107 @@
+.subDeal {
+    .main-banner h1 {
+        font-size: 65px;
+        border-bottom: 4px solid var(--color);
+
+    }
+
+    /* h2 {
+        border-left: 5px solid var(--color);
+        display: inline;
+        padding: 5px;
+        margin-bottom: 10px;
+    } */
+
+    .btn-subdeal {
+        background: var(--background_color);
+        color: white;
+        font-weight: 500;
+        transition: 1s all ease;
+    }
+
+    .btn-subdeal:hover {
+        background: var(--color);
+        color: white;
+        font-weight: 500;
+    }
+
+    .hero {
+        background-image: url('../../../assets/images/sub2Deal\ 01.jpg');
+        background-position: center;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        background-size: cover;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background-color: rgb(19 19 19 / 50%);
+        background-blend-mode: multiply;
+    }
+
+    .featured-properties,
+    .benefits,
+    .testimonials
+
+    /* add more section classes here... */
+        {
+        background-color: #f7f7f7;
+        padding: 2em;
+    }
+
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+        margin: 1em;
+    }
+
+    .call-to-action {
+        background-image: url('../../../assets/images/sub2Deal\ 08.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        height: 300px;
+        background-color: rgb(44 44 44 / 50%);
+        background-blend-mode: multiply;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media (width >=320px) and (width <=720px) {
+    .subDeal {
+        .main-banner h1 {
+            font-size: 42px;
+            text-align: start;
+            border-bottom: 4px solid var(--color);
+
+        }
+    }
+
+}
+
+.faq h2 {
+    border: none;
+
+}
+
+.accordion-button:focus {
+    box-shadow: 2px 2px 4px var(--color);
+}
+
+@media (width < 568px) {
+    .anas__ka__faq__button {
+        font-size: .9rem !important;
+    }
+
+
+    .accordian-header .accordian-button button {
+        font-size: .9rem !important;
+    }
+}

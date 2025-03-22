@@ -1,0 +1,84 @@
+/* Saved Searches Grid */
+.saved-searches-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+  
+  /* Saved Search Card Style */
+  .saved-search-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px; /* Fixed card width */
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  /* Card Title and Text */
+  .search-title {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  .search-id {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 15px;
+  }
+  
+  .search-frequency {
+    font-weight: bold;
+    color: #444;
+  }
+  
+  /* Action Buttons inside the Card */
+  .search-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  /* Icon Button Styling */
+  .btn-icon {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .btn-icon:hover {
+    color: #007bff;
+  }
+  
+  /* Color for buttons */
+  .btnss-color {
+    background-color: #09aab0;
+  }
+  
+  /* Responsive Styles for Mobile View */
+  @media (max-width: 576px) {
+    .mobile-size {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .btnss-color {
+      width: 100%;
+      margin-top: 5px;
+    }
+  
+    .saved-search-card {
+      width: 100%; /* Full width on mobile devices */
+    }
+  }
+  

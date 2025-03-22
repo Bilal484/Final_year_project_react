@@ -1,0 +1,93 @@
+.help-hero {
+    background: linear-gradient(45deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 80px 0;
+}
+
+.search-form .form-control {
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+.search-form .btn {
+    padding: 0 2rem;
+}
+
+.quick-link-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.quick-link-card:hover {
+    transform: translateY(-5px);
+}
+
+.quick-link-card .icon-wrapper {
+    color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-link-card ul li {
+    margin-bottom: 0.5rem;
+}
+
+.quick-link-card ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.quick-link-card ul li a:hover {
+    color: var(--primary-color);
+}
+
+.article-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-control, .form-select {
+    padding: 0.75rem 1rem;
+}
+
+@media (max-width: 768px) {
+    .quick-link-card {
+        margin-bottom: 1rem;
+    }
+}
+
+.resource-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+}
+
+.accordion-item {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #f8f9fa;
+    color: #0d6efd;
+}

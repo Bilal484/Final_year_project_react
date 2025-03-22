@@ -1,0 +1,80 @@
+/* Container for the cards */
+.product-cards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Wrapper for the cards to handle custom layout */
+.cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Evenly distribute cards in the row */
+    gap: 20px; /* Space between cards */
+}
+
+/* Individual card wrapper */
+.custom-card-wrapper {
+    flex: 0 1 30%; /* Ensure three cards per row */
+    max-width: 30%; /* Ensure three cards per row */
+    box-sizing: border-box;
+}
+
+/* Custom card styling */
+.custom-card {
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom image styling */
+.custom-card-img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Button styling */
+.custom-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+    border-radius: 5px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .custom-card-wrapper {
+        flex: 0 1 calc(50% - 20px); /* Two cards per row on smaller screens */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-card-wrapper {
+        flex: 0 1 100%; /* One card per row on extra small screens */
+        max-width: 100%;
+    }
+}

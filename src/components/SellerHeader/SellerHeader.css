@@ -1,0 +1,61 @@
+ /* Modal Close Button Custom Styling */
+ .btn-close-custom-unique {
+     background-color: #ff4d4d;
+     border-radius: 50%;
+     padding: 0.5rem;
+ }
+
+ /* Primary Button Styling */
+ .candidate-login-submit-btn-unique {
+     background-color: #d32f2f;
+     border: none;
+     font-size: 1.2rem;
+     padding: 0.75rem 0;
+ }
+
+ .candidate-login-submit-btn-unique:hover {
+     background-color: #b71c1c;
+ }
+
+ /* Social Button Icons */
+ .social-icon {
+     width: 24px;
+     height: 24px;
+ }
+
+ /* Social Buttons */
+ .candidate-login-social-linkedin-unique {
+     background-color: #0a66c2;
+     color: white;
+ }
+
+ .candidate-login-social-google-unique {
+     background-color: #ea4335;
+     color: white;
+ }
+
+ /* Input Group - Eye Icon */
+ .candidate-login-eye-icon-unique {
+     cursor: pointer;
+ }
+
+ /* Checkbox */
+ .candidate-login-checkbox-unique {
+     width: 1.2rem;
+     height: 1.2rem;
+ }
+
+ /* Accent Text */
+ .text-danger {
+     color: #d32f2f !important;
+ }
+
+ /* Footer Links */
+ .candidate-login-footer-links-unique a {
+     color: #6c757d;
+ }
+
+ .candidate-login-footer-links-unique a:hover {
+     color: #000;
+     text-decoration: underline;
+ }

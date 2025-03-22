@@ -1,0 +1,164 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+.all-team {
+
+    .all-team.full-screen-overlay-hero {
+        height: fit-content;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+            url('../../../assets/images/img_agent_career/all-team.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        padding: 50px;
+        padding-block: 150px;
+        margin-top: 50px;
+    }
+
+    .all-team.custom-title-display-heading {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .all-team.unique-search-bar-wrapper {
+        width: 50%;
+        max-width: 650px;
+    }
+
+    .all-team.unique-search-bar-wrapper input.all-team.unique-input-textbox {
+        height: 65px;
+        font-size: 18px;
+        border: none;
+        border-radius: 0;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .all-team.unique-search-bar-wrapper button.all-team.custom-btn-search-action {
+        height: 65px;
+        font-size: 18px;
+        border: none;
+        border-radius: 0;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    #headingState {
+        background-color: white !important;
+    }
+
+    .all-team.bg-color-talent-community {
+        background-color: #f2f2f2;
+    }
+
+    /* Mobile and tablet responsiveness */
+    @media (max-width: 768px) {
+        .all-team.custom-title-display-heading {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .all-team.unique-search-bar-wrapper {
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .all-team.unique-search-bar-wrapper input.all-team.unique-input-textbox,
+        .all-team.unique-search-bar-wrapper button.all-team.custom-btn-search-action {
+            font-size: 16px;
+            height: 50px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .all-team.custom-title-display-heading {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .all-team.unique-search-bar-wrapper {
+            width: 100%;
+            padding: 0 15px;
+        }
+
+        .all-team.unique-search-bar-wrapper input.all-team.unique-input-textbox,
+        .all-team.unique-search-bar-wrapper button.all-team.custom-btn-search-action {
+            font-size: 14px;
+            height: 45px;
+        }
+    }
+
+    .all-team .header .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .all-team .header h1 {
+        font-size: 3rem;
+    }
+
+    .all-team .job-listings .card {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .all-team .job-listings .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .all-team .culture .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .all-team-talent-community {
+        height: fit-content;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+            url('../../../assets/images/img_agent_career/talent_community_banner_img-1706757483238.png');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 50px;
+        padding-block: 130px;
+        margin-top: 50px;
+    }
+
+    .all-team .talent-community-title {
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    /* Mobile and tablet responsiveness */
+    @media (max-width: 768px) {
+        .all-team .talent-community-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .all-team .talent-community-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+    }
+
+ 
+}

@@ -1,0 +1,66 @@
+.parent-hvh-apply {
+
+
+  /* Sidebar style for larger screens */
+  .sidebar {
+    width: 200px;
+    height: 500px;
+    background-color: #f2f2f2;
+    /* padding: 20px; */
+  }
+
+  .sidebar ul li {
+    margin: 10px;
+    background-color: #0c2640;
+    color: white !important;
+    padding: 12px 0px;
+    border-radius: 10px;
+    text-align: center;
+
+  }
+
+  /* .container-fluid{
+      position: absolute;
+      left: 0;
+  } */
+  .btn-agent-apply-next {
+    width: 100px;
+  }
+
+  .card-mx-steps {
+    border: 0;
+  }
+
+  /* Responsive sidebar on mobile and tablet */
+  @media (max-width: 992px) {
+    .sidebar {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .sidebar ul {
+      display: flex;
+    }
+
+    .sidebar ul li {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+    }
+
+    .sidebar ul li input {
+      border: 2px solid black !important;
+      margin-bottom: 5px;
+    }
+  }
+
+  /* For the step container */
+  .step-container {
+    padding-left: 20px;
+  }
+}

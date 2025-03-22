@@ -1,0 +1,81 @@
+.diversity-inclusion-container {
+    overflow-x: hidden;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('../../assets/images/biznet-find.jpg') center/cover no-repeat;
+    min-height: 400px;
+    /* display: flex; */
+    align-items: center;
+}
+
+.section-title {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.initiative-card,
+.erg-card,
+.partnership-card,
+.training-card,
+.award-card,
+.goal-card {
+    transition: transform 0.3s ease;
+}
+
+.initiative-card:hover,
+.erg-card:hover,
+.partnership-card:hover,
+.training-card:hover,
+.award-card:hover,
+.goal-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.progress {
+    height: 10px;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    background-color: var(--primary-color);
+}
+
+.blockquote {
+    font-size: 1.25rem;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 300px;
+    }
+
+    .stat-item {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

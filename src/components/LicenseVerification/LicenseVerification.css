@@ -1,0 +1,60 @@
+/* General styles for the page */
+.license-verification-page {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header styles */
+.custom-header {
+  background-color: #007bff;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Main content styles */
+.main-content {
+  padding: 40px 0;
+}
+
+.content-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.content-description {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* Iframe styles */
+iframe {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styles */
+.custom-footer {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.custom-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
