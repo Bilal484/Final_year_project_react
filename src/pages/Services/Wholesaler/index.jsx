@@ -210,7 +210,7 @@ const Wholesaler = () => {
           name="keywords"
           content="Wholesaler, Real Estate Wholesaling, Property Sourcing, Deal Negotiation, Real Estate Services"
         />
-        <meta name="author" content="Znet Corporation" />
+        <meta name="author" content="UrbanCraft REAL ESTATE Corporation" />
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Wholesaler | Real Estate Supply Chain Services" />
         <meta
@@ -248,7 +248,7 @@ const Wholesaler = () => {
       In the business ecosystem, a wholesaler plays a crucial role by acting as an intermediary between manufacturers and the retail market. Wholesalers purchase goods in large quantities from producers or manufacturers, leveraging economies of scale to secure better prices. They then distribute these goods to retailers, businesses, or institutions, but not directly to end consumers. This model enables manufacturers to concentrate on production without the complexities of individual retail distribution, while retailers benefit from access to a diverse inventory without the need for large capital outlays on stock.
     </p>
     <p>
-      At ZNet, we understand the importance of efficient supply chains. While ZNet itself is not a wholesaler, we facilitate connections within the wholesale industry through our technological solutions, helping our clients manage and streamline their operations effectively. Our services ensure that wholesalers can maintain reliable supply chains and support their retail partners in meeting consumer demands.
+      At UrbanCraft REAL ESTATE, we understand the importance of efficient supply chains. While UrbanCraft REAL ESTATE itself is not a wholesaler, we facilitate connections within the wholesale industry through our technological solutions, helping our clients manage and streamline their operations effectively. Our services ensure that wholesalers can maintain reliable supply chains and support their retail partners in meeting consumer demands.
     </p>
 </div>
 

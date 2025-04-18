@@ -236,21 +236,21 @@ const SignUp = () => {
     return (
         <>
             <Helmet>
-                <title>Sign Up | Znet</title>
+                <title>Sign Up | UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Sign up to Znet for access to top real estate services, role-based customization, and personalized solutions. Register now!"
+                    content="Sign up to UrbanCraft REAL ESTATE for access to top real estate services, role-based customization, and personalized solutions. Register now!"
                 />
                 <meta
                     name="keywords"
                     content="Znet, Sign Up, Real Estate Services, Registration, Role-based Access"
                 />
-                <meta name="author" content="Znet Corporation" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Corporation" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Sign Up | Znet" />
+                <meta property="og:title" content="Sign Up | UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
-                    content="Join Znet and access top-tier real estate services, tailored to your needs."
+                    content="Join UrbanCraft REAL ESTATE and access top-tier real estate services, tailored to your needs."
                 />
                 <meta
                     property="og:image"
@@ -268,11 +268,11 @@ const SignUp = () => {
                     >
                         <img
                             src={ZnetLogo}
-                            alt="Znet Logo"
+                            alt="UrbanCraft REAL ESTATE Logo"
                             className="mx-auto"
                             style={{ width: "100px" }}
                         />
-                        {/* <h2 className="h4 fw-bold text-center mb-4">Welcome to Znet</h2> */}
+                        {/* <h2 className="h4 fw-bold text-center mb-4">Welcome to UrbanCraft REAL ESTATE</h2> */}
                         <div className="my-3 d-flex justify-content-center align-items-center gap-0 ">
                             <Link
                                 className="btn btn-primary text-decoration-none w-50"
@@ -499,7 +499,7 @@ const SignUp = () => {
                                 </div>
                             </div>
                             <p className="text-center mt-3">
-                                By submitting, I accept Znet{" "}
+                                By submitting, I accept UrbanCraft REAL ESTATE{" "}
                                 <a href="#" className="text-decoration -underline">
                                     terms of use
                                 </a>

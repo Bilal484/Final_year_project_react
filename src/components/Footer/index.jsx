@@ -25,8 +25,8 @@ const Footer = () => {
     return (
         <>
             <Helmet>
-                <title>ZNET - Simplify Real Estate Networking</title>
-                <meta name="description" content="Join ZNET to simplify real estate networking. Explore opportunities to become an agent, careers, community impact, and more." />
+                <title>URBANCRAFT REAL ESTATE - Simplify Real Estate Networking</title>
+                <meta name="description" content="Join URBANCRAFT REAL ESTATE to simplify real estate networking. Explore opportunities to become an agent, careers, community impact, and more." />
                 <meta name="keywords" content="ZNET, Real Estate, Careers, Agents, Networking, Fair Housing Policy, Subsidiaries" />
                 <meta name="author" content="ZNET" />
             </Helmet>
@@ -52,7 +52,7 @@ const Footer = () => {
                     }}
                 >
                     <h2 className="fw-bold mb-3 fs-3 fs-md-2">Ready to Simplify Real Estate Networking?</h2>
-                    <p className="lead mb-4 fs-6 fs-md-5">Join thousands of professionals on ZNet today.</p>
+                    <p className="lead mb-4 fs-6 fs-md-5">Join thousands of professionals on UrbanCraft REAL ESTATE today.</p>
                     {isLoggedIn ? (
                         <div className="user-email">
                             <p className="text-white py-2 py-md-2 text-center mb-1"> {userEmail}</p>
@@ -101,7 +101,7 @@ const Footer = () => {
                                         to='/WhyZnet'
                                         className="text-muted text-decoration-none hover-link"
                                     >
-                                        Why ZNET?
+                                        Why URBANCRAFT REAL ESTATE?
                                     </Link>
                                 </li>
                                 <li>
@@ -128,7 +128,7 @@ const Footer = () => {
                                         to='/ZnetLife'
                                         className="text-muted text-decoration-none hover-link"
                                     >
-                                        Life at ZNET
+                                        Life at URBANCRAFT REAL ESTATE
                                     </Link>
                                 </li>
                                 <li>
@@ -261,7 +261,7 @@ const Footer = () => {
                         <div className="col-12 col-md-6">
                             <div className="bg-light p-3 p-md-4 text-muted">
                                 <p className="mb-2 small">
-                                    Copyright: © 2025 ZNET. All rights reserved.
+                                    Copyright: © 2025 URBANCRAFT REAL ESTATE. All rights reserved.
                                 </p>
                                 <p className="mb-2 small">
                                     Updated January 2025: By searching, you agree to the{" "}
@@ -280,7 +280,7 @@ const Footer = () => {
                                     </Link>
                                 </p>
                                 <p className="mb-2 small">
-                                    ZNet is not licensed anywhere. It’s just a platform for networking.
+                                    UrbanCraft REAL ESTATE is not licensed anywhere. It’s just a platform for networking.
                                 </p>
                                 <p className="mb-2 small">
                                     <Link to="javascript:void(0)" className="text-decoration-none ">
@@ -295,17 +295,17 @@ const Footer = () => {
                                 </p>
                                 <p className="mt-4 small">
                                     If you are using a screen reader, or having trouble reading this
-                                    website, please call ZNET Customer Support for help at{" "}
+                                    website, please call URBANCRAFT REAL ESTATE Customer Support for help at{" "}
                                     <Link to="tel:(844) 844-2707" className="text-decoration-none ">
                                     (844) 844-2707
                                     </Link>
                                     .
                                 </p>
                                 <p className="mt-4 small font-weight-bold">
-                                    🏠 ZNET IS COMMITTED TO AND ABIDES BY THE FAIR HOUSING ACT AND
+                                    🏠 URBANCRAFT REAL ESTATE IS COMMITTED TO AND ABIDES BY THE FAIR HOUSING ACT AND
                                     EQUAL OPPORTUNITY ACT.
                                     <Link to="javascript:void(0)" className="text-decoration-none ">
-                                        READ ZNET'S FAIR HOUSING POLICY
+                                        READ URBANCRAFT REAL ESTATE'S FAIR HOUSING POLICY
                                     </Link>{" "}
                                     AND THE
                                     <Link to="javascript:void(0)" className="text-decoration-none ">

@@ -12,19 +12,19 @@ const WhyZnet = () => {
     return (
         <>
         <Helmet>
-                <title>Why Choose Znet | Your Trusted Real Estate Partner</title>
+                <title>Why Choose UrbanCraft REAL ESTATE | Your Trusted Real Estate Partner</title>
                 <meta 
                     name="description" 
-                    content="Discover why Znet is the best choice for buying or selling homes. With experienced agents, top-notch technology, and affordable fees, we help you achieve your real estate goals." 
+                    content="Discover why UrbanCraft REAL ESTATE is the best choice for buying or selling homes. With experienced agents, top-notch technology, and affordable fees, we help you achieve your real estate goals." 
                 />
                 <meta 
                     name="keywords" 
                     content="Znet, real estate, best agents, affordable listing fees, buy home, sell home, real estate technology" 
                 />
-                <meta property="og:title" content="Why Choose Znet | Your Trusted Real Estate Partner" />
+                <meta property="og:title" content="Why Choose UrbanCraft REAL ESTATE | Your Trusted Real Estate Partner" />
                 <meta 
                     property="og:description" 
-                    content="Learn how Znet pairs local expertise with powerful technology to make your home buying and selling journey seamless and cost-effective." 
+                    content="Learn how UrbanCraft REAL ESTATE pairs local expertise with powerful technology to make your home buying and selling journey seamless and cost-effective." 
                 />
                 <meta 
                     property="og:url" 
@@ -36,10 +36,10 @@ const WhyZnet = () => {
                 />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Why Choose Znet | Your Trusted Real Estate Partner" />
+                <meta name="twitter:title" content="Why Choose UrbanCraft REAL ESTATE | Your Trusted Real Estate Partner" />
                 <meta 
                     name="twitter:description" 
-                    content="Discover how Znet simplifies real estate with expert agents, advanced technology, and cost savings for buyers and sellers." 
+                    content="Discover how UrbanCraft REAL ESTATE simplifies real estate with expert agents, advanced technology, and cost savings for buyers and sellers." 
                 />
                 <meta 
                     name="twitter:image" 
@@ -91,21 +91,21 @@ const WhyZnet = () => {
                             <div>
                                 <h2>Reach more buyers</h2>
                                 <p>
-                                    Znet listings reach 70% more buyers with preferred placement on
+                                    UrbanCraft REAL ESTATE listings reach 70% more buyers with preferred placement on
                                     the #1 brokerage website.
                                 </p>
                             </div>
                             <div>
                                 <h2>Save thousands on fees</h2>
                                 <p>
-                                    When you buy and sell with Znet, you’ll pay a 1% listing fee—
+                                    When you buy and sell with UrbanCraft REAL ESTATE, you’ll pay a 1% listing fee—
                                     that’s half of what other brokerages often charge.
                                 </p>
                             </div>
                             <div>
                                 <h2>On-demand home tours</h2>
                                 <p>
-                                    Schedule a tour with a Znet agent in a few clicks—even for the
+                                    Schedule a tour with a UrbanCraft REAL ESTATE agent in a few clicks—even for the
                                     same day.
                                 </p>
                             </div>
@@ -140,7 +140,7 @@ const WhyZnet = () => {
                             }}
                         >
                             <ImageWithText
-                                content="Our agents have the experience to price, market, and sell your home for the best price possible. Plus, Znet listings get seen by 70% more buyers. And you get it all for half the listing fee other brokerages often charge."
+                                content="Our agents have the experience to price, market, and sell your home for the best price possible. Plus, UrbanCraft REAL ESTATE listings get seen by 70% more buyers. And you get it all for half the listing fee other brokerages often charge."
                                 imgSrc={img3}
                                 altText="WhyZnet"
                                 title="Sell for top dollar and save thousands on fees

@@ -33,17 +33,17 @@ const Contact = () => {
     return (
         <>
             <Helmet>
-                <title>Contact Us - ZNET</title>
-                <meta name="description" content="Reach out to ZNET for all your real estate inquiries or customer support needs." />
-                <meta name="keywords" content="ZNET contact, real estate help, customer support" />
-                <meta property="og:title" content="Contact Us - ZNET" />
-                <meta property="og:description" content="Get in touch with ZNET for inquiries related to real estate services and customer support." />
+                <title>Contact Us - URBANCRAFT REAL ESTATE</title>
+                <meta name="description" content="Reach out to URBANCRAFT REAL ESTATE for all your real estate inquiries or customer support needs." />
+                <meta name="keywords" content="URBANCRAFT REAL ESTATE contact, real estate help, customer support" />
+                <meta property="og:title" content="Contact Us - URBANCRAFT REAL ESTATE" />
+                <meta property="og:description" content="Get in touch with URBANCRAFT REAL ESTATE for inquiries related to real estate services and customer support." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="path_to_image_for_social_media_sharing" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Contact Us - ZNET" />
-                <meta name="twitter:description" content="Contact ZNET for professional real estate advice and support." />
+                <meta name="twitter:title" content="Contact Us - URBANCRAFT REAL ESTATE" />
+                <meta name="twitter:description" content="Contact URBANCRAFT REAL ESTATE for professional real estate advice and support." />
             </Helmet>
             <Header />
 
@@ -77,7 +77,7 @@ const Contact = () => {
                                 </span>
                                 <p className="text-muted text-center mt-2">
                                     Chat live with a Customer Service Representative for help with our site,
-                                    app, or finding a Znet Agent.
+                                    app, or finding a UrbanCraft REAL ESTATE Agent.
                                 </p>
                             </div>
                         </div>
@@ -89,7 +89,7 @@ const Contact = () => {
                                 </span>
                                 <p className="text-muted text-center mt-2">
                                     Send our Customer Service Team questions about our site, app, or
-                                    finding a Znet Agent.
+                                    finding a UrbanCraft REAL ESTATE Agent.
                                 </p>
                             </div>
                         </div>
@@ -141,7 +141,7 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                {/* biznet office */}
+                {/* biurbancraft real estate office */}
             </div>
 
             {/* faq section */}

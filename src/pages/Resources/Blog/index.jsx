@@ -63,9 +63,9 @@ const Blog = () => {
         <>
             <Helmet>
                 <title>Blog - Latest Real Estate News & Updates</title>
-                <meta name="description" content="Explore our latest blog posts for updates on real estate trends, investment tips, and market analysis. Stay informed with Znet's expert insights." />
-                <meta name="keywords" content="real estate, blogs, property investment, market trends, housing updates, Znet blogs" />
-                <meta name="author" content="Znet Team" />
+                <meta name="description" content="Explore our latest blog posts for updates on real estate trends, investment tips, and market analysis. Stay informed with UrbanCraft REAL ESTATE's expert insights." />
+                <meta name="keywords" content="real estate, blogs, property investment, market trends, housing updates, UrbanCraft REAL ESTATE blogs" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Team" />
             </Helmet>
             <Header />
             <main>
@@ -127,7 +127,7 @@ const Blog = () => {
 
                 <section className="social-section text-center py-5">
                     <Container>
-                        <h4><TranslateText>Follow Znet</TranslateText></h4>
+                        <h4><TranslateText>Follow UrbanCraft REAL ESTATE</TranslateText></h4>
                         <div className="social-icons mt-3">
                             <a href="#" className="twitter mx-2" aria-label="Twitter">
                                 <i className="fab fa-twitter" />

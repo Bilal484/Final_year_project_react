@@ -5,24 +5,24 @@ const WhyZnet = () => {
         <>
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>ZNet - Your All-in-One Real Estate Solution</title>
+                <title>UrbanCraft REAL ESTATE - Your All-in-One Real Estate Solution</title>
                 <meta
                     name="description"
-                    content="ZNet offers quick connections, expert strategies, and seamless transactions for all your real estate needs."
+                    content="UrbanCraft REAL ESTATE offers quick connections, expert strategies, and seamless transactions for all your real estate needs."
                 />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="ZNet - Your All-in-One Real Estate Solution" />
+                <meta property="og:title" content="UrbanCraft REAL ESTATE - Your All-in-One Real Estate Solution" />
                 <meta
                     property="og:description"
-                    content="ZNet offers quick connections, expert strategies, and seamless transactions for all your real estate needs."
+                    content="UrbanCraft REAL ESTATE offers quick connections, expert strategies, and seamless transactions for all your real estate needs."
                 />
                 <meta property="og:image" content="https://via.placeholder.com/1200x630" />
                 <meta property="og:url" content="https://www.znet.com/why-znet" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="ZNet - Your All-in-One Real Estate Solution" />
+                <meta name="twitter:title" content="UrbanCraft REAL ESTATE - Your All-in-One Real Estate Solution" />
                 <meta
                     name="twitter:description"
-                    content="ZNet offers quick connections, expert strategies, and seamless transactions for all your real estate needs."
+                    content="UrbanCraft REAL ESTATE offers quick connections, expert strategies, and seamless transactions for all your real estate needs."
                 />
                 <meta name="twitter:image" content="https://via.placeholder.com/1200x630" />
             </Helmet>

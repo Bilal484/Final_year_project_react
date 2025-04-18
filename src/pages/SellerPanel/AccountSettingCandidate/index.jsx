@@ -157,13 +157,13 @@ const AccountSettingCandidate = () => {
                 <title>Account Settings | Candidate Profile</title>
                 <meta
                     name="description"
-                    content="Manage your account settings, update your profile information, and configure preferences effortlessly on the Biznet Candidate platform."
+                    content="Manage your account settings, update your profile information, and configure preferences effortlessly on the Biurbancraft real estate Candidate platform."
                 />
                 <meta
                     name="keywords"
-                    content="account settings, candidate profile, profile update, Biznet settings, user management, timezone selection"
+                    content="account settings, candidate profile, profile update, Biurbancraft real estate settings, user management, timezone selection"
                 />
-                <meta name="author" content="Biznet Team" />
+                <meta name="author" content="Biurbancraft real estate Team" />
             </Helmet>
             <Header />
             <SellerAgentHeader />

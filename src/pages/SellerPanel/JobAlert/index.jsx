@@ -51,10 +51,10 @@ const JobAlert = () => {
   return (
     <>
      <Helmet>
-        <title>Job Alerts | Biznet USA</title>
+        <title>Job Alerts | UrbanCraft REAL ESTATE</title>
         <meta name="description" content="Create and manage job alerts to stay updated on the latest job opportunities that match your preferences." />
-        <meta name="keywords" content="job alerts, job notifications, career updates, Biznet USA jobs" />
-        <meta name="author" content="Biznet USA" />
+        <meta name="keywords" content="job alerts, job notifications, career updates, UrbanCraft REAL ESTATE jobs" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
       </Helmet>
       <Header />
       <SellerAgentHeader />

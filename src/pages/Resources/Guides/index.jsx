@@ -24,7 +24,7 @@ const Guides = () => {
           name="keywords" 
           content="selling guides, property selling tips, real estate, prepare home for sale, price property, market property, legal documentation, real estate agent" 
         />
-        <meta name="author" content="Biznet Team" />
+        <meta name="author" content="Biurbancraft real estate Team" />
         <meta property="og:title" content="Guides for Selling Your Property | Biznet" />
         <meta 
           property="og:description" 

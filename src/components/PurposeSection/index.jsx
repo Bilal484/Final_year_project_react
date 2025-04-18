@@ -11,24 +11,24 @@ function PurposeSection() {
          <Helmet>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta name="description" content="ZNet connects real estate professionals by matching you with the right people based on your goals. Whether you're buying, selling, or investing, collaborate and succeed." />
-                <meta name="keywords" content="real estate, networking, contractors, resellers, investors, agents, ZNet" />
+                <meta name="description" content="UrbanCraft REAL ESTATE connects real estate professionals by matching you with the right people based on your goals. Whether you're buying, selling, or investing, collaborate and succeed." />
+                <meta name="keywords" content="real estate, networking, contractors, resellers, investors, agents, UrbanCraft REAL ESTATE" />
                 <meta property="og:title" content="Connecting Real Estate Professionals Like Never Before" />
-                <meta property="og:description" content="ZNet simplifies real estate networking by instantly matching you with the right people based on your goals. Join now!" />
+                <meta property="og:description" content="UrbanCraft REAL ESTATE simplifies real estate networking by instantly matching you with the right people based on your goals. Join now!" />
                 <meta property="og:image" content="https://example.com/path-to-your-image.jpg" />
                 <meta property="og:image:alt" content="Real Estate Networking" />
                 <meta name="twitter:title" content="Connecting Real Estate Professionals Like Never Before" />
-                <meta name="twitter:description" content="ZNet simplifies real estate networking by instantly matching you with the right people based on your goals." />
+                <meta name="twitter:description" content="UrbanCraft REAL ESTATE simplifies real estate networking by instantly matching you with the right people based on your goals." />
                 <meta name="twitter:image" content="https://example.com/path-to-your-image.jpg" />
-                <title>Real Estate Networking | ZNet</title>
+                <title>Real Estate Networking | UrbanCraft REAL ESTATE</title>
             </Helmet>
         <section className="container py-5">
             <h3 className="text-center fw-bold mb-3" style={{ fontSize: "2.5rem" }}>
                 Connecting Real Estate Professionals Like Never Before
             </h3>
             <p className="text-center fs-5 text-muted mb-5">
-                ZNet simplifies real estate networking by instantly matching you with the right people based on your goals.
-                Whether you’re buying, selling, or investing, ZNet makes it easy to connect, collaborate, and succeed.
+                UrbanCraft REAL ESTATE simplifies real estate networking by instantly matching you with the right people based on your goals.
+                Whether you’re buying, selling, or investing, UrbanCraft REAL ESTATE makes it easy to connect, collaborate, and succeed.
             </p>
 
             <div className="btn-grp d-flex justify-content-center mb-5 gap-3">

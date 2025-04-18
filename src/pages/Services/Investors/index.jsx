@@ -14,24 +14,24 @@ const Investors = () => {
   return (
     <>
       <Helmet>
-        <title>Investor Relations | Redefining Real Estate with Znet</title>
+        <title>Investor Relations | Redefining Real Estate with UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
-          content="Explore Znet's investor relations page. Learn about our innovations in real estate, financial highlights, and growth in the U.S. and Canada."
+          content="Explore UrbanCraft REAL ESTATE's investor relations page. Learn about our innovations in real estate, financial highlights, and growth in the U.S. and Canada."
         />
         <meta
           name="keywords"
           content="Znet, Investor Relations, Real Estate, Financial Results, Market Trends, Real Estate Brokerage, Innovations in Real Estate"
         />
-        <meta name="author" content="Znet Corporation" />
+        <meta name="author" content="UrbanCraft REAL ESTATE Corporation" />
         <meta name="robots" content="index, follow" />
         <meta
           property="og:title"
-          content="Investor Relations | Redefining Real Estate with Znet"
+          content="Investor Relations | Redefining Real Estate with UrbanCraft REAL ESTATE"
         />
         <meta
           property="og:description"
-          content="Znet helps people buy and sell homes across the U.S. and Canada with technology-driven innovations. Learn more about our investor relations."
+          content="UrbanCraft REAL ESTATE helps people buy and sell homes across the U.S. and Canada with technology-driven innovations. Learn more about our investor relations."
         />
         <meta property="og:image" content={aboutImage1} />
         <meta property="og:url" content="https://znet.com/investors" />
@@ -88,7 +88,7 @@ const Investors = () => {
                   Redefining real estate in the consumer’s favor
                 </h1>
                 <p className="w-50">
-                  Znet helps people buy and sell homes in over 100 markets
+                  UrbanCraft REAL ESTATE helps people buy and sell homes in over 100 markets
                   across the U.S. and Canada. As a residential real estate
                   brokerage, we combine our agents and technology to create a
                   faster, better and more affordable service.{" "}
@@ -101,7 +101,7 @@ const Investors = () => {
                 <div className="card col-lg-4 h-100 p-4">
                   <h2 className="h5 mb-3">September 12, 2024 • 8:00 am EDT</h2>
                   <h6>
-                    Znet Reports Falling Mortgage Rates Mean Housing Payments
+                    UrbanCraft REAL ESTATE Reports Falling Mortgage Rates Mean Housing Payments
                     Are Now More Affordable Than a Year Ago Despite Higher
                     Prices
                   </h6>
@@ -111,7 +111,7 @@ const Investors = () => {
                 <div className="card col-lg-4 h-100 p-4">
                   <h2 className="h5 mb-3">September 10, 2024 • 8:01 am EDT</h2>
                   <h6>
-                    Znet Reports Asking Rents Rose the Most in Over a Year in
+                    UrbanCraft REAL ESTATE Reports Asking Rents Rose the Most in Over a Year in
                     August, But Remain Below Record Highs Hit Two Years Earlier
                   </h6>
                   <a href="#">Learn more</a>
@@ -135,7 +135,7 @@ const Investors = () => {
             <div className="row">
               <div className=" p-4">
                 <h2 className="text-center mb-4 h3 fw-bold">
-                  Znet corporation at a glance
+                  UrbanCraft REAL ESTATE corporation at a glance
                 </h2>
                 <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                   <div className="col">
@@ -199,9 +199,9 @@ const Investors = () => {
             <div className="row p-4 bg-light rounded-lg shadow-lg">
               <div className="row align-items-center">
                 <ImagewithText
-                  content="Znet has been at the forefront of real estate, offering unparalleled services to clients. From residential to commercial, we have the expertise and commitment to help you find your perfect space."
+                  content="UrbanCraft REAL ESTATE has been at the forefront of real estate, offering unparalleled services to clients. From residential to commercial, we have the expertise and commitment to help you find your perfect space."
                   imgSrc={aboutImage1}
-                  altText="About Znet"
+                  altText="About UrbanCraft REAL ESTATE"
                 />
               </div>
               <div className="d-flex align-items-center justify-content-between p-4 bg-light border-bottom">

@@ -72,7 +72,7 @@ const FavoriteButton = ({ userId, productId }) => {
     return (
         <>
          <Helmet>
-                <title>Znet Real Estate Home</title>
+                <title>UrbanCraft REAL ESTATE Home</title>
                 <meta name="description" content="A React component for adding or removing products from a user's wishlist." />
                 <meta name="keywords" content="React, Wishlist, Favorite Button, Font Awesome, User Interaction" />
                 <meta name="author" content="Your Name or Company Name" />

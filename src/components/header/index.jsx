@@ -199,21 +199,21 @@ const Header = () => {
   return (
     <>
       <Helmet>
-        <title>BizNet USA - Your Partner in Success</title>
+        <title>UrbanCraft REAL ESTATE - Your Partner in Success</title>
         <meta
           name="description"
-          content="Explore BizNet USA's professional services. Navigate through categories and subcategories seamlessly to find the service you need."
+          content="Explore UrbanCraft REAL ESTATE's professional services. Navigate through categories and subcategories seamlessly to find the service you need."
         />
         <meta
           name="keywords"
-          content="BizNet USA, Categories, Subcategories, Professional Services"
+          content="UrbanCraft REAL ESTATE, Categories, Subcategories, Professional Services"
         />
-        <meta name="author" content="BizNet USA Team" />
+        <meta name="author" content="UrbanCraft REAL ESTATE Team" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content="BizNet USA" />
+        <meta property="og:title" content="UrbanCraft REAL ESTATE" />
         <meta
           property="og:description"
-          content="Browse through BizNet USA's extensive categories and subcategories of professional services."
+          content="Browse through UrbanCraft REAL ESTATE's extensive categories and subcategories of professional services."
         />
         <meta property="og:image" content={imgLogo} />
         <meta property="og:url" content="https://www.biznetusa.com" />

@@ -87,7 +87,7 @@ const ReviewManagement = () => {
           name="keywords"
           content="review management, customer reviews, feedback platform, delete review, submit review, review system"
         />
-        <meta name="author" content="Biznet Team" />
+        <meta name="author" content="Biurbancraft real estate Team" />
         <meta property="og:title" content="Review Management | Biznet" />
         <meta
           property="og:description"

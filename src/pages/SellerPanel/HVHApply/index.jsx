@@ -146,10 +146,10 @@ const HVHApply = () => {
                   {notification.message && <Notification {...notification} />}
 
          <Helmet>
-                <title>Apply for Jobs | Biznet USA</title>
-                <meta name="description" content="Apply for jobs at Biznet USA. Follow easy steps to submit your application for various opportunities." />
-                <meta name="keywords" content="job application, apply jobs online, Biznet USA jobs, job opportunities" />
-                <meta name="author" content="Biznet USA" />
+                <title>Apply for Jobs | UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Apply for jobs at UrbanCraft REAL ESTATE. Follow easy steps to submit your application for various opportunities." />
+                <meta name="keywords" content="job application, apply jobs online, UrbanCraft REAL ESTATE jobs, job opportunities" />
+                <meta name="author" content="UrbanCraft REAL ESTATE" />
             </Helmet>
             <Header />
             <SellerHeader />

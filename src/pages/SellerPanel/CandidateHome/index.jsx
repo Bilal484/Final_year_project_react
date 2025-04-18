@@ -40,7 +40,7 @@ const CandidateHome = () => {
           content="Welcome to Candidate Home. Manage your applications, update account settings, and explore job opportunities tailored for you."
         />
         <meta name="keywords" content="Candidate Home, job applications, account settings, job search" />
-        <meta name="author" content="Znet Team" />
+        <meta name="author" content="UrbanCraft REAL ESTATE Team" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content="Candidate Home - Manage Your Applications" />
         <meta

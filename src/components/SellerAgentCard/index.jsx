@@ -17,7 +17,7 @@ const SellerAgentCard = () => {
                 />
                 <meta
                     name="keywords"
-                    content="real estate agents, real estate support roles, real estate career, associate agents, Znet Next, real estate jobs"
+                    content="real estate agents, real estate support roles, real estate career, associate agents, UrbanCraft REAL ESTATE Next, real estate jobs"
                 />
                 <meta
                     property="og:title"
@@ -70,14 +70,14 @@ const SellerAgentCard = () => {
                         <img
                             src={img4}
                             className="card-img-top"
-                            alt="Znet Next"
+                            alt="UrbanCraft REAL ESTATE Next"
                         />
                         <div className="card-body">
-                            <h5 className="card-title">Introducing Znet Next</h5>
+                            <h5 className="card-title">Introducing UrbanCraft REAL ESTATE Next</h5>
                             <p className="card-text text-muted">
                                 Unlock significant earnings without the burden of hidden costs.
                                 Experience a revolutionary new way to succeed in real estate
-                                with Znet Next.
+                                with UrbanCraft REAL ESTATE Next.
                             </p>
                             <a href="#" className="btn btn">
                                 Learn More

@@ -9,19 +9,19 @@ const UserSetting = () => {
     return (
         <>
         <Helmet>
-                <title>User Settings | Znet</title>
+                <title>User Settings | UrbanCraft REAL ESTATE</title>
                 <meta 
                     name="description" 
-                    content="Manage your notification preferences, saved searches, and email subscriptions with ease on Znet's User Settings page."
+                    content="Manage your notification preferences, saved searches, and email subscriptions with ease on UrbanCraft REAL ESTATE's User Settings page."
                 />
                 <meta 
                     name="keywords" 
-                    content="user settings, notification preferences, saved searches, email subscriptions, Znet" 
+                    content="user settings, notification preferences, saved searches, email subscriptions, UrbanCraft REAL ESTATE" 
                 />
-                <meta property="og:title" content="User Settings | Znet" />
+                <meta property="og:title" content="User Settings | UrbanCraft REAL ESTATE" />
                 <meta 
                     property="og:description" 
-                    content="Customize your preferences for notifications, email updates, and saved searches on Znet's User Settings page." 
+                    content="Customize your preferences for notifications, email updates, and saved searches on UrbanCraft REAL ESTATE's User Settings page." 
                 />
                 <meta 
                     property="og:url" 
@@ -33,10 +33,10 @@ const UserSetting = () => {
                 />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="User Settings | Znet" />
+                <meta name="twitter:title" content="User Settings | UrbanCraft REAL ESTATE" />
                 <meta 
                     name="twitter:description" 
-                    content="Manage your preferences and stay updated with Znet. Configure notifications and emails tailored to your needs." 
+                    content="Manage your preferences and stay updated with UrbanCraft REAL ESTATE. Configure notifications and emails tailored to your needs." 
                 />
                 <meta 
                     name="twitter:image" 
@@ -264,12 +264,12 @@ const UserSetting = () => {
                     </div>
                     <div className="container mt-5">
                         <h3 className="preference-section-title">Other emails</h3>
-                        <p className="fw-bold">Znet updates</p>
+                        <p className="fw-bold">UrbanCraft REAL ESTATE updates</p>
                         <div className="email-preference-card d-flex align-items-center justify-content-between">
                             <div>
-                                <h5 className="preference-title mb-1">Znet news</h5>
+                                <h5 className="preference-title mb-1">UrbanCraft REAL ESTATE news</h5>
                                 <p className="text-muted mb-0">
-                                    Stay up to date on Znet's tools and features, how to buy or
+                                    Stay up to date on UrbanCraft REAL ESTATE's tools and features, how to buy or
                                     sell a home, and connect with an agent.
                                 </p>
                             </div>
@@ -318,7 +318,7 @@ const UserSetting = () => {
                                 </h5>
                                 <p className="text-muted mb-0">
                                     Get notified about the latest trends in the real estate market
-                                    from your local Znet agent.
+                                    from your local UrbanCraft REAL ESTATE agent.
                                 </p>
                             </div>
                             <div className="d-flex justify-content-between align-items-center mb-2">
@@ -340,12 +340,12 @@ const UserSetting = () => {
                     {/* home search */}
                     <div className="container mt-5">
                         <h3 className="preference-section-title">Other emails</h3>
-                        <p className="fw-bold">Znet updates</p>
+                        <p className="fw-bold">UrbanCraft REAL ESTATE updates</p>
                         <div className="email-preference-card d-flex align-items-center justify-content-between">
                             <div>
-                                <h5 className="preference-title mb-1">Znet news</h5>
+                                <h5 className="preference-title mb-1">UrbanCraft REAL ESTATE news</h5>
                                 <p className="text-muted mb-0">
-                                    Stay up to date on Znet's tools and features, how to buy or
+                                    Stay up to date on UrbanCraft REAL ESTATE's tools and features, how to buy or
                                     sell a home, and connect with an agent.
                                 </p>
                             </div>
@@ -394,7 +394,7 @@ const UserSetting = () => {
                                 </h5>
                                 <p className="text-muted mb-0">
                                     Get notified about the latest trends in the real estate market
-                                    from your local Znet agent.
+                                    from your local UrbanCraft REAL ESTATE agent.
                                 </p>
                             </div>
                             <div className="d-flex justify-content-between align-items-center mb-2">

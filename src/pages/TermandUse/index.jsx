@@ -7,18 +7,18 @@ const TermandUse = () => {
         <>
             <Header />
             <div className="container">
-                <h2>Welcome to znetrealty!</h2>
+                <h2>Welcome to urbancraft real estate!</h2>
                 <p>
                     These terms and conditions outline the rules and regulations for the use of
-                    znetrealty's Website, located at{" "}
-                    <a style={{ textDecoration: "none" }} href="https://znetrealty.com/">
-                        https://znetrealty.com/
+                    urbancraft real estate's Website, located at{" "}
+                    <a style={{ textDecoration: "none" }} href="https://urbancraft real estate.com/">
+                        https://urbancraft real estate.com/
                     </a>
                     .
                 </p>
                 <p>
                     By accessing this website we assume you accept these terms and conditions.
-                    Do not continue to use znetrealty if you do not agree to take all of the
+                    Do not continue to use urbancraft real estate if you do not agree to take all of the
                     terms and conditions stated on this page.
                 </p>
                 <p>
@@ -38,8 +38,8 @@ const TermandUse = () => {
                 </p>
                 <h2>Cookies</h2>
                 <p>
-                    We employ the use of cookies. By accessing znetrealty, you agreed to use
-                    cookies in agreement with znetrealty's Privacy Policy.
+                    We employ the use of cookies. By accessing urbancraft real estate, you agreed to use
+                    cookies in agreement with urbancraft real estate's Privacy Policy.
                 </p>
                 <p>
                     Most interactive websites use{" "}
@@ -57,18 +57,18 @@ const TermandUse = () => {
                 </p>
                 <h2>License</h2>
                 <p>
-                    Unless otherwise stated, znetrealty and/or its licensors own the
-                    intellectual property rights for all material on znetrealty. All
+                    Unless otherwise stated, urbancraft real estate and/or its licensors own the
+                    intellectual property rights for all material on urbancraft real estate. All
                     intellectual property rights are reserved. You may access this from
-                    znetrealty for your own personal use subject to restrictions set in these
+                    urbancraft real estate for your own personal use subject to restrictions set in these
                     terms and conditions.
                 </p>
                 <p>You must not:</p>
                 <ul>
-                    <li>Republish material from znetrealty</li>
-                    <li>Sell, rent or sub-license material from znetrealty</li>
-                    <li>Reproduce, duplicate or copy material from znetrealty</li>
-                    <li>Redistribute content from znetrealty</li>
+                    <li>Republish material from urbancraft real estate</li>
+                    <li>Sell, rent or sub-license material from urbancraft real estate</li>
+                    <li>Reproduce, duplicate or copy material from urbancraft real estate</li>
+                    <li>Redistribute content from urbancraft real estate</li>
                 </ul>
                 <p>
                     This Agreement shall begin on the date hereof. This page is generated with
@@ -84,17 +84,17 @@ const TermandUse = () => {
                 </p>
                 <p>
                     Parts of this website offer an opportunity for users to post and exchange
-                    opinions and information in certain areas of the website. znetrealty does
+                    opinions and information in certain areas of the website. urbancraft real estate does
                     not filter, edit, publish or review Comments prior to their presence on the
-                    website. Comments do not reflect the views and opinions of znetrealty, its
+                    website. Comments do not reflect the views and opinions of urbancraft real estate, its
                     agents, and/or affiliates. Comments reflect the views and opinions of the
                     person who posts their views and opinions. To the extent permitted by
-                    applicable laws, znetrealty shall not be liable for the Comments or for any
+                    applicable laws, urbancraft real estate shall not be liable for the Comments or for any
                     liability, damages, or expenses caused and/or suffered as a result of any
                     use of and/or posting of and/or appearance of the Comments on this website.
                 </p>
                 <p>
-                    znetrealty reserves the right to monitor all Comments and to remove any
+                    urbancraft real estate reserves the right to monitor all Comments and to remove any
                     Comments which can be considered inappropriate, offensive or causes breach
                     of these Terms and Conditions.
                 </p>
@@ -118,7 +118,7 @@ const TermandUse = () => {
                     </li>
                 </ul>
                 <p>
-                    You hereby grant znetrealty a non-exclusive license to use, reproduce, edit
+                    You hereby grant urbancraft real estate a non-exclusive license to use, reproduce, edit
                     and authorize others to use, reproduce and edit any of your Comments in any
                     and all forms, formats, or media.
                 </p>
@@ -177,7 +177,7 @@ const TermandUse = () => {
                     <li>the organization does not have any negative records with us;</li>
                     <li>
                         the benefit to us from the visibility of the hyperlink compensates the
-                        absence of <strong>znetrealty</strong>, and
+                        absence of <strong>urbancraft real estate</strong>, and
                     </li>
                     <li>the link is in the context of general resource information.</li>
                 </ol>
@@ -193,7 +193,7 @@ const TermandUse = () => {
                 <p>
                     If you are one of the organizations listed in paragraph 2 above and are
                     interested in linking to our website, you must inform us by sending an
-                    e-mail to <strong>znetrealty</strong>. Please include your name, your
+                    e-mail to <strong>urbancraft real estate</strong>. Please include your name, your
                     organization name, contact information as well as the URL of your site, a
                     list of any URLs from which you intend to link to our Website, and a list of
                     the URLs on our site to which you would like to link. Wait 2-3 weeks for a
@@ -210,7 +210,7 @@ const TermandUse = () => {
                     </li>
                 </ul>
                 <p>
-                    No use of <strong>znetrealty</strong>'s logo or other artwork will be
+                    No use of <strong>urbancraft real estate</strong>'s logo or other artwork will be
                     allowed for linking absent a trademark license agreement.
                 </p>
                 <h2>iFrames</h2>
@@ -282,12 +282,12 @@ const TermandUse = () => {
                 </p>
                 <p>
                     If you want to contact us then you can email us at
-                    Zharanashvillerealtor@gmail.com.
+                    Urbancraftreaclestate.com.
                 </p>
                 <p>
                     Go to homepage --&gt;{" "}
-                    <a style={{ textDecoration: "none" }} href="https://znetrealty.com/">
-                        znetrealty
+                    <a style={{ textDecoration: "none" }} href="https://urbancraft real estate.com/">
+                        urbancraft real estate
                     </a>
                 </p>
                 <center>

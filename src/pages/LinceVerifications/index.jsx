@@ -55,9 +55,9 @@ function LicenseVerification() {
     return (
         <>
         <Helmet>
-                <title>License Verification - Znet</title>
-                <meta name="description" content="Verify real estate licenses through Znet's quick and secure verification portal." />
-                <meta name="keywords" content="real estate, license verification, Znet, professional verification, state license" />
+                <title>License Verification - UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Verify real estate licenses through UrbanCraft REAL ESTATE's quick and secure verification portal." />
+                <meta name="keywords" content="real estate, license verification, UrbanCraft REAL ESTATE, professional verification, state license" />
             </Helmet>
             <Header />
             <div className="license-verification-page">
@@ -154,7 +154,7 @@ function LicenseVerification() {
                     <Container>
                         <Row>
                             <Col>
-                                <p>© 2024 Znet. All Rights Reserved.</p>
+                                <p>© 2024 UrbanCraft REAL ESTATE. All Rights Reserved.</p>
                             </Col>
                         </Row>
                     </Container>

@@ -8,13 +8,13 @@ const SellersCard = ({ title }) => {
             icon: <MdPersonOutline />, // Icon for best agents
             altText: 'Best agents in your market',
             heading: 'We have the best agents in your market',
-            description: 'Znet agents provide exceptional service in real estate, ensuring clients achieve their goals with outstanding results every single time.'
+            description: 'UrbanCraft REAL ESTATE agents provide exceptional service in real estate, ensuring clients achieve their goals with outstanding results every single time.'
         },
         {
             icon: <MdOutlineGroups />, // Icon for connecting with more users
             altText: 'Connect with more users',
             heading: 'Connect with more users',
-            description: 'ZNet is a leading networking platform, connecting users with five times more traffic than the next closest competitor.'
+            description: 'UrbanCraft REAL ESTATE is a leading networking platform, connecting users with five times more traffic than the next closest competitor.'
         },
         {
             icon: <MdOutlineSavings />, // Icon for saving with low listing fees
@@ -27,15 +27,15 @@ const SellersCard = ({ title }) => {
     return (
         <>
             <Helmet>
-                <title>Sellers - Znet | Top Agents and Lowest Fees</title>
-                <meta name="description" content="Explore top agents, low listing fees, and reach more buyers with Znet." />
-                <meta name="keywords" content="real estate, Znet, top agents, low listing fees, real estate agents" />
+                <title>Sellers - UrbanCraft REAL ESTATE | Top Agents and Lowest Fees</title>
+                <meta name="description" content="Explore top agents, low listing fees, and reach more buyers with UrbanCraft REAL ESTATE." />
+                <meta name="keywords" content="real estate, UrbanCraft REAL ESTATE, top agents, low listing fees, real estate agents" />
                 <meta name="author" content="Znet" />
-                <meta property="og:title" content="Sellers - Znet | Top Agents and Lowest Fees" />
-                <meta property="og:description" content="Find the best agents and save on listing fees with Znet. Get in touch with top professionals today!" />
+                <meta property="og:title" content="Sellers - UrbanCraft REAL ESTATE | Top Agents and Lowest Fees" />
+                <meta property="og:description" content="Find the best agents and save on listing fees with UrbanCraft REAL ESTATE. Get in touch with top professionals today!" />
                 <meta property="og:image" content="/assets/images/sell_6.png" />
-                <meta name="twitter:title" content="Sellers - Znet | Top Agents and Lowest Fees" />
-                <meta name="twitter:description" content="Reach more buyers and save with low listing fees at Znet." />
+                <meta name="twitter:title" content="Sellers - UrbanCraft REAL ESTATE | Top Agents and Lowest Fees" />
+                <meta name="twitter:description" content="Reach more buyers and save with low listing fees at UrbanCraft REAL ESTATE." />
                 <meta name="twitter:image" content="/assets/images/sell_6.png" />
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>

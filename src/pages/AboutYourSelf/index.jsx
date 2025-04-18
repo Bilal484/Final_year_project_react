@@ -98,17 +98,17 @@ const AboutYourSelf = () => {
     return (
         <>
          <Helmet>
-                <title>About Yourself - Znet Real Estate</title>
+                <title>About Yourself - UrbanCraft REAL ESTATE</title>
                 <meta name="description" content="Tell us about yourself to help us find the best real estate options for you. Fill out the form to provide your details and preferences." />
-                <meta name="keywords" content="Znet real estate, about yourself, real estate form, client information, real estate services" />
-                <meta property="og:title" content="About Yourself - Znet Real Estate" />
+                <meta name="keywords" content="UrbanCraft REAL ESTATE, about yourself, real estate form, client information, real estate services" />
+                <meta property="og:title" content="About Yourself - UrbanCraft REAL ESTATE" />
                 <meta property="og:description" content="Provide your personal and contact information to let us tailor our real estate services to your needs." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="/path/to/image.jpg" /> 
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="About Yourself - Znet Real Estate" />
-                <meta name="twitter:description" content="Complete our form to start your personalized real estate experience with Znet." />
+                <meta name="twitter:title" content="About Yourself - UrbanCraft REAL ESTATE" />
+                <meta name="twitter:description" content="Complete our form to start your personalized real estate experience with UrbanCraft REAL ESTATE." />
                 <meta name="twitter:image" content="/path/to/image.jpg" /> 
             </Helmet>
             <Header />
@@ -183,7 +183,7 @@ const AboutYourSelf = () => {
                                         </div>
                                         <div className="form-text">
                                             By providing your phone number you consent to receive
-                                            calls/text messages from Znet about your tour.
+                                            calls/text messages from UrbanCraft REAL ESTATE about your tour.
                                         </div>
                                     </div>
 

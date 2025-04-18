@@ -162,7 +162,7 @@ const Careers = () => {
                 <ImageWithText
                     content="Join a culture of innovation and collaboration where your ideas matter. We're building the future of real estate networking together, fostering an environment where creativity thrives and every team member can make a real impact."
                     imgSrc={img01}
-                    altText="ZNET company culture and workspace"
+                    altText="URBANCRAFT REAL ESTATE company culture and workspace"
                     title="Culture of Innovation"
                     imagePosition="left"
                 />

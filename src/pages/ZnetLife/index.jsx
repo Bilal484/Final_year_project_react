@@ -80,36 +80,36 @@ const ZnetLife = () => {
         {
             icon: <GiPerson size={24} />,
             title: "Everyone Can Be a Leader",
-            description: "At Znet, employees at all levels have a voice in the direction of the company. Our executive team lives this value at regular company meetings, where they ask for and respond to employee questions and suggestions. We bring this value to life in our day to day work when our agents and support staff influence how we build software. The Book it Now button on the Znet website? Our engineers built it alongside Znet Tour Coordinators who schedule thousands of tours each week.",
+            description: "At UrbanCraft REAL ESTATE, employees at all levels have a voice in the direction of the company. Our executive team lives this value at regular company meetings, where they ask for and respond to employee questions and suggestions. We bring this value to life in our day to day work when our agents and support staff influence how we build software. The Book it Now button on the UrbanCraft REAL ESTATE website? Our engineers built it alongside UrbanCraft REAL ESTATE Tour Coordinators who schedule thousands of tours each week.",
         },
         {
             icon: <FaEnvelope size={24} />,
             title: "Employee Care is Customer Care",
-            description: "At Znet, we believe that taking care of our employees is the best way to take care of our customers. We offer generous paid time off for all employees, as well as stock grants, an Employee Stock Purchase plan and multiple health plan options including our new voluntary legal program, employee assistance, and wellness programs such as web-based fitness and meditation sessions.",
+            description: "At UrbanCraft REAL ESTATE, we believe that taking care of our employees is the best way to take care of our customers. We offer generous paid time off for all employees, as well as stock grants, an Employee Stock Purchase plan and multiple health plan options including our new voluntary legal program, employee assistance, and wellness programs such as web-based fitness and meditation sessions.",
         },
         {
             icon: <FaMapMarkerAlt size={24} />,
             title: "The Modern Way to Work",
-            description: "Znet has always taken pride in our energy-filled and collaborative office environments, and when the world changed overnight due to COVID-19, our people and technology were ready to support a remote workforce. We provide our employees the tools and support they need to work collaboratively from an office, home office or anywhere they need to be to serve a Znet customer.",
+            description: "UrbanCraft REAL ESTATE has always taken pride in our energy-filled and collaborative office environments, and when the world changed overnight due to COVID-19, our people and technology were ready to support a remote workforce. We provide our employees the tools and support they need to work collaboratively from an office, home office or anywhere they need to be to serve a UrbanCraft REAL ESTATE customer.",
         },
     ];
 
     return (
         <>
             <Helmet>
-                <title>Znet Life | Love Where You Work</title>
+                <title>UrbanCraft REAL ESTATE Life | Love Where You Work</title>
                 <meta
                     name="description"
-                    content="Discover the vibrant culture at Znet, our mission, values, and why employees love working here. See how we create an inclusive and innovative work environment."
+                    content="Discover the vibrant culture at UrbanCraft REAL ESTATE, our mission, values, and why employees love working here. See how we create an inclusive and innovative work environment."
                 />
                 <meta
                     name="keywords"
-                    content="Znet Life, Znet Culture, Znet Careers, Diversity, Mission, Values, Community Impact"
+                    content="UrbanCraft REAL ESTATE Life, UrbanCraft REAL ESTATE Culture, UrbanCraft REAL ESTATE Careers, Diversity, Mission, Values, Community Impact"
                 />
-                <meta property="og:title" content="Znet Life | Love Where You Work" />
+                <meta property="og:title" content="UrbanCraft REAL ESTATE Life | Love Where You Work" />
                 <meta
                     property="og:description"
-                    content="Get a glimpse of Znet's culture and what makes it a great place to work. Explore our mission, values, and community impact initiatives."
+                    content="Get a glimpse of UrbanCraft REAL ESTATE's culture and what makes it a great place to work. Explore our mission, values, and community impact initiatives."
                 />
                 <meta
                     property="og:image"
@@ -118,10 +118,10 @@ const ZnetLife = () => {
                 <meta property="og:url" content="https://biznetusa.com/znet-life" />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Znet Life | Love Where You Work" />
+                <meta name="twitter:title" content="UrbanCraft REAL ESTATE Life | Love Where You Work" />
                 <meta
                     name="twitter:description"
-                    content="Explore why Znet is a great place to work. Learn about our mission, values, and the innovative environment we offer."
+                    content="Explore why UrbanCraft REAL ESTATE is a great place to work. Learn about our mission, values, and the innovative environment we offer."
                 />
                 <meta
                     name="twitter:image"
@@ -133,7 +133,7 @@ const ZnetLife = () => {
                 <section className="blog-hero-section text-center text-white position-relative">
                     <div className="container py-5">
                         <h1 className="display-3 fw-bold mb-4">Love where you work</h1>
-                        <p className="lead mb-4">Get a glimpse of what it's really like working at Znet</p>
+                        <p className="lead mb-4">Get a glimpse of what it's really like working at UrbanCraft REAL ESTATE</p>
                     </div>
                 </section>
             </main>

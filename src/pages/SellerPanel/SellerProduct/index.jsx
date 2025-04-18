@@ -412,7 +412,7 @@ const SellerProduct = () => {
                     name="keywords"
                     content="seller products, product management, product listings, upload images, upload videos, manage products"
                 />
-                <meta name="author" content="Biznet USA" />
+                <meta name="author" content="UrbanCraft REAL ESTATE" />
             </Helmet>
             <Header />
             <SellerHeader />

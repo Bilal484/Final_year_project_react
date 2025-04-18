@@ -341,17 +341,17 @@ const AgentProduct = () => {
     return (
         <>
         <Helmet>
-                <title>Manage Products - ZNET Real Estate</title>
-                <meta name="description" content="Manage and upload real estate product details, images, and videos to enhance property listings on ZNET." />
-                <meta name="keywords" content="real estate, ZNET, property management, product upload, real estate listings" />
-                <meta property="og:title" content="Manage Products - ZNET Real Estate" />
-                <meta property="og:description" content="Comprehensive management of real estate listings with support for images and video uploads on ZNET's platform." />
+                <title>Manage Products - UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Manage and upload real estate product details, images, and videos to enhance property listings on URBANCRAFT REAL ESTATE." />
+                <meta name="keywords" content="real estate, URBANCRAFT REAL ESTATE, property management, product upload, real estate listings" />
+                <meta property="og:title" content="Manage Products - UrbanCraft REAL ESTATE" />
+                <meta property="og:description" content="Comprehensive management of real estate listings with support for images and video uploads on URBANCRAFT REAL ESTATE's platform." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="/path/to/image.jpg" /> {/* Ensure you replace this with the actual image path */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Manage Products - ZNET Real Estate" />
-                <meta name="twitter:description" content="Enhance your real estate listings with detailed product information, images, and videos on ZNET." />
+                <meta name="twitter:title" content="Manage Products - UrbanCraft REAL ESTATE" />
+                <meta name="twitter:description" content="Enhance your real estate listings with detailed product information, images, and videos on URBANCRAFT REAL ESTATE." />
                 <meta name="twitter:image" content="/path/to/image.jpg" /> {/* Ensure you replace this with the actual image path */}
             </Helmet>
             <Header />

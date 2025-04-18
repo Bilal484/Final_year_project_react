@@ -57,7 +57,7 @@ const Realtors = () => {
                     name="keywords"
                     content="Realtors, Real Estate, Professional Real Estate Services, Buying Home, Selling Home"
                 />
-                <meta name="author" content="Znet Corporation" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Corporation" />
                 <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="Professional Realtors | Your Real Estate Experts" />
                 <meta
@@ -87,19 +87,19 @@ const Realtors = () => {
                     <div className="container">
                         <ImagewithText
                             title="Who Are Realtors?"
-                            content="Realtors are licensed real estate professionals who are members of the National Association of Realtors (NAR). They adhere to a strict code of ethics which is based on professionalism and protection of the public. Our Realtors at Znet are committed to treating all parties of a transaction honestly. They have the expertise to help clients navigate the complex process of buying and selling real estate."
+                            content="Realtors are licensed real estate professionals who are members of the National Association of Realtors (NAR). They adhere to a strict code of ethics which is based on professionalism and protection of the public. Our Realtors at UrbanCraft REAL ESTATE are committed to treating all parties of a transaction honestly. They have the expertise to help clients navigate the complex process of buying and selling real estate."
                             imgSrc={img1}
                             reverse={true}
                         />
                     </div>
                 </section>
 
-                {/* Realtors at Znet Section */}
+                {/* Realtors at UrbanCraft REAL ESTATE Section */}
                 <section id="realtors-role" className="bg-white py-5">
                     <div className="container">
                         <ImagewithText
-                            title="Realtors at Znet"
-                            content="At Znet, Realtors play a crucial role in enhancing the property buying and selling experience. They provide personalized guidance, up-to-date market insights, and expert negotiations to ensure you receive the best possible outcomes in your real estate transactions. Our Realtors work diligently to match you with the ideal property or buyer, leveraging their extensive network and the latest technologies."
+                            title="Realtors at UrbanCraft REAL ESTATE"
+                            content="At UrbanCraft REAL ESTATE, Realtors play a crucial role in enhancing the property buying and selling experience. They provide personalized guidance, up-to-date market insights, and expert negotiations to ensure you receive the best possible outcomes in your real estate transactions. Our Realtors work diligently to match you with the ideal property or buyer, leveraging their extensive network and the latest technologies."
                             imgSrc={img2}
                         />
                     </div>

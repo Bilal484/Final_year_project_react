@@ -15,24 +15,24 @@ const DiversityInclusion = () => {
     return (
         <>
         <Helmet>
-                <title>Diversity, Equity & Inclusion at ZNET</title>
-                <meta name="description" content="Learn about ZNET's commitment to diversity, equity, and inclusion in the real estate industry." />
-                <meta name="keywords" content="diversity, equity, inclusion, real estate, ZNET, DEI" />
-                <meta property="og:title" content="Diversity, Equity & Inclusion at ZNET" />
-                <meta property="og:description" content="Discover how ZNET promotes diversity, equity, and inclusion within the real estate sector." />
+                <title>Diversity, Equity & Inclusion at URBANCRAFT REAL ESTATE</title>
+                <meta name="description" content="Learn about URBANCRAFT REAL ESTATE's commitment to diversity, equity, and inclusion in the real estate industry." />
+                <meta name="keywords" content="diversity, equity, inclusion, real estate, URBANCRAFT REAL ESTATE, DEI" />
+                <meta property="og:title" content="Diversity, Equity & Inclusion at URBANCRAFT REAL ESTATE" />
+                <meta property="og:description" content="Discover how URBANCRAFT REAL ESTATE promotes diversity, equity, and inclusion within the real estate sector." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="URL_to_an_image_that_represents_the_page" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Diversity, Equity & Inclusion at ZNET" />
-                <meta name="twitter:description" content="Explore ZNET's initiatives for promoting DEI in real estate." />
+                <meta name="twitter:title" content="Diversity, Equity & Inclusion at URBANCRAFT REAL ESTATE" />
+                <meta name="twitter:description" content="Explore URBANCRAFT REAL ESTATE's initiatives for promoting DEI in real estate." />
             </Helmet>
             <Header isOpen={isOpen} toggle={toggle} />
             <div className="diversity-inclusion-container">
                 {/* Hero Section */}
                 <section className="hero-section text-white position-relative">
                     <div className="container py-5">
-                        <h1 className="display-3 fw-bold mb-4">Diversity, Equity & Inclusion at ZNET</h1>
+                        <h1 className="display-3 fw-bold mb-4">Diversity, Equity & Inclusion at URBANCRAFT REAL ESTATE</h1>
                         <p className="lead mb-4">Building a more inclusive real estate industry, one connection at a time.</p>
                     </div>
                 </section>
@@ -43,7 +43,7 @@ const DiversityInclusion = () => {
                         <h2 className="section-title mb-4">Our Commitment</h2>
                         <div className="row g-4">
                             <div className="col-md-6">
-                                <p className="lead">At ZNET, we believe that diversity drives innovation and creates better outcomes for our employees, customers, and communities.</p>
+                                <p className="lead">At URBANCRAFT REAL ESTATE, we believe that diversity drives innovation and creates better outcomes for our employees, customers, and communities.</p>
                             </div>
                             <div className="col-md-6">
                                 <div className="stats-container">
@@ -182,7 +182,7 @@ const DiversityInclusion = () => {
                             <div className="col-md-8 mx-auto text-center">
                                 <blockquote className="blockquote">
                                     <p className="mb-4">"Our commitment to diversity and inclusion is not just a program – it's core to who we are and how we operate."</p>
-                                    <footer className="blockquote-footer">CEO, ZNET</footer>
+                                    <footer className="blockquote-footer">CEO, URBANCRAFT REAL ESTATE</footer>
                                 </blockquote>
                             </div>
                         </div>

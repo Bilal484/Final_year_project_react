@@ -384,7 +384,7 @@ const ProductDetail = () => {
                       (broker)
                     </p>
                     <p>
-                      Znet checked:{" "}
+                      UrbanCraft REAL ESTATE checked:{" "}
                       <span className="text-primary">2 minutes ago</span> (Sept
                       10, 2024 at 3:59pm)
                     </p>
@@ -413,7 +413,7 @@ const ProductDetail = () => {
                                 Tiffeny Meyers
                               </Card.Title>
                               <Card.Text className="text-muted">
-                                Znet Corporation
+                                UrbanCraft REAL ESTATE Corporation
                               </Card.Text>
                             </div>
                           </Link>
@@ -440,7 +440,7 @@ const ProductDetail = () => {
                                 Daniel Csuk
                               </Card.Title>
                               <Card.Text className="text-muted">
-                                Znet Corporation
+                                UrbanCraft REAL ESTATE Corporation
                               </Card.Text>
                             </div>
                           </Link>
@@ -452,7 +452,7 @@ const ProductDetail = () => {
                   <Row className="text-center mt-3">
                     <Col>
                       <p className="text-muted">
-                        Znet checked:{" "}
+                        UrbanCraft REAL ESTATE checked:{" "}
                         <span className="text-primary">
                           1 minute ago (Oct 29, 2024 at 11:26am)
                         </span>
@@ -482,7 +482,7 @@ const ProductDetail = () => {
                     </div>
                   </div>
                 </div>
-                {/* Ask Znet agent Kim a question  */}
+                {/* Ask UrbanCraft REAL ESTATE agent Kim a question  */}
                 {productData?.id && <CommentSection p_id={productData.id} />}
                 {/*Payment calculator  */}
 
@@ -644,7 +644,7 @@ const ProductDetail = () => {
                     <p className="text-muted mb-4">No upcoming open houses</p>
                     <h3 className="h5 mb-1">Schedule a tour today</h3>
                     <p className="text-muted mb-4">
-                      Tour with Znet and one of our agents will be there to
+                      Tour with UrbanCraft REAL ESTATE and one of our agents will be there to
                       answer all your questions.
                     </p>
                     <p className="font-weight-bold">Wednesday, Sep 11</p>
@@ -1207,15 +1207,15 @@ const ProductDetail = () => {
                   </p>
                 </div>
                 <div className="container card mt-4 my-4 p-5 bg-light rounded ">
-                  <h2 className="h4">Znet Estimate for 10 128th St #5</h2>
+                  <h2 className="h4">UrbanCraft REAL ESTATE Estimate for 10 128th St #5</h2>
                   <p className="text-muted">
-                    Znet has the most accurate online home estimate
+                    UrbanCraft REAL ESTATE has the most accurate online home estimate
                   </p>
                   <h3 className="display-6">$725,861</h3>
                   <p className="text-muted">+$961 over list price of $725K</p>
                   <h4 className="mt-4">Nearby comparable homes</h4>
                   <p className="text-muted">
-                    The Znet Estimate uses 6 recent nearby sales, priced between
+                    The UrbanCraft REAL ESTATE Estimate uses 6 recent nearby sales, priced between
                     $540K to $745K.
                   </p>
                   <div className="row row-cols-1 row-cols-md-2 g-4 mt-4">

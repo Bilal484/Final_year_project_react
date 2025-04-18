@@ -10,14 +10,14 @@ const UserHeader = () => {
         <>
         <Helmet>
                 <meta charSet="utf-8" />
-                <title>User Dashboard | ZNet</title>
+                <title>User Dashboard | UrbanCraft REAL ESTATE</title>
                 <meta name="description" content="Manage your user dashboard with easy access to favorites, saved searches, appointments, offers, and more." />
-                <meta property="og:title" content="User Dashboard | ZNet" />
+                <meta property="og:title" content="User Dashboard | UrbanCraft REAL ESTATE" />
                 <meta property="og:description" content="Manage your user dashboard with easy access to favorites, saved searches, appointments, offers, and more." />
                 <meta property="og:image" content="https://yourwebsite.com/images/user-dashboard-banner.jpg" /> {/* Replace with actual image URL */}
                 <meta property="og:url" content="https://yourwebsite.com/user-dashboard" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="User Dashboard | ZNet" />
+                <meta name="twitter:title" content="User Dashboard | UrbanCraft REAL ESTATE" />
                 <meta name="twitter:description" content="Manage your user dashboard with easy access to favorites, saved searches, appointments, offers, and more." />
                 <meta name="twitter:image" content="https://yourwebsite.com/images/user-dashboard-banner.jpg" /> {/* Replace with actual image URL */}
             </Helmet>

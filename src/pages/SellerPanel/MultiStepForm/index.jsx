@@ -239,7 +239,7 @@ const MultiStepForm = () => {
           name="keywords"
           content="job application, multi-step form, personal information, job experience, application questions"
         />
-        <meta name="author" content="Biznet USA" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
       </Helmet>
             <SellerHeader />
             <div className="step-content" id="step-1-content">

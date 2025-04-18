@@ -9,18 +9,18 @@ const AllTeam = () => {
     return (
         <>
          <Helmet>
-                <title>All Careers - Pursue Your Passion at Znet</title>
+                <title>All Careers - Pursue Your Passion at UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Explore exciting career opportunities at Znet. Discover your perfect job match and take your career to the next level."
+                    content="Explore exciting career opportunities at UrbanCraft REAL ESTATE. Discover your perfect job match and take your career to the next level."
                 />
-                <meta name="keywords" content="Znet careers, job opportunities, real estate jobs, talent community" />
-                <meta name="author" content="Znet Team" />
+                <meta name="keywords" content="UrbanCraft REAL ESTATE careers, job opportunities, real estate jobs, talent community" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Team" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta property="og:title" content="All Careers - Pursue Your Passion at Znet" />
+                <meta property="og:title" content="All Careers - Pursue Your Passion at UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
-                    content="Join Znet to pursue your passion. Explore career opportunities and become a part of our dynamic team."
+                    content="Join UrbanCraft REAL ESTATE to pursue your passion. Explore career opportunities and become a part of our dynamic team."
                 />
                 <meta property="og:url" content="https://yourwebsite.com/all-team" />
                 <meta property="og:image" content="https://yourwebsite.com/path-to-image.jpg" />
@@ -36,7 +36,7 @@ const AllTeam = () => {
                         </h1>
                         <p className="w-50 text-start">
                             Whether you’re starting your career, perfecting your skills, or
-                            changing gears, there’s a place for you at Znet.
+                            changing gears, there’s a place for you at UrbanCraft REAL ESTATE.
                         </p>
                         <form className="all-team unique-search-bar-wrapper input-group">
                             <input

@@ -100,20 +100,20 @@ const AccountSettings = () => {
   return (
     <>
     <Helmet>
-        <title>Account Settings | Biznet USA</title>
+        <title>Account Settings | UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
-          content="Manage your account settings, update your profile, link accounts, and adjust preferences for a personalized experience on Biznet USA."
+          content="Manage your account settings, update your profile, link accounts, and adjust preferences for a personalized experience on UrbanCraft REAL ESTATE."
         />
         <meta
           name="keywords"
-          content="Account Settings, Profile Management, Linked Accounts, User Role, Biznet USA"
+          content="Account Settings, Profile Management, Linked Accounts, User Role, UrbanCraft REAL ESTATE"
         />
-        <meta name="author" content="Biznet USA" />
-        <meta property="og:title" content="Account Settings | Biznet USA" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
+        <meta property="og:title" content="Account Settings | UrbanCraft REAL ESTATE" />
         <meta
           property="og:description"
-          content="Easily manage your profile settings, linked accounts, and preferences with Biznet USA's comprehensive account management tools."
+          content="Easily manage your profile settings, linked accounts, and preferences with UrbanCraft REAL ESTATE's comprehensive account management tools."
         />
         <meta
           property="og:image"

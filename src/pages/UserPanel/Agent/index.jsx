@@ -53,20 +53,20 @@ const Agent = () => {
     return (
         <>
         <Helmet>
-                <title>Find a Real Estate Agent | Znet</title>
+                <title>Find a Real Estate Agent | UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Search and connect with local Znet real estate agents to find your dream home or sell your property at the best price."
+                    content="Search and connect with local UrbanCraft REAL ESTATE agents to find your dream home or sell your property at the best price."
                 />
                 <meta
                     name="keywords"
-                    content="real estate agents, Znet agents, local real estate experts, find agents, real estate services"
+                    content="real estate agents, UrbanCraft REAL ESTATE agents, local real estate experts, find agents, real estate services"
                 />
                 <meta name="author" content="Znet" />
-                <meta property="og:title" content="Find a Real Estate Agent | Znet" />
+                <meta property="og:title" content="Find a Real Estate Agent | UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
-                    content="Connect with expert Znet real estate agents in your area to get the best deals for buying or selling properties."
+                    content="Connect with expert UrbanCraft REAL ESTATE agents in your area to get the best deals for buying or selling properties."
                 />
                 <meta
                     property="og:image"
@@ -82,16 +82,16 @@ const Agent = () => {
                     <div className="container mt-5 text-center container-agent">
                         <img src={img01} alt="Agent" />
                         <h3 className="agent-heading">
-                            Find a local Znet real estate agent
+                            Find a local UrbanCraft REAL ESTATE agent
                         </h3>
-                        <p>Znet Agents are local experts who can get you better results for lower fees.</p>
+                        <p>UrbanCraft REAL ESTATE Agents are local experts who can get you better results for lower fees.</p>
                         <div className="row justify-content-center">
                             <div className="col-md-6">
                                 <div className="input-group search-container">
                                     <input
                                         type="text"
                                         className="form-control"
-                                        placeholder="Find Znet real estate agents in your area"
+                                        placeholder="Find UrbanCraft REAL ESTATE agents in your area"
                                         aria-label="Search"
                                         value={searchQuery}
                                         onChange={handleSearchInput}

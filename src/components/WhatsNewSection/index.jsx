@@ -45,16 +45,16 @@ const WhatsNewSection = () => {
         <>
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>What's New | BizNet USA</title>
-                <meta name="description" content="Stay updated with the latest blogs and news from BizNet USA." />
+                <title>What's New | UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Stay updated with the latest blogs and news from UrbanCraft REAL ESTATE." />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="What's New | BizNet USA" />
-                <meta property="og:description" content="Stay updated with the latest blogs and news from BizNet USA." />
+                <meta property="og:title" content="What's New | UrbanCraft REAL ESTATE" />
+                <meta property="og:description" content="Stay updated with the latest blogs and news from UrbanCraft REAL ESTATE." />
                 <meta property="og:image" content="https://via.placeholder.com/150" />
                 <meta property="og:url" content="https://www.biznetusa.com/whats-new" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="What's New | BizNet USA" />
-                <meta name="twitter:description" content="Stay updated with the latest blogs and news from BizNet USA." />
+                <meta name="twitter:title" content="What's New | UrbanCraft REAL ESTATE" />
+                <meta name="twitter:description" content="Stay updated with the latest blogs and news from UrbanCraft REAL ESTATE." />
                 <meta name="twitter:image" content="https://via.placeholder.com/150" />
             </Helmet>
             <Container>

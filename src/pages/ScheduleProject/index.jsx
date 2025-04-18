@@ -71,13 +71,13 @@ const ScheduleProject = () => {
         <title>Schedule Projects | Biznet</title>
         <meta
           name="description"
-          content="Effortlessly schedule, manage, and monitor projects with the Biznet Schedule Project tool. Plan durations, assign team members, and track project statuses."
+          content="Effortlessly schedule, manage, and monitor projects with the Biurbancraft real estate Schedule Project tool. Plan durations, assign team members, and track project statuses."
         />
         <meta
           name="keywords"
-          content="schedule projects, project management, team assignments, project tracking, Biznet tools"
+          content="schedule projects, project management, team assignments, project tracking, Biurbancraft real estate tools"
         />
-        <meta name="author" content="Biznet Team" />
+        <meta name="author" content="Biurbancraft real estate Team" />
         <meta property="og:title" content="Schedule Projects | Biznet" />
         <meta
           property="og:description"
@@ -88,7 +88,7 @@ const ScheduleProject = () => {
         <meta name="twitter:title" content="Schedule Projects | Biznet" />
         <meta
           name="twitter:description"
-          content="Plan, manage, and track your projects effectively with the Biznet Schedule Project tool."
+          content="Plan, manage, and track your projects effectively with the Biurbancraft real estate Schedule Project tool."
         />
       </Helmet>
       <Header />

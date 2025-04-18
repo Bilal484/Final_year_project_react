@@ -33,16 +33,16 @@ const HousingSubscriptionForm = () => {
     return (
         <>
             <Helmet>
-                <title>Subscribe for Housing Alerts - BizNet USA</title>
+                <title>Subscribe for Housing Alerts - UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Stay updated with the latest housing news, tips, and exclusive offers. Subscribe to BizNet USA's email alerts today!"
+                    content="Stay updated with the latest housing news, tips, and exclusive offers. Subscribe to UrbanCraft REAL ESTATE's email alerts today!"
                 />
                 <meta
                     name="keywords"
                     content="Housing Alerts, Real Estate News, Email Subscription, Housing Listings"
                 />
-                <meta property="og:title" content="Subscribe for Housing Alerts - BizNet USA" />
+                <meta property="og:title" content="Subscribe for Housing Alerts - UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
                     content="Get the latest housing updates and exclusive offers directly in your inbox. Subscribe now and stay informed."
@@ -51,7 +51,7 @@ const HousingSubscriptionForm = () => {
                     property="og:image"
                     content="/path/to/default-subscription-banner.jpg"
                 />
-                <meta name="author" content="BizNet USA Team" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Team" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="robots" content="index, follow" />
             </Helmet>
@@ -89,7 +89,7 @@ const HousingSubscriptionForm = () => {
                         </Form>
                         <small className="text-muted d-block mt-3">
                             <TranslateText>
-                                By subscribing, you agree to Znet’s <a href="#" className="text-decoration-none">Terms of Use</a> and <a href="#" className="text-decoration-none">Privacy Policy</a>.
+                                By subscribing, you agree to UrbanCraft REAL ESTATE’s <a href="#" className="text-decoration-none">Terms of Use</a> and <a href="#" className="text-decoration-none">Privacy Policy</a>.
                             </TranslateText>
                         </small>
                     </Col>

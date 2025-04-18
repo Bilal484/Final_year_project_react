@@ -12,9 +12,9 @@ const InvestorsFooter = () => {
     return (
         <>
         <Helmet>
-                <title>Investor Relations - ZNET</title>
-                <meta name="description" content="Join ZNET's investor relations to explore strategic real estate investment opportunities with high returns and managed risks." />
-                <meta name="keywords" content="real estate, investors, ZNET, investment opportunities, strategic investment, real estate market" />
+                <title>Investor Relations - URBANCRAFT REAL ESTATE</title>
+                <meta name="description" content="Join URBANCRAFT REAL ESTATE's investor relations to explore strategic real estate investment opportunities with high returns and managed risks." />
+                <meta name="keywords" content="real estate, investors, URBANCRAFT REAL ESTATE, investment opportunities, strategic investment, real estate market" />
             </Helmet>
             <Header />
             <div className="investors-container">
@@ -51,7 +51,7 @@ const InvestorsFooter = () => {
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-6">
-                                <h2 className="mb-4">Why Invest With ZNET?</h2>
+                                <h2 className="mb-4">Why Invest With URBANCRAFT REAL ESTATE?</h2>
                                 <div className="highlight-item d-flex align-items-start mb-4">
                                     <div className="highlight-icon me-3">
                                         <i className="fas fa-chart-line fa-2x text-primary"></i>

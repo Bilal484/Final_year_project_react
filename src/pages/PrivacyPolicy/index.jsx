@@ -9,11 +9,11 @@ const PrivacyPolicy = () => {
 
                 <Header />
                 <p>
-                    At znetrealty, we value your privacy and are committed to protecting your
+                    At urbancraft real estate, we value your privacy and are committed to protecting your
                     personal information. This Privacy Policy outlines how we collect, use, and
                     safeguard your data when you visit our website{" "}
-                    <a style={{ textDecoration: "none" }} href="https://znetrealty.com/">
-                        https://znetrealty.com/
+                    <a style={{ textDecoration: "none" }} href="https://urbancraft real estate.com/">
+                        https://urbancraft real estate.com/
                     </a>
                     . By using our site, you agree to the terms outlined in this policy.
                 </p>
@@ -130,9 +130,9 @@ const PrivacyPolicy = () => {
                     To exercise these rights, please contact us at{" "}
                     <a
                         style={{ textDecoration: "none" }}
-                        href="mailto:Zharanashvillerealtor@gmail.com"
+                        href="mailto:Urbancraftreaclestate.com"
                     >
-                        Zharanashvillerealtor@gmail.com
+                        Urbancraftreaclestate.com
                     </a>
                 </p>
                 <h3>Changes to This Privacy Policy</h3>
@@ -148,19 +148,19 @@ const PrivacyPolicy = () => {
                     contact us at:
                 </p>
                 <p>
-                    znetrealty
+                    urbancraft real estate
                     <br />
                     Contact Email:{" "}
                     <a
                         style={{ textDecoration: "none" }}
-                        href="mailto:Zharanashvillerealtor@gmail.com"
+                        href="mailto:Urbancraftreaclestate.com"
                     >
-                        Zharanashvillerealtor@gmail.com
+                        Urbancraftreaclestate.com
                     </a>
                     <br />
                     Go to homepage --&gt;{" "}
-                    <a style={{ textDecoration: "none" }} href="https://znetrealty.com/">
-                        znetrealty
+                    <a style={{ textDecoration: "none" }} href="https://urbancraftrealestate.com/">
+                        urbancraft real estate
                     </a>
                 </p>
                 <p>By using our website, you consent to the terms of this Privacy Policy.</p>

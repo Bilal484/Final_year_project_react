@@ -10,7 +10,7 @@ const ComprehensiveRealEstateSolutions = () => {
                 <title>Comprehensive Real Estate Solutions</title>
                 <meta
                     name="description"
-                    content="ZNet provides comprehensive real estate solutions to ensure smooth and efficient transactions for buying, selling, or renting properties."
+                    content="UrbanCraft REAL ESTATE provides comprehensive real estate solutions to ensure smooth and efficient transactions for buying, selling, or renting properties."
                 />
                 <meta
                     name="keywords"
@@ -19,7 +19,7 @@ const ComprehensiveRealEstateSolutions = () => {
                 <meta property="og:title" content="Comprehensive Real Estate Solutions" />
                 <meta
                     property="og:description"
-                    content="ZNet offers expert real estate services as a transaction coordinator, ensuring that every step in the real estate transaction process is handled efficiently."
+                    content="UrbanCraft REAL ESTATE offers expert real estate services as a transaction coordinator, ensuring that every step in the real estate transaction process is handled efficiently."
                 />
                 <meta
                     property="og:image"
@@ -30,7 +30,7 @@ const ComprehensiveRealEstateSolutions = () => {
                 <meta name="twitter:title" content="Comprehensive Real Estate Solutions" />
                 <meta
                     name="twitter:description"
-                    content="Get expert real estate transaction management with ZNet, handling all the details for a smooth buying, selling, or renting experience."
+                    content="Get expert real estate transaction management with UrbanCraft REAL ESTATE, handling all the details for a smooth buying, selling, or renting experience."
                 />
                 <meta name="twitter:image" content={Img01} />
             </Helmet>
@@ -39,13 +39,13 @@ const ComprehensiveRealEstateSolutions = () => {
                     <div className="col-md-6 pe-md-4">
                         <h2 className="h4 fw-bold mb-3">Providing customers with comprehensive real estate solutions</h2>
                         <p className="text-muted mb-3">
-                            At ZNet, we specialize in facilitating real estate transactions from beginning to end. As a
+                            At UrbanCraft REAL ESTATE, we specialize in facilitating real estate transactions from beginning to end. As a
                             full-service Transaction Coordinator, our role is to streamline every aspect of the transaction
                             process. We collaborate closely with all stakeholders—including agents, clients, lenders, title
                             companies, and inspectors—to ensure that every phase from listing to closing is executed
                             flawlessly. Our expertise in handling documentation, maintaining compliance, and managing
                             communications allows our clients to navigate their real estate journeys without hassle. Whether
-                            you are buying, selling, or renting, trust ZNet to manage the details and keep your transaction
+                            you are buying, selling, or renting, trust UrbanCraft REAL ESTATE to manage the details and keep your transaction
                             on track.
                         </p>
                     </div>

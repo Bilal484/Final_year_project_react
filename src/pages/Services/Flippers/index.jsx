@@ -24,7 +24,7 @@ const Flippers = () => {
                     name="keywords"
                     content="Flipping, Real Estate, Property Flipping, Renovations, Selling Properties, Real Estate Investment, Profit Margins, Budgeting Tips"
                 />
-                <meta name="author" content="Znet Corporation" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Corporation" />
                 <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="Flipping Real Estate Guide - Learn Property Flipping" />
                 <meta
@@ -96,7 +96,7 @@ const Flippers = () => {
                     <div className="row g-4">
                         <ContactCard
                             title="Company"
-                            content={["Znet Corporation", "1099 Stewart Street", "Suite 600", "Seattle, WA 98101"]}
+                            content={["UrbanCraft REAL ESTATE Corporation", "1099 Stewart Street", "Suite 600", "Seattle, WA 98101"]}
                         />
                         <ContactCard
                             title="Investor relations"

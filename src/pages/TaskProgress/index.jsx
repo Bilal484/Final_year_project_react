@@ -17,7 +17,7 @@ const TaskProgress = () => {
           name="keywords"
           content="Task Progress, Project Tracking, Construction Dashboard, Milestones, Budget Overview, Timeline Tracking"
         />
-        <meta name="author" content="Biznet USA" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
         <meta property="og:title" content="Task Progress | Project Tracking Dashboard" />
         <meta
           property="og:description"

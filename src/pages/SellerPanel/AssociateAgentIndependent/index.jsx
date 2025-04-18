@@ -20,18 +20,18 @@ const AssociateAgentIndependent = () => {
     return (
         <>
         <Helmet>
-                <title>Associate Agent Role - Join Znet</title>
+                <title>Associate Agent Role - Join UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Earn up to $120 per home tour as an Associate Agent with Znet. Work on your schedule and build your real estate career."
+                    content="Earn up to $120 per home tour as an Associate Agent with UrbanCraft REAL ESTATE. Work on your schedule and build your real estate career."
                 />
-                <meta name="keywords" content="Znet Associate Agent, real estate jobs, home tours, flexible schedule" />
-                <meta name="author" content="Znet Team" />
+                <meta name="keywords" content="UrbanCraft REAL ESTATE Associate Agent, real estate jobs, home tours, flexible schedule" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Team" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta property="og:title" content="Associate Agent Role - Join Znet" />
+                <meta property="og:title" content="Associate Agent Role - Join UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
-                    content="Explore the role of an Associate Agent at Znet. Flexible hours, competitive pay, and opportunities to grow your real estate career."
+                    content="Explore the role of an Associate Agent at UrbanCraft REAL ESTATE. Flexible hours, competitive pay, and opportunities to grow your real estate career."
                 />
                 <meta property="og:url" content="https://yourwebsite.com/associate-agent" />
                 <meta property="og:image" content="https://yourwebsite.com/path-to-image.jpg" />
@@ -90,7 +90,7 @@ const AssociateAgentIndependent = () => {
                             </div>
                             <div className="col-12 col-md-3 col-lg-3 text-center">
                                 <img className="w-25" src={img6} alt="img" />
-                                <h4 className="pt-4">Hang Your License With Znet</h4>
+                                <h4 className="pt-4">Hang Your License With UrbanCraft REAL ESTATE</h4>
                                 <p>
                                     Find out{" "}
                                     <a className="text-danger" href="#">
@@ -144,7 +144,7 @@ const AssociateAgentIndependent = () => {
                                         <h4>Onboarding (1–2 Weeks)</h4>
                                         <p>
                                             We'll help you hit the ground running with an intro to
-                                            Znet, home tours, and more.
+                                            UrbanCraft REAL ESTATE, home tours, and more.
                                         </p>
                                     </div>
                                 </div>
@@ -173,15 +173,15 @@ const AssociateAgentIndependent = () => {
                     <div className="container">
                         <div className="row">
                             <h2 className="pt-5 text-center fw-bold">
-                                More ways to work with Znet
+                                More ways to work with UrbanCraft REAL ESTATE
                             </h2>
                             <div className="col-12 col-md-6 col-lg-6">
                                 <div className="card">
                                     <img className="m-4" src={img9} alt="img" />
                                     <div className="card-body m-2">
-                                        <h5 className="card-title">Become a Znet Lead Agent</h5>
+                                        <h5 className="card-title">Become a UrbanCraft REAL ESTATE Lead Agent</h5>
                                         <p className="card-text">
-                                            Lead Agents are Znet employees who help customers buy
+                                            Lead Agents are UrbanCraft REAL ESTATE employees who help customers buy
                                             and sell homes. They can earn $100K after their first year
                                             and get the tools and training to become top producers.
                                         </p>
@@ -196,12 +196,12 @@ const AssociateAgentIndependent = () => {
                                     <img className="m-4" src={img10} alt="img" />
                                     <div className="card-body m-2">
                                         <h5 className="card-title">
-                                            Become a Znet Partner Agent
+                                            Become a UrbanCraft REAL ESTATE Partner Agent
                                         </h5>
                                         <p className="card-text">
                                             Our partners hang their license at another brokerage but
                                             share our commitment to put customers first. There's no
-                                            up-front fee to join, and they pay Znet a 30% referral
+                                            up-front fee to join, and they pay UrbanCraft REAL ESTATE a 30% referral
                                             fee at close.
                                         </p>
                                         <a href="#" className="fw-bold">
@@ -232,7 +232,7 @@ const AssociateAgentIndependent = () => {
                                     <ul className="list-group list-group-flush ">
                                         <li className="list-group-item bg-transparent">
                                             <p className="fw-bold">Employment</p>
-                                            <p>A Znet employee</p>
+                                            <p>A UrbanCraft REAL ESTATE employee</p>
                                         </li>
                                         <li className="list-group-item bg-transparent">
                                             <h6 className="fw-bold">Responsibilities</h6>
@@ -297,7 +297,7 @@ const AssociateAgentIndependent = () => {
                                     <ul className="list-group list-group-flush ">
                                         <li className="list-group-item bg-transparent">
                                             <p className="fw-bold">Employment</p>
-                                            <p>A Znet contractor</p>
+                                            <p>A UrbanCraft REAL ESTATE contractor</p>
                                         </li>
                                         <li className="list-group-item bg-transparent">
                                             <h6 className="fw-bold">Responsibilities</h6>
@@ -314,7 +314,7 @@ const AssociateAgentIndependent = () => {
                                                     <i className="fa-solid fa-check" />
                                                 </span>
                                                 <p className="ps-3">
-                                                    Explain Znet, forwarding service requests to a lead
+                                                    Explain UrbanCraft REAL ESTATE, forwarding service requests to a lead
                                                     agent.
                                                 </p>
                                             </div>
@@ -342,7 +342,7 @@ const AssociateAgentIndependent = () => {
                                     <div className="card-body">
                                         <h2 className="card-title pt-4">Partner Agents</h2>
                                         <p className="card-text">
-                                            Partner with Znet, get high-quality referrals.
+                                            Partner with UrbanCraft REAL ESTATE, get high-quality referrals.
                                         </p>
                                         <div>
                                             <h6 className="pt-1 fw-bold">License required?</h6>
@@ -371,7 +371,7 @@ const AssociateAgentIndependent = () => {
                                                 </span>
                                                 <p className="ps-3">
                                                     Take full responsibility for each customer's success,
-                                                    with no further Znet guidance.
+                                                    with no further UrbanCraft REAL ESTATE guidance.
                                                 </p>
                                             </div>
                                         </li>
@@ -384,13 +384,13 @@ const AssociateAgentIndependent = () => {
                                         <li className="list-group-item bg-transparent">
                                             <h6 className="fw-bold">Experience required?</h6>
                                             <p>
-                                                5+ home sales in the last 12 months. Znet will ask
+                                                5+ home sales in the last 12 months. UrbanCraft REAL ESTATE will ask
                                                 those customers for reviews.
                                             </p>
                                         </li>
                                         <li className="list-group-item bg-transparent ">
                                             <h6 className="fw-bold">Pay</h6>
-                                            <p>30% referral fee paid to Znet</p>
+                                            <p>30% referral fee paid to UrbanCraft REAL ESTATE</p>
                                         </li>
                                     </ul>
                                     <div className="card-body text-center">
@@ -402,7 +402,7 @@ const AssociateAgentIndependent = () => {
                             </div>
                         </div>
                         <p className="text-center pt-5">
-                            *Average based on all Znet lead agents who worked 12 months in
+                            *Average based on all UrbanCraft REAL ESTATE lead agents who worked 12 months in
                             2019. Individual results may vary based on location and other
                             factors.
                         </p>
@@ -413,7 +413,7 @@ const AssociateAgentIndependent = () => {
                         <div className="row">
                             <div className="col-12 col-md-8 col-lg- py-5">
                                 <h3 className="text-white">
-                                    Discover Znet's Agent Resource Center to find articles for
+                                    Discover UrbanCraft REAL ESTATE's Agent Resource Center to find articles for
                                     aspiring agents and real estate professionals.
                                 </h3>
                             </div>
@@ -436,7 +436,7 @@ const AssociateAgentIndependent = () => {
                                 A diverse, inclusive culture is vital to our mission of making
                                 real estate better for regular people from all walks of life.*
                             </h5>
-                            <p>*Znet is an equal opportunity employer</p>
+                            <p>*UrbanCraft REAL ESTATE is an equal opportunity employer</p>
                             <div className="col-12 col-md-4 col-lg-4">
                                 <img className="text-center w-25" src={img2} alt="img" />
                                 <h5>To customers</h5>

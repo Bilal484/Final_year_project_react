@@ -118,7 +118,7 @@ const SaveJob = () => {
                     name="keywords"
                     content="saved jobs, favorite jobs, job management, apply to jobs, job opportunities"
                 />
-                <meta name="author" content="Biznet USA" />
+                <meta name="author" content="UrbanCraft REAL ESTATE" />
             </Helmet>
             <Header />
             <SellerHeader />

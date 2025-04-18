@@ -123,10 +123,10 @@ const Advertise = () => {
     return (
         <>
             <Helmet>
-                <title>Advertise with Znet - Free Real Estate Listing Platform</title>
+                <title>Advertise with UrbanCraft REAL ESTATE - Free Real Estate Listing Platform</title>
                 <meta
                     name="description"
-                    content="List your properties for free on Znet. Showcase your properties and connect with buyers or renters at no cost."
+                    content="List your properties for free on UrbanCraft REAL ESTATE. Showcase your properties and connect with buyers or renters at no cost."
                 />
                 <meta
                     name="keywords"
@@ -172,7 +172,7 @@ const Advertise = () => {
                 {/* Our Features Section */}
                 <section className="features-section py-5 bg-light">
                     <div className="container">
-                        <h2 className="text-center fw-bold mb-5 text-dark">Why Choose Znet?</h2>
+                        <h2 className="text-center fw-bold mb-5 text-dark">Why Choose UrbanCraft REAL ESTATE?</h2>
                         <div className="row">
                             {features.map((feature, index) => (
                                 <Feature

@@ -23,16 +23,16 @@ const HomeBannerCard = ({ isLarge = false }) => {
     return (
         <>
             <Helmet>
-                <title>Home Banner Carousel - BizNet USA</title>
+                <title>Home Banner Carousel - UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Explore BizNet USA's banner carousel showcasing top properties with detailed descriptions and prices. Dynamic and user-friendly design."
+                    content="Explore UrbanCraft REAL ESTATE's banner carousel showcasing top properties with detailed descriptions and prices. Dynamic and user-friendly design."
                 />
                 <meta
                     name="keywords"
-                    content="BizNet USA, Banner Carousel, Property Listings, Dynamic Banners"
+                    content="UrbanCraft REAL ESTATE, Banner Carousel, Property Listings, Dynamic Banners"
                 />
-                <meta property="og:title" content="Home Banner Carousel - BizNet USA" />
+                <meta property="og:title" content="Home Banner Carousel - UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
                     content="Discover featured properties through our Home Banner Carousel. Seamless navigation with high-quality images and property details."
@@ -41,7 +41,7 @@ const HomeBannerCard = ({ isLarge = false }) => {
                     property="og:image"
                     content={banners.length > 0 && `${imagePath}${banners[0]?.image}`}
                 />
-                <meta name="author" content="BizNet USA Team" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Team" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="robots" content="index, follow" />
             </Helmet>

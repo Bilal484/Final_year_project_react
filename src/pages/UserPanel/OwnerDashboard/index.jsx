@@ -12,19 +12,19 @@ const OwnerDashboard = () => {
     return (
         <>
          <Helmet>
-                <title>Owner Dashboard | Znet</title>
+                <title>Owner Dashboard | UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Manage your property listings and track their value with Znet's Owner Dashboard. Explore marketing services and claim your property today."
+                    content="Manage your property listings and track their value with UrbanCraft REAL ESTATE's Owner Dashboard. Explore marketing services and claim your property today."
                 />
                 <meta
                     name="keywords"
-                    content="owner dashboard, property management, Znet real estate, property marketing, professional photos, MLS listing"
+                    content="owner dashboard, property management, UrbanCraft REAL ESTATE, property marketing, professional photos, MLS listing"
                 />
-                <meta property="og:title" content="Owner Dashboard | Znet" />
+                <meta property="og:title" content="Owner Dashboard | UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
-                    content="Optimize your property value and marketing with Znet's Owner Dashboard. Get professional photos, yard signs, and more."
+                    content="Optimize your property value and marketing with UrbanCraft REAL ESTATE's Owner Dashboard. Get professional photos, yard signs, and more."
                 />
                 <meta
                     property="og:image"
@@ -33,10 +33,10 @@ const OwnerDashboard = () => {
                 <meta property="og:url" content="https://biznetusa.com/owner-dashboard" />
                 <meta property="og:type" content="website" />
                 <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:title" content="Owner Dashboard | Znet" />
+                <meta property="twitter:title" content="Owner Dashboard | UrbanCraft REAL ESTATE" />
                 <meta
                     property="twitter:description"
-                    content="Manage your property listings and marketing with Znet's Owner Dashboard. Claim your property and explore professional marketing services."
+                    content="Manage your property listings and marketing with UrbanCraft REAL ESTATE's Owner Dashboard. Claim your property and explore professional marketing services."
                 />
                 <meta
                     property="twitter:image"
@@ -68,7 +68,7 @@ const OwnerDashboard = () => {
                                 <ul className="dropdown-menu">
                                     <li>
                                         <a className="dropdown-item" href="#">
-                                            Why Sell with Znet
+                                            Why Sell with UrbanCraft REAL ESTATE
                                         </a>
                                     </li>
                                     <li>
@@ -127,7 +127,7 @@ const OwnerDashboard = () => {
                                     <h3>What’s Your Property Worth?</h3>
                                     <p className="pt-4">
                                         Claim your property to monitor its value and see how many
-                                        buyers are looking for homes like yours with Znet Real
+                                        buyers are looking for homes like yours with UrbanCraft REAL ESTATE Real
                                         Estate.
                                     </p>
                                 </div>
@@ -160,7 +160,7 @@ const OwnerDashboard = () => {
                                 <div className="col-12 col-md-12 col-lg-12">
                                     <h3 className="pt-5">Marketing Your Property</h3>
                                     <p className="pt-3">
-                                        Get the best results with Znet’s professional marketing
+                                        Get the best results with UrbanCraft REAL ESTATE’s professional marketing
                                         services.{" "}
                                         <a className="text-decoration-none" href="#">
                                             Learn more about our marketing solutions

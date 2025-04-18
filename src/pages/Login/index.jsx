@@ -190,14 +190,14 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login - ZNet</title>
+        <title>Login - UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
-          content="Log in to your ZNet account to access personalized services and features."
+          content="Log in to your UrbanCraft REAL ESTATE account to access personalized services and features."
         />
         <meta
           name="keywords"
-          content="login, authentication, user access, ZNet login, secure login"
+          content="login, authentication, user access, UrbanCraft REAL ESTATE login, secure login"
         />
       </Helmet>
       <main className="background_color_fixed">
@@ -208,12 +208,12 @@ const Login = () => {
           >
             <img
               src={ZnetLogo}
-              alt="Znet Logo"
+              alt="UrbanCraft REAL ESTATE Logo"
               className="mx-auto"
               style={{ width: "100px" }}
             />
             {/* <Link className="text-decoration-none" href="/"> */}
-            {/*     <h2 className="h4 fw-bold py-3 mb-4 text-center">Welcome to ZNet</h2> */}
+            {/*     <h2 className="h4 fw-bold py-3 mb-4 text-center">Welcome to UrbanCraft REAL ESTATE</h2> */}
             {/* </Link> */}
             <div className="my-3 d-flex justify-content-center align-items-center gap-0">
               <Link

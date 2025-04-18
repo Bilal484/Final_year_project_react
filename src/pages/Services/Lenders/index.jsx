@@ -24,7 +24,7 @@ const Lenders = () => {
           name="keywords"
           content="Lenders, Real Estate Lending, Property Investment, Financing Properties, Renovations, Real Estate Strategies"
         />
-        <meta name="author" content="Znet Corporation" />
+        <meta name="author" content="UrbanCraft REAL ESTATE Corporation" />
         <meta name="robots" content="index, follow" />
         <meta
           property="og:title"

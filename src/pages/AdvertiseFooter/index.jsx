@@ -13,16 +13,16 @@ const AdvertiseFooter = () => {
     return (
         <>
          <Helmet>
-                <title>Advertise with ZNET - Reach Your Real Estate Goals</title>
-                <meta name="description" content="Maximize your business's exposure with ZNET's effective advertising solutions tailored for the real estate industry." />
-                <meta name="keywords" content="ZNET advertising, real estate marketing, effective advertising, real estate exposure, business growth" />
-                <meta property="og:title" content="Advertise with ZNET - Reach Your Real Estate Goals" />
-                <meta property="og:description" content="Discover how ZNET can help boost your visibility and connect with a vast network of real estate professionals and potential clients." />
+                <title>Advertise with URBANCRAFT REAL ESTATE - Reach Your Real Estate Goals</title>
+                <meta name="description" content="Maximize your business's exposure with URBANCRAFT REAL ESTATE's effective advertising solutions tailored for the real estate industry." />
+                <meta name="keywords" content="URBANCRAFT REAL ESTATE advertising, real estate marketing, effective advertising, real estate exposure, business growth" />
+                <meta property="og:title" content="Advertise with URBANCRAFT REAL ESTATE - Reach Your Real Estate Goals" />
+                <meta property="og:description" content="Discover how URBANCRAFT REAL ESTATE can help boost your visibility and connect with a vast network of real estate professionals and potential clients." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="/path/to/image.jpg" />  {/* Replace with a relevant image URL */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Advertise with ZNET - Reach Your Real Estate Goals" />
+                <meta name="twitter:title" content="Advertise with URBANCRAFT REAL ESTATE - Reach Your Real Estate Goals" />
                 <meta name="twitter:description" content="Enhance your real estate business's reach with our targeted advertising solutions, expert guidance, and dedicated support." />
                 <meta name="twitter:image" content="/path/to/image.jpg" />  {/* Replace with a relevant image URL */}
             </Helmet>
@@ -31,7 +31,7 @@ const AdvertiseFooter = () => {
                 {/* Hero Section */}
                 <section className="hero-section text-center text-white position-relative">
                     <div className="container py-5">
-                        <h1 className="display-3 fw-bold mb-4">Advertise With ZNET</h1>
+                        <h1 className="display-3 fw-bold mb-4">Advertise With URBANCRAFT REAL ESTATE</h1>
                         <p className="lead mb-4">Connect with millions of real estate professionals and potential clients</p>
                         <button className="btn btn-light btn-lg">Get Started</button>
                     </div>
@@ -40,7 +40,7 @@ const AdvertiseFooter = () => {
                 {/* Why Choose Us Section */}
                 <section className="why-choose-us py-5">
                     <div className="container">
-                        <h2 className="text-center mb-5">Why Choose ZNET Advertising?</h2>
+                        <h2 className="text-center mb-5">Why Choose URBANCRAFT REAL ESTATE Advertising?</h2>
                         <div className="row g-4">
                             <div className="col-md-3">
                                 <div className="feature-box h-100 text-center">

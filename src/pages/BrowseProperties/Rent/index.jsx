@@ -93,17 +93,17 @@ const Rent = () => {
     return (
         <>
          <Helmet>
-                <title>Rent Real Estate | ZNET Real Estate</title>
-                <meta name="description" content="Explore rental properties with ZNET. Find apartments, houses, and more for rent across your favorite cities." />
-                <meta name="keywords" content="rental real estate, properties for rent, ZNET rentals, city apartments, house renting" />
-                <meta property="og:title" content="Rent Real Estate | ZNET Real Estate" />
-                <meta property="og:description" content="Find your perfect rental home or apartment with ZNET Real Estate. Explore our listings and find the best rental deals." />
+                <title>Rent Real Estate | UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Explore rental properties with URBANCRAFT REAL ESTATE. Find apartments, houses, and more for rent across your favorite cities." />
+                <meta name="keywords" content="rental real estate, properties for rent, URBANCRAFT REAL ESTATE rentals, city apartments, house renting" />
+                <meta property="og:title" content="Rent Real Estate | UrbanCraft REAL ESTATE" />
+                <meta property="og:description" content="Find your perfect rental home or apartment with UrbanCraft REAL ESTATE. Explore our listings and find the best rental deals." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="/path/to/image.jpg" />  
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Rent Real Estate | ZNET Real Estate" />
-                <meta name="twitter:description" content="Discover rental properties and find your next home with ZNET Real Estate." />
+                <meta name="twitter:title" content="Rent Real Estate | UrbanCraft REAL ESTATE" />
+                <meta name="twitter:description" content="Discover rental properties and find your next home with UrbanCraft REAL ESTATE." />
                 <meta name="twitter:image" content="/path/to/image.jpg" />  
             </Helmet>
             <Header />

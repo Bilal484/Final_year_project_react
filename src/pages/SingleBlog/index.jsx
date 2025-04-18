@@ -73,7 +73,7 @@ const SingleBlog = () => {
                 <title>{blog.title || "Blog"} | Biznet</title>
                 <meta name="description" content={blog.desc ? blog.desc.replace(/<[^>]+>/g, "").substring(0, 160) : "Read the latest blog from Biznet."} />
                 <meta name="keywords" content="Biznet, Blog, Real Estate, News, Updates, Articles" />
-                <meta name="author" content="Biznet USA" />
+                <meta name="author" content="UrbanCraft REAL ESTATE" />
                 <meta property="og:title" content={blog.title || "Blog"} />
                 <meta property="og:description" content={blog.desc ? blog.desc.replace(/<[^>]+>/g, "").substring(0, 200) : "Explore the latest updates and insights on Biznet."} />
                 <meta property="og:image" content={blog.images?.length > 0 ? `${imagePath}/${blog.images[0].image}` : "https://example.com/default-blog-image.jpg"} />

@@ -63,27 +63,27 @@ const Developers = () => {
   return (
     <>
       <Helmet>
-        <title>Znet Realty - Leading Real Estate Development</title>
+        <title>UrbanCraft REAL ESTATE - Leading Real Estate Development</title>
         <meta
           name="description"
-          content="Znet Realty specializes in residential and commercial real estate development, offering expert investment services to maximize your returns."
+          content="UrbanCraft REAL ESTATE specializes in residential and commercial real estate development, offering expert investment services to maximize your returns."
         />
         <meta
           name="keywords"
-          content="Znet Realty, Real Estate Development, Investment Services, Residential Properties, Commercial Properties"
+          content="UrbanCraft REAL ESTATE, Real Estate Development, Investment Services, Residential Properties, Commercial Properties"
         />
-        <meta name="author" content="Znet Realty" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
         <meta name="robots" content="index, follow" />
         <meta
           property="og:title"
-          content="Znet Realty - Leading Real Estate Development"
+          content="UrbanCraft REAL ESTATE - Leading Real Estate Development"
         />
         <meta
           property="og:description"
-          content="Explore Znet Realty’s expert real estate development services for both residential and commercial projects."
+          content="Explore UrbanCraft REAL ESTATE’s expert real estate development services for both residential and commercial projects."
         />
         <meta property="og:image" content={Developerimg} />
-        <meta property="og:url" content="https://znetrealty.com" />
+        <meta property="og:url" content="https://urbancraft real estate.com" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />

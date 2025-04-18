@@ -26,12 +26,12 @@ const SellerHeader = () => {
                 <title>Seller Header - Job Opportunities</title>
                 <meta name="description" content="Explore various job opportunities with us including real estate agents, title, escrow jobs, and more." />
                 <meta name="keywords" content="real estate, job opportunities, apply, agent, full time, job listing" />
-                <meta name="author" content="Znet Careers" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Careers" />
                 <meta property="og:title" content="Seller Header - Job Opportunities" />
-                <meta property="og:description" content="Find job opportunities and explore career growth at Znet. Apply to real estate and agent jobs now." />
+                <meta property="og:description" content="Find job opportunities and explore career growth at UrbanCraft REAL ESTATE. Apply to real estate and agent jobs now." />
                 <meta property="og:image" content="/assets/images/real-estate-opportunities.jpg" />
                 <meta name="twitter:title" content="Seller Header - Job Opportunities" />
-                <meta name="twitter:description" content="Explore job listings and apply to the best real estate and agent opportunities at Znet." />
+                <meta name="twitter:description" content="Explore job listings and apply to the best real estate and agent opportunities at UrbanCraft REAL ESTATE." />
                 <meta name="twitter:image" content="/assets/images/real-estate-opportunities.jpg" />
                 <meta name="twitter:card" content="summary_large_image" />
                 {/* Include any additional meta tags you may need */}
@@ -124,7 +124,7 @@ const SellerHeader = () => {
                                                     data-bs-toggle="dropdown"
                                                     aria-expanded="false"
                                                 >
-                                                    Why Choose Znet
+                                                    Why Choose UrbanCraft REAL ESTATE
                                                 </Link>
                                                 <ul
                                                     className="dropdown-menu"
@@ -142,7 +142,7 @@ const SellerHeader = () => {
                                                     </li>
                                                     <li>
                                                         <Link className="dropdown-item" to="javascript:void(0)">
-                                                            Life At Znet
+                                                            Life At UrbanCraft REAL ESTATE
                                                         </Link>
                                                     </li>
                                                     <li>

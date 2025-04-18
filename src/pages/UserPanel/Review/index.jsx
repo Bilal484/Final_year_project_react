@@ -54,19 +54,19 @@ const Review = () => {
   return (
     <>
     <Helmet>
-        <title>Product Review | Znet</title>
+        <title>Product Review | UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
-          content="View your product details and buyer comments in Znet's Review section. Manage your property and buyer feedback efficiently."
+          content="View your product details and buyer comments in UrbanCraft REAL ESTATE's Review section. Manage your property and buyer feedback efficiently."
         />
         <meta
           name="keywords"
-          content="product review, buyer comments, product details, Znet real estate, product management"
+          content="product review, buyer comments, product details, UrbanCraft REAL ESTATE, product management"
         />
-        <meta property="og:title" content="Product Review | Znet" />
+        <meta property="og:title" content="Product Review | UrbanCraft REAL ESTATE" />
         <meta
           property="og:description"
-          content="Check buyer comments and product details in Znet's Review section for efficient property management."
+          content="Check buyer comments and product details in UrbanCraft REAL ESTATE's Review section for efficient property management."
         />
         <meta property="og:url" content="https://biznetusa.com/review" />
         <meta
@@ -75,10 +75,10 @@ const Review = () => {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Product Review | Znet" />
+        <meta name="twitter:title" content="Product Review | UrbanCraft REAL ESTATE" />
         <meta
           name="twitter:description"
-          content="Review your product and buyer comments seamlessly with Znet's efficient dashboard."
+          content="Review your product and buyer comments seamlessly with UrbanCraft REAL ESTATE's efficient dashboard."
         />
         <meta
           name="twitter:image"

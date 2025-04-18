@@ -18,7 +18,7 @@ const SuccessfulApply = () => {
           name="keywords"
           content="successful application, job application, real estate jobs, candidate login, back to job search"
         />
-        <meta name="author" content="Biznet USA" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
       </Helmet>
       <Header />
       <SellerAgentHeader />

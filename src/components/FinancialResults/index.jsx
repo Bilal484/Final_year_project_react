@@ -8,11 +8,11 @@ const FinancialResults = () => {
                 <title>Financial Results - Q2 2024</title>
                 <meta
                     name="description"
-                    content="Explore Znet's financial results for Q2 2024, including revenue, gross profit, and user statistics. Access detailed reports, earnings releases, and presentations."
+                    content="Explore UrbanCraft REAL ESTATE's financial results for Q2 2024, including revenue, gross profit, and user statistics. Access detailed reports, earnings releases, and presentations."
                 />
                 <meta
                     name="keywords"
-                    content="financial results, Q2 2024, earnings release, gross profit, revenue, user statistics, Znet financials"
+                    content="financial results, Q2 2024, earnings release, gross profit, revenue, user statistics, UrbanCraft REAL ESTATE financials"
                 />
                 <meta name="author" content="Znet" />
             </Helmet>
@@ -102,7 +102,7 @@ const FinancialResults = () => {
                             <div className="bg-light p-4 rounded shadow">
                                 <h2 className="h1 fw-bold">52M</h2>
                                 <p className="text-muted">
-                                    Znet's mobile apps and website reached 52 million average
+                                    UrbanCraft REAL ESTATE's mobile apps and website reached 52 million average
                                     monthly users, a decrease of 1% year-over-year.
                                 </p>
                             </div>

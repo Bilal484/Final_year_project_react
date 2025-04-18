@@ -69,17 +69,17 @@ const Buy = () => {
     return (
         <>
                     <Helmet>
-                <title>Buy Real Estate | ZNET Real Estate</title>
-                <meta name="description" content="Explore a wide range of properties for sale near you with ZNET. Find your dream home with us today!" />
-                <meta name="keywords" content="buy real estate, properties for sale, ZNET real estate, Los Angeles homes, find homes" />
-                <meta property="og:title" content="Buy Real Estate | ZNET Real Estate" />
-                <meta property="og:description" content="Discover properties for sale near you with ZNET Real Estate. Find houses, apartments, and more in Los Angeles and beyond." />
+                <title>Buy Real Estate | UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Explore a wide range of properties for sale near you with URBANCRAFT REAL ESTATE. Find your dream home with us today!" />
+                <meta name="keywords" content="buy real estate, properties for sale, UrbanCraft REAL ESTATE, Los Angeles homes, find homes" />
+                <meta property="og:title" content="Buy Real Estate | UrbanCraft REAL ESTATE" />
+                <meta property="og:description" content="Discover properties for sale near you with UrbanCraft REAL ESTATE. Find houses, apartments, and more in Los Angeles and beyond." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="/path/to/image.jpg" />  {/* Replace with an actual image URL */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Buy Real Estate | ZNET Real Estate" />
-                <meta name="twitter:description" content="Explore properties for sale near you with ZNET Real Estate. Start your home buying journey today!" />
+                <meta name="twitter:title" content="Buy Real Estate | UrbanCraft REAL ESTATE" />
+                <meta name="twitter:description" content="Explore properties for sale near you with UrbanCraft REAL ESTATE. Start your home buying journey today!" />
                 <meta name="twitter:image" content="/path/to/image.jpg" />  {/* Replace with an actual image URL */}
             </Helmet>
 

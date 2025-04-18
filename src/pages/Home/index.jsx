@@ -136,29 +136,29 @@ const Home = () => {
     return (
         <>
             <Helmet>
-                <title>Znet Real Estate Home</title>
+                <title>UrbanCraft REAL ESTATE Home</title>
                 <meta
                     name="description"
-                    content="Explore top properties in prime locations with Znet Real Estate. Find your dream home or apartment in Chevy Chase and surrounding areas today."
+                    content="Explore top properties in prime locations with UrbanCraft REAL ESTATE. Find your dream home or apartment in Chevy Chase and surrounding areas today."
                 />
                 <meta
                     name="keywords"
-                    content="real estate, Znet, homes for sale, apartments for rent, Chevy Chase, luxury properties, real estate listings"
+                    content="real estate, UrbanCraft REAL ESTATE, homes for sale, apartments for rent, Chevy Chase, luxury properties, real estate listings"
                 />
-                <meta property="og:title" content="Znet Real Estate Home" />
+                <meta property="og:title" content="UrbanCraft REAL ESTATE Home" />
                 <meta
                     property="og:description"
-                    content="Discover and explore top properties available in Chevy Chase and other prime locations with Znet Real Estate. Begin your journey home with us."
+                    content="Discover and explore top properties available in Chevy Chase and other prime locations with UrbanCraft REAL ESTATE. Begin your journey home with us."
                 />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content={logo} />
                 <meta property="twitter:image" content={logo} />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Znet Real Estate Home" />
+                <meta name="twitter:title" content="UrbanCraft REAL ESTATE Home" />
                 <meta
                     name="twitter:description"
-                    content="Find your dream property in prime locations like Chevy Chase with Znet Real Estate. Check out our premier listings and make an informed choice."
+                    content="Find your dream property in prime locations like Chevy Chase with UrbanCraft REAL ESTATE. Check out our premier listings and make an informed choice."
                 />
                 <meta name="twitter:image" content={logo} />
             </Helmet>
@@ -179,7 +179,7 @@ const Home = () => {
                                 images={propertyImages}
                                 location="Chevy Chase, MD"
                                 price="$3,599,000"
-                                title="Znet PREMIER LISTING"
+                                title="UrbanCraft REAL ESTATE PREMIER LISTING"
                             />
                         </div>
                     </div>

@@ -235,7 +235,7 @@ const Contractors = () => {
           name="keywords"
           content="Contractors, Residential Construction, Remodeling, Electrical Work, Real Estate, Home Improvement, Real Estate Blog, Finance, Local Insights"
         />
-        <meta name="author" content="Biznet USA" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
         <meta name="robots" content="index, follow" />
         <meta
           property="og:title"

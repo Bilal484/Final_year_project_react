@@ -16,17 +16,17 @@ const CommunityImpact = () => {
     return (
         <>
          <Helmet>
-                <title>Community Impact - ZNET</title>
-                <meta name="description" content="Learn about ZNET's commitment to building stronger communities through innovative real estate practices and social responsibility." />
+                <title>Community Impact - URBANCRAFT REAL ESTATE</title>
+                <meta name="description" content="Learn about URBANCRAFT REAL ESTATE's commitment to building stronger communities through innovative real estate practices and social responsibility." />
                 <meta name="keywords" content="community, real estate, social responsibility, innovation" />
-                <meta property="og:title" content="Community Impact - ZNET" />
-                <meta property="og:description" content="Discover how ZNET is transforming communities through sustainable real estate development and active social engagement." />
+                <meta property="og:title" content="Community Impact - URBANCRAFT REAL ESTATE" />
+                <meta property="og:description" content="Discover how URBANCRAFT REAL ESTATE is transforming communities through sustainable real estate development and active social engagement." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="path_to_your_image_for_social_media" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Community Impact - ZNET" />
-                <meta name="twitter:description" content="Join ZNET in making a real difference in our communities through dedicated initiatives and partnerships." />
+                <meta name="twitter:title" content="Community Impact - URBANCRAFT REAL ESTATE" />
+                <meta name="twitter:description" content="Join URBANCRAFT REAL ESTATE in making a real difference in our communities through dedicated initiatives and partnerships." />
             </Helmet>
             <Header isOpen={isOpen} toggle={toggle} />
             <div className="community-impact-container">
@@ -49,7 +49,7 @@ const CommunityImpact = () => {
                             <div className="col-lg-8 text-center">
                                 <h2 className="section-title">Our Mission</h2>
                                 <p className="lead mb-4">
-                                    At ZNET, we believe in the power of real estate to transform communities. 
+                                    At URBANCRAFT REAL ESTATE, we believe in the power of real estate to transform communities. 
                                     Our mission is to create lasting positive impact through sustainable practices, 
                                     community engagement, and innovative solutions.
                                 </p>
@@ -156,7 +156,7 @@ const CommunityImpact = () => {
                             <div className="col-md-8 mx-auto">
                                 <div className="story-content">
                                     <blockquote className="impact-quote">
-                                        <p>"Through ZNET's first-time homebuyer program, we were able to achieve our dream of homeownership. The support and guidance we received was invaluable."</p>
+                                        <p>"Through URBANCRAFT REAL ESTATE's first-time homebuyer program, we were able to achieve our dream of homeownership. The support and guidance we received was invaluable."</p>
                                         <footer className="blockquote-footer">Sarah & John Martinez, Program Participants</footer>
                                     </blockquote>
                                 </div>

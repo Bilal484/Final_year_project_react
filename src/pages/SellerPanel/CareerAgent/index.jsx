@@ -30,18 +30,18 @@ const CareerAgent = () => {
     return (
         <>
             <Helmet>
-                <title>Career Opportunities - Join Znet</title>
+                <title>Career Opportunities - Join UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Discover exciting career opportunities at Znet. Join our team and contribute to redefining real estate. Explore available positions today."
+                    content="Discover exciting career opportunities at UrbanCraft REAL ESTATE. Join our team and contribute to redefining real estate. Explore available positions today."
                 />
-                <meta name="keywords" content="Znet careers, real estate jobs, work at Znet, career opportunities" />
-                <meta name="author" content="Znet Team" />
+                <meta name="keywords" content="UrbanCraft REAL ESTATE careers, real estate jobs, work at UrbanCraft REAL ESTATE, career opportunities" />
+                <meta name="author" content="UrbanCraft REAL ESTATE Team" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta property="og:title" content="Career Opportunities - Join Znet" />
+                <meta property="og:title" content="Career Opportunities - Join UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
-                    content="Explore career opportunities at Znet and become part of a team redefining real estate. Check out the latest job openings."
+                    content="Explore career opportunities at UrbanCraft REAL ESTATE and become part of a team redefining real estate. Check out the latest job openings."
                 />
                 <meta property="og:url" content="https://yourwebsite.com/career-agent" />
                 <meta property="og:image" content="https://yourwebsite.com/path-to-image.jpg" />
@@ -59,7 +59,7 @@ const CareerAgent = () => {
                         <p className="w-50 text-start">
                             Our mission is to redefine real estate in the customer’s favor.
                             From the technology we build to the brokerage services we provide,
-                            every Znetnian plays a part.
+                            every UrbanCraft REAL ESTATEnian plays a part.
                         </p>
                         <form className="career-agent unique-search-bar-wrapper input-group">
                             <input
@@ -289,9 +289,9 @@ const CareerAgent = () => {
                                         </h5>
                                         <p className="card-text">
                                             Our company values represent the behaviors that will help
-                                            us achieve our mission and unite Znet's culture. Our
+                                            us achieve our mission and unite UrbanCraft REAL ESTATE's culture. Our
                                             purpose and history are why we are all here, but our
-                                            values are actionable behaviors we expect of Znetnians
+                                            values are actionable behaviors we expect of UrbanCraft REAL ESTATEnians
                                             when it comes to how to drive results, make better
                                             decisions and serve customers.
                                         </p>
@@ -305,13 +305,13 @@ const CareerAgent = () => {
                                 <div className="card h-100 border-0">
                                     <img src={img2} className="card-img-top" alt="..." />
                                     <div className="card-body">
-                                        <h5 className="card-title">Life at Znet</h5>
+                                        <h5 className="card-title">Life at UrbanCraft REAL ESTATE</h5>
                                         <p className="card-text">
-                                            At Znet, authenticity is our cornerstone. We embrace and
+                                            At UrbanCraft REAL ESTATE, authenticity is our cornerstone. We embrace and
                                             celebrate diversity, fostering an inclusive community
                                             where every individual feels valued. Our mission is to
                                             improve the home buying and selling process, directly
-                                            impacting our customers' well-being. Znet is a hub of
+                                            impacting our customers' well-being. UrbanCraft REAL ESTATE is a hub of
                                             excellence, attracting top talent from various fields,
                                             where you'll have the opportunity to learn from the best
                                             and be challenged daily in your career journey.
@@ -332,7 +332,7 @@ const CareerAgent = () => {
                                         <p className="card-text">
                                             A diverse, inclusive culture is vital to our mission of
                                             making real estate better for regular people from all
-                                            walks of life. We're proud that Znet is a place where
+                                            walks of life. We're proud that UrbanCraft REAL ESTATE is a place where
                                             different points of view are encouraged and respected. At
                                             the same time, we recognize that meaningful change
                                             requires ongoing analysis and action. We're cultivating
@@ -360,8 +360,8 @@ const CareerAgent = () => {
                     <div className="text-center container">
                         <h6>Equal Opportunity</h6>
                         <p>
-                            Znet is an equal opportunity employer. Individuals seeking
-                            employment at Znet are considered without regard to race, color,
+                            UrbanCraft REAL ESTATE is an equal opportunity employer. Individuals seeking
+                            employment at UrbanCraft REAL ESTATE are considered without regard to race, color,
                             religion, national origin, age, sex, marital status, ancestry,
                             physical or mental disability, veteran status or sexual
                             orientation.

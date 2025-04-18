@@ -8,27 +8,27 @@ const ContactSection = () => {
     return (
         <>
          <Helmet>
-                <title>Contact Us | Znet Corporation</title>
+                <title>Contact Us | UrbanCraft REAL ESTATE Corporation</title>
                 <meta
                     name="description"
-                    content="Get in touch with Znet Corporation for any inquiries. Our team is available for investor relations, press inquiries, and general information."
+                    content="Get in touch with UrbanCraft REAL ESTATE Corporation for any inquiries. Our team is available for investor relations, press inquiries, and general information."
                 />
                 <meta
                     name="keywords"
-                    content="contact, Znet Corporation, investor relations, press inquiries, Seattle contact"
+                    content="contact, UrbanCraft REAL ESTATE Corporation, investor relations, press inquiries, Seattle contact"
                 />
-                <meta property="og:title" content="Contact Us | Znet Corporation" />
+                <meta property="og:title" content="Contact Us | UrbanCraft REAL ESTATE Corporation" />
                 <meta
                     property="og:description"
-                    content="Contact Znet Corporation for investor relations, press inquiries, or general information."
+                    content="Contact UrbanCraft REAL ESTATE Corporation for investor relations, press inquiries, or general information."
                 />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="URL_TO_IMAGE" /> {/* Placeholder for image */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Contact Us | Znet Corporation" />
+                <meta name="twitter:title" content="Contact Us | UrbanCraft REAL ESTATE Corporation" />
                 <meta
                     name="twitter:description"
-                    content="Get in touch with Znet Corporation for all your inquiries and media needs."
+                    content="Get in touch with UrbanCraft REAL ESTATE Corporation for all your inquiries and media needs."
                 />
                 <meta name="twitter:image" content="URL_TO_IMAGE" /> {/* Placeholder for image */}
             </Helmet>
@@ -39,7 +39,7 @@ const ContactSection = () => {
                         <div className="col-12  col-md-4">
                             <div className="p-3   h-100 bg-white rounded shadow-sm">
                                 <h3 className="h5 fw-bold">Company</h3>
-                                <p>Znet Corporation</p>
+                                <p>UrbanCraft REAL ESTATE Corporation</p>
                                 <p>1099 Stewart Street</p>
                                 <p>Suite 600</p>
                                 <p>Seattle, WA 98101</p>

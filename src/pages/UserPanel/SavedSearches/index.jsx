@@ -74,16 +74,16 @@ const SavedSearches = () => {
   return (
     <>
     <Helmet>
-        <title>Saved Searches | Znet</title>
+        <title>Saved Searches | UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
           content="Manage and edit your saved property searches with ease. Stay updated with the latest property listings that match your preferences."
         />
-        <meta name="keywords" content="saved searches, real estate, property management, Znet, notifications" />
-        <meta property="og:title" content="Saved Searches | Znet" />
+        <meta name="keywords" content="saved searches, real estate, property management, UrbanCraft REAL ESTATE, notifications" />
+        <meta property="og:title" content="Saved Searches | UrbanCraft REAL ESTATE" />
         <meta
           property="og:description"
-          content="Access and edit your saved property searches on Znet. Get instant notifications for new property listings."
+          content="Access and edit your saved property searches on UrbanCraft REAL ESTATE. Get instant notifications for new property listings."
         />
         <meta property="og:url" content="https://biznetusa.com/saved-searches" />
         <meta
@@ -92,10 +92,10 @@ const SavedSearches = () => {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Saved Searches | Znet" />
+        <meta name="twitter:title" content="Saved Searches | UrbanCraft REAL ESTATE" />
         <meta
           name="twitter:description"
-          content="Manage and edit your saved searches for real estate properties with Znet."
+          content="Manage and edit your saved searches for real estate properties with UrbanCraft REAL ESTATE."
         />
         <meta
           name="twitter:image"

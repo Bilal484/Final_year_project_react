@@ -84,14 +84,14 @@ const UserProfiling = ({ userRole, showModal, setShowModal }) => {
         <>
          <Helmet>
                 <meta charSet="utf-8" />
-                <title>User Profiling | ZNet</title>
+                <title>User Profiling | UrbanCraft REAL ESTATE</title>
                 <meta name="description" content="Complete your user profiling to help us understand your home-buying or investment goals." />
-                <meta property="og:title" content="User Profiling | ZNet" />
+                <meta property="og:title" content="User Profiling | UrbanCraft REAL ESTATE" />
                 <meta property="og:description" content="Complete your user profiling to help us understand your home-buying or investment goals." />
                 <meta property="og:image" content="https://yourwebsite.com/images/user-profiling.jpg" /> {/* Replace with actual image URL */}
                 <meta property="og:url" content="https://yourwebsite.com/user-profiling" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="User Profiling | ZNet" />
+                <meta name="twitter:title" content="User Profiling | UrbanCraft REAL ESTATE" />
                 <meta name="twitter:description" content="Complete your user profiling to help us understand your home-buying or investment goals." />
                 <meta name="twitter:image" content="https://yourwebsite.com/images/user-profiling.jpg" /> {/* Replace with actual image URL */}
             </Helmet>

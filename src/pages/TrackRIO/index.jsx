@@ -17,7 +17,7 @@ const TrackRIO = () => {
           name="keywords"
           content="Track ROI, Return on Investment, Investment Performance, Financial Growth, Investment Monitoring"
         />
-        <meta name="author" content="Biznet USA" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
         <meta property="og:title" content="Track ROI | Monitor Your Investment Performance" />
         <meta
           property="og:description"

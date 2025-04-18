@@ -103,14 +103,14 @@ const UpcomingEvents = () => {
         <>
         <Helmet>
                 <meta charSet="utf-8" />
-                <title>Upcoming Events | ZNet</title>
+                <title>Upcoming Events | UrbanCraft REAL ESTATE</title>
                 <meta name="description" content="Join us at the upcoming events and network with industry professionals. Register today!" />
-                <meta property="og:title" content="Upcoming Events | ZNet" />
+                <meta property="og:title" content="Upcoming Events | UrbanCraft REAL ESTATE" />
                 <meta property="og:description" content="Join us at the upcoming events and network with industry professionals. Register today!" />
                 <meta property="og:image" content="https://yourwebsite.com/images/upcoming-events-banner.jpg" /> {/* Replace with actual image URL */}
                 <meta property="og:url" content="https://yourwebsite.com/upcoming-events" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Upcoming Events | ZNet" />
+                <meta name="twitter:title" content="Upcoming Events | UrbanCraft REAL ESTATE" />
                 <meta name="twitter:description" content="Join us at the upcoming events and network with industry professionals. Register today!" />
                 <meta name="twitter:image" content="https://yourwebsite.com/images/upcoming-events-banner.jpg" /> {/* Replace with actual image URL */}
             </Helmet>

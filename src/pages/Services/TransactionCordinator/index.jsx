@@ -22,13 +22,13 @@ const TransactionCordinator = () => {
         </title>
         <meta
           name="description"
-          content="Streamline your real estate transactions with Znet's Transaction Coordinator service. Prioritize the consumer experience with faster and affordable solutions."
+          content="Streamline your real estate transactions with UrbanCraft REAL ESTATE's Transaction Coordinator service. Prioritize the consumer experience with faster and affordable solutions."
         />
         <meta
           name="keywords"
-          content="Transaction Coordinator, Real Estate Transactions, Streamlined Transactions, Znet Corporation, Real Estate Services"
+          content="Transaction Coordinator, Real Estate Transactions, Streamlined Transactions, UrbanCraft REAL ESTATE Corporation, Real Estate Services"
         />
-        <meta name="author" content="Znet Corporation" />
+        <meta name="author" content="UrbanCraft REAL ESTATE Corporation" />
         <meta name="robots" content="index, follow" />
         <meta
           property="og:title"

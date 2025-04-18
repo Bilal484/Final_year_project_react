@@ -6,7 +6,7 @@ const testimonials = [
     [
         {
             title: "Outstanding Service",
-            text: "ZNet helped us find our dream home with exceptional service. Their professionalism, attention to detail, and dedication were truly outstanding. We couldn’t have asked for a better real estate partner.",
+            text: "UrbanCraft REAL ESTATE helped us find our dream home with exceptional service. Their professionalism, attention to detail, and dedication were truly outstanding. We couldn’t have asked for a better real estate partner.",
             author: "Sarah L.",
             role: "Home Buyer",
             bgColor: "bg-primary",
@@ -14,7 +14,7 @@ const testimonials = [
         },
         {
             title: "Fantastic Support",
-            text: "The team at ZNet always provided quick and effective support. They truly care about their clients and go above and beyond!",
+            text: "The team at UrbanCraft REAL ESTATE always provided quick and effective support. They truly care about their clients and go above and beyond!",
             author: "Fiona G.",
             role: "First-Time Buyer",
             bgColor: "bg-danger",
@@ -22,7 +22,7 @@ const testimonials = [
         },
         {
             title: "Exceeded Expectations",
-            text: "ZNet exceeded our expectations in every aspect. From the initial consultation to closing the deal, they were attentive, responsive, and highly professional. Our investment process was seamless.",
+            text: "UrbanCraft REAL ESTATE exceeded our expectations in every aspect. From the initial consultation to closing the deal, they were attentive, responsive, and highly professional. Our investment process was seamless.",
             author: "Emily W.",
             role: "Investor",
             bgColor: "bg-success",
@@ -40,7 +40,7 @@ const testimonials = [
         },
         {
             title: "Smooth & Stress-Free",
-            text: "We sold our property in no time, thanks to the expertise of ZNet’s team. Their market knowledge and proactive approach made the process smooth and stress-free. Highly recommend!",
+            text: "We sold our property in no time, thanks to the expertise of UrbanCraft REAL ESTATE’s team. Their market knowledge and proactive approach made the process smooth and stress-free. Highly recommend!",
             author: "Mark D.",
             role: "Property Seller",
             bgColor: "bg-secondary",
@@ -48,7 +48,7 @@ const testimonials = [
         },
         {
             title: "Impressive Results",
-            text: "We achieved fantastic results with ZNet’s team. Their expertise and dedication were unmatched. Truly a great experience!",
+            text: "We achieved fantastic results with UrbanCraft REAL ESTATE’s team. Their expertise and dedication were unmatched. Truly a great experience!",
             author: "Irene T.",
             role: "Property Seller",
             bgColor: "bg-warning",
@@ -63,15 +63,15 @@ const TestimonialCard = ({ title, text, author, role, bgColor, initial }) => {
         <>
          <Helmet>
                 <meta charSet="utf-8" />
-                <title>What Our Clients Say | ZNet</title>
-                <meta name="description" content="Read testimonials from satisfied clients of ZNet. Learn about their experiences in finding homes, buying properties, and selling with ease." />
-                <meta property="og:title" content="What Our Clients Say | ZNet" />
-                <meta property="og:description" content="Read testimonials from satisfied clients of ZNet. Learn about their experiences in finding homes, buying properties, and selling with ease." />
+                <title>What Our Clients Say | UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Read testimonials from satisfied clients of UrbanCraft REAL ESTATE. Learn about their experiences in finding homes, buying properties, and selling with ease." />
+                <meta property="og:title" content="What Our Clients Say | UrbanCraft REAL ESTATE" />
+                <meta property="og:description" content="Read testimonials from satisfied clients of UrbanCraft REAL ESTATE. Learn about their experiences in finding homes, buying properties, and selling with ease." />
                 <meta property="og:image" content="https://yourwebsite.com/images/testimonials-banner.jpg" /> {/* Example image for sharing */}
                 <meta property="og:url" content="https://yourwebsite.com/testimonials" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="What Our Clients Say | ZNet" />
-                <meta name="twitter:description" content="Read testimonials from satisfied clients of ZNet. Learn about their experiences in finding homes, buying properties, and selling with ease." />
+                <meta name="twitter:title" content="What Our Clients Say | UrbanCraft REAL ESTATE" />
+                <meta name="twitter:description" content="Read testimonials from satisfied clients of UrbanCraft REAL ESTATE. Learn about their experiences in finding homes, buying properties, and selling with ease." />
                 <meta name="twitter:image" content="https://yourwebsite.com/images/testimonials-banner.jpg" /> {/* Example image for Twitter sharing */}
             </Helmet>
         <div className="col-md-4 d-flex align-items-stretch">
@@ -107,7 +107,7 @@ const Testimonial = () => {
                     What Our Clients Say
                 </h2>
                 <p className="text-center text-muted mb-5">
-                    Hear directly from our satisfied clients about their experiences with ZNet. We take pride in making real estate seamless and successful for everyone.
+                    Hear directly from our satisfied clients about their experiences with UrbanCraft REAL ESTATE. We take pride in making real estate seamless and successful for everyone.
                 </p>
                 <div
                     id="testimonialCarousel"

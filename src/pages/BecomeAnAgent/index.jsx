@@ -11,16 +11,16 @@ const BecomeAnAgent = () => {
     return (
         <>
         <Helmet>
-                <title>Become an Agent - ZNET Real Estate</title>
-                <meta name="description" content="Join ZNET's network of top real estate agents and gain access to the best tools, resources, and support to grow your career." />
+                <title>Become an Agent - UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Join URBANCRAFT REAL ESTATE's network of top real estate agents and gain access to the best tools, resources, and support to grow your career." />
                 <meta name="keywords" content="ZNET, real estate career, become an agent, real estate agent, join real estate network" />
-                <meta property="og:title" content="Become an Agent - ZNET Real Estate" />
-                <meta property="og:description" content="Explore the benefits of becoming a ZNET agent, including professional tools, continuous learning, and a competitive commission structure." />
+                <meta property="og:title" content="Become an Agent - UrbanCraft REAL ESTATE" />
+                <meta property="og:description" content="Explore the benefits of becoming a URBANCRAFT REAL ESTATE agent, including professional tools, continuous learning, and a competitive commission structure." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="/path/to/image.jpg" />  {/* Replace with an actual image URL */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Become an Agent - ZNET Real Estate" />
+                <meta name="twitter:title" content="Become an Agent - UrbanCraft REAL ESTATE" />
                 <meta name="twitter:description" content="Join our network to leverage advanced tools and comprehensive support to boost your real estate career." />
                 <meta name="twitter:image" content="/path/to/image.jpg" />  {/* Replace with an actual image URL */}
             </Helmet>
@@ -30,7 +30,7 @@ const BecomeAnAgent = () => {
       <section className="hero-section text-center py-3 py-md-5">
         <div className="container">
           <h1 className="display-4 fw-bold mb-3 mb-md-4 fs-2 fs-md-1">Join Our Network of Top Real Estate Agents</h1>
-          <p className="lead mb-3 mb-md-4 fs-6 fs-md-5">Transform your real estate career with ZNET's cutting-edge platform and support</p>
+          <p className="lead mb-3 mb-md-4 fs-6 fs-md-5">Transform your real estate career with URBANCRAFT REAL ESTATE's cutting-edge platform and support</p>
          <Link to='/AllJob'>
           <button className="btn btn-primary btn-lg px-4 py-2">Apply Now</button>
           </Link>
@@ -40,7 +40,7 @@ const BecomeAnAgent = () => {
       {/* Benefits Section */}
       <section className="benefits-section py-4 py-md-5">
         <div className="container">
-          <h2 className="text-center mb-4 mb-md-5 fs-3">Why Choose ZNET?</h2>
+          <h2 className="text-center mb-4 mb-md-5 fs-3">Why Choose URBANCRAFT REAL ESTATE?</h2>
           <div className="row row-cols-1 row-cols-md-3 g-4">
             <div className="col-md-4">
               <div className="benefit-card p-4 text-center">
@@ -118,7 +118,7 @@ const BecomeAnAgent = () => {
                 <div className="accordion-item">
                   <h3 className="accordion-header">
                     <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                      What are the requirements to join ZNET?
+                      What are the requirements to join URBANCRAFT REAL ESTATE?
                     </button>
                   </h3>
                   <div id="faq1" className="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
@@ -177,7 +177,7 @@ const BecomeAnAgent = () => {
               <div className="step-card text-center">
                 <div className="step-number">4</div>
                 <h3 className="h5">Start Growing</h3>
-                <p>Begin your journey with ZNET</p>
+                <p>Begin your journey with URBANCRAFT REAL ESTATE</p>
               </div>
             </div>
           </div>
@@ -221,7 +221,7 @@ const BecomeAnAgent = () => {
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="message" className="form-label">Why do you want to join ZNET?</label>
+                  <label htmlFor="message" className="form-label">Why do you want to join URBANCRAFT REAL ESTATE?</label>
                   <textarea className="form-control" id="message" rows="3"></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary w-100 py-2">Submit Application</button>

@@ -65,7 +65,7 @@ const StartOffer = () => {
           name="keywords"
           content="Biznet, Start an Offer, Real Estate, Products, Deals, Offers, Search"
         />
-        <meta name="author" content="Biznet USA" />
+        <meta name="author" content="UrbanCraft REAL ESTATE" />
         <meta property="og:title" content="Start an Offer | Biznet" />
         <meta
           property="og:description"

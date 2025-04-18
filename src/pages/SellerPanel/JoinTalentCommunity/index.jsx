@@ -75,14 +75,14 @@ const JoinTalentCommunity = () => {
     return (
         <>
         <Helmet>
-                <title>Join Our Talent Community | Znet Careers</title>
+                <title>Join Our Talent Community | UrbanCraft REAL ESTATE Careers</title>
                 <meta
                     name="description"
-                    content="Join Znet's Talent Community and upload your resume to be notified about relevant job openings. Take the first step towards an exciting career in real estate."
+                    content="Join UrbanCraft REAL ESTATE's Talent Community and upload your resume to be notified about relevant job openings. Take the first step towards an exciting career in real estate."
                 />
                 <meta
                     name="keywords"
-                    content="talent community, job applications, Znet careers, real estate jobs, upload resume"
+                    content="talent community, job applications, UrbanCraft REAL ESTATE careers, real estate jobs, upload resume"
                 />
                 <meta name="author" content="Znet" />
             </Helmet>
@@ -222,7 +222,7 @@ const JoinTalentCommunity = () => {
                                     required
                                 />
                                 <label className="form-check-label" htmlFor="gridCheck">
-                                    By checking this box, I consent to receive transactional and marketing text messages from Znet. I agree to Znet's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+                                    By checking this box, I consent to receive transactional and marketing text messages from UrbanCraft REAL ESTATE. I agree to UrbanCraft REAL ESTATE's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
                                 </label>
                             </div>
                         </div>
@@ -238,7 +238,7 @@ const JoinTalentCommunity = () => {
                 <section className="apply-now-section border-top py-5">
                     <div className="container text-center">
                         <h1>Apply Now</h1>
-                        <p>Check out all our teams and open positions at Znet to see what interests you.</p>
+                        <p>Check out all our teams and open positions at UrbanCraft REAL ESTATE to see what interests you.</p>
                         <button className="btn apply-now-btn py-3 px-5 mt-4">See All Departments</button>
                     </div>
                 </section>

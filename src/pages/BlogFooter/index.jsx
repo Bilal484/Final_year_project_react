@@ -12,17 +12,17 @@ const BlogFooter = () => {
     return (
         <>
         <Helmet>
-                <title>ZNET Real Estate Blog</title>
+                <title>UrbanCraft REAL ESTATE Blog</title>
                 <meta name="description" content="Explore the latest insights, tips, and trends in real estate to help you make informed decisions." />
-                <meta name="keywords" content="real estate, ZNET blog, real estate tips, real estate trends, real estate investment" />
-                <meta property="og:title" content="ZNET Real Estate Blog" />
-                <meta property="og:description" content="Stay updated with the latest insights, tips, and trends in real estate on the ZNET Real Estate Blog." />
+                <meta name="keywords" content="real estate, URBANCRAFT REAL ESTATE blog, real estate tips, real estate trends, real estate investment" />
+                <meta property="og:title" content="UrbanCraft REAL ESTATE Blog" />
+                <meta property="og:description" content="Stay updated with the latest insights, tips, and trends in real estate on the UrbanCraft REAL ESTATE Blog." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:image" content="/path/to/image.jpg" />  {/* Replace with an actual image URL */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="ZNET Real Estate Blog" />
-                <meta name="twitter:description" content="Discover expert insights and the latest trends in real estate with the ZNET Blog." />
+                <meta name="twitter:title" content="UrbanCraft REAL ESTATE Blog" />
+                <meta name="twitter:description" content="Discover expert insights and the latest trends in real estate with the URBANCRAFT REAL ESTATE Blog." />
                 <meta name="twitter:image" content="/path/to/image.jpg" />  {/* Replace with an actual image URL */}
             </Helmet>
             <Header />
@@ -30,7 +30,7 @@ const BlogFooter = () => {
                 {/* Hero Section */}
                 <section className="blog-hero-section text-center text-white position-relative">
                     <div className="container py-5">
-                        <h1 className="display-3 fw-bold mb-4">ZNET Real Estate Blog</h1>
+                        <h1 className="display-3 fw-bold mb-4">UrbanCraft REAL ESTATE Blog</h1>
                         <p className="lead mb-4">Insights, Tips, and Trends in Real Estate</p>
                         <div className="search-container">
                             <input type="text" className="form-control form-control-lg" placeholder="Search articles..." />

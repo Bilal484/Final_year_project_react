@@ -65,7 +65,7 @@ const RealEstateTabs = () => {
     return (
         <>
             <Helmet>
-                <title>Real Estate Search | ZNet</title>
+                <title>Real Estate Search | UrbanCraft REAL ESTATE</title>
             </Helmet>
             <div className="col-lg-5 pt-4 mb-4">
                 <div className="container steps_buttons_real justify-content-center d-flex align-content-center flex-column">

@@ -54,17 +54,17 @@ const Appointments = () => {
     {notification.message && <Notification {...notification} />}
 
      <Helmet>
-        <title>User Appointments | Znet</title>
+        <title>User Appointments | UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
-          content="View and manage your appointments, including in-person and video chat tours, with Znet's real estate services."
+          content="View and manage your appointments, including in-person and video chat tours, with UrbanCraft REAL ESTATE's real estate services."
         />
         <meta
           name="keywords"
-          content="real estate appointments, in-person tours, video chat tours, Znet real estate, property management"
+          content="real estate appointments, in-person tours, video chat tours, UrbanCraft REAL ESTATE, property management"
         />
         <meta name="author" content="Znet" />
-        <meta property="og:title" content="User Appointments | Znet" />
+        <meta property="og:title" content="User Appointments | UrbanCraft REAL ESTATE" />
         <meta
           property="og:description"
           content="Manage your real estate appointments and tours, including in-person and video chat options, with ease."

@@ -46,19 +46,19 @@ const OpenHouseSchedule = () => {
   return (
     <>
     <Helmet>
-        <title>Open House Schedule | Znet</title>
+        <title>Open House Schedule | UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
-          content="Plan your real estate journey with Znet's Open House Schedule. View upcoming open house details, including property descriptions, prices, and more."
+          content="Plan your real estate journey with UrbanCraft REAL ESTATE's Open House Schedule. View upcoming open house details, including property descriptions, prices, and more."
         />
         <meta
           name="keywords"
-          content="open house schedule, real estate planning, property listings, Znet open houses"
+          content="open house schedule, real estate planning, property listings, UrbanCraft REAL ESTATE open houses"
         />
-        <meta property="og:title" content="Open House Schedule | Znet" />
+        <meta property="og:title" content="Open House Schedule | UrbanCraft REAL ESTATE" />
         <meta
           property="og:description"
-          content="Track and plan your upcoming open house visits with Znet. View detailed property information and images."
+          content="Track and plan your upcoming open house visits with UrbanCraft REAL ESTATE. View detailed property information and images."
         />
         <meta
           property="og:image"
@@ -67,10 +67,10 @@ const OpenHouseSchedule = () => {
         <meta property="og:url" content="https://biznetusa.com/open-house-schedule" />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="Open House Schedule | Znet" />
+        <meta property="twitter:title" content="Open House Schedule | UrbanCraft REAL ESTATE" />
         <meta
           property="twitter:description"
-          content="Plan your real estate journey with Znet's Open House Schedule. View upcoming open house details and property information."
+          content="Plan your real estate journey with UrbanCraft REAL ESTATE's Open House Schedule. View upcoming open house details and property information."
         />
         <meta
           property="twitter:image"

@@ -9,44 +9,44 @@ import FAQs from "../../../components/FAQs";
 
 const faqData = [
     {
-        question: 'What is Znet?',
-        answer: 'Znet is a real estate platform that helps you find, buy, or rent the best properties suited to your needs, including residential and commercial spaces.'
+        question: 'What is UrbanCraft REAL ESTATE?',
+        answer: 'UrbanCraft REAL ESTATE is a real estate platform that helps you find, buy, or rent the best properties suited to your needs, including residential and commercial spaces.'
     },
     {
-        question: 'How do I get started on Znet?',
+        question: 'How do I get started on UrbanCraft REAL ESTATE?',
         answer: 'To get started, simply sign up on our website and explore properties by filtering based on your preferences such as location, price range, and property type.'
     },
     {
-        question: 'What kind of properties does Znet offer?',
-        answer: 'Znet offers a wide range of properties, including luxury villas, modern apartments, office spaces, and land for development.'
+        question: 'What kind of properties does UrbanCraft REAL ESTATE offer?',
+        answer: 'UrbanCraft REAL ESTATE offers a wide range of properties, including luxury villas, modern apartments, office spaces, and land for development.'
     },
     {
-        question: 'How does Znet ensure the best deals?',
+        question: 'How does UrbanCraft REAL ESTATE ensure the best deals?',
         answer: 'Our team of real estate experts carefully analyzes market trends and negotiates on behalf of clients to secure the best deals.'
     },
     {
-        question: 'What support does Znet provide to buyers and sellers?',
-        answer: 'Znet offers end-to-end support, including property listings, negotiations, legal assistance, and closing deals to ensure a seamless experience.'
+        question: 'What support does UrbanCraft REAL ESTATE provide to buyers and sellers?',
+        answer: 'UrbanCraft REAL ESTATE offers end-to-end support, including property listings, negotiations, legal assistance, and closing deals to ensure a seamless experience.'
     },
     {
-        question: 'How long does the property purchase process take with Znet?',
+        question: 'How long does the property purchase process take with UrbanCraft REAL ESTATE?',
         answer: 'The timeline depends on factors like the type of property, financing approvals, and legal processes. Our team strives to make the process as quick and efficient as possible.'
     },
     {
-        question: 'Does Znet offer flexible payment plans?',
-        answer: 'Yes, Znet partners with financial institutions to provide flexible payment plans tailored to fit your budget and requirements.'
+        question: 'Does UrbanCraft REAL ESTATE offer flexible payment plans?',
+        answer: 'Yes, UrbanCraft REAL ESTATE partners with financial institutions to provide flexible payment plans tailored to fit your budget and requirements.'
     },
     {
-        question: 'Can I cancel my property booking on Znet?',
+        question: 'Can I cancel my property booking on UrbanCraft REAL ESTATE?',
         answer: 'Yes, cancellations are possible, but they may be subject to the terms and conditions of the seller or property owner. Contact our support team for more details.'
     },
     {
-        question: 'How can I contact the Znet support team?',
+        question: 'How can I contact the UrbanCraft REAL ESTATE support team?',
         answer: 'You can contact our support team via the "Contact Us" page on our website or by calling our 24/7 customer support helpline.'
     },
     {
-        question: 'Is my personal information secure on Znet?',
-        answer: 'Yes, we prioritize your privacy and security. Znet uses industry-standard encryption and security measures to protect your personal information.'
+        question: 'Is my personal information secure on UrbanCraft REAL ESTATE?',
+        answer: 'Yes, we prioritize your privacy and security. UrbanCraft REAL ESTATE uses industry-standard encryption and security measures to protect your personal information.'
     }
 ];
 
@@ -60,13 +60,13 @@ const FAQsPage = () => {
                 <title>Frequently Asked Questions | Biznet</title>
                 <meta
                     name="description"
-                    content="Find answers to common questions about Biznet services, support, and more. Explore our FAQs for quick and detailed information."
+                    content="Find answers to common questions about Biurbancraft real estate services, support, and more. Explore our FAQs for quick and detailed information."
                 />
                 <meta
                     name="keywords"
-                    content="Biznet FAQs, support, help, questions and answers, Biznet support, frequently asked questions"
+                    content="Biurbancraft real estate FAQs, support, help, questions and answers, Biurbancraft real estate support, frequently asked questions"
                 />
-                <meta name="author" content="Biznet Team" />
+                <meta name="author" content="Biurbancraft real estate Team" />
             </Helmet>
 
             <Header />

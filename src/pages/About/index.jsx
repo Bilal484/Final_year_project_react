@@ -44,19 +44,19 @@ const About = () => {
     return (
         <>
         <Helmet>
-                <title>About Znet - Leading Real Estate Innovators</title>
-                <meta name="description" content="Learn about Znet's mission to lead the real estate market through innovation, integrity, and excellence. Discover our core values and how we empower our clients." />
-                <meta name="keywords" content="Znet real estate, about Znet, Znet mission, Znet values, real estate innovation, professional real estate services" />
-                <meta property="og:title" content="About Znet - Leading Real Estate Innovators" />
-                <meta property="og:description" content="Explore Znet's commitment to leading the real estate industry with ethical practices and innovative solutions. Get to know our mission and values." />
+                <title>About UrbanCraft REAL ESTATE - Leading Real Estate Innovators</title>
+                <meta name="description" content="Learn about UrbanCraft REAL ESTATE's mission to lead the real estate market through innovation, integrity, and excellence. Discover our core values and how we empower our clients." />
+                <meta name="keywords" content="UrbanCraft REAL ESTATE, about UrbanCraft REAL ESTATE, UrbanCraft REAL ESTATE mission, UrbanCraft REAL ESTATE values, real estate innovation, professional real estate services" />
+                <meta property="og:title" content="About UrbanCraft REAL ESTATE - Leading Real Estate Innovators" />
+                <meta property="og:description" content="Explore UrbanCraft REAL ESTATE's commitment to leading the real estate industry with ethical practices and innovative solutions. Get to know our mission and values." />
                 <meta property="og:image" content={aboutImage1} />
-                <meta property="og:image:alt" content="About Znet Image - Real Estate Innovators" />
+                <meta property="og:image:alt" content="About UrbanCraft REAL ESTATE Image - Real Estate Innovators" />
                 <meta property="og:url" content={window.location.href} />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="About Znet - Leading Real Estate Innovators" />
-                <meta name="twitter:description" content="Learn about how Znet is transforming the real estate market with our innovative platform and services." />
+                <meta name="twitter:title" content="About UrbanCraft REAL ESTATE - Leading Real Estate Innovators" />
+                <meta name="twitter:description" content="Learn about how UrbanCraft REAL ESTATE is transforming the real estate market with our innovative platform and services." />
                 <meta name="twitter:image" content={aboutImage1} />
-                <meta name="twitter:image:alt" content="About Znet Image - Real Estate Innovators" />
+                <meta name="twitter:image:alt" content="About UrbanCraft REAL ESTATE Image - Real Estate Innovators" />
             </Helmet>
             <ToastContainer />
             <Header />
@@ -64,7 +64,7 @@ const About = () => {
                 {/* Hero Section */}
                 <section className="">
                     <div className="container-fluid hero d-flex justify-content-center align-items-center flex-column">
-                        <h1 className="">Welcome to Znet</h1>
+                        <h1 className="">Welcome to UrbanCraft REAL ESTATE</h1>
                         <p className="">
                             Leading the Real Estate Market with Integrity and Innovation.
                         </p>
@@ -76,12 +76,12 @@ const About = () => {
                 {/* About Section */}
                 <section id="about" className="py-5">
                     <div className="container">
-                        <h2 className="section-title ">About Znet</h2>
+                        <h2 className="section-title ">About UrbanCraft REAL ESTATE</h2>
                         <div className="row align-items-center">
                             <ImagewithText
-                                content=" At ZNet, we’re revolutionizing the real estate industry by creating a smarter, faster, and more efficient way to connect professionals. Our platform is designed to bridge the gap between buyers, sellers, investors, and service providers, empowering them to achieve their goals through seamless collaboration and personalized solutions. "
+                                content=" At UrbanCraft REAL ESTATE, we’re revolutionizing the real estate industry by creating a smarter, faster, and more efficient way to connect professionals. Our platform is designed to bridge the gap between buyers, sellers, investors, and service providers, empowering them to achieve their goals through seamless collaboration and personalized solutions. "
                                 imgSrc={aboutImage1}
-                                altText="About Znet"
+                                altText="About UrbanCraft REAL ESTATE"
                             />
                         </div>
                     </div>

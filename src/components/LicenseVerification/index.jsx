@@ -7,12 +7,12 @@ function LicenseVerification() {
     return (
         <>
          <Helmet>
-                <title>Znet License Verification - Verify Real Estate Agents</title>
-                <meta name="description" content="Use Znet's license verification tool powered by ARELLO to verify the status of real estate agents' licenses and ensure compliance." />
-                <meta name="keywords" content="License Verification, Real Estate License, ARELLO, Verify Agent License, Znet Real Estate" />
-                <meta property="og:title" content="Znet License Verification - Verify Real Estate Agents" />
-                <meta property="og:description" content="Easily verify real estate agents' licenses using ARELLO through Znet's platform for secure and compliant transactions." />
-                <meta name="author" content="Znet Team" />
+                <title>UrbanCraft REAL ESTATE License Verification - Verify Real Estate Agents</title>
+                <meta name="description" content="Use UrbanCraft REAL ESTATE's license verification tool powered by ARELLO to verify the status of real estate agents' licenses and ensure compliance." />
+                <meta name="keywords" content="License Verification, Real Estate License, ARELLO, Verify Agent License, UrbanCraft REAL ESTATE" />
+                <meta property="og:title" content="UrbanCraft REAL ESTATE License Verification - Verify Real Estate Agents" />
+                <meta property="og:description" content="Easily verify real estate agents' licenses using ARELLO through UrbanCraft REAL ESTATE's platform for secure and compliant transactions." />
+                <meta name="author" content="UrbanCraft REAL ESTATE Team" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="robots" content="index, follow" />
             </Helmet>
@@ -22,7 +22,7 @@ function LicenseVerification() {
                 <Container>
                     <Row>
                         <Col className='text-center'>
-                            <h1 className="header-title">Znet License Verification</h1>
+                            <h1 className="header-title">UrbanCraft REAL ESTATE License Verification</h1>
                         </Col>
                     </Row>
                 </Container>
@@ -54,7 +54,7 @@ function LicenseVerification() {
                 <Container>
                     <Row>
                         <Col>
-                            <p>© 2024 Znet. All Rights Reserved.</p>
+                            <p>© 2024 UrbanCraft REAL ESTATE. All Rights Reserved.</p>
                         </Col>
                     </Row>
                 </Container>

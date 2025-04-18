@@ -80,20 +80,20 @@ const handleSaveNewList = () => {
       {notification.message && <Notification {...notification} />}
 
     <Helmet>
-        <title>Favorites | Znet</title>
+        <title>Favorites | UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
-          content="Manage your favorite properties and create personalized lists with Znet. Add search partners, download your favorites, and track your preferred properties effortlessly."
+          content="Manage your favorite properties and create personalized lists with UrbanCraft REAL ESTATE. Add search partners, download your favorites, and track your preferred properties effortlessly."
         />
         <meta
           name="keywords"
-          content="real estate favorites, property management, create lists, Znet favorites, real estate"
+          content="real estate favorites, property management, create lists, UrbanCraft REAL ESTATE favorites, real estate"
         />
         <meta name="author" content="Znet" />
-        <meta property="og:title" content="Favorites | Znet" />
+        <meta property="og:title" content="Favorites | UrbanCraft REAL ESTATE" />
         <meta
           property="og:description"
-          content="Save and organize your favorite properties with Znet. Create new lists, add search partners, and explore your saved favorites easily."
+          content="Save and organize your favorite properties with UrbanCraft REAL ESTATE. Create new lists, add search partners, and explore your saved favorites easily."
         />
         <meta
           property="og:image"

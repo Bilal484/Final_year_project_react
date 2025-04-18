@@ -65,7 +65,7 @@ const ManageServiceContractor = () => {
   return (
     <>
     <Helmet>
-        <title>Manage Contractor Services - ZNet</title>
+        <title>Manage Contractor Services - UrbanCraft REAL ESTATE</title>
         <meta name="description" content="Manage and control your contractor services easily from a single dashboard." />
         <meta name="keywords" content="manage services, contractor services, service management" />
       </Helmet>

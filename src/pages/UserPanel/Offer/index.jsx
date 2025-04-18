@@ -10,20 +10,20 @@ const Offer = () => {
   return (
     <>
     <Helmet>
-        <title>My Offers | Znet</title>
+        <title>My Offers | UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
-          content="View and manage your offers with Znet. Start a new offer anytime and take advantage of our seamless real estate process."
+          content="View and manage your offers with UrbanCraft REAL ESTATE. Start a new offer anytime and take advantage of our seamless real estate process."
         />
         <meta
           name="keywords"
-          content="real estate offers, property offers, start an offer, Znet offers"
+          content="real estate offers, property offers, start an offer, UrbanCraft REAL ESTATE offers"
         />
         <meta name="author" content="Znet" />
-        <meta property="og:title" content="My Offers | Znet" />
+        <meta property="og:title" content="My Offers | UrbanCraft REAL ESTATE" />
         <meta
           property="og:description"
-          content="You don't have any offers yet. Get started on an offer with Znet any time, day or night."
+          content="You don't have any offers yet. Get started on an offer with UrbanCraft REAL ESTATE any time, day or night."
         />
         <meta
           property="og:image"
@@ -32,10 +32,10 @@ const Offer = () => {
         <meta property="og:url" content="https://biznetusa.com/my-offers" />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="My Offers | Znet" />
+        <meta property="twitter:title" content="My Offers | UrbanCraft REAL ESTATE" />
         <meta
           property="twitter:description"
-          content="View and manage your offers with Znet. Start a new offer anytime and take advantage of our seamless real estate process."
+          content="View and manage your offers with UrbanCraft REAL ESTATE. Start a new offer anytime and take advantage of our seamless real estate process."
         />
         <meta
           property="twitter:image"

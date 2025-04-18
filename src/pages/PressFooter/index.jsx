@@ -18,8 +18,8 @@ const PressFooter = () => {
     return (
         <>
         <Helmet>
-                <title>ZNET Newsroom - Latest News and Media Resources</title>
-                <meta name="description" content="Stay updated with the latest news, press releases, and media resources from ZNET. Explore our comprehensive coverage on company updates, media inquiries, and press materials." />
+                <title>URBANCRAFT REAL ESTATE Newsroom - Latest News and Media Resources</title>
+                <meta name="description" content="Stay updated with the latest news, press releases, and media resources from URBANCRAFT REAL ESTATE. Explore our comprehensive coverage on company updates, media inquiries, and press materials." />
                 <meta name="keywords" content="ZNET, newsroom, press releases, media resources, company news, technology updates, media contacts" />
             </Helmet>
             <Header isOpen={isOpen} toggle={toggle} />
@@ -27,7 +27,7 @@ const PressFooter = () => {
                 {/* Hero Section */}
                 <section className="press-hero-section text-center text-white position-relative">
                     <div className="container py-5">
-                        <h1 className="display-3 fw-bold mb-4">ZNET Newsroom</h1>
+                        <h1 className="display-3 fw-bold mb-4">URBANCRAFT REAL ESTATE Newsroom</h1>
                         <p className="lead mb-4">Latest News, Press Releases, and Media Resources</p>
                         
                     </div>
@@ -42,9 +42,9 @@ const PressFooter = () => {
                                 <div className="featured-news-card shadow-sm">
                                     <div className="card-body p-4">
                                         <span className="badge bg-custom-press mb-2">Featured</span>
-                                        <h3>ZNET Expands Operations to Southeast Asian Markets</h3>
+                                        <h3>URBANCRAFT REAL ESTATE Expands Operations to Southeast Asian Markets</h3>
                                         <p className="text-muted">March 15, 2024</p>
-                                        <p className="mb-4">ZNET announces strategic expansion into Southeast Asian markets, marking a significant milestone in the company's global growth strategy...</p>
+                                        <p className="mb-4">URBANCRAFT REAL ESTATE announces strategic expansion into Southeast Asian markets, marking a significant milestone in the company's global growth strategy...</p>
                                         <Link to="#" className="btn btn-outline-custom-press">Read More</Link>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@ const PressFooter = () => {
                                         />
                                         <div className="card-body p-3">
                                             <span className="badge bg-secondary mb-2">Industry News</span>
-                                            <h5 className="card-title">ZNET Launches New Innovation Hub</h5>
+                                            <h5 className="card-title">URBANCRAFT REAL ESTATE Launches New Innovation Hub</h5>
                                             <p className="text-muted small">February {item + 15}, 2024</p>
                                             <p className="card-text">Expanding our commitment to technological advancement with state-of-the-art facilities...</p>
                                             <Link to="#" className="btn btn-sm btn-outline-custom-press">Read More</Link>
@@ -109,7 +109,7 @@ const PressFooter = () => {
                                         <div className="date-badge mb-3">
                                             <span className="text-custom-press">March {item}, 2024</span>
                                         </div>
-                                        <h4>ZNET Announces New Partnership with Leading Tech Firm</h4>
+                                        <h4>URBANCRAFT REAL ESTATE Announces New Partnership with Leading Tech Firm</h4>
                                         <p className="text-muted">Strategic collaboration aims to enhance digital capabilities and expand market reach...</p>
                                         <div className="mt-3">
                                             <Link to="#" className="btn btn-sm btn-outline-custom-press me-2">Read More</Link>
@@ -264,7 +264,7 @@ const PressFooter = () => {
                                         <div className="event-date mb-3">
                                             <span className="text-custom-press fw-bold">April {event * 5}, 2024</span>
                                         </div>
-                                        <h4>ZNET Tech Conference {event}</h4>
+                                        <h4>URBANCRAFT REAL ESTATE Tech Conference {event}</h4>
                                         <p className="text-muted">Join us for our annual technology conference featuring industry leaders...</p>
                                         <div className="event-details mb-3">
                                             <p><i className="fas fa-map-marker-alt me-2"></i>San Francisco, CA</p>
