@@ -98,7 +98,15 @@ const SignUp = () => {
             const response = await fetch("https://api.biznetusa.com/api/get-roles");
             const data = await response.json();
             if (response.ok) {
-                setRoles(data.roles || []);
+                const availableRoles = data.roles || [];
+
+                const preferredRoles = ["seller", "buyer", "investor", "realtor"];
+
+                const filteredRoles = preferredRoles
+                    .map(preferred => availableRoles.find(role => role.role_name.toLowerCase() === preferred))
+                    .filter(role => role);
+
+                setRoles(filteredRoles);
             } else {
                 throw new Error("Failed to fetch roles");
             }
