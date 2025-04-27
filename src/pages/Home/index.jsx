@@ -18,20 +18,13 @@ import ProcessSection from "../../components/ProcessSection";
 import WhyZnet from "../../components/WhyZnet";
 import AppartementsRealEstate from "../../components/AppartementsRealEstate";
 import GetLocation from "../../components/ProductByLocation";
-import UserProfiling from "../../components/UserProfiling";
 import { ToastContainer } from "react-toastify";
 import Recommendations from "../../components/Recommandation";
 import { Helmet } from "react-helmet";
 import { Modal, Button, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import UpcomingEvents from "../../components/UpcomingEvents";
-import ExecutiveLeaders from "../../components/ExecutiveLeaders";
 import SuccessStories from "../../components/SuccessStories";
 import CharacterCard from "../../components/CharacterCard";
-import CEO from "../../assets/images/ceo.jpg";
-import COO from "../../assets/images/DJ jr Eschbach.jpg";
-import Nalley from "../../assets/images/Jash Nalley.jpg";
-import Sir from "../../assets/images/sir.jpg";
 import { Carousel } from 'react-bootstrap';
 import '../Home/Home.css';
 
@@ -44,7 +37,32 @@ const Home = () => {
     const [similarUsers, setSimilarUsers] = useState([]);
     const navigate = useNavigate();
 
-    const [leaders, setLeaders] = useState([]);
+    const [leaders, setLeaders] = useState([
+        {
+            "title": "M Bilal Irshad",
+            "role": "Lead Developer, React Engineer, PHP Developer",
+            "description": "M Bilal Irshad is a skilled Lead Developer with expertise in React and PHP. Passionate about building scalable web applications, Bilal combines deep technical knowledge with innovative problem-solving.",
+            "image": "https://via.placeholder.com/300x300?text=Bilal+Irshad"
+        },
+        {
+            "title": "Shayan Zulifqar",
+            "role": "React Developer",
+            "description": "Shayan Zulifqar is a dedicated React Developer, known for creating dynamic and responsive web applications. With a keen eye for UI/UX and strong coding skills, Shayan brings modern web experiences to life.",
+            "image": "https://via.placeholder.com/300x300?text=Shayan+Zulifqar"
+        },
+        {
+            "title": "Rashid",
+            "role": "Web Designer",
+            "description": "Rashid is a creative Web Designer who specializes in designing engaging and user-friendly websites. Focused on aesthetics and functionality, Rashid transforms ideas into stunning digital interfaces.",
+            "image": "https://via.placeholder.com/300x300?text=Rashid"
+        },
+        {
+            "title": "Engr.Muhammad Fayyaz",
+            "role": "Senior Developer of Codesinc",
+            "description": "Eng. Muhammad Fayyaz is the CEO of Codesinc and a skilled web developer. Passionate about technology and innovation, he leads a team that creates cutting-edge websites and web solutions. Fayyaz specializes in full-stack development and custom web solutions, helping Codesinc push the limits of web development to deliver smooth, user-friendly experiences.",
+            "image": "https://api.biznetusa.com/uploads/leaders/1734610403.jpg"
+        }
+    ]);
     const [loading, setLoading] = useState(true);
     const [imagePath, setImagePath] = useState('');
 
@@ -62,7 +80,6 @@ const Home = () => {
     useEffect(() => {
         fetchUserRole();
         fetchUserId();
-        fetchLeaders();
 
         const handleStorageChange = (event) => {
             if (event.key === "roles") {
@@ -108,30 +125,6 @@ const Home = () => {
             },
         });
     };
-
-    const fetchLeaders = async () => {
-        try {
-            const response = await axios.get("https://api.biznetusa.com/api/all-executiveleaders");
-            setLeaders(response.data.leaders);
-            console.log(response.data.leaders)
-            setImagePath(response.data.imagePath);
-
-            setLoading(false);
-        } catch (error) {
-            console.error("Error fetching leaders:", error);
-            setLoading(false);
-        }
-    };
-
-    const chunk = (array, size) => {
-        const chunked_arr = [];
-        for (let i = 0; i < array.length; i += size) {
-            chunked_arr.push(array.slice(i, i + size));
-        }
-        return chunked_arr;
-    };
-
-    const leaderGroups = chunk(leaders, 4);
 
     return (
         <>
@@ -230,64 +223,34 @@ const Home = () => {
                 {!userId && (
                     <>
                         <PurposeSection />
-                        <ProcessSection />
-                        <WhyZnet />
+                        {/* <ProcessSection /> */}
+                        {/* <WhyZnet /> */}
                         <Testimonial />
-                        <SuccessStories />
+                        {/* <SuccessStories /> */}
                     </>
                 )}
-                <UpcomingEvents />
-                {/* <ExecutiveLeaders /> */}
-                {/* <div className="container">
-                    <h3 className="text-center mb-5 display-5 fw-bold">
-                        Executive Leadership
-                    </h3>
-                    <div className="row">
-                        {characters.map((character, index) => (
-                            <div
-                                key={index}
-                                className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 g-0 p-0"
-                            >
-                                <CharacterCard
-                                    name={character.name}
-                                    title={character.title}
-                                    description={character.description}
-                                    image={character.image}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div> */}
 
-                {loading ? (
-                    <p>Loading...</p>
-                ) : (
-                    <div className="container">
+                <div className="container">
 
-                        <h3 className="text-center mb-5 display-5 fw-bold">Executive Leadership</h3>
+                    <h3 className="text-center mb-5 display-5 fw-bold">Executive Leadership</h3>
 
-                        <Carousel>
-                            {leaderGroups.map((group, idx) => (
-                                <Carousel.Item key={idx}>
-                                    <div className="d-flex flex-row justify-content-around">
-                                        {group.map(leader => (
-                                            <div className="p-2 card-container" key={leader.id}>
-                                                <CharacterCard
-                                                    name={leader.title}
-                                                    title={leader.role}
-                                                    description={leader.description}
-                                                    image={leader.image ? `${imagePath}${leader.image}` : "placeholder-image-url.jpg"}
-                                                />
-                                            </div>
-                                        ))}
+                    <Carousel>
+                        <Carousel.Item>
+                            <div className="d-flex flex-row justify-content-around">
+                                {leaders.map((leader, idx) => (
+                                    <div className="p-2 card-container" key={leader.id}>
+                                        <CharacterCard
+                                            name={leader.title}
+                                            title={leader.role}
+                                            description={leader.description}
+                                            image={leader.image ? `${imagePath}${leader.image}` : "placeholder-image-url.jpg"}
+                                        />
                                     </div>
-                                </Carousel.Item>
-                            ))}
-                        </Carousel>
-                    </div>
-                )}
-
-
+                                ))}
+                            </div>
+                        </Carousel.Item>
+                    </Carousel>
+                </div>
             </main>
 
             <div className="container py-4">
