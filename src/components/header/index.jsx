@@ -324,39 +324,6 @@ const Header = () => {
                                                             Realtors
                                                         </Link>
                                                     </li>
-                                                    <li>
-                                                        <Link className="dropdown-item" to="/Developers">
-                                                            Developers
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item" to="/Flippers">
-                                                            Flippers
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item" to="/Contractors">
-                                                            Contractors
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link
-                                                            className="dropdown-item"
-                                                            to="/TransactionCordinator"
-                                                        >
-                                                            Transaction Coordinators
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item" to="/Wholesaler">
-                                                            Wholesalers
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item" to="/Lenders">
-                                                            Lenders
-                                                        </Link>
-                                                    </li>
                                                 </div>
                                             </div>
                                         </ul>
