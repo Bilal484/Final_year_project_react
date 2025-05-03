@@ -1,54 +1,332 @@
-.candidate-home {
-    .show-hide {
-        border: none;
-        background-color: #f2f2f2;
+/* CandidateHome.css */
+
+/* Hero Section */
+.candidate-home-hero {
+    background: linear-gradient(135deg, #0062cc, #0048a5);
+    padding: 80px 0 100px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -50px;
+}
+
+.candidate-home-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: white;
+    clip-path: ellipse(70% 50% at 50% 100%);
+}
+
+.greeting-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Container Styling */
+.candidate-home-container {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 60px;
+}
+
+/* Stats Cards */
+.stats-container {
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.applications-icon {
+    background-color: #4361ee;
+}
+
+.saved-icon {
+    background-color: #3a86ff;
+}
+
+.views-icon {
+    background-color: #4cc9f0;
+}
+
+.notifications-icon {
+    background-color: #7209b7;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+.stat-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.dashboard-card .card-title {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.section-icon {
+    color: #0d6efd;
+}
+
+/* Empty State */
+.empty-state {
+    padding: 30px;
+}
+
+.empty-icon-container {
+    width: 80px;
+    height: 80px;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.empty-icon {
+    font-size: 2rem;
+    color: #6c757d;
+}
+
+.search-jobs-btn {
+    border-radius: 8px;
+    padding: 10px 25px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.search-jobs-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+}
+
+/* Profile Card */
+.profile-card {
+    border-top: 5px solid #0d6efd;
+}
+
+.profile-image-container {
+    margin: 0 auto;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+}
+
+.profile-completion .progress {
+    height: 6px;
+    border-radius: 3px;
+}
+
+.account-details {
+    margin-top: 20px;
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.detail-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: #0d6efd;
+}
+
+/* Job Cards */
+.job-card {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.job-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: #dee2e6;
+}
+
+.job-title {
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 5px;
+}
+
+.job-company {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.job-details {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.job-salary {
+    color: #198754;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Activity Summary */
+.activity-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.activity-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+.bg-light-blue {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.bg-light-green {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: #198754;
+}
+
+.bg-light-purple {
+    background-color: rgba(111, 66, 193, 0.1);
+    color: #6f42c1;
+}
+
+.activity-content h6 {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .candidate-home-hero {
+        padding: 60px 0 80px;
     }
 
-    /* Default background color for icons */
-    .social-icon span {
-        background-color: #7b858f;
-        color: #000;
-        color: white;
-        transition: background-color 0.3s ease, color 0.3s ease;
+    .greeting-text {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .candidate-home-hero {
+        padding: 50px 0 70px;
     }
 
-    /* LinkedIn hover effect */
-    .social-icon:nth-child(1) span:hover {
-        background-color: #0077b5;
-        /* LinkedIn blue */
-        color: white;
+    .greeting-text {
+        font-size: 1.8rem;
     }
 
-    /* Twitter hover effect */
-    .social-icon:nth-child(2) span:hover {
-        background-color: #1da1f2;
-        /* Twitter blue */
-        color: white;
+    .stats-container .col-md-3 {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .candidate-home-hero {
+        padding: 40px 0 60px;
+        margin-bottom: -30px;
     }
 
-    /* Facebook hover effect */
-    .social-icon:nth-child(3) span:hover {
-        background-color: #3b5998;
-        /* Facebook blue */
-        color: white;
+    .greeting-text {
+        font-size: 1.5rem;
     }
 
-    /* YouTube hover effect */
-    .social-icon:nth-child(4) span:hover {
-        background-color: #ff0000;
-        /* YouTube red */
-        color: white;
+    .hero-subtitle {
+        font-size: 1rem;
     }
 
-    /* Discord hover effect */
-    .social-icon:nth-child(5) span:hover {
-        background-color: #7289da;
-        /* Discord blue */
-        color: white;
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
     }
 
-    /* Optional: Adjust icon sizes */
-    .social-icon i {
-        font-size: 1.25rem;
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
     }
 }
