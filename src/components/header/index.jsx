@@ -176,25 +176,25 @@ const Header = () => {
     fetchSimilarUsers();
   }, []);
 
-    const NotificationsDropdown = ({ users }) => {
-        return (
-            <Dropdown.Menu className="bg-white" show>
-                {users.length > 0 ? (
-                    users.map((user) => (
-                        <Dropdown.Item key={user.user_id} href="#">
-                            <strong>{user.name}</strong>
-                            <br />
-                            {user.email}
-                            <br />
-                            Matches: {user.match_count}
-                        </Dropdown.Item>
-                    ))
-                ) : (
-                    <Dropdown.Item>No users found</Dropdown.Item>
-                )}
-            </Dropdown.Menu>
-        );
-    };
+  const NotificationsDropdown = ({ users }) => {
+    return (
+      <Dropdown.Menu className="bg-white" show>
+        {users.length > 0 ? (
+          users.map((user) => (
+            <Dropdown.Item key={user.user_id} href="#">
+              <strong>{user.name}</strong>
+              <br />
+              {user.email}
+              <br />
+              Matches: {user.match_count}
+            </Dropdown.Item>
+          ))
+        ) : (
+          <Dropdown.Item>No users found</Dropdown.Item>
+        )}
+      </Dropdown.Menu>
+    );
+  };
 
   return (
     <>
@@ -361,35 +361,35 @@ const Header = () => {
                       </div>
                     </ul>
                   </li>
-                                    <li className="nav-item dropdown">
-                                        <Link
-                                            className="nav-link dropdown-toggle"
-                                            to="#"
-                                            id="navbarDropdown2"
-                                            role="button"
-                                        >
-                                            Services
-                                        </Link>
-                                        <ul
-                                            className="dropdown-menu"
-                                            aria-labelledby="navbarDropdown2"
-                                        >
-                                            <div className="dropdown-column">
-                                                <div className="dropdown-grid">
-                                                    <li>
-                                                        <Link className="dropdown-item" to="/Investors">
-                                                            Investors
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item" to="/Realtors">
-                                                            Realtors
-                                                        </Link>
-                                                    </li>
-                                                </div>
-                                            </div>
-                                        </ul>
-                                    </li>
+                  <li className="nav-item dropdown">
+                    <Link
+                      className="nav-link dropdown-toggle"
+                      to="#"
+                      id="navbarDropdown2"
+                      role="button"
+                    >
+                      Services
+                    </Link>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown2"
+                    >
+                      <div className="dropdown-column">
+                        <div className="dropdown-grid">
+                          <li>
+                            <Link className="dropdown-item" to="/Investors">
+                              Investors
+                            </Link>
+                          </li>
+                          <li>
+                            <Link className="dropdown-item" to="/Realtors">
+                              Realtors
+                            </Link>
+                          </li>
+                        </div>
+                      </div>
+                    </ul>
+                  </li>
 
                   <li className="nav-item dropdown">
                     <Link
