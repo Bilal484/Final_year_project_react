@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 const CoreValueCard = ({ title, text }) => {
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Core Value - {title}</title>
         <meta
           name="description"
@@ -30,14 +30,14 @@ const CoreValueCard = ({ title, text }) => {
         />
         <meta name="twitter:image" content="URL_TO_IMAGE" /> {/* Placeholder for image */}
       </Helmet>
-    <div className="col-md-4  my-4">
-      <div className="card card-CoreValueCard p-3 h-100">
-        <div className="card-body card-CoreValueCard-body">
-          <h5 className="card-title text-light ">{title}</h5>
-          <p className="card-text text-light">{text}</p>
+      <div className=" my-4">
+        <div className="card card-CoreValueCard p-3 h-100">
+          <div className="card-body card-CoreValueCard-body">
+            <h5 className="card-title text-light ">{title}</h5>
+            <p className="card-text text-light">{text}</p>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

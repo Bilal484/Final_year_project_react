@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,51 +9,33 @@ import {
   signInWithFacebook,
   signInWithApple,
 } from "../../authMethods";
-import '../../firebaseConfig'
-import ZnetLogo from "../../assets/images/PNG Logo Files/Transparent Logo NameLess.png";
+import '../../firebaseConfig';
+import ZnetLogo from "../../assets/favicon/Logo.png";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // const handleSocialLogin = (loginFunction, provider) => {
-  //     loginFunction()
-  //         .then((response) => {
-
-  //             let user = {};
-
-  //             if (provider === 'google' || provider === 'facebook') {
-  //                 if (response && response.users && response.users.length > 0) {
-  //                     user = {
-  //                         id: response.users[0].localId,
-  //                         email: response.users[0].email,
-  //                         displayName: response.users[0].displayName,
-  //                         photoUrl: response.users[0].photoUrl
-  //                     };
-  //                 }
-  //             }
-
-  //             if (user.id && user.email) {
-  //                 localStorage.setItem("user_id", user.id);
-  //                 localStorage.setItem("user_email", user.email);
-  //                 localStorage.setItem("user_name", user.displayName);
-  //                 if (user.photoUrl) {
-  //                     localStorage.setItem("user_photo_url", user.photoUrl);
-  //                 }
-
-  //                 alert("Login successful!");
-  //                 navigate("/");
-  //             } else {
-  //                 throw new Error("Failed to retrieve user data.");
-  //             }
-  //         })
-  //         .catch((error) => {
-  //             console.error(`${provider} login error:`, error);
-  //             alert(`Login failed: ${error.message}`);
-  //         });
-  // };
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        when: "beforeChildren",
+        staggerChildren: 0.2
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
+  };
 
   const handleSocialLogin = (loginFunction, provider) => {
     loginFunction()
@@ -94,8 +76,6 @@ const Login = () => {
               localStorage.setItem("user_email", data.role_name.email);
               localStorage.setItem("user_name", data.role_name.name);
   
-             
-  
               toast.success("Login successful!");
               navigate("/"); // Redirect after successful login
             } else {
@@ -115,7 +95,6 @@ const Login = () => {
       });
   };
   
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -185,8 +164,6 @@ const Login = () => {
     }
   };
 
-
-
   return (
     <>
       <Helmet>
@@ -200,121 +177,174 @@ const Login = () => {
           content="login, authentication, user access, UrbanCraft REAL ESTATE login, secure login"
         />
       </Helmet>
-      <main className="background_color_fixed">
-        <div className="d-flex align-items-center justify-content-center min-vh-100">
-          <div
-            className="card body_color shadow-lg p-4 mx-3"
-            style={{ maxWidth: "32rem", width: "100%" }}
+      <main className="auth-background">
+        <div className="auth-container">
+          <motion.div
+            className="auth-card"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
           >
-            <img
-              src={ZnetLogo}
-              alt="UrbanCraft REAL ESTATE Logo"
-              className="mx-auto"
-              style={{ width: "100px" }}
-            />
-            {/* <Link className="text-decoration-none" href="/"> */}
-            {/*     <h2 className="h4 fw-bold py-3 mb-4 text-center">Welcome to UrbanCraft REAL ESTATE</h2> */}
-            {/* </Link> */}
-            <div className="my-3 d-flex justify-content-center align-items-center gap-0">
+            <motion.div className="logo-container" variants={itemVariants}>
+              <img
+                src={ZnetLogo}
+                alt="UrbanCraft REAL ESTATE Logo"
+                className="auth-logo"
+              />
+              <div className="logo-shine"></div>
+            </motion.div>
+            
+            <motion.div className="auth-tabs" variants={itemVariants}>
               <Link
-                className="btn btn-primary text-decoration-none w-50"
-                style={{
-                  flexGrow: "1",
-                  backgroundColor: `var(--background_color)`,
-                }}
+                className="auth-tab auth-tab-active"
                 to="/Login"
               >
-                <h3 className="h6 fw-semibold  m-0 text-white">Sign In</h3>
+                Sign In
               </Link>
               <Link
-                className="btn btn-primary text-decoration-none w-50"
-                style={{ flexGrow: "1", backgroundColor: "var(--color)" }}
+                className="auth-tab"
                 to="/SignUp"
               >
-                <h3 className="h6 fw-semibold m-0 text-decoration-none  text-white">
-                  New Account
-                </h3>
+                New Account
               </Link>
-            </div>
-            <form onSubmit={handleLogin}>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="email">
-                  Email
+            </motion.div>
+            
+            <motion.form 
+              onSubmit={handleLogin} 
+              className="auth-form"
+              variants={itemVariants}
+            >
+              <div className="form-group">
+                <label htmlFor="email">
+                  <i className="fas fa-envelope"></i>
+                  Email Address
                 </label>
                 <input
                   type="email"
                   id="email"
-                  placeholder="Enter email"
-                  className="form-control"
+                  placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={loading}
+                  className="form-control"
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="password">
+              
+              <div className="form-group">
+                <label htmlFor="password">
+                  <i className="fas fa-lock"></i>
                   Password
                 </label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Enter password"
-                  className="form-control"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  disabled={loading}
-                />
+                <div className="password-input-container">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    disabled={loading}
+                    className="form-control"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="password-toggle-btn"
+                  >
+                    <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                  </button>
+                </div>
               </div>
+              
               <button
                 type="submit"
-                className="btn btn-primary w-100"
+                className="auth-submit-btn"
                 disabled={loading}
               >
-                {loading ? "Signing in..." : "Sign in"}
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Signing in...
+                  </>
+                ) : (
+                  <>
+                    Sign In <i className="fas fa-arrow-right ms-2"></i>
+                  </>
+                )}
               </button>
-              <p className="text-center mt-3">
-                <a href="/ForgotPassword" className="text-decoration-underline">
+              
+              <div className="forgot-password">
+                <Link to="/ForgotPassword">
+                  <i className="fas fa-key me-1"></i>
                   Forgot your password?
-                </a>
-              </p>
-            </form>
-            <div className="my-4 border-top text-center pt-3">
-              <p>Or connect with:</p>
-              <div className="d-flex flex-row gap-3">
-                <button
-                  onClick={() => handleSocialLogin(signInWithApple, "Apple")}
-                  className="btn btn-outline-secondary d-flex align-items-center justify-content-center"
-                  style={{ flexGrow: '1' }}
-                  disabled={loading}
-                >
-                  <i className="fab fa-apple fs-3 py-1" /> 
-                </button>
+                </Link>
+              </div>
+            </motion.form>
+            
+            <motion.div 
+              className="social-login-container"
+              variants={itemVariants}
+            >
+              <div className="social-divider">
+                <span>Or connect with</span>
+              </div>
+              
+              <div className="social-buttons">
                 <button
                   onClick={() => handleSocialLogin(signInWithGoogle, "Google")}
-                  className="btn btn-outline-secondary d-flex align-items-center justify-content-center"
-                  style={{ flexGrow: '1' }}
+                  className="social-btn google-btn"
                   disabled={loading}
                 >
-                  <i className="fab fa-google fs-4 py-1" /> 
+                  <i className="fab fa-google"></i>
+                  <span className="social-btn-text">Google</span>
                 </button>
+                
                 <button
-                  onClick={() =>
-                    handleSocialLogin(signInWithFacebook, "Facebook")
-                  }
-                  className="btn btn-outline-secondary d-flex align-items-center justify-content-center"
-                  style={{ flexGrow: '1' }}
+                  onClick={() => handleSocialLogin(signInWithFacebook, "Facebook")}
+                  className="social-btn facebook-btn"
                   disabled={loading}
                 >
-                  <i className="fab fa-facebook-f fs-3 py-1" /> 
+                  <i className="fab fa-facebook-f"></i>
+                  <span className="social-btn-text">Facebook</span>
+                </button>
+                
+                <button
+                  onClick={() => handleSocialLogin(signInWithApple, "Apple")}
+                  className="social-btn apple-btn"
+                  disabled={loading}
+                >
+                  <i className="fab fa-apple"></i>
+                  <span className="social-btn-text">Apple</span>
                 </button>
               </div>
-            </div>
-          </div>
+            </motion.div>
+            
+            <motion.div 
+              className="auth-footer"
+              variants={itemVariants}
+            >
+              <p>
+                By signing in, you agree to our{" "}
+                <Link to="/terms-of-service">Terms of Service</Link> &{" "}
+                <Link to="/privacy-policy">Privacy Policy</Link>
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
       </main>
-      <ToastContainer />
+      <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

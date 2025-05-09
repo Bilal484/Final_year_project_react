@@ -1,15 +1,374 @@
+/* Modern Real Estate Search Component with Professional Design */
+.real-estate-search-container {
+  background: linear-gradient(to right, #ffffff, #f8f9fa);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.real-estate-search-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--background_color, #0056b3), var(--hover_bg_color, #3a8dff));
+  border-radius: 3px 3px 0 0;
+}
+
+.real-estate-search-container h1 {
+  color: #333;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+.real-estate-search-container h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--background_color, #0056b3);
+  transition: width 0.3s ease;
+}
+
+.real-estate-search-container:hover h1::after {
+  width: 100px;
+}
+
+/* Navigation Tabs Styling */
+.tab-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.tab-button {
+  background: transparent;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 24px;
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+}
+
+.tab-button:hover {
+  color: var(--background_color, #0056b3);
+  transform: translateY(-2px);
+}
+
+.tab-button.active {
+  background: var(--background_color, #0056b3);
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 86, 179, 0.2);
+  border-color: transparent;
+}
+
+/* Search Bar Styling */
+.search-bar-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 30px;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.search-bar-wrapper:focus-within {
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
 .search-bar {
-  margin: 1rem 0;
-  gap: 0.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  padding: 16px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.search-bar button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  width: 50px;
+  border: none;
+  background: var(--background_color, #0056b3);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+  background: var(--hover_bg_color, #004494);
+  transform: scale(1.05);
+}
+
+.search-bar button i {
+  font-size: 1rem;
+}
+
+/* Search Results Styling */
+.search-results {
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  scrollbar-width: thin;
+}
+
+.search-results ul {
+  padding: 0;
+  margin: 0;
 }
 
 .property-card {
-  transition: transform 0.3s ease;
-  background: #fff;
-  border-radius: 5px;
+  padding: 16px;
+  margin-bottom: 10px;
+  border-radius: 12px !important;
+  border: 1px solid #eee;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .property-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border-color: transparent;
+}
+
+.property-card h5 {
+  color: var(--background_color, #0056b3);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.property-card p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.property-card p strong {
+  color: #333;
+}
+
+.property-image-wrapper {
+  height: 150px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.property-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.property-card:hover .property-image {
+  transform: scale(1.05);
+}
+
+.property-price {
+  color: var(--background_color, #0056b3);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.property-location {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  color: #777;
+}
+
+.property-location i {
+  margin-right: 5px;
+  color: var(--background_color, #0056b3);
+}
+
+/* Loading and Error States */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  color: var(--background_color, #0056b3);
+}
+
+.loading-indicator .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 86, 179, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--background_color, #0056b3);
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  background-color: rgba(255, 0, 0, 0.05);
+  color: #e74c3c;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 15px 0;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.error-message i {
+  margin-right: 8px;
+}
+
+.no-results-found {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .real-estate-search-container {
+    padding: 20px;
+  }
+
+  .real-estate-search-container h1 {
+    font-size: 1.4rem;
+  }
+
+  .tab-button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .search-bar input {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+
+  .property-card h5 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .tab-navigation {
+    justify-content: center;
+  }
+
+  .tab-button {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .property-card {
+    padding: 12px;
+  }
+
+  .property-image-wrapper {
+    height: 120px;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animated Elements */
+.tab-content {
+  animation: fadeIn 0.4s ease;
+}
+
+.search-bar-wrapper {
+  animation: slideUp 0.5s ease;
+}
+
+.property-card {
+  animation: slideUp 0.4s ease;
+  animation-fill-mode: both;
+}
+
+.property-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.property-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.property-card:nth-child(3) {
+  animation-delay: 0.3s;
 }

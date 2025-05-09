@@ -6,6 +6,7 @@ import PropertyCard from "../../../components/PropertyCard";
 import Header from '../../../components/header';
 import Footer from '../../../components/Footer';
 import img1 from "../../../assets/images/blog 01.jpg";
+import { Link } from 'react-router-dom';
 
 const Buy = () => {
     // Sample data for the properties
@@ -68,7 +69,7 @@ const Buy = () => {
 
     return (
         <>
-                    <Helmet>
+            <Helmet>
                 <title>Buy Real Estate | UrbanCraft REAL ESTATE</title>
                 <meta name="description" content="Explore a wide range of properties for sale near you with URBANCRAFT REAL ESTATE. Find your dream home with us today!" />
                 <meta name="keywords" content="buy real estate, properties for sale, UrbanCraft REAL ESTATE, Los Angeles homes, find homes" />
@@ -89,7 +90,7 @@ const Buy = () => {
                     <h3></h3>
                     <div className="row align-items-center">
                         <ImagewithText
-                        title="Houses for sale near me"
+                            title="Houses for sale near me"
                             content="Find houses for sale near you. View photos, open house information,
                                 and property details for nearby real estate."
                             imgSrc={img}
@@ -154,12 +155,12 @@ const Buy = () => {
                                     />
                                 ))}
                             </div>
-                            <a
-  onClick={(e) => e.preventDefault()}
-  style={{ cursor: 'pointer', textDecoration: 'none' }}
->
-  See all 8440 Los Angeles houses for sale
-</a>
+                            <Link
+                                onClick={(e) => e.preventDefault()}
+                                style={{ cursor: 'pointer', textDecoration: 'none' }}
+                            >
+                                See all 8440 Los Angeles houses for sale
+                            </Link>
 
                         </div>
                         <hr />
@@ -180,13 +181,13 @@ const Buy = () => {
                                     />
                                 ))}
                             </div>
-                            <a
-  onClick={(e) => e.preventDefault()}
-  style={{ cursor: 'pointer', textDecoration: 'none' }}
-  className="text-primary"
->
-  See all 8440 Los Angeles houses for sale
-</a>
+                            <Link
+                                onClick={(e) => e.preventDefault()}
+                                style={{ cursor: 'pointer', textDecoration: 'none' }}
+                                className="text-primary"
+                            >
+                                See all 8440 Los Angeles houses for sale
+                            </Link>
 
                         </div>
                     </div>

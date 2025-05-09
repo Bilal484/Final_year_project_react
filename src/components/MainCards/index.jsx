@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ShareListingModal from "../SharePopup";
@@ -8,9 +8,10 @@ import axios from "axios";
 import Notification, { useNotification } from "../../components/Notification";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import "./MainCards.css"; // Make sure to create this CSS file
 
 const MainCards = () => {
-    const [notification, showNotification] = useNotification(); // Destructure the returned values
+    const [notification, showNotification] = useNotification();
     const [productData, setProductData] = useState(null);
     const [shownProperties, setShownProperties] = useState([]);
     const [activeSection, setActiveSection] = useState("all");
@@ -27,6 +28,11 @@ const MainCards = () => {
     const [recentProperties, setRecentProperties] = useState([]);
     const [salesProperties, setSalesProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
+    const [animated, setAnimated] = useState({});
+    const [searchTerm, setSearchTerm] = useState("");
+
+    // Create refs for scroll animations
+    const sectionRef = useRef(null);
 
     const navigate = useNavigate();
     const numberOfProperties = 3;
@@ -36,12 +42,62 @@ const MainCards = () => {
         const storedUserId = localStorage.getItem("user_id");
         if (storedUserId) {
             setUserId(storedUserId);
-        } else {
         }
-    }, []);
+        
+        // Set up scroll animation observer
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setAnimated(prev => ({ ...prev, [entry.target.dataset.id]: true }));
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+        
+        // Observe all property cards
+        document.querySelectorAll('.property-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        return () => observer.disconnect();
+    }, [shownProperties]);
+
+    // Fetch data for all sections
+    useEffect(() => {
+        const fetchAllData = async () => {
+            try {
+                await Promise.all([
+                    fetchFavorites(),
+                    fetchSoldProperties(),
+                    fetchRecentProperties(),
+                    fetchSalesProperties()
+                ]);
+            } catch (err) {
+                console.error("Error fetching data:", err);
+            }
+        };
+        
+        if (userId) {
+            fetchAllData();
+        } else {
+            fetchSoldProperties();
+            fetchRecentProperties();
+            fetchSalesProperties();
+        }
+    }, [userId]);
 
     const handleSectionClick = (section) => {
-        setActiveSection(section); // Update the active section
+        setActiveSection(section);
+        
+        // Add animation when changing sections
+        if (sectionRef.current) {
+            sectionRef.current.classList.add('section-change-animation');
+            setTimeout(() => {
+                sectionRef.current.classList.remove('section-change-animation');
+            }, 500);
+        }
     };
 
     const fetchSalesProperties = async () => {
@@ -75,8 +131,11 @@ const MainCards = () => {
             if (data.status === 200) {
                 setSoldProperties(data.products);
             }
-        } catch (err) { }
+        } catch (err) { 
+            console.error("Error fetching sold properties:", err);
+        }
     };
+    
     const fetchFavorites = async () => {
         try {
             if (!userId) return;
@@ -94,6 +153,7 @@ const MainCards = () => {
     useEffect(() => {
         const fetchProductData = async () => {
             try {
+                setLoading(true);
                 const [productResponse, productImageResponse] = await Promise.all([
                     fetch("https://api.biznetusa.com/api/get-products"),
                     fetch("https://api.biznetusa.com/api/get-productimages"),
@@ -118,6 +178,7 @@ const MainCards = () => {
                     throw new Error("Failed to load product or image data");
                 }
             } catch (err) {
+                setError(err.message || "An error occurred while fetching data");
                 console.error(err.message);
             } finally {
                 setLoading(false);
@@ -128,23 +189,18 @@ const MainCards = () => {
         fetchProductData();
     }, []);
 
-
     const handleSelect = (selectedIndex, propertyId) => {
-        setCarouselIndex((prevState) => {
-            return {
-                ...prevState,
-                [propertyId]: selectedIndex,
-            };
-        });
+        setCarouselIndex((prevState) => ({
+            ...prevState,
+            [propertyId]: selectedIndex,
+        }));
     };
 
     const toggleMapView = (propertyId) => {
-        setShowMap((prevState) => {
-            return {
-                ...prevState,
-                [propertyId]: !prevState?.[propertyId] || false,
-            };
-        });
+        setShowMap((prevState) => ({
+            ...prevState,
+            [propertyId]: !prevState?.[propertyId] || false,
+        }));
     };
 
     const openShareModal = (productSlug) => {
@@ -158,80 +214,67 @@ const MainCards = () => {
     };
 
     useEffect(() => {
-        (() => {
-            if (activeSection === "favorites") {
-                if (!favoriteProperties) {
-                    setFilteredProperties([]);
-                } else {
-                    setFilteredProperties(
-                        properties.filter((property) =>
+        const filterProperties = () => {
+            let filtered = [];
+            
+            switch (activeSection) {
+                case "favorites":
+                    if (favoriteProperties && favoriteProperties.length > 0) {
+                        filtered = properties.filter((property) =>
                             favoriteProperties.some((fav) => fav.id === property.id)
-                        )
-                    );
-                    setShownProperties(
-                        properties.filter((property) =>
-                            favoriteProperties.some((fav) => fav.id === property.id)
-                        )
-                    );
-                    // setShownProperties(filteredProperties.slice(0, 6));
-                }
-            } else if (activeSection === "sold") {
-                if (!soldProperties) {
-                    setFilteredProperties([]);
-                } else {
-                    setFilteredProperties(
-                        properties.filter((property) =>
+                        );
+                    }
+                    break;
+                    
+                case "sold":
+                    if (soldProperties && soldProperties.length > 0) {
+                        filtered = properties.filter((property) =>
                             soldProperties.some((sold) => sold.id === property.id)
-                        )
-                    );
-                    setShownProperties(
-                        properties.filter((property) =>
-                            soldProperties.some((sold) => sold.id === property.id)
-                        )
-                    );
-                }
-            } else if (activeSection === "new") {
-                if (!recentProperties) {
-                    setFilteredProperties([]);
-                } else {
-                    setFilteredProperties(
-                        properties.filter((property) =>
+                        );
+                    }
+                    break;
+                    
+                case "new":
+                    if (recentProperties && recentProperties.length > 0) {
+                        filtered = properties.filter((property) =>
                             recentProperties.some((recent) => recent.id === property.id)
-                        )
-                    );
-                    setShownProperties(
-                        properties.filter((property) =>
-                            recentProperties.some((recent) => recent.id === property.id)
-                        )
-                    );
-                }
-            } else if (activeSection === "sales") {
-                if (!salesProperties) {
-                    setFilteredProperties([]);
-                } else {
-                    setFilteredProperties(
-                        properties.filter((property) =>
+                        );
+                    }
+                    break;
+                    
+                case "sales":
+                    if (salesProperties && salesProperties.length > 0) {
+                        filtered = properties.filter((property) =>
                             salesProperties.some((sales) => sales.id === property.id)
-                        )
-                    );
-                    setShownProperties(
-                        properties.filter((property) =>
-                            salesProperties.some((sales) => sales.id === property.id)
-                        )
-                    );
-                }
-            } else {
-                setFilteredProperties(properties);
-                setShownProperties(properties.slice(0, 6));
+                        );
+                    }
+                    break;
+                    
+                default:
+                    filtered = properties;
+                    break;
             }
-        })();
-    }, [activeSection]);
+            
+            // Apply search filter if search term exists
+            if (searchTerm.trim()) {
+                const term = searchTerm.toLowerCase();
+                filtered = filtered.filter(
+                    property => 
+                        property.title?.toLowerCase().includes(term) ||
+                        property.location?.toLowerCase().includes(term) ||
+                        property.desc?.toLowerCase().includes(term)
+                );
+            }
+            
+            setFilteredProperties(filtered);
+            setShownProperties(filtered.slice(0, 6));
+        };
+        
+        filterProperties();
+    }, [activeSection, properties, favoriteProperties, soldProperties, recentProperties, salesProperties, searchTerm]);
 
     const increaseShown = () => {
-        if (
-            shownProperties.length + numberOfProperties <
-            filteredProperties.length
-        ) {
+        if (shownProperties.length + numberOfProperties < filteredProperties.length) {
             setShownProperties(
                 filteredProperties.slice(0, shownProperties.length + numberOfProperties)
             );
@@ -244,275 +287,298 @@ const MainCards = () => {
         }
     };
 
-    // if (loading) return <p className="text-center">Loading...</p>;
-    // if (error) return <p className="text-center">Error: {error}</p>;
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
     return (
         <>
             <Helmet>
-                <title>Main Cards - Property Listings</title>
+                <title>Property Listings | UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Explore a wide range of properties including favorites, recent listings, sales, and sold properties."
+                    content="Explore our curated collection of properties. Find your dream home with UrbanCraft REAL ESTATE's diverse property listings."
                 />
                 <meta
                     name="keywords"
-                    content="Properties, Real Estate, Listings, Favorites, Sales, Sold"
+                    content="Properties, Real Estate, Listings, Favorites, Sales, Sold Properties"
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta property="og:title" content="Main Cards - Property Listings" />
+                <meta property="og:title" content="Property Listings | UrbanCraft REAL ESTATE" />
                 <meta
                     property="og:description"
-                    content="Browse through categorized property listings for your needs."
+                    content="Browse through our categorized property listings for your real estate needs."
                 />
-                <meta property="og:image" content="/placeholder.jpg" />
-                <meta name="author" content="Your Company Name" />
+                <meta name="author" content="UrbanCraft REAL ESTATE" />
                 <meta name="robots" content="index, follow" />
             </Helmet>
             {notification.message && <Notification {...notification} />}
 
-            <div className="container py-4">
+            <div className="main-cards-container container py-4">
                 <ToastContainer />
-                <h1 className="h2 fw-bold">Feed</h1>
-                <div className="d-flex feed_all_button flex-wrap gap-2 my-3">
+                <div className="section-header mb-4">
+                    <h1 className="section-title">Explore Properties</h1>
+                    {/* <p className="section-subtitle">Find your perfect match from our curated collection</p> */}
+                </div>
+                
+                {/* Search Bar */}
+                <div className="search-container mb-4">
+                    <div className="search-wrapper">
+                        <i className="fa fa-search search-icon"></i>
+                        <input 
+                            type="text" 
+                            placeholder="Search properties by location, title or description" 
+                            value={searchTerm}
+                            onChange={handleSearch}
+                            className="search-input"
+                        />
+                        {searchTerm && (
+                            <button 
+                                className="clear-search" 
+                                onClick={() => setSearchTerm("")}
+                            >
+                                <i className="fa fa-times"></i>
+                            </button>
+                        )}
+                    </div>
+                </div>
+                
+                {/* Filter Tabs */}
+                <div className="filter-tabs mb-4">
                     {[
-                        "all",
-                        "favorites",
-                        "new",
-                        "open-house",
-                        "insights",
-                        "sales",
-                        "sold",
+                        {id: "all", label: "All Properties", icon: "fa-th-large"},
+                        {id: "favorites", label: "Favorites", icon: "fa-heart"},
+                        {id: "new", label: "New Listings", icon: "fa-certificate"},
+                        {id: "sales", label: "Sales", icon: "fa-tag"},
+                        {id: "sold", label: "Sold", icon: "fa-check-circle"},
+                        {id: "open-house", label: "Open House", icon: "fa-door-open"},
+                        {id: "insights", label: "Insights", icon: "fa-chart-line"},
                     ].map((section) => (
                         <button
-                            key={section}
-                            className={`btn ${activeSection === section
-                                ? "btn-primary"
-                                : "btn-outline-primary"
-                                }`}
-                            onClick={() => handleSectionClick(section)}
-                            style={{
-                                backgroundColor:
-                                    activeSection === section ? "green" : "transparent",
-                                color: activeSection === section ? "white" : "black",
-                                border: "1px solid green",
-                                textTransform: "capitalize",
-                            }}
+                            key={section.id}
+                            className={`filter-tab ${activeSection === section.id ? "active" : ""}`}
+                            onClick={() => handleSectionClick(section.id)}
                         >
-                            {section.replace(/-/g, " ")}
+                            <i className={`fas ${section.icon} tab-icon`}></i>
+                            <span className="tab-label">{section.label}</span>
                         </button>
                     ))}
                 </div>
-                <div className="row">
-                    {shownProperties.length === 0 && (
-                        <h3 className="text-center mt-4">{`You have no ${activeSection} properties`}</h3>
-                    )}
-                    {shownProperties.map((property) => (
-                        <div
-                            className="col-sm-6 home_cards col-lg-4 mb-4"
-                            key={property.id}
-                        >
-                            <div className="card position-relative">
-                                {!showMap[property.id] ? (
+                
+                {/* Properties Grid */}
+                <div className="properties-section" ref={sectionRef}>
+                    {loading ? (
+                        <div className="loading-container">
+                            <div className="loading-spinner"></div>
+                            <p>Loading properties...</p>
+                        </div>
+                    ) : error ? (
+                        <div className="error-container">
+                            <i className="fas fa-exclamation-circle error-icon"></i>
+                            <p>{error}</p>
+                            <button className="retry-btn" onClick={() => window.location.reload()}>
+                                Retry
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="row properties-grid">
+                            {shownProperties.length === 0 ? (
+                                <div className="no-properties">
+                                    <i className="fas fa-home no-properties-icon"></i>
+                                    <h3>No properties found</h3>
+                                    <p>
+                                        {activeSection !== "all" 
+                                            ? `You have no ${activeSection} properties. Try another category.`
+                                            : searchTerm 
+                                                ? "No properties match your search. Try different keywords."
+                                                : "No properties available at the moment."
+                                        }
+                                    </p>
+                                </div>
+                            ) : (
+                                shownProperties.map((property) => (
                                     <div
-                                        id={`carouselProperty${property.id}`}
-                                        className="carousel slide"
-                                        data-bs-ride="carousel"
+                                        className="col-sm-6 col-lg-4 mb-4"
+                                        key={property.id}
                                     >
-                                        <div className="carousel-inner position-relative">
-                                            {property.images.length > 0 ? (
-                                                property.images.map((image, index) => (
-                                                    <div
-                                                        className={`carousel-item position-relative ${index === (carouselIndex[property.id] || 0)
-                                                            ? "active"
-                                                            : ""
-                                                            }`}
-                                                        key={index}
-                                                    >
-                                                        <div className="position-absolute end-0 bottom-0 mx-4 mb-3 px-2 py-1 bg-dark opacity-75 rounded-circle">
-                                                            <i
-                                                                className={`fa fa-map fs-6 text-white ${showMap[property.id]
-                                                                    ? "text-primary"
-                                                                    : "text-secondary"
-                                                                    }`}
-                                                                role="button"
-                                                                aria-label="Show Map"
-                                                                onClick={() => toggleMapView(property.id)}
+                                        <div 
+                                            className={`property-card ${animated[property.id] ? 'animate' : ''}`}
+                                            data-id={property.id}
+                                        >
+                                            <div className="property-card-content">
+                                                <div className="property-media">
+                                                    {!showMap[property.id] ? (
+                                                        <div className="property-carousel">
+                                                            <div className="carousel-inner">
+                                                                {property.images.length > 0 ? (
+                                                                    property.images.map((image, index) => (
+                                                                        <div
+                                                                            className={`carousel-item ${index === (carouselIndex[property.id] || 0) ? "active" : ""}`}
+                                                                            key={index}
+                                                                        >
+                                                                            <img
+                                                                                onClick={() => navigate(`/ProductDetail/${property.id}`)}
+                                                                                src={`https://api.biznetusa.com/uploads/products/${image}`}
+                                                                                alt={`Property ${property.title || property.id}`}
+                                                                                className="property-image"
+                                                                            />
+                                                                        </div>
+                                                                    ))
+                                                                ) : (
+                                                                    <div className="carousel-item active">
+                                                                        <img
+                                                                            src="/placeholder.jpg"
+                                                                            alt="Placeholder"
+                                                                            className="property-image"
+                                                                        />
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                            {property.images.length > 1 && (
+                                                                <div className="carousel-controls">
+                                                                    <button
+                                                                        className="carousel-control prev"
+                                                                        onClick={() =>
+                                                                            handleSelect(
+                                                                                (carouselIndex[property.id] || 0) === 0
+                                                                                    ? property.images.length - 1
+                                                                                    : (carouselIndex[property.id] || 0) - 1,
+                                                                                property.id
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        <i className="fas fa-chevron-left"></i>
+                                                                    </button>
+                                                                    <button
+                                                                        className="carousel-control next"
+                                                                        onClick={() =>
+                                                                            handleSelect(
+                                                                                (carouselIndex[property.id] || 0) + 1 >=
+                                                                                    property.images.length
+                                                                                    ? 0
+                                                                                    : (carouselIndex[property.id] || 0) + 1,
+                                                                                property.id
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        <i className="fas fa-chevron-right"></i>
+                                                                    </button>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    ) : (
+                                                        <div className="map-container">
+                                                            <iframe
+                                                                width="100%"
+                                                                height="100%"
+                                                                frameBorder="0"
+                                                                src={property.map_url}
+                                                                allowFullScreen
                                                             />
                                                         </div>
-                                                        <img
-                                                            onClick={() =>
-                                                                navigate(`/ProductDetail/${property.id}`)
+                                                    )}
+                                                    
+                                                    <div className="property-media-controls">
+                                                        <button
+                                                            className="media-control-btn"
+                                                            onClick={() => toggleMapView(property.id)}
+                                                        >
+                                                            <i className={`fas ${showMap[property.id] ? 'fa-image' : 'fa-map-marker-alt'}`}></i>
+                                                        </button>
+                                                        <div className="property-indicators">
+                                                            {property.images.length > 0 && !showMap[property.id] && 
+                                                                property.images.map((_, index) => (
+                                                                    <span 
+                                                                        key={index}
+                                                                        className={`indicator ${index === (carouselIndex[property.id] || 0) ? 'active' : ''}`}
+                                                                        onClick={() => handleSelect(index, property.id)}
+                                                                    ></span>
+                                                                ))
                                                             }
-                                                            src={`https://api.biznetusa.com/uploads/products/${image}`}
-                                                            alt={`Property ${property.id} Image ${index + 1}`}
-                                                            className="d-block w-100"
-                                                            style={{
-                                                                height: "250px",
-                                                                objectFit: "cover",
-                                                                cursor: "pointer",
-                                                            }}
-                                                        />
+                                                        </div>
                                                     </div>
-                                                ))
-                                            ) : (
-                                                <div className="carousel-item active">
-                                                    <img
-                                                        src="/placeholder.jpg"
-                                                        alt="Placeholder"
-                                                        className="d-block w-100"
-                                                        style={{
-                                                            height: "250px",
-                                                            objectFit: "cover",
-                                                        }}
-                                                    />
                                                 </div>
-                                            )}
-                                        </div>
-                                        {property.images.length > 1 && (
-                                            <>
-                                                <button
-                                                    className="carousel-control-prev"
-                                                    type="button"
-                                                    onClick={() =>
-                                                        handleSelect(
-                                                            (carouselIndex[property.id] || 0) === 0
-                                                                ? property.images.length - 1
-                                                                : (carouselIndex[property.id] || 0) - 1,
-                                                            property.id
-                                                        )
-                                                    }
-                                                >
-                                                    <span
-                                                        className="carousel-control-prev-icon"
-                                                        aria-hidden="true"
-                                                    />
-                                                    <span className="visually-hidden">Previous</span>
-                                                </button>
-                                                <button
-                                                    className="carousel-control-next"
-                                                    type="button"
-                                                    onClick={() =>
-                                                        handleSelect(
-                                                            (carouselIndex[property.id] || 0) + 1 >=
-                                                                property.images.length
-                                                                ? 0
-                                                                : (carouselIndex[property.id] || 0) + 1,
-                                                            property.id
-                                                        )
-                                                    }
-                                                >
-                                                    <span
-                                                        className="carousel-control-next-icon"
-                                                        aria-hidden="true"
-                                                    />
-                                                    <span className="visually-hidden">Next</span>
-                                                </button>
-                                            </>
-                                        )}
-                                    </div>
-                                ) : (
-                                    <div
-                                        className="map-container position-relative"
-                                        style={{ height: "250px" }}
-                                    >
-                                        <div className="position-absolute end-0 bottom-0 mx-4 mb-3 px-2 py-1 bg-dark opacity-75 rounded-circle">
-                                            <i
-                                                className={`fa fa-image fs-6 text-white ${!showMap[property.id]
-                                                    ? "text-primary"
-                                                    : "text-secondary"
-                                                    }`}
-                                                role="button"
-                                                aria-label="Show Images"
-                                                onClick={() => toggleMapView(property.id)}
-                                            />
-                                        </div>
-                                        <iframe
-                                            width="100%"
-                                            height="100%"
-                                            frameBorder="0"
-                                            style={{ border: 0 }}
-                                            src={property.map_url}
-                                            allowFullScreen
-                                        />
-                                    </div>
-                                )}
-                                <div className="card-body">
-                                    <div className="d-flex justify-content-between">
-                                        <h3 className="h5 fw-bold text-dark">${Number(property.price).toLocaleString('en-GB')}</h3>
-                                        <div>
-                                            <i
-                                                className="fa-solid fa-share"
-                                                role="button"
-                                                aria-label="Share"
-                                                onClick={() => openShareModal(property.slug)}
-                                            />
-                                            <FavoriteButton userId={userId} productId={property.id} />
+                                                
+                                                <div className="property-details">
+                                                    <div className="property-header">
+                                                        <h3 className="property-price">
+                                                            ${Number(property.price).toLocaleString('en-GB')}
+                                                        </h3>
+                                                        <div className="property-actions">
+                                                            <button 
+                                                                className="action-btn share-btn"
+                                                                onClick={() => openShareModal(property.slug)}
+                                                                aria-label="Share property"
+                                                            >
+                                                                <i className="fas fa-share-alt"></i>
+                                                            </button>
+                                                            <FavoriteButton 
+                                                                userId={userId} 
+                                                                productId={property.id}
+                                                                className="action-btn favorite-btn"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div className="property-features">
+                                                        <div className="feature">
+                                                            <i className="fas fa-bed feature-icon"></i>
+                                                            <span>{property?.overview_sales?.[0]?.beds || "N/A"}</span>
+                                                            <span className="feature-label">Beds</span>
+                                                        </div>
+                                                        <div className="feature">
+                                                            <i className="fas fa-bath feature-icon"></i>
+                                                            <span>{property?.overview_sales?.[0]?.bath || "N/A"}</span>
+                                                            <span className="feature-label">Baths</span>
+                                                        </div>
+                                                        <div className="feature">
+                                                            <i className="fas fa-vector-square feature-icon"></i>
+                                                            <span>{property?.overview_sales?.[0]?.sq_ft || "N/A"}</span>
+                                                            <span className="feature-label">Sq Ft</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div className="property-location">
+                                                        <i className="fas fa-map-marker-alt location-icon"></i>
+                                                        <span>{property.location}</span>
+                                                    </div>
+                                                    
+                                                    <div className="property-cta">
+                                                        <Link to="/Start-chat-with-znet" className="cta-btn chat-btn">
+                                                            <i className="fas fa-comments"></i>
+                                                            <span>Chat</span>
+                                                        </Link>
+                                                        <a href={`tel:${property.phone || '1234567890'}`} className="cta-btn call-btn">
+                                                            <i className="fas fa-phone-alt"></i>
+                                                            <span>Call</span>
+                                                        </a>
+                                                        <Link to={`/ProductDetail/${property.id}`} className="cta-btn details-btn">
+                                                            <span>View Details</span>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="gap-2 d-flex flex-row mb-3">
-                                        <div className="fs-6 text-muted">
-                                            <strong className="fs-6 text-dark me-2">
-                                                {property?.overview_sales?.[0]?.beds || "N/A"}
-                                            </strong>
-                                            Beds
-                                        </div>
-                                        ||
-                                        <div className="fs-6 text-muted">
-                                            <strong className="fs-6 text-dark me-2">
-                                                {property?.overview_sales?.[0]?.bath || "N/A"}
-                                            </strong>
-                                            Baths
-                                        </div>
-                                        ||
-                                        <div className="fs-6 text-muted">
-                                            <strong className="fs-6 text-dark me-2">
-                                                {property?.overview_sales?.[0]?.sq_ft || "N/A"}
-                                            </strong>
-                                            Sq Ft
-                                        </div>
-                                    </div>
-                                    <p className="small text-dark">{property.location}</p>
-                                    {/* New Section for Chat and Phone Icons */}
-                                    <div className="d-flex justify-content-between align-items-center mt-3">
-                                        <div
-                                            className="d-flex align-items-center"
-                                        // onClick={() => handleOpenChat(property)}
-                                        >
-                                            <Link to="/Start-chat-with-znet">
-                                                <i
-                                                    className="fa-solid fa-comments text-primary me-2"
-                                                    role="button"
-                                                    aria-label="Chat"
-                                                ></i>
-                                                <span>Chat</span>
-                                            </Link>
-                                        </div>
-                                        <div className="d-flex align-items-center">
-                                            <i
-                                                className="fa-solid fa-phone text-success me-2"
-                                                role="button"
-                                                aria-label="Phone"
-                                            ></i>
-                                            <span>Call</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                ))
+                            )}
                         </div>
-                    ))}
-                    <button
-                        className={`btn show_more_layoutSet mt-4  mx-auto ${shownProperties.length >= filteredProperties.length
-                            ? "d-none"
-                            : ""
-                            }`}
-                        onClick={increaseShown}
-                    >
-                        {shownProperties.length >= filteredProperties.length
-                            ? "Show Less"
-                            : "Show More"}
-                    </button>
+                    )}
+                    
+                    {!loading && shownProperties.length > 0 && shownProperties.length < filteredProperties.length && (
+                        <div className="load-more-container">
+                            <button
+                                className="load-more-btn"
+                                onClick={increaseShown}
+                            >
+                                <span>Load More Properties</span>
+                                <i className="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    )}
                 </div>
+                
                 <ShareListingModal
                     isOpen={showShareModal}
                     onClose={closeShareModal}
@@ -520,7 +586,8 @@ const MainCards = () => {
                 />
             </div>
         </>
-    )
+    );
 };
 
 export default MainCards;
+

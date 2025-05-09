@@ -9,7 +9,8 @@ import {
     signInWithFacebook,
     signInWithApple,
 } from "../../authMethods";
-import ZnetLogo from "../../assets/images/PNG Logo Files/Transparent Logo NameLess.png";
+import ZnetLogo from "../../assets/favicon/Logo.png";
+import { motion } from "framer-motion";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -17,14 +18,42 @@ const SignUp = () => {
         email: "",
         role_id: "",
         password: "",
-        questions: [], // Ensure this is part of your formData if questions are dynamic per user
+        questions: [],
         answers: [],
-        customAnswersEnabled: {}, // Tracks whether custom answers are enabled for each question
+        customAnswersEnabled: {},
     });
 
     const [roles, setRoles] = useState([]);
     const [questions, setQuestions] = useState([]);
+    const [showPassword, setShowPassword] = useState(false);
+    const [currentStep, setCurrentStep] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+
+    // Animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: { 
+                when: "beforeChildren",
+                staggerChildren: 0.15
+            }
+        }
+    };
+    
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { 
+            y: 0, 
+            opacity: 1,
+            transition: { 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 24 
+            }
+        }
+    };
 
     useEffect(() => {
         // Fetch roles immediately when the component mounts
@@ -32,6 +61,7 @@ const SignUp = () => {
     }, []);
 
     const registerUser = async (payload) => {
+        setIsLoading(true);
         try {
             const response = await fetch("https://api.biznetusa.com/api/register", {
                 method: "POST",
@@ -57,6 +87,8 @@ const SignUp = () => {
         } catch (error) {
             console.error("Error during registration:", error);
             toast.error("An error occurred during registration.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -70,7 +102,8 @@ const SignUp = () => {
         }));
     };
 
-    const handleSocialLogin = (loginFunction) => {
+    const handleSocialLogin = (loginFunction, provider) => {
+        setIsLoading(true);
         loginFunction()
             .then((response) => {
                 const { displayName, email, uid } = response;
@@ -81,19 +114,23 @@ const SignUp = () => {
                     email: email,
                     password: uid, // Use UID as a placeholder password
                 }));
-                // Prompt the user to continue filling in additional required fields
-                alert("Please select your role and answer the required questions.");
+                
+                toast.info(`Connected with ${provider}. Please complete your registration.`);
                 // Fetch roles and questions based on defaults or ask user to choose
                 fetchRoles();
-                fetchQuestions("default_role"); // Modify this if role selection affects available questions
+                setCurrentStep(2); // Move to role selection
             })
             .catch((error) => {
-                console.error("Login error:", error);
-                alert(`Login failed: ${error.message}`);
+                console.error(`${provider} login error:`, error);
+                toast.error(`Login failed: ${error.message}`);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 
     const fetchRoles = async () => {
+        setIsLoading(true);
         try {
             const response = await fetch("https://api.biznetusa.com/api/get-roles");
             const data = await response.json();
@@ -112,10 +149,13 @@ const SignUp = () => {
             }
         } catch (error) {
             toast.error("Unable to fetch roles.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const fetchQuestions = async (roleName) => {
+        setIsLoading(true);
         try {
             const response = await fetch(
                 `https://api.biznetusa.com/api/get-questions/${roleName}`
@@ -123,11 +163,14 @@ const SignUp = () => {
             const data = await response.json();
             if (response.ok) {
                 setQuestions(data.questions || []);
+                setCurrentStep(3); // Move to questions after role selection
             } else {
                 throw new Error("Failed to fetch questions");
             }
         } catch (error) {
             toast.error("Unable to fetch questions. Please try again later.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -183,25 +226,6 @@ const SignUp = () => {
         });
     };
 
-    const handleAnswerupdate = (questionId, answerId) => {
-        const containsBracket = answerId.includes("Budget");
-        setFormData((prevState) => {
-            const updatedAnswers = prevState.answers.filter(
-                (ans) => ans.question_id !== questionId
-            );
-            updatedAnswers.push({
-                question_id: questionId,
-                answer_id: answerId,
-                isCustom: answerId === "Other" || containsBracket,
-                customAnswer: answerId === "Other" || containsBracket ? "" : undefined,
-            });
-            return {
-                ...prevState,
-                answers: updatedAnswers,
-            };
-        });
-    };
-
     const handleCustomAnswerInput = (questionId, value) => {
         setFormData((prevState) => {
             const updatedAnswers = prevState.answers.map((ans) =>
@@ -241,6 +265,31 @@ const SignUp = () => {
         registerUser(payload);
     };
 
+    const nextStep = () => {
+        if (currentStep === 1) {
+            // Validate personal info
+            if (!formData.name || !formData.email || !formData.password) {
+                toast.error("Please fill in all required fields");
+                return;
+            }
+            setCurrentStep(2);
+        } else if (currentStep === 2) {
+            // Validate role selection
+            if (!formData.role_id) {
+                toast.error("Please select a role");
+                return;
+            }
+            const selectedRole = roles.find((role) => role.id === parseInt(formData.role_id));
+            if (selectedRole) {
+                fetchQuestions(selectedRole.role_name);
+            }
+        }
+    };
+
+    const prevStep = () => {
+        setCurrentStep(currentStep - 1);
+    };
+
     return (
         <>
             <Helmet>
@@ -254,299 +303,441 @@ const SignUp = () => {
                     content="Znet, Sign Up, Real Estate Services, Registration, Role-based Access"
                 />
                 <meta name="author" content="UrbanCraft REAL ESTATE Corporation" />
-                <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Sign Up | UrbanCraft REAL ESTATE" />
-                <meta
-                    property="og:description"
-                    content="Join UrbanCraft REAL ESTATE and access top-tier real estate services, tailored to your needs."
-                />
-                <meta
-                    property="og:image"
-                    content="https://example.com/path-to-signup-page-image.jpg"
-                />
-                <meta property="og:url" content="https://znet.com/signup" />
-                <meta property="og:type" content="website" />
             </Helmet>
-            <main className="background_color_fixed">
-                <ToastContainer />
-                <div className="d-flex align-items-center justify-content-center min-vh-100">
-                    <div
-                        className="card body_color shadow-lg p-4"
-                        style={{ width: "32rem" }}
+            <main className="auth-background">
+                <div className="auth-container">
+                    <motion.div 
+                        className="auth-card signup-card"
+                        initial="hidden"
+                        animate="visible"
+                        variants={containerVariants}
                     >
-                        <img
-                            src={ZnetLogo}
-                            alt="UrbanCraft REAL ESTATE Logo"
-                            className="mx-auto"
-                            style={{ width: "100px" }}
-                        />
-                        {/* <h2 className="h4 fw-bold text-center mb-4">Welcome to UrbanCraft REAL ESTATE</h2> */}
-                        <div className="my-3 d-flex justify-content-center align-items-center gap-0 ">
+                        <motion.div className="logo-container" variants={itemVariants}>
+                            <img
+                                src={ZnetLogo}
+                                alt="UrbanCraft REAL ESTATE Logo"
+                                className="auth-logo"
+                            />
+                            <div className="logo-shine"></div>
+                        </motion.div>
+                        
+                        <motion.div className="auth-tabs" variants={itemVariants}>
                             <Link
-                                className="btn btn-primary text-decoration-none w-50"
-                                style={{ backgroundColor: `var(--color)` }}
+                                className="auth-tab"
                                 to="/Login"
                             >
-                                <h3 className="h6 fw-semibold  m-0 text-white">Sign In</h3>
+                                Sign In
                             </Link>
                             <Link
-                                className="btn btn-primary text-decoration-none w-50"
-                                style={{ backgroundColor: "var(--background_color)" }}
+                                className="auth-tab auth-tab-active"
                                 to="/SignUp"
                             >
-                                <h3 className="h6 fw-semibold  m-0 text-decoration-none  text-white">
-                                    New Account
-                                </h3>
+                                New Account
                             </Link>
-                        </div>
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-3">
-                                <label htmlFor="name" className="form-label">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="email" className="form-label">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    className="form-control"
-                                    id="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                        </motion.div>
 
-                            <div className="mb-3">
-                                <label htmlFor="role_id" className="form-label">
-                                    User Role
-                                </label>
-                                <select
-                                    className="form-control"
-                                    id="role_id"
-                                    value={formData.role_id}
-                                    onChange={handleChange}
-                                    required
+                        <motion.div className="signup-progress" variants={itemVariants}>
+                            <div className={`progress-step ${currentStep >= 1 ? 'active' : ''}`}>
+                                <span className="step-number">1</span>
+                                <span className="step-name">Personal Info</span>
+                            </div>
+                            <div className="progress-line"></div>
+                            <div className={`progress-step ${currentStep >= 2 ? 'active' : ''}`}>
+                                <span className="step-number">2</span>
+                                <span className="step-name">Role</span>
+                            </div>
+                            <div className="progress-line"></div>
+                            <div className={`progress-step ${currentStep >= 3 ? 'active' : ''}`}>
+                                <span className="step-number">3</span>
+                                <span className="step-name">Questions</span>
+                            </div>
+                        </motion.div>
+                        
+                        <motion.form 
+                            onSubmit={handleSubmit}
+                            variants={itemVariants}
+                        >
+                            {currentStep === 1 && (
+                                <motion.div 
+                                    className="form-step"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
                                 >
-                                    <option value="">Select a role</option>
-                                    {roles.map((role) => (
-                                        <option key={role.id} value={role.id}>
-                                            {role.role_name}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            {questions.map((question) => (
-                                <div key={question.id} className="mb-3">
-                                    <label className="form-label">{question.question}</label>
-                                    <div>
-                                        {question.options.map((option) => (
-                                            <>
-                                                <div key={option.id} className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id={`option-${option.id}`}
-                                                        value={option.option_value}
-                                                        checked={
-                                                            formData.answers
-                                                                .find((ans) => ans.question_id === question.id)
-                                                                ?.answer_id.includes(option.option_value) || false
-                                                        }
-                                                        onChange={(e) =>
-                                                            handleAnswerChange(
-                                                                question.id,
-                                                                option.option_value,
-                                                                e.target.checked
-                                                            )
-                                                        }
-                                                    />
-                                                    {option.img ?
-                                                        <img src={option.img} alt="" style={{ width: "300px" }} />
-                                                        :
-                                                        <label
-                                                            className="form-check-label"
-                                                            htmlFor={`option-${option.id}`}
-                                                        >
-                                                            {option.option_value}
-                                                        </label>
-                                                    }
-                                                </div>
-
-                                            </>
-                                        ))}
-
-                                        {question?.question?.includes("upload") && (
-                                            <Form.Group controlId="formFileUpload">
-                                                <Form.Label>Upload File</Form.Label>
-                                                <Form.Control type="file" />
-                                            </Form.Group>
-                                        )}
-                                        {/* Render "Other" option */}
-                                        {question.options.find(opt => opt.option_value.toLowerCase().includes("yes"))
-                                            &&
-                                            < div className="form-check">
-                                                <input
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    id={`option-other-${question.id}`}
-                                                    value="Other"
-                                                    checked={
-                                                        formData.answers
-                                                            .find((ans) => ans.question_id === question.id)
-                                                            ?.answer_id.includes("Other") || false
-                                                    }
-                                                    onChange={(e) =>
-                                                        handleAnswerChange(
-                                                            question.id,
-                                                            "Other",
-                                                            e.target.checked
-                                                        )
-                                                    }
-                                                />
-                                                <label
-                                                    className="form-check-label"
-                                                    htmlFor={`option-other-${question.id}`}
-                                                >
-                                                    Other (Please Specify)
-                                                </label>
+                                    <div className="form-group">
+                                        <label htmlFor="name">
+                                            <i className="fas fa-user"></i> Full Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="name"
+                                            placeholder="Enter your name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="email">
+                                            <i className="fas fa-envelope"></i> Email Address
+                                        </label>
+                                        <input
+                                            type="email"
+                                            className="form-control"
+                                            id="email"
+                                            placeholder="Enter your email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="password">
+                                            <i className="fas fa-lock"></i> Password
+                                        </label>
+                                        <div className="password-input-container">
+                                            <input
+                                                type={showPassword ? "text" : "password"}
+                                                className="form-control"
+                                                id="password"
+                                                placeholder="Create a password"
+                                                value={formData.password}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <button 
+                                                type="button"
+                                                className="password-toggle-btn"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                            >
+                                                <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                                            </button>
+                                        </div>
+                                        <div className="password-requirements">
+                                            <div className="req-item">
+                                                <i className="fas fa-check-circle"></i>
+                                                <span>At least 8 characters</span>
                                             </div>
-                                        }
-
-                                        {/* Render custom input field if "Other" is selected */}
-                                        {formData.answers
-                                            .find((ans) => ans.question_id === question.id)
-                                            ?.answer_id.some(
-                                                (selectedAnswer) =>
-                                                    selectedAnswer === "Other" ||
-                                                    selectedAnswer.includes("[")
-                                            ) && (
-                                                <input
-                                                    type="text"
-                                                    className="form-control mt-2"
-                                                    placeholder="Provide details for your selection"
-                                                    value={
-                                                        formData.answers.find(
-                                                            (ans) => ans.question_id === question.id
-                                                        )?.customAnswer || ""
-                                                    }
-                                                    onChange={(e) =>
-                                                        handleCustomAnswerInput(question.id, e.target.value)
-                                                    }
-                                                />
-                                            )}
-
-                                        {formData.answers
-                                            .find((ans) => ans.question_id === question.id)
-                                            ?.answer_id.some(
-                                                (selectedAnswer) =>
-                                                    selectedAnswer.includes("Budget")
-                                            ) && (
-                                                <input
-                                                    type="number"
-                                                    className="form-control mt-2"
-                                                    placeholder="Enter your budget"
-                                                    value={
-                                                        formData.answers.find(
-                                                            (ans) => ans.question_id === question.id
-                                                        )?.customAnswer || ""
-                                                    }
-                                                    onChange={(e) =>
-                                                        handleCustomAnswerInput(question.id, e.target.value)
-                                                    }
-                                                />
-                                            )}
+                                            <div className="req-item">
+                                                <i className="fas fa-check-circle"></i>
+                                                <span>Mix of letters and numbers</span>
+                                            </div>
+                                            <div className="req-item">
+                                                <i className="fas fa-check-circle"></i>
+                                                <span>At least 1 special character</span>
+                                            </div>
+                                            <div className="req-item">
+                                                <i className="fas fa-check-circle"></i>
+                                                <span>At least 1 uppercase letter</span>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    {/* Display selected options */}
-                                    < div className="mt-2" >
-                                        <strong>Selected Options:</strong>{" "}
-                                        < ul >
-                                            {
-                                                formData.answers
-                                                    .find((ans) => ans.question_id === question.id)
-                                                    ?.answer_id.map((selectedOption, index) => (
-                                                        <li key={index}>{selectedOption}</li>
-                                                    ))
-                                            }
-                                        </ul>
+                                    
+                                    <div className="form-buttons">
+                                        <button
+                                            type="button"
+                                            className="auth-submit-btn"
+                                            onClick={nextStep}
+                                        >
+                                            Next <i className="fas fa-arrow-right"></i>
+                                        </button>
                                     </div>
-                                </div>
-                            ))}
+                                    
+                                    <div className="social-login-container">
+                                        <div className="social-divider">
+                                            <span>Or sign up with</span>
+                                        </div>
+                                        
+                                        <div className="social-buttons">
+                                            <button
+                                                type="button"
+                                                onClick={() => handleSocialLogin(signInWithGoogle, "Google")}
+                                                className="social-btn google-btn"
+                                                disabled={isLoading}
+                                            >
+                                                <i className="fab fa-google"></i>
+                                                <span className="social-btn-text">Google</span>
+                                            </button>
+                                            
+                                            <button
+                                                type="button"
+                                                onClick={() => handleSocialLogin(signInWithFacebook, "Facebook")}
+                                                className="social-btn facebook-btn"
+                                                disabled={isLoading}
+                                            >
+                                                <i className="fab fa-facebook-f"></i>
+                                                <span className="social-btn-text">Facebook</span>
+                                            </button>
+                                            
+                                            <button
+                                                type="button"
+                                                onClick={() => handleSocialLogin(signInWithApple, "Apple")}
+                                                className="social-btn apple-btn"
+                                                disabled={isLoading}
+                                            >
+                                                <i className="fab fa-apple"></i>
+                                                <span className="social-btn-text">Apple</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                            
+                            {currentStep === 2 && (
+                                <motion.div 
+                                    className="form-step"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >
+                                    <div className="form-group role-selection">
+                                        <label htmlFor="role_id">
+                                            <i className="fas fa-user-tag"></i> Select Your Role
+                                        </label>
+                                        <div className="role-options">
+                                            {roles.map((role) => (
+                                                <div
+                                                    key={role.id}
+                                                    className={`role-option ${parseInt(formData.role_id) === role.id ? 'selected' : ''}`}
+                                                    onClick={() => setFormData({...formData, role_id: role.id.toString()})}
+                                                >
+                                                    <div className="role-icon">
+                                                        {role.role_name === 'buyer' && <i className="fas fa-home"></i>}
+                                                        {role.role_name === 'seller' && <i className="fas fa-tags"></i>}
+                                                        {role.role_name === 'investor' && <i className="fas fa-chart-line"></i>}
+                                                        {role.role_name === 'realtor' && <i className="fas fa-key"></i>}
+                                                    </div>
+                                                    <div className="role-info">
+                                                        <h4>{role.role_name}</h4>
+                                                        <p>
+                                                            {role.role_name === 'buyer' && "I'm looking to purchase property"}
+                                                            {role.role_name === 'seller' && "I want to sell my property"}
+                                                            {role.role_name === 'investor' && "I'm interested in investment opportunities"}
+                                                            {role.role_name === 'realtor' && "I'm a real estate professional"}
+                                                        </p>
+                                                    </div>
+                                                    <div className="role-check">
+                                                        {parseInt(formData.role_id) === role.id && <i className="fas fa-check-circle"></i>}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="form-buttons">
+                                        <button
+                                            type="button"
+                                            className="auth-back-btn"
+                                            onClick={prevStep}
+                                        >
+                                            <i className="fas fa-arrow-left"></i> Back
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="auth-submit-btn"
+                                            onClick={nextStep}
+                                            disabled={!formData.role_id}
+                                        >
+                                            Next <i className="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            )}
+                            
+                            {currentStep === 3 && (
+                                <motion.div 
+                                    className="form-step"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >
+                                    <div className="questions-container">
+                                        {questions.length === 0 ? (
+                                            <div className="no-questions">
+                                                <i className="fas fa-question-circle"></i>
+                                                <p>No questions available for this role.</p>
+                                            </div>
+                                        ) : (
+                                            questions.map((question, qIndex) => (
+                                                <div key={question.id} className="question-card">
+                                                    <h4 className="question-text">
+                                                        <span className="question-number">{qIndex + 1}</span>
+                                                        {question.question}
+                                                    </h4>
+                                                    <div className="options-container">
+                                                        {question.options.map((option) => (
+                                                            <div key={option.id} className="option-item">
+                                                                <label className="custom-checkbox">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        value={option.option_value}
+                                                                        checked={
+                                                                            formData.answers
+                                                                                .find((ans) => ans.question_id === question.id)
+                                                                                ?.answer_id.includes(option.option_value) || false
+                                                                        }
+                                                                        onChange={(e) =>
+                                                                            handleAnswerChange(
+                                                                                question.id,
+                                                                                option.option_value,
+                                                                                e.target.checked
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                    <span className="checkmark"></span>
+                                                                    {option.img ? (
+                                                                        <div className="option-img-container">
+                                                                            <img src={option.img} alt={option.option_value} />
+                                                                        </div>
+                                                                    ) : (
+                                                                        <span className="option-text">{option.option_value}</span>
+                                                                    )}
+                                                                </label>
+                                                            </div>
+                                                        ))}
 
-                            <div className="mb-3">
-                                <label htmlFor="password" className="form-label">
-                                    Password
-                                </label>
-                                <div className="password_control">
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        id="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                    <ul className="form-text d-flex flex-column py-3 px-3">
-                                        <li>At least 8 characters.</li>
-                                        <li>Mix of letters and numbers.</li>
-                                        <li>At least 1 special character.</li>
-                                        <li>At least 1 lowercase letter.</li>
-                                        <li>At least 1 uppercase letter.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <p className="text-center mt-3">
-                                By submitting, I accept UrbanCraft REAL ESTATE{" "}
-                                <a href="#" className="text-decoration -underline">
-                                    terms of use
-                                </a>
-                                .
+                                                        {/* Other option */}
+                                                        {question.options.find(opt => opt.option_value.toLowerCase().includes("yes")) && (
+                                                            <div className="option-item">
+                                                                <label className="custom-checkbox">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        value="Other"
+                                                                        checked={
+                                                                            formData.answers
+                                                                                .find((ans) => ans.question_id === question.id)
+                                                                                ?.answer_id.includes("Other") || false
+                                                                        }
+                                                                        onChange={(e) =>
+                                                                            handleAnswerChange(
+                                                                                question.id,
+                                                                                "Other",
+                                                                                e.target.checked
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                    <span className="checkmark"></span>
+                                                                    <span className="option-text">Other (Please Specify)</span>
+                                                                </label>
+                                                            </div>
+                                                        )}
+                                                    </div>
+
+                                                    {/* Custom input fields */}
+                                                    {formData.answers
+                                                        .find((ans) => ans.question_id === question.id)
+                                                        ?.answer_id.some(
+                                                            (selectedAnswer) =>
+                                                                selectedAnswer === "Other" ||
+                                                                selectedAnswer.includes("[")
+                                                        ) && (
+                                                            <div className="custom-answer">
+                                                                <input
+                                                                    type="text"
+                                                                    className="form-control custom-input"
+                                                                    placeholder="Provide details for your selection"
+                                                                    value={
+                                                                        formData.answers.find(
+                                                                            (ans) => ans.question_id === question.id
+                                                                        )?.customAnswer || ""
+                                                                    }
+                                                                    onChange={(e) =>
+                                                                        handleCustomAnswerInput(question.id, e.target.value)
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        )}
+
+                                                    {formData.answers
+                                                        .find((ans) => ans.question_id === question.id)
+                                                        ?.answer_id.some(
+                                                            (selectedAnswer) =>
+                                                                selectedAnswer.includes("Budget")
+                                                        ) && (
+                                                            <div className="custom-answer">
+                                                                <input
+                                                                    type="number"
+                                                                    className="form-control custom-input"
+                                                                    placeholder="Enter your budget"
+                                                                    value={
+                                                                        formData.answers.find(
+                                                                            (ans) => ans.question_id === question.id
+                                                                        )?.customAnswer || ""
+                                                                    }
+                                                                    onChange={(e) =>
+                                                                        handleCustomAnswerInput(question.id, e.target.value)
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        )}
+
+                                                    {/* File upload */}
+                                                    {question?.question?.includes("upload") && (
+                                                        <div className="file-upload-container">
+                                                            <label className="file-upload">
+                                                                <i className="fas fa-cloud-upload-alt"></i>
+                                                                <span>Upload File</span>
+                                                                <input type="file" />
+                                                            </label>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))
+                                        )}
+                                    </div>
+                                    
+                                    <div className="form-buttons">
+                                        <button
+                                            type="button"
+                                            className="auth-back-btn"
+                                            onClick={prevStep}
+                                        >
+                                            <i className="fas fa-arrow-left"></i> Back
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            className="auth-submit-btn"
+                                            disabled={isLoading}
+                                        >
+                                            {isLoading ? (
+                                                <>
+                                                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                    Registering...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    Complete Registration <i className="fas fa-check-circle"></i>
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </motion.form>
+                        
+                        <motion.div className="auth-footer" variants={itemVariants}>
+                            <p>
+                                By signing up, you agree to our{" "}
+                                <Link to="/terms-of-service">Terms of Service</Link> &{" "}
+                                <Link to="/privacy-policy">Privacy Policy</Link>
                             </p>
-                            <button type="submit" className="btn btn-primary w-100">
-                                Register
-                            </button>
-                        </form>
-
-                        <div className="my-4 border-top text-center pt-3">
-                            <p>Or connect with:</p>
-                            <div className="d-flex flex-row gap-3">
-                                <button
-                                    className="btn btn-outline-secondary d-flex align-items-center justify-content-center"
-                                    style={{ flexGrow: "1" }}
-                                    onClick={() => handleSocialLogin(signInWithApple)}
-                                >
-                                    <i className="fab fa-apple fs-3 py-1" />
-                                </button>
-                                <button
-                                    className="btn btn-outline-secondary d-flex align-items-center justify-content-center"
-                                    style={{ flexGrow: "1" }}
-                                    onClick={() => handleSocialLogin(signInWithGoogle)}
-                                >
-                                    <i className="fab fa-google fs-4 py-1" />
-                                </button>
-                                <button
-                                    className="btn btn-outline-secondary d-flex align-items-center justify-content-center"
-                                    style={{ flexGrow: "1" }}
-                                    onClick={() => handleSocialLogin(signInWithFacebook)}
-                                >
-                                    <i className="fab fa-facebook-f fs-3 py-1" />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div >
-            </main >
+                        </motion.div>
+                    </motion.div>
+                </div>
+            </main>
+            <ToastContainer 
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </>
     );
 };

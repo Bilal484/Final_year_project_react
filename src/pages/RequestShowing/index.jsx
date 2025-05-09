@@ -1,4 +1,4 @@
-import img1 from "../../assets/images/PNG Logo Files/Transparent Logo.png";
+// import img1 from "../../assets/images/PNG Logo Files/Transparent Logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import "./RequestShowing.css";
 import React, { useState, useEffect } from "react";

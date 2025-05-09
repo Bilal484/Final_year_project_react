@@ -15,7 +15,7 @@ const ProcessStep = ({
 
     return (
         <>
-         <Helmet>
+            <Helmet>
                 <meta charSet="utf-8" />
                 <title>Our Process | Your Company</title>
                 <meta name="description" content="Discover how our process works to deliver top-notch services to our clients." />
@@ -28,20 +28,20 @@ const ProcessStep = ({
                 <meta name="twitter:description" content="Discover how our process works to deliver top-notch services to our clients." />
                 <meta name="twitter:image" content="https://example.com/process-image.jpg" />
             </Helmet>
-        <div className={`col-md-${colSize}`} style={{ height: '100% !important' }}>
-            <div className={`process-step p-4 rounded shadow d-flex flex-column align-items-${pos} text-${pos}`} style={{ height: '100%' }}>
-                <div className="process-icon mb-3">
-                    <div
-                        className={`text-white rounded-circle d-flex justify-content-center align-items-center mx-auto ${bgColor}`}
-                        style={{ width: "50px", height: "50px" }}
-                    >
-                        {icon || <FaRegHandshake size={24} className={textColor} />}
+            <div className={`col-md-${colSize}`} style={{ height: '100% !important' }}>
+                <div className={`process-step p-4 rounded shadow d-flex flex-column align-items-${pos} text-${pos}`} style={{ height: '100%' }}>
+                    <div className="process-icon mb-3">
+                        <div
+                            className={`text-white rounded-circle d-flex justify-content-center align-items-center mx-auto ${bgColor}`}
+                            style={{ width: "50px", height: "50px" }}
+                        >
+                            {icon || <FaRegHandshake size={24} className={textColor} />}
+                        </div>
                     </div>
+                    <h5 className="fw-bold mb-2">{title}</h5>
+                    <p className="text-muted p-0 m-0">{description}</p>
                 </div>
-                <h5 className="fw-bold mb-2">{title}</h5>
-                <p className="text-muted p-0 m-0">{description}</p>
-            </div>
-        </div >
+            </div >
         </>
     );
 };

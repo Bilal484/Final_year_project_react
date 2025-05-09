@@ -1,175 +1,340 @@
+:root {  
+  /* Adding more specific variables for agent profile page */
+  --agent-card-bg: #4a4035;
+  --agent-text-primary: white;
+  --agent-text-secondary: #d1c7b7;
+  --agent-accent: #e12d2f;
+  --agent-accent-hover: #c92526;
+  --agent-border: #8b5b3e;
+  --agent-section-bg: #f5f3ef;
+  --agent-team-bg: #eae4da;
+  --agent-heading-size: 1.75rem;
+  --agent-subheading-size: 1.25rem;
+  --agent-text-size: 1rem;
+  --agent-border-radius: 10px;
+  --agent-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --agent-transition: all 0.3s ease;
+}
+
+/* Hero section */
 .agent-profile-container {
   padding: 20px;
-  background-color: #f4f4f2;
+  background-color: var(--color-gray);
+  position: relative;
+  height: 45vh;
+  display: flex;
+  align-items: flex-start;
 }
 
 .back-link {
   margin-bottom: 15px;
-  font-size: 14px;
+  font-size: 0.9rem;
+}
+
+.back-link a {
+  transition: var(--agent-transition);
+  color: var(--agent-card-bg);
+}
+
+.back-link a:hover {
+  color: var(--color);
+}
+
+/* Agent Card */
+.set_width_height_margin {
+  margin-top: -35vh;
+  position: relative;
+  z-index: 2;
 }
 
 .agent-row {
-  /* background-color: #4a4035;   */
-  border-radius: 10px;
+  border-radius: var(--agent-border-radius);
   padding: 20px;
 }
 
 .agent-details-card {
-  background-color: #4a4035;
-  color: white;
-  border-radius: 10px;
-  padding: 20px;
+  background-color: var(--agent-card-bg);
+  color: var(--agent-text-primary);
+  border-radius: var(--agent-border-radius);
+  padding: 25px;
   position: relative;
+  box-shadow: var(--agent-shadow);
+  border: none;
+  transition: var(--agent-transition);
 }
 
+.agent-details-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Content Styling */
 .logo-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .redfin-principal {
-  color: #d1c7b7; /* Match the color */
-  font-size: 14px;
+  color: var(--agent-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .logo {
   font-size: 18px;
-  color: white;
-  border: 1px solid white;
+  color: var(--agent-text-primary);
+  border: 1px solid var(--agent-text-primary);
   padding: 5px 10px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
 }
 
 .agent-name {
-  font-size: 26px;
-  font-weight: bold;
+  font-size: var(--agent-heading-size);
+  font-weight: 700;
   margin-top: 15px;
+  color: var(--agent-text-primary);
 }
 
-.license,
-.homes-closed,
-.contact-details {
-  font-size: 16px;
+.license, .homes-closed, .contact-details {
+  font-size: var(--agent-text-size);
   margin-bottom: 15px;
+  line-height: 1.6;
 }
 
 .view-more {
-  color: white;
-  font-size: 14px;
-  display: block;
+  color: var(--agent-text-primary);
+  font-size: 0.9rem;
+  display: inline-block;
   margin-top: 10px;
   cursor: pointer;
+  position: relative;
+  padding-bottom: 2px;
+  transition: var(--agent-transition);
 }
 
+.view-more:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color);
+  transition: var(--agent-transition);
+}
+
+.view-more:hover:after {
+  width: 100%;
+}
+
+/* Buttons and Contact Info */
 .contact-button {
-  background-color: #e12d2f;
+  background-color: var(--agent-accent) !important;
   border: none;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 10px 25px;
   margin: 20px 0;
+  border-radius: 5px;
+  transition: var(--agent-transition) !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .contact-button:hover {
-  background-color: #c92526;
+  background-color: var(--agent-accent-hover) !important;
+  transform: translateY(-2px);
 }
 
+.chat-button {
+  background-color: transparent !important;
+  border: 1px solid var(--agent-text-primary) !important;
+  color: var(--agent-text-primary) !important;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: var(--agent-transition) !important;
+}
+
+.chat-button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+.contact-details {
+  text-align: right;
+}
+
+.contact-details .text-success {
+  color: #4caf50 !important;
+}
+
+.chat-component {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--agent-border-radius);
+  padding: 15px;
+}
+
+/* Agent Image */
 .agent-image {
   max-width: 85%;
-  border-radius: 10px;
+  border-radius: var(--agent-border-radius);
   object-fit: cover;
-  aspect-ratio: 3/3;
+  aspect-ratio: 3/4;
+  box-shadow: var(--agent-shadow);
+  transition: var(--agent-transition);
+  border: 3px solid var(--agent-text-primary);
 }
 
+.agent-image:hover {
+  transform: scale(1.02);
+}
+
+/* Stats section */
 .sales-stats {
   margin-top: 30px;
+  background-color: var(--agent-text-primary);
+  padding: 20px;
+  border-radius: var(--agent-border-radius);
+  box-shadow: var(--agent-shadow);
 }
 
 .sales-stats h5 {
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 5px;
+  color: var(--background_color);
 }
 
 .sales-stats p {
-  color: gray;
-  font-size: 16px;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-/* Customize mobile and desktop specific styling */
-@media (max-width: 768px) {
-  .agent-details-card {
-    text-align: center;
-  }
-
-  .logo-section {
-    justify-content: center;
-  }
+.border_left_set {
+  border-left: 2px solid var(--agent-accent);
+  height: 50px;
 }
 
+/* About Section */
 .border_bottom_set {
   width: 150px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid var(--agent-text-primary);
   margin-top: 25px;
-}
-.set_width_height_margin {
-  margin-top: -35vh;
-}
-.border_left_set {
-  border-left: 2px solid red;
-  height: 50px;
 }
 
 .border_sec_bottom_set {
   width: 150px;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--color);
   margin-bottom: 25px;
 }
+
+/* Icon Section */
 .bg_icon_section {
-  background-color: #ab8462;
-}
-.set_images_svg_width {
-  width: 230px;
+  background-color: var(--color);
+  transition: var(--agent-transition);
 }
 
+.set_images_svg_width {
+  width: 230px;
+  filter: brightness(0) invert(1);
+  transition: var(--agent-transition);
+}
+
+.set_images_svg_width:hover {
+  transform: scale(1.05);
+}
+
+/* Tab Buttons */
+.tab-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.tab-button {
+  background-color: transparent !important;
+  color: var(--background_color) !important;
+  border: 2px solid var(--background_color) !important;
+  margin: 0 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--agent-transition) !important;
+}
+
+.tab-button.active {
+  background-color: var(--background_color) !important;
+  color: var(--color_white) !important;
+}
+
+.tab-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Review Carousel */
 .review-carousel {
-  background-color: #f5f3ef;
+  background-color: var(--agent-section-bg);
   padding: 40px;
   text-align: center;
   position: relative;
+  border-radius: var(--agent-border-radius);
+  margin: 3rem 0;
 }
 
 .carousel-review {
   padding: 20px;
-  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .review-text {
   font-weight: 500;
-  line-height: 1.5;
-  font-size: 1.5rem;
+  line-height: 1.6;
+  font-size: 1.3rem;
   position: relative;
   color: #333;
 }
 
 .quote-mark {
-  color: #8b5b3e;
+  color: var(--color);
   font-size: 2.5rem;
   font-weight: bold;
   vertical-align: top;
+  opacity: 0.8;
 }
 
 .review-author {
-  margin-top: 10px;
+  margin-top: 15px;
   font-style: italic;
-  color: #777;
+  color: #666;
 }
 
 .see-reviews-btn {
-  margin-top: 15px;
+  margin-top: 20px;
   border-radius: 5px;
   padding: 10px 20px;
-  font-weight: bold;
+  font-weight: 600;
+  color: var(--background_color) !important;
+  border-color: var(--background_color) !important;
+  transition: var(--agent-transition);
+}
+
+.see-reviews-btn:hover {
+  background-color: var(--background_color) !important;
+  color: var(--color_white) !important;
 }
 
 .carousel-controls {
@@ -179,14 +344,26 @@
   right: 10px;
   display: flex;
   justify-content: space-between;
+  transform: translateY(-50%);
 }
 
 .control-btn {
   font-size: 1.5rem;
-  color: #333;
+  color: var(--color);
   border: none;
   background: none;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--agent-transition);
+}
+
+.control-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .carousel-pagination {
@@ -203,25 +380,31 @@
   background-color: #ccc;
   border-radius: 50%;
   display: inline-block;
+  transition: var(--agent-transition);
 }
 
 .pagination-dot.active {
-  background-color: #8b5b3e;
+  background-color: var(--color);
+  transform: scale(1.2);
 }
 
 .pagination-text {
   margin-left: 10px;
-  color: #333;
+  color: #666;
   font-weight: bold;
 }
 
+/* Promo Section */
 .promo-container {
   position: relative;
-  background-image: url("../../assets/images/Owner-Dashboard/Sell\ with\ Redfin/AboutPremierDesktop.jpg"); /* Replace with your image URL */
+  /* background-image: url("../../assets/images/Owner-Dashboard/Sell\\ with\\ Redfin/AboutPremierDesktop.jpg"); */
   background-size: cover;
   background-position: center;
   height: 500px;
   width: 100%;
+  border-radius: var(--agent-border-radius);
+  overflow: hidden;
+  margin: 3rem 0;
 }
 
 .promo-overlay {
@@ -230,79 +413,138 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* background-color: rgba(0, 0, 0, 0.5);  */
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .promo-content {
-  color: white;
-  padding: 20px;
+  color: var(--agent-text-primary);
+  padding: 35px;
   text-align: left;
   max-width: 800px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: var(--agent-border-radius);
+  border-left: 5px solid var(--color);
 }
 
 .promo-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
+  color: var(--color);
 }
 
 .promo-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
 .promo-text {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 1.05rem;
+  line-height: 1.6;
   margin-bottom: 15px;
 }
 
 .promo-button {
-  background-color: white;
-  color: black;
+  background-color: var(--color) !important;
+  color: var(--agent-text-primary) !important;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 25px;
   font-size: 1rem;
+  font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  transition: var(--agent-transition) !important;
 }
 
 .promo-button:hover {
-  background-color: #ccc;
+  background-color: var(--background_color) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Team and Contact Section */
 .team-contact-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: #f7f5f1;
+  padding: 40px 20px;
+  background-color: var(--agent-section-bg);
+  border-radius: var(--agent-border-radius);
 }
 
 .team-section {
   width: 100%;
   max-width: 900px;
   text-align: center;
+  margin-bottom: 50px;
+}
+
+.team-section h3 {
+  color: var(--background_color);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.team-section h3:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background-color: var(--color);
 }
 
 .team-members {
   display: flex;
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .team-member {
   text-align: center;
+  transition: var(--agent-transition);
+  padding: 15px;
+  border-radius: var(--agent-border-radius);
+  width: 30%;
+}
+
+.team-member:hover {
+  background-color: var(--color_white);
+  transform: translateY(-5px);
+  box-shadow: var(--agent-shadow);
 }
 
 .team-member img {
-  border-radius: 10px;
-  margin-bottom: 10px;
+  border-radius: var(--agent-border-radius);
+  margin-bottom: 15px;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 3px solid var(--background_color);
+  transition: var(--agent-transition);
+}
+
+.team-member:hover img {
+  transform: scale(1.05);
+}
+
+.team-member h5 {
+  color: var(--background_color);
+  margin-bottom: 5px;
+}
+
+.team-member p {
+  color: var(--color);
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .contact-section {
@@ -310,10 +552,11 @@
   justify-content: space-between;
   width: 100%;
   max-width: 900px;
-  background-color: #eae4da;
-  padding: 20px;
-  margin-top: 40px;
-  border-radius: 8px;
+  background-color: var(--agent-team-bg);
+  padding: 30px;
+  margin-top: 20px;
+  border-radius: var(--agent-border-radius);
+  box-shadow: var(--agent-shadow);
 }
 
 .contact-form {
@@ -322,40 +565,79 @@
   width: 60%;
 }
 
+.contact-form h3 {
+  color: var(--background_color);
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.contact-form h3:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background-color: var(--color);
+}
+
 .contact-form label {
-  margin-bottom: 5px;
-  color: #8b5b3e;
+  margin-bottom: 8px;
+  color: var(--background_color);
+  font-weight: 500;
 }
 
 .contact-form input,
 .contact-form textarea {
-  margin-bottom: 15px;
-  padding: 10px;
+  margin-bottom: 20px;
+  padding: 12px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   font-size: 1rem;
+  transition: var(--agent-transition);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(153, 108, 34, 0.2);
 }
 
 .checkbox-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .checkbox-group label {
-  margin-right: 10px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+  margin-bottom: 0;
 }
 
 .contact-button {
-  padding: 10px 20px;
-  /* background-color: ; */
-  color: white;
+  padding: 12px 25px;
+  background-color: var(--background_color) !important;
+  color: var(--color_white) !important;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: var(--agent-transition) !important;
+  display: inline-block;
+  text-align: center;
 }
 
 .contact-button:hover {
-  /* background-color: #a32c2c; */
+  background-color: var(--color) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .contact-agent-image {
@@ -366,26 +648,67 @@
 }
 
 .contact-agent-image img {
-  border-radius: 10px;
+  border-radius: var(--agent-border-radius);
   max-width: 100%;
+  box-shadow: var(--agent-shadow);
+  border: 3px solid var(--color);
+  transition: var(--agent-transition);
 }
 
-.contact-button {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
+.contact-agent-image img:hover {
+  transform: scale(1.03);
 }
 
-.chat-button {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .team-member {
+    width: 45%;
+    margin-bottom: 30px;
+  }
+  
+  .contact-section {
+    flex-direction: column;
+  }
+  
+  .contact-form, .contact-agent-image {
+    width: 100%;
+  }
+  
+  .contact-agent-image {
+    margin-top: 30px;
+    order: -1;
+  }
 }
 
-.contact-details {
-  text-align: right;
-}
-
-.chat-component {
-  margin-top: 20px;
+@media (max-width: 768px) {
+  .agent-details-card {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .logo-section {
+    justify-content: center;
+  }
+  
+  .contact-details {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .d-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .team-member {
+    width: 100%;
+  }
+  
+  .sales-stats {
+    text-align: center;
+  }
+  
+  .border_left_set {
+    display: none;
+  }
 }

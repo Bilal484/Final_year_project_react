@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./SellerAgentHeader.css";
-import img1 from "../../assets/images/PNG Logo Files/Transparent Logo.png";
+import img1 from "../../assets/favicon/Logo.png";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 

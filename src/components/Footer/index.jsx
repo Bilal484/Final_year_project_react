@@ -1,25 +1,47 @@
-import React from 'react'
-import './Footer.css'
+import React, { useState, useEffect } from 'react';
+import './Footer.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 const Footer = () => {
     const navigate = useNavigate();
     const userEmail = localStorage.getItem('user_email');
-    const isLoggedIn = userEmail ? true : false;
+    const isLoggedIn = !!userEmail;
+    const [showBackToTop, setShowBackToTop] = useState(false);
+    const [email, setEmail] = useState('');
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                setShowBackToTop(true);
+            } else {
+                setShowBackToTop(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const handleClick = (path) => {
         navigate(path);
-        setTimeout(scrollToTop, 200)
+        scrollToTop();
     };
 
     const scrollToTop = () => {
-        document.documentElement.scrollTo({
+        window.scrollTo({
             top: 0,
-            left: 0,
             behavior: 'smooth',
         });
+    };
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        // Implement newsletter subscription logic
+        alert(`Thank you for subscribing with: ${email}`);
+        setEmail('');
     };
 
     return (
@@ -27,56 +49,51 @@ const Footer = () => {
             <Helmet>
                 <title>URBANCRAFT REAL ESTATE - Simplify Real Estate Networking</title>
                 <meta name="description" content="Join URBANCRAFT REAL ESTATE to simplify real estate networking. Explore opportunities to become an agent, careers, community impact, and more." />
-                <meta name="keywords" content="ZNET, Real Estate, Careers, Agents, Networking, Fair Housing Policy, Subsidiaries" />
-                <meta name="author" content="ZNET" />
+                <meta name="keywords" content="URBANCRAFT, Real Estate, Careers, Agents, Networking, Fair Housing Policy, Subsidiaries" />
+                <meta name="author" content="URBANCRAFT" />
             </Helmet>
-            <footer className="bg-light text-dark py-4 my-3 mb-5 position-relative">
-                <button
-                    onClick={scrollToTop}
-                    className="position-sticky  d-md-block bottom-0 end-0 m-3 btn btn-primary rounded-circle"
-                    style={{
-                        width: '45px',
-                        height: '45px',
-                        zIndex: 1000,
-                        backgroundColor: 'var(--background_color)'
-                    }}
-                >
-                    <i className="fa-solid fa-arrow-up fs-5"></i>
-                </button>
 
-                <div className="text-white py-4 py-md-5 px-2 text-center mb-4"
-                    style={{
-                        backgroundColor: 'var(--background_color)',
-                        borderTopLeftRadius: '30px',
-                        borderTopRightRadius: '30px'
-                    }}
-                >
-                    <h2 className="fw-bold mb-3 fs-3 fs-md-2">Ready to Simplify Real Estate Networking?</h2>
-                    <p className="lead mb-4 fs-6 fs-md-5">Join thousands of professionals on UrbanCraft REAL ESTATE today.</p>
-                    {isLoggedIn ? (
-                        <div className="user-email">
-                            <p className="text-white py-2 py-md-2 text-center mb-1"> {userEmail}</p>
-                        </div>
-                    ) : (
-                        <Link
-                            to="/SignUp"
-                            className="btn btn-secondary btn-lg text-white fw-semibold"
-                        >
-                            Sign Up for Free
-                        </Link>
-                    )}
+            <div className={`back-to-top ${showBackToTop ? 'visible' : ''}`} onClick={scrollToTop}>
+                <i className="fa-solid fa-arrow-up"></i>
+            </div>
+
+            <footer className="py-4 mt-5 position-relative">
+                {/* Banner Section */}
+                <div className="footer-banner text-white py-5 px-3 text-center mb-5">
+                    <div className="container">
+                        <h2 className="fw-bold mb-3">Ready to Simplify Real Estate Networking?</h2>
+                        <p className="lead mb-4 mx-auto" style={{ maxWidth: '700px' }}>
+                            Join thousands of professionals on UrbanCraft REAL ESTATE today and elevate your real estate experience.
+                        </p>
+                        {isLoggedIn ? (
+                            <div className="user-email py-2">
+                                <p className="text-white mb-0 fs-5">
+                                    <i className="fa-regular fa-envelope me-2"></i> 
+                                    {userEmail}
+                                </p>
+                            </div>
+                        ) : (
+                            <Link
+                                to="/SignUp"
+                                className="btn btn-light text-primary fw-semibold px-4 py-2"
+                            >
+                                Sign Up for Free <i className="fa-solid fa-arrow-right ms-2"></i>
+                            </Link>
+                        )}
+                    </div>
                 </div>
 
                 <div className="container">
                     <div className="row g-4">
-                        <div className="col-12 col-sm-6 col-md-2">
-                            <h6 className="fw-semibold">Join us</h6>
-                            <ul className="list-unstyled mt-2">
+                        {/* First Column - Join us */}
+                        <div className="col-12 col-sm-6 col-md-3 footer-column">
+                            <h6 className="footer-heading">Join UrbanCraft</h6>
+                            <ul className="footer-links">
                                 <li>
                                     <Link
                                         onClick={() => handleClick('/BecomeAnAgent')}
                                         to='/BecomeAnAgent'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
                                         Become an Agent
                                     </Link>
@@ -85,21 +102,46 @@ const Footer = () => {
                                     <Link
                                         onClick={() => handleClick('/Careers')}
                                         to='/Careers'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
                                         Careers
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link
+                                        onClick={() => handleClick('/Partnerships')}
+                                        to='/Partnerships'
+                                        className="hover-link"
+                                    >
+                                        Partners Program
+                                    </Link>
+                                </li>
                             </ul>
+
+                            <h6 className="footer-heading mt-4">Stay Updated</h6>
+                            <p className="text-muted small">Subscribe to our newsletter</p>
+                            <form onSubmit={handleSubscribe} className="newsletter-form">
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="newsletter-input"
+                                    placeholder="Your email address"
+                                    required
+                                />
+                                <button type="submit" className="newsletter-btn">Subscribe</button>
+                            </form>
                         </div>
-                        <div className="col-12 col-sm-6 col-md-2">
-                            <h6 className="fw-semibold">About us</h6>
-                            <ul className="list-unstyled mt-2">
+
+                        {/* Second Column - About us */}
+                        <div className="col-12 col-sm-6 col-md-3 footer-column">
+                            <h6 className="footer-heading">About Us</h6>
+                            <ul className="footer-links">
                                 <li>
                                     <Link
                                         onClick={() => handleClick('/WhyZnet')}
                                         to='/WhyZnet'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
                                         Why URBANCRAFT REAL ESTATE?
                                     </Link>
@@ -108,7 +150,7 @@ const Footer = () => {
                                     <Link
                                         onClick={() => handleClick('/CommunityImpact')}
                                         to='/CommunityImpact'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
                                         Community Impact
                                     </Link>
@@ -117,7 +159,7 @@ const Footer = () => {
                                     <Link
                                         onClick={() => handleClick('/DiversityInclusion')}
                                         to='/DiversityInclusion'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
                                         Diversity &amp; Inclusion
                                     </Link>
@@ -126,59 +168,50 @@ const Footer = () => {
                                     <Link
                                         onClick={() => handleClick('/ZnetLife')}
                                         to='/ZnetLife'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
-                                        Life at URBANCRAFT REAL ESTATE
+                                        Life at URBANCRAFT
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         onClick={() => handleClick('/PressFooter')}
                                         to='/PressFooter'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
-                                        Press
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        onClick={() => handleClick('/InvestorsFooter')}
-                                        to='/InvestorsFooter'
-                                        className="text-muted text-decoration-none hover-link"
-                                    >
-                                        
-                                        
-                                        
+                                        Press Releases
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         onClick={() => handleClick('/Blog')}
                                         to='/Blog'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
-                                        Blog
+                                        Blog &amp; Resources
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         onClick={() => handleClick('/News')}
                                         to='/News'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
                                         Real Estate News
                                     </Link>
                                 </li>
                             </ul>
                         </div>
-                        <div className="col-12 col-sm-6 col-md-2">
-                            <h6 className="fw-semibold">Find us</h6>
-                            <ul className="list-unstyled mt-2">
+
+                        {/* Third Column - Find us */}
+                        <div className="col-12 col-sm-6 col-md-3 footer-column">
+                            <h6 className="footer-heading">Resources</h6>
+                            <ul className="footer-links">
                                 <li>
                                     <Link
                                         onClick={() => handleClick('/Contact')}
                                         to='/Contact'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
                                         Contact Us
                                     </Link>
@@ -187,141 +220,87 @@ const Footer = () => {
                                     <Link
                                         onClick={() => handleClick('/HelpCenter')}
                                         to='/HelpCenter'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
-                                        Help  Center
+                                        Help Center
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         onClick={() => handleClick('/AdvertiseFooter')}
                                         to='/AdvertiseFooter'
-                                        className="text-muted text-decoration-none hover-link"
+                                        className="hover-link"
                                     >
-                                        Advertise
+                                        Advertise With Us
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        onClick={() => handleClick('/FAQs')}
+                                        to='/FAQs'
+                                        className="hover-link"
+                                    >
+                                        FAQs
                                     </Link>
                                 </li>
                             </ul>
-                            <div className="d-flex my-3">
-                                <a href="https://www.facebook.com/share/18XKUtcGCC/?mibextid=wwXIfr" className="text-muted me-2">
-                                    <i className="fa-brands fa-facebook" />
+
+                            <h6 className="footer-heading mt-4">Connect With Us</h6>
+                            <div className="social-icons d-flex gap-3 mt-2 flex-wrap flex-row "> 
+                                <a href="https://www.facebook.com/share/18XKUtcGCC/?mibextid=wwXIfr" className="social-icon" aria-label="Facebook">
+                                    <i className="fa-brands fa-facebook-f"></i>
                                 </a>
-                                <Link to="https://www.linkedin.com/in/zhara-fernandez-256b8b148?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="text-muted me-2">
-                                    <i className="fa-brands fa-linkedin" />
-                                </Link>
-                                <Link to="https://www.instagram.com/zharanashvillerealtor_/profilecard/?igsh=d2o1cXh4OW40cnIw" className="text-muted">
-                                    <i className="fa-brands fa-instagram" />
-                                </Link>
+                                <a href="https://www.linkedin.com/in/zhara-fernandez-256b8b148?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="social-icon" aria-label="LinkedIn">
+                                    <i className="fa-brands fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://www.instagram.com/zharanashvillerealtor_/profilecard/?igsh=d2o1cXh4OW40cnIw" className="social-icon" aria-label="Instagram">
+                                    <i className="fa-brands fa-instagram"></i>
+                                </a>
+                                <a href="https://twitter.com/urbancraft" className="social-icon" aria-label="Twitter">
+                                    <i className="fa-brands fa-twitter"></i>
+                                </a>
                             </div>
-                            <h6 className="fw-semibold">Subsidiaries</h6>
-                            <ul className="list-unstyled mt-2">
+                        </div>
+
+                        {/* Fourth Column - Subsidiaries and Countries */}
+                        <div className="col-12 col-sm-6 col-md-3 footer-column">
+                            <h6 className="footer-heading">Our Network</h6>
+                            <ul className="footer-links">
                                 <li>
-                                    <a
-                                        href="https://www.rent.com/"
-                                        className="text-muted text-decoration-none hover-link"
-                                    >
-                                        Rent.
+                                    <a href="https://www.rent.com/" className="hover-link">
+                                        Rent.com
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://www.apartmentguide.com/"
-                                        className="text-muted text-decoration-none hover-link"
-                                    >
+                                    <a href="https://www.apartmentguide.com/" className="hover-link">
                                         ApartmentGuide
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://bayequityhomeloans.com/"
-                                        className="text-muted text-decoration-none hover-link"
-                                    >
+                                    <a href="https://bayequityhomeloans.com/" className="hover-link">
                                         Bay Equity Home Loans
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://www.titleforward.com/tf"
-                                        className="text-muted text-decoration-none hover-link"
-                                    >
+                                    <a href="https://www.titleforward.com/tf" className="hover-link">
                                         Title Forward
                                     </a>
                                 </li>
                             </ul>
-                            <h6 className="fw-semibold">Countries</h6>
-                            <ul className="list-unstyled mt-2">
-                                <li className="d-flex align-items-center">
-                                    <span>🇺🇸 United States</span>
-                                </li>
-                                {/* <li className="d-flex align-items-center">
-                                    <span>🇨🇦 Canada</span>
-                                </li> */}
-                            </ul>
-                        </div>
-                        <div className="col-12 col-md-6">
-                            <div className="bg-light p-3 p-md-4 text-muted">
-                                <p className="mb-2 small">
-                                    Copyright: © 2025 URBANCRAFT REAL ESTATE. All rights reserved.
-                                </p>
-                                <p className="mb-2 small">
-                                    Updated January 2025: By searching, you agree to the{" "}
-                                    <Link to="/TermandUse" className="text-decoration-none ">
-                                        Terms of Use
-                                    </Link>
-                                    , and{" "}
-                                    <Link to="/PrivacyPolicy" className="text-decoration-none ">
-                                        Privacy Policy
-                                    </Link>
-                                    .
-                                </p>
-                                <p className="mb-2 small">
-                                    <Link to="javascript:void(0)" className="text-decoration-none ">
-                                        Do not sell or share my personal information.
-                                    </Link>
-                                </p>
-                                <p className="mb-2 small">
-                                    UrbanCraft REAL ESTATE is not licensed anywhere. It’s just a platform for networking.
-                                </p>
-                                <p className="mb-2 small">
-                                    <Link to="javascript:void(0)" className="text-decoration-none ">
-                                        TN Standard Operating Procedures
-                                    </Link>
-                                </p>
-                                <p className="mb-2 small">New Mexico Real Estate Licenses</p>
-                                <p className="mb-2 small">
-                                    {/* <Link to="javascript:void(0)" className="text-decoration-none ">
-                                        TREC: Info About Brokerage Services, Consumer Protection Notice
-                                    </Link> */}
-                                </p>
-                                <p className="mt-4 small">
-                                    If you are using a screen reader, or having trouble reading this
-                                    website, please call URBANCRAFT REAL ESTATE Customer Support for help at{" "}
-                                    <Link to="tel:(844) 844-2707" className="text-decoration-none ">
-                                    (844) 844-2707
-                                    </Link>
-                                    .
-                                </p>
-                                <p className="mt-4 small font-weight-bold">
-                                    🏠 URBANCRAFT REAL ESTATE IS COMMITTED TO AND ABIDES BY THE FAIR HOUSING ACT AND
-                                    EQUAL OPPORTUNITY ACT.
-                                    <Link to="javascript:void(0)" className="text-decoration-none ">
-                                        READ URBANCRAFT REAL ESTATE'S FAIR HOUSING POLICY
-                                    </Link>{" "}
-                                    AND THE
-                                    <Link to="javascript:void(0)" className="text-decoration-none ">
-                                    Tennessee  STATE FAIR HOUSING NOTICE
-                                    </Link>
-                                    .
-                                </p>
-                            </div>
-                        </div>
 
+                            <h6 className="footer-heading mt-4">Locations</h6>
+                            <div className="countries-dropdown">
+                                <span><i className="fa-solid fa-location-dot me-2"></i> Rahim Yar Khan</span>
+                            </div>
+                    
+                        </div>
                     </div>
+
                 </div>
             </footer>
         </>
-    )
-}
+    );
+};
 
 export default Footer;
 

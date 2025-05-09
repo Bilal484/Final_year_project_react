@@ -4,10 +4,11 @@ import { ListGroup, Form, Badge } from 'react-bootstrap';
 import './UsersList.css';
 
 const UsersList = ({ onSelectUser }) => {
-    const [similarUsers, setSimilarUsers] = useState([]); // State to hold similar users
-    const [search, setSearch] = useState(""); // State to handle search input
-    const [filterUsers, setFilterUsers] = useState([]); // State to hold filtered users based on search
-    const userId = localStorage.getItem('user_id'); // Fetching user id from localStorage
+    const [similarUsers, setSimilarUsers] = useState([]);
+    const [search, setSearch] = useState("");
+    const [filterUsers, setFilterUsers] = useState([]);
+    const [activeUser, setActiveUser] = useState(null);
+    const userId = localStorage.getItem('user_id');
 
     // Effect to fetch similar users on component mount
     useEffect(() => {
@@ -30,6 +31,7 @@ const UsersList = ({ onSelectUser }) => {
 
     // Function to handle user click, mark messages as read, and update UI accordingly
     const handleUserClick = async (user) => {
+        setActiveUser(user.user_id);
         onSelectUser(user);
         try {
             await axios.post('https://api.biznetusa.com/api/mark-messages-read', {
@@ -53,38 +55,65 @@ const UsersList = ({ onSelectUser }) => {
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         setSearch(query);
-        const filtered = similarUsers.filter(user => user.name.toLowerCase().includes(query));
+        const filtered = similarUsers.filter(user => 
+            user.name.toLowerCase().includes(query)
+        );
         setFilterUsers(filtered);
     };
 
     return (
-        <div>
-            <Form.Control
-                type="text"
-                name="searchUsers"
-                id="searchUsers"
-                placeholder="Enter User Name"
-                className="mb-2 p-2"
-                value={search}
-                onChange={handleSearch}
-            />
-            <ListGroup className="user-list">
-                {filterUsers.map(user => (
-                    <ListGroup.Item
-                        key={user.user_id}
-                        action
-                        onClick={() => handleUserClick(user)}
-                        className="user-list-item d-flex justify-content-between"
-                    >
-                        {user.name}
-                        {user.unread > 0 && (
-                            <Badge bg="danger" className="ms-2">
-                                {user.unread}
-                            </Badge>
-                        )}
-                    </ListGroup.Item>
-                ))}
-            </ListGroup>
+        <div className="users-container">
+            <div className="search-container">
+                <Form.Control
+                    type="text"
+                    name="searchUsers"
+                    id="searchUsers"
+                    placeholder="Search for users..."
+                    className="search-input"
+                    value={search}
+                    onChange={handleSearch}
+                />
+                {/* <i className="fas fa-search search-icon"></i> */}
+            </div>
+            
+            {filterUsers.length > 0 ? (
+                <ListGroup className="user-list custom-scrollbar">
+                    {filterUsers.map(user => (
+                        <ListGroup.Item
+                            key={user.user_id}
+                            action
+                            onClick={() => handleUserClick(user)}
+                            className={`user-list-item ${activeUser === user.user_id ? 'active-user' : ''}`}
+                        >
+                            <div className="user-item-content">
+                                <div className="user-avatar">
+                                    {user.name[0].toUpperCase()}
+                                </div>
+                                <div className="user-info">
+                                    <div className="user-name">{user.name}</div>
+                                    <div className="user-status">
+                                        <span className="status-indicator online"></span>
+                                        Online
+                                    </div>
+                                </div>
+                                {user.unread > 0 && (
+                                    <Badge bg="danger" className="unread-badge">
+                                        {user.unread}
+                                    </Badge>
+                                )}
+                            </div>
+                        </ListGroup.Item>
+                    ))}
+                </ListGroup>
+            ) : (
+                <div className="no-users">
+                    <i className="fas fa-users"></i>
+                    <p>No users found</p>
+                    {search && (
+                        <p className="search-tip">Try a different search term</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 };

@@ -1,0 +1,325 @@
+:root {    
+    /* Property card specific variables */
+    --card-radius: 12px;
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    --transition-time: 0.4s;
+    --image-height: 240px;
+    --card-bg: white;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --status-bg: rgba(11, 11, 69, 0.9);
+    --favorite-color: #ff5a5f;
+    --detail-icon-bg: rgba(11, 11, 69, 0.08);
+}
+
+/* Animation for card entrance */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Property Card Wrapper */
+.uc-property-card-wrapper {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--transition-time) ease, transform var(--transition-time) ease;
+}
+
+.uc-property-card-wrapper.uc-visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp var(--transition-time) ease;
+}
+
+/* Property Card */
+.uc-property-card {
+    background-color: var(--card-bg);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-time) ease, box-shadow var(--transition-time) ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.uc-property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+/* Property Media (Images) */
+.uc-property-media {
+    position: relative;
+    height: var(--image-height);
+    overflow: hidden;
+}
+
+.uc-carousel-inner {
+    border-top-left-radius: var(--card-radius);
+    border-top-right-radius: var(--card-radius);
+    height: var(--image-height);
+}
+
+.uc-property-img {
+    width: 100%;
+    height: var(--image-height);
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.uc-property-card:hover .uc-property-img {
+    transform: scale(1.05);
+}
+
+/* Carousel Controls */
+.uc-carousel-control {
+    opacity: 0;
+    transition: opacity var(--transition-time) ease;
+}
+
+.uc-property-card:hover .uc-carousel-control {
+    opacity: 1;
+}
+
+.uc-control-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    color: var(--background_color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Count Badge */
+.uc-image-count {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Property Status Badge */
+.uc-property-status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--status-bg);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Action Buttons */
+.uc-property-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.uc-action-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: all var(--transition-time) ease;
+}
+
+.uc-action-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--color_white);
+}
+
+.uc-favorited {
+    color: var(--favorite-color);
+}
+
+/* Property Content */
+.uc-property-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Price */
+.uc-property-price {
+    margin-bottom: 15px;
+}
+
+.uc-property-price h3 {
+    color: var(--background_color);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Property Details */
+.uc-property-details {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.uc-detail {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.uc-detail i {
+    width: 30px;
+    height: 30px;
+    background-color: var(--detail-icon-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--background_color);
+}
+
+/* Property Title */
+.uc-property-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Property Address */
+.uc-property-address {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.uc-property-address i {
+    color: var(--color);
+}
+
+/* View Details Button */
+.uc-view-details-btn {
+    margin-top: auto;
+    padding: 10px 0;
+    border: none;
+    background-color: transparent;
+    color: var(--background_color);
+    font-weight: 600;
+    border-top: 1px solid #eee;
+    transition: color var(--transition-time) ease;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.uc-view-details-btn:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color);
+    transition: width var(--transition-time) ease;
+}
+
+.uc-property-card:hover .uc-view-details-btn {
+    color: var(--color);
+}
+
+.uc-property-card:hover .uc-view-details-btn:after {
+    width: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    :root {
+        --image-height: 220px;
+    }
+    
+    .uc-property-price h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .uc-property-content {
+        padding: 15px;
+    }
+    
+    .uc-property-price h3 {
+        font-size: 1.3rem;
+    }
+    
+    .uc-property-details {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --image-height: 200px;
+    }
+    
+    .uc-property-card-wrapper {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .uc-property-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd;
+    }
+    
+    .uc-property-actions,
+    .uc-carousel-control,
+    .uc-view-details-btn {
+        display: none !important;
+    }
+}

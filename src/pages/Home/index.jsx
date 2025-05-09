@@ -5,7 +5,7 @@ import HomeBannerCard from "../../components/HomeBannerCard";
 import img1 from "../../assets/images/real estate _1.jpg";
 import img2 from "../../assets/images/real estate _10.jpg";
 import img3 from "../../assets/images/real estate _11.jpg";
-import logo from "../../assets/favicon/znet.jpg";
+import logo from "../../assets/favicon/Logo.png";
 import CityRealEstateList from "../../components/CityRealEstateList";
 import RealEstateTabs from "../../components/RealEstateTabs";
 import RentByCityList from "../../components/RentByCityList";
@@ -27,6 +27,8 @@ import SuccessStories from "../../components/SuccessStories";
 import CharacterCard from "../../components/CharacterCard";
 import { Carousel } from 'react-bootstrap';
 import '../Home/Home.css';
+import ExecutiveLeaders from "../../components/ExecutiveLeaders";
+// import bilal from "../../assets/images/Bilal.jpg"
 
 
 const Home = () => {
@@ -42,7 +44,7 @@ const Home = () => {
             "title": "M Bilal Irshad",
             "role": "Lead Developer, React Engineer, PHP Developer",
             "description": "M Bilal Irshad is a skilled Lead Developer with expertise in React and PHP. Passionate about building scalable web applications, Bilal combines deep technical knowledge with innovative problem-solving.",
-            "image": "https://via.placeholder.com/300x300?text=Bilal+Irshad"
+            "image": "https://via.placeholder.com/300x300?text=bilal"
         },
         {
             "title": "Shayan Zulifqar",
@@ -56,12 +58,6 @@ const Home = () => {
             "description": "Rashid is a creative Web Designer who specializes in designing engaging and user-friendly websites. Focused on aesthetics and functionality, Rashid transforms ideas into stunning digital interfaces.",
             "image": "https://via.placeholder.com/300x300?text=Rashid"
         },
-        {
-            "title": "Engr.Muhammad Fayyaz",
-            "role": "Senior Developer of Codesinc",
-            "description": "Eng. Muhammad Fayyaz is the CEO of Codesinc and a skilled web developer. Passionate about technology and innovation, he leads a team that creates cutting-edge websites and web solutions. Fayyaz specializes in full-stack development and custom web solutions, helping Codesinc push the limits of web development to deliver smooth, user-friendly experiences.",
-            "image": "https://api.biznetusa.com/uploads/leaders/1734610403.jpg"
-        }
     ]);
     const [loading, setLoading] = useState(true);
     const [imagePath, setImagePath] = useState('');
@@ -161,7 +157,7 @@ const Home = () => {
             {/*     setShowModal={setShowModal} */}
             {/* /> */}
             <ToastContainer />
-            <TaglineHeader />
+            {/* <TaglineHeader /> */}
             <Header />
             <main className="Main_portion">
                 {userId ? (
@@ -181,35 +177,81 @@ const Home = () => {
                 )}
 
                 {/* Similar Users Modal */}
-                <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-                    <Modal.Header style={{ backgroundColor: "var(--background_color)" }} closeButton>
-                        <Modal.Title>Similar Users</Modal.Title>
+                <Modal 
+                    show={showModal} 
+                    onHide={() => setShowModal(false)} 
+                    centered
+                    className="similar-users-modal"
+                    backdrop="static"
+                >
+                    <Modal.Header closeButton className="similar-users-header">
+                        <Modal.Title className="d-flex align-items-center">
+                            <i className="fas fa-users me-2"></i>
+                            Similar Users
+                        </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body className="bg-white">
+                    <Modal.Body className="similar-users-body">
                         {similarUsers.length > 0 ? (
-                            <ListGroup>
+                            <ListGroup variant="flush" className="similar-users-list">
                                 {similarUsers.map((user) => (
                                     <ListGroup.Item
                                         key={user.user_id}
-                                        className="d-flex justify-content-between align-items-center"
+                                        className="similar-user-item"
                                     >
-                                        <span>{user.name}</span>
-                                        <Button
-                                            variant="outline-primary"
-                                            size="sm"
-                                            onClick={() => handleUserSelect(user)}
-                                        >
-                                            Chat
-                                        </Button>
+                                        <div className="similar-user-content">
+                                            <div className="similar-user-avatar">
+                                                {user.name[0].toUpperCase()}
+                                            </div>
+                                            <div className="similar-user-info">
+                                                <h6 className="similar-user-name">{user.name}</h6>
+                                                <small className="similar-user-status">
+                                                    <span className="status-dot online"></span>
+                                                    Available to chat
+                                                </small>
+                                            </div>
+                                            <Button
+                                                variant="primary"
+                                                className="chat-btn"
+                                                onClick={() => handleUserSelect(user)}
+                                            >
+                                                <i className="fas fa-comment-dots me-2"></i>
+                                                Chat Now
+                                            </Button>
+                                        </div>
                                     </ListGroup.Item>
                                 ))}
                             </ListGroup>
                         ) : (
-                            <p className="text-center text-muted">
-                                No similar users found.
-                            </p>
+                            <div className="no-users-found">
+                                <div className="no-users-icon">
+                                    <i className="fas fa-search"></i>
+                                </div>
+                                <h5>No similar users found</h5>
+                                <p>We couldn't find any users matching your profile right now.</p>
+                                <Button 
+                                    variant="outline-secondary" 
+                                    onClick={() => setShowModal(false)}
+                                    className="dismiss-btn"
+                                >
+                                    Dismiss
+                                </Button>
+                            </div>
                         )}
                     </Modal.Body>
+                    <Modal.Footer className="similar-users-footer">
+                        <div className="users-count">
+                            {similarUsers.length > 0 && (
+                                <small>Found {similarUsers.length} user{similarUsers.length !== 1 ? 's' : ''} with similar interests</small>
+                            )}
+                        </div>
+                        <Button 
+                            variant="secondary" 
+                            onClick={() => setShowModal(false)}
+                            className="close-btn"
+                        >
+                            Close
+                        </Button>
+                    </Modal.Footer>
                 </Modal>
 
                 {userId ? (
@@ -232,36 +274,19 @@ const Home = () => {
 
                 <div className="container">
 
-                    <h3 className="text-center mb-5 display-5 fw-bold">Executive Leadership</h3>
-
-                    <Carousel>
-                        <Carousel.Item>
-                            <div className="d-flex flex-row justify-content-around">
-                                {leaders.map((leader, idx) => (
-                                    <div className="p-2 card-container" key={leader.id}>
-                                        <CharacterCard
-                                            name={leader.title}
-                                            title={leader.role}
-                                            description={leader.description}
-                                            image={leader.image ? `${imagePath}${leader.image}` : "placeholder-image-url.jpg"}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        </Carousel.Item>
-                    </Carousel>
+                  <ExecutiveLeaders/>
                 </div>
             </main>
 
             <div className="container py-4">
-                <h3 className="m-3">Search for homes by city</h3>
+                {/* <h3 className="m-3">Search for homes by city</h3> */}
                 <CityRealEstateList />
                 <hr className="my-5" />
-                <h3 className="m-3">Search for apartments by city</h3>
+                {/* <h3 className="m-3">Search for apartments by city</h3> */}
                 <AppartementsRealEstate />
-                <hr className="my-5" />
+                {/* <hr className="my-5" />
                 <h3 className="m-3">Search for houses for rent by city</h3>
-                <RentByCityList />
+                <RentByCityList /> */}
             </div>
 
 

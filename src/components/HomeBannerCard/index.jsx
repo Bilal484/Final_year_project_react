@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './HomeBannerCard.css';
 import { Helmet } from 'react-helmet';
-import { Container, Row, Col, Carousel, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
 
 const HomeBannerCard = ({ isLarge = false }) => {
     const [banners, setBanners] = useState([]);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
     const imagePath = 'https://api.biznetusa.com/uploads/banners/';
 
     useEffect(() => {
@@ -18,7 +21,19 @@ const HomeBannerCard = ({ isLarge = false }) => {
             }
         };
         fetchBanners();
+        
+        // Set animation visibility after component mounts
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100);
     }, []);
+
+    const handleSelect = (selectedIndex) => {
+        setActiveIndex(selectedIndex);
+    };
+
+    // Determine the size class based on isLarge prop
+    const bannerSizeClass = isLarge ? "banner-large" : "banner-medium";
 
     return (
         <>
@@ -45,47 +60,73 @@ const HomeBannerCard = ({ isLarge = false }) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="robots" content="index, follow" />
             </Helmet>
-            <Container fluid className="py-4 position-relative" style={{ overflow: 'hidden' }}>
-                <Row className="justify-content-center">
-                    <Col xs={12} md={10} lg={12} style={{ height: isLarge ? 600 : 300 }}>
-                        <Carousel indicators={true} controls={true} interval={3000}>
-                            {banners.length > 0 ? (
-                                banners.map((banner) => (
-                                    <Carousel.Item key={banner.id}>
-                                        <img
-                                            src={banner.image ? `${imagePath}${banner.image}` : 'default-image.jpg'}
-                                            alt={banner.title}
-                                            className="img-fluid w-100"
-                                            style={{
-                                                height: isLarge ? '600px' : '300px',
-                                                objectFit: 'cover'
-                                            }}
-                                        />
-                                    </Carousel.Item>
-                                ))
-                            ) : (
-                                <p>No banners available</p>
-                            )}
-                        </Carousel>
-                    </Col>
-                </Row>
-                {!isLarge && banners.length > 0 && (
-                    <Row className="justify-content-center mt-3 position-absolute bottom-0 end-0" style={{ translate: "-5% -20%" }}>
-                        <Col xs={12} md={8} lg={6} style={{ width: "350px" }}>
-                            <div id="hamza__pava" className="bg-white p-3 rounded shadow">
-                                <h5 className="fw-semibold text-dark">{banners[0].title}</h5>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <p className="text-muted mb-0">{banners[0].desc}</p>
-                                    <p className="h5 fw-bold text-dark mb-0">{banners[0].price}</p>
-                                </div>
-                                <Button variant="primary" className="w-100 mt-3">
-                                    View Home
-                                </Button>
-                            </div>
-                        </Col>
-                    </Row>
+            
+            <div className={`banner-card-container  ${isVisible ? 'visible' : ''}`}>
+                {banners.length > 0 && (
+                    <div className="property-badge">
+                        <i className="badge-icon fas fa-home"></i>
+                        Featured
+                    </div>
                 )}
-            </Container>
+                
+                {banners.length > 0 && banners[activeIndex]?.price && (
+                    <div className="price-tag">
+                        {banners[activeIndex].price}
+                    </div>
+                )}
+                
+                <Carousel 
+                    activeIndex={activeIndex}
+                    onSelect={handleSelect}
+                    indicators={true}
+                    controls={true}
+                    interval={5000}
+                    className="banner-carousel"
+                >
+                    {banners.length > 0 ? (
+                        banners.map((banner, index) => (
+                            <Carousel.Item key={banner.id} className={bannerSizeClass}>
+                                <img
+                                    src={banner.image ? `${imagePath}${banner.image}` : 'https://via.placeholder.com/800x600?text=Property+Image'}
+                                    alt={banner.title || "Property Banner"}
+                                    className="banner-image"
+                                />
+                                
+                                <div className="banner-overlay">
+                                    <div className="banner-content">
+                                        <h2 className="banner-title">
+                                            {banner.title || "Featured Property"}
+                                        </h2>
+                                        <p className="banner-description">
+                                            {banner.desc || "Explore this beautiful property with amazing features."}
+                                        </p>
+                                        <Link to={banner.link || "/property-details"} className="banner-btn">
+                                            View Details
+                                            <span className="icon">
+                                                <i className="fas fa-arrow-right"></i>
+                                            </span>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </Carousel.Item>
+                        ))
+                    ) : (
+                        <Carousel.Item className={bannerSizeClass}>
+                            <img 
+                                src="https://via.placeholder.com/800x600?text=No+Properties+Available"
+                                alt="No banners available"
+                                className="banner-image"
+                            />
+                            <div className="banner-overlay">
+                                <div className="banner-content">
+                                    <h2 className="banner-title">No Properties Available</h2>
+                                    <p className="banner-description">Check back soon for new listings.</p>
+                                </div>
+                            </div>
+                        </Carousel.Item>
+                    )}
+                </Carousel>
+            </div>
         </>
     );
 };

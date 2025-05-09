@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Card, Button, Row, Col, Image, Carousel } from "react-bootstrap";
 import Header from "../../components/header";
 import Footer from "../../components/Footer";
-import "./AgentProfile.css"; // Use a CSS file for custom styles
+import "./AgentProfile.css";
 import img1 from "../../assets/images/real estate _12.jpg";
 import img2 from "../../assets/images/Owner-Dashboard/Sell with Redfin/PresidentsClub_NoYear.svg";
 import man1 from "../../assets/images/Owner-Dashboard/Sell with Redfin/man_01.jpg";
@@ -35,12 +35,11 @@ const AgentProfile = () => {
   const [activeSection, setActiveSection] = useState("active");
   const [buying, setBuying] = useState(true);
   const [selling, setSelling] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
-
-  const [showChat, setShowChat] = useState(false); // Manage chat component visibility
 
   const toggleChat = () => {
     setShowChat((prevShowChat) => !prevShowChat);
@@ -69,33 +68,43 @@ const AgentProfile = () => {
 
   return (
     <>
-    <Helmet>
-        <title>Agent Profile - Tiffeny Meyers | DRD Premier</title>
-        <meta name="description" content="Explore Tiffeny Meyers' agent profile. Learn about her expertise, areas served, sales stats, and client reviews. Connect with her for your real estate needs." />
-        <meta name="keywords" content="Real Estate, Tiffeny Meyers, Agent Profile, DRD Premier, Homes for Sale, Homes Sold, Real Estate Agent, Property Listings, Client Reviews" />
-        <meta name="author" content="DRD Premier" />
+      <Helmet>
+        <title>Agent Profile - Tiffeny Meyers | UrbanCraft Premier</title>
+        <meta
+          name="description"
+          content="Explore Tiffeny Meyers' agent profile. Learn about her expertise, areas served, sales stats, and client reviews. Connect with her for your real estate needs."
+        />
+        <meta
+          name="keywords"
+          content="Real Estate, Tiffeny Meyers, Agent Profile, UrbanCraft Premier, Homes for Sale, Homes Sold, Real Estate Agent, Property Listings, Client Reviews"
+        />
+        <meta name="author" content="UrbanCraft Premier" />
       </Helmet>
+      
       <Header />
-      <div className="container mx-auto   ">
-        <div className="agent-profile-container " style={{ height: "45vh" }}>
+      
+      {/* Hero Section */}
+      <div className="container mx-auto">
+        <div className="agent-profile-container">
           <div className="back-link">
             <a href="/agents" className="text-muted ms-5">
-              Back to Far North Side Agents
+              <i className="fas fa-arrow-left me-2"></i>Back to Far North Side Agents
             </a>
           </div>
         </div>
+        
+        {/* Agent Card Section */}
         <div className="container set_width_height_margin">
-          <Row className="align-items-center agent-row  d-flex ">
+          <Row className="align-items-center agent-row d-flex">
             <div className="col-lg-1"></div>
             <Col xs={12} md={5}>
               <Card className="agent-details-card shadow">
                 <Card.Body>
                   <div className="logo-section">
                     <span className="redfin-principal text-uppercase">
-                      DRD Principal Agent
+                      UrbanCraft Principal Agent
                     </span>
-                    <div className="logo">P</div>{" "}
-                    {/* Add your logo image or icon */}
+                    <div className="logo">P</div>
                   </div>
                   <Card.Title className="agent-name">
                     {agentData.name}
@@ -138,7 +147,6 @@ const AgentProfile = () => {
                       </Button>
                     </div>
 
-                    {/* ChatComponent - visible when showChat is true */}
                     {showChat && (
                       <div className="chat-component">
                         <ChatComponent />
@@ -160,6 +168,7 @@ const AgentProfile = () => {
             <div className="col-lg-1"></div>
           </Row>
 
+          {/* Sales Stats */}
           <Row className="sales-stats mt-4 text-center">
             <Col className="d-flex justify-content-evenly" xs={12} sm={4}>
               <div>
@@ -192,6 +201,7 @@ const AgentProfile = () => {
         </div>
       </div>
 
+      {/* About Section */}
       <div className="container my-5">
         <div className="row">
           <div className="col-lg-10 mx-auto">
@@ -203,9 +213,9 @@ const AgentProfile = () => {
             <p>
               Assisting someone with a huge milestone in their life, such as
               buying a home, is a very rewarding experience, and one
-              responsibility I do not take lightly. When I found out that DRD
+              responsibility I do not take lightly. When I found out that UrbanCraft
               not only provides up-to-date technology and valuable market
-              resources, but also holds the same values as me, it wasn’t a hard
+              resources, but also holds the same values as me, it wasn't a hard
               decision to leave the traditional real estate role and become part
               of something greater! If you are in the market to find your dream
               home, I will help you navigate through the nuances of the real
@@ -215,45 +225,48 @@ const AgentProfile = () => {
         </div>
       </div>
 
+      {/* Icon Section */}
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-12 bg_icon_section d-flex justify-content-center py-5">
-            <img src={img2} alt="" className="set_images_svg_width" />
+            <img src={img2} alt="President's Club Award" className="set_images_svg_width" />
           </div>
         </div>
       </div>
 
+      {/* Listing Tabs */}
       <div className="container my-5">
         <div className="row">
-          {/* Buttons for toggling between sections */}
-          <div className="d-flex justify-content-center my-3 align-items-center mx-auto">
+          <div className="tab-buttons-container">
             <button
-              className={`p-3 mx-3 rounded-3 ${
-                activeSection === "active" ? "btn-primary" : ""
+              className={`tab-button ${
+                activeSection === "active" ? "active" : ""
               }`}
               onClick={() => handleSectionChange("active")}
             >
+              <i className="fas fa-list-ul me-2"></i>
               Active Listing
             </button>
             <button
-              className={`p-3 mx-3 rounded-3 ${
-                activeSection === "sold" ? "btn-primary" : ""
+              className={`tab-button ${
+                activeSection === "sold" ? "active" : ""
               }`}
               onClick={() => handleSectionChange("sold")}
             >
+              <i className="fas fa-check-circle me-2"></i>
               Sold With Tiffany
             </button>
             <button
-              className={`p-3 mx-3 rounded-3 ${
-                activeSection === "bought" ? "btn-primary" : ""
+              className={`tab-button ${
+                activeSection === "bought" ? "active" : ""
               }`}
               onClick={() => handleSectionChange("bought")}
             >
+              <i className="fas fa-shopping-bag me-2"></i>
               Bought With Tiffany
             </button>
           </div>
 
-          {/* Conditionally render sections based on the active section */}
           {activeSection === "active" && (
             <div className="col-lg-8 mx-auto d-flex flex-row">
               <div
@@ -298,6 +311,7 @@ const AgentProfile = () => {
         </div>
       </div>
 
+      {/* Reviews Carousel */}
       <div className="container-fluid review-carousel">
         <div className="row">
           <div className="col-lg-10 mx-auto">
@@ -307,17 +321,18 @@ const AgentProfile = () => {
                   <Carousel.Item key={index}>
                     <div className="carousel-review">
                       <p className="review-text">
-                        <span className="quote-mark">“</span>
+                        <span className="quote-mark">"</span>
                         {review.text}
-                        <span className="quote-mark">”</span>
+                        <span className="quote-mark">"</span>
                       </p>
                       <p className="review-author">
-                        {review.author} {review.date} for {review.price}
+                        {review.author} • {review.date} • {review.price}
                       </p>
                       <Button
                         className="see-reviews-btn"
                         variant="outline-primary"
                       >
+                        <i className="fas fa-star me-2"></i>
                         See all agent reviews
                       </Button>
                     </div>
@@ -325,17 +340,15 @@ const AgentProfile = () => {
                 ))}
               </Carousel>
 
-              {/* Carousel Controls */}
               <div className="carousel-controls">
                 <Button variant="link" className="control-btn">
-                  ←
+                  <i className="fas fa-chevron-left"></i>
                 </Button>
                 <Button variant="link" className="control-btn">
-                  →
+                  <i className="fas fa-chevron-right"></i>
                 </Button>
               </div>
 
-              {/* Pagination */}
               <div className="carousel-pagination">
                 {reviews.map((_, index) => (
                   <span
@@ -350,19 +363,20 @@ const AgentProfile = () => {
         </div>
       </div>
 
+      {/* Promo Section */}
       <div className="container-fluid">
         <div className="row">
           <div className="promo-container">
             <div className="promo-overlay">
               <div className="promo-content">
-                <h1 className="promo-title">DRD PREMIER</h1>
+                <h1 className="promo-title">URBANCRAFT PREMIER</h1>
                 <h2 className="promo-subtitle">
-                  The highest level of service from DRD's best agents
+                  The highest level of service from UrbanCraft's best agents
                 </h2>
                 <p className="promo-text">
-                  DRD Premier agents are local luxury experts with years of
+                  UrbanCraft Premier agents are local luxury experts with years of
                   experience buying and selling high-end homes. Only our best
-                  agents qualify to become DRD Premier agents.
+                  agents qualify to become UrbanCraft Premier agents.
                 </p>
                 <p className="promo-text">
                   When you're ready to buy, your agent will know what it takes
@@ -376,12 +390,17 @@ const AgentProfile = () => {
                   a 1% listing fee when you buy and sell with us, less than half
                   of what brokerages commonly charge.
                 </p>
-                <button className="promo-button">Learn more</button>
+                <button className="promo-button">
+                  <i className="fas fa-arrow-right me-2"></i>
+                  Learn more
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Team & Contact Section */}
       <div className="container-fluid my-5">
         <div className="team-contact-container">
           {/* Team Section */}
@@ -390,8 +409,8 @@ const AgentProfile = () => {
               <strong>MEET TIFFENY'S TEAM</strong>
             </h3>
             <p>
-              When you work with DRD, one agent is responsible for your success,
-              but you really get a whole team. DRD agents work closely with a
+              When you work with UrbanCraft, one agent is responsible for your success,
+              but you really get a whole team. UrbanCraft agents work closely with a
               team of real estate professionals to ensure every sale closes
               without a hitch.
             </p>
@@ -422,41 +441,45 @@ const AgentProfile = () => {
 
           {/* Contact Section */}
           <div className="contact-section">
-            <form className="contact-form">
+            <form className="contact-form text-white">
               <h3>
-                <strong>ASK TIFFENY A QUESTION</strong>
+                <strong className="text-white">ASK TIFFENY A QUESTION</strong>
               </h3>
-              <label htmlFor="phone">Phone</label>
-              <input type="tel" id="phone" placeholder="(  ) -" />
+              <label className="text-white" htmlFor="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="(  ) -" className="text-white" />
 
               <div className="checkbox-group">
                 <label>
-                  <strong>I'm considering</strong>
+                  <strong className="text-white">I'm considering</strong>
                 </label>
                 <div>
                   <label>
                     <input
                       type="checkbox"
+                      className="text-white"
                       checked={buying}
                       onChange={() => setBuying(!buying)}
                     />
-                    Buying
+                    <span className="text-white">Buying</span>
+
                   </label>
                   <label>
                     <input
                       type="checkbox"
                       checked={selling}
+                      className="text-white"
                       onChange={() => setSelling(!selling)}
                     />
-                    Selling
+                    <span className="text-white">Selling</span>
                   </label>
                 </div>
               </div>
 
-              <label htmlFor="message">What can we do for you?</label>
-              <textarea id="message" rows="4" />
+              <label htmlFor="message" className="text-white">What can we do for you?</label>
+              <textarea id="message" rows="4" className="text-white" />
 
               <button type="submit" className="contact-button">
+                <i className="fas fa-paper-plane me-2"></i>
                 Contact Tiffeny
               </button>
             </form>
@@ -467,6 +490,7 @@ const AgentProfile = () => {
           </div>
         </div>
       </div>
+      
       <Footer />
     </>
   );

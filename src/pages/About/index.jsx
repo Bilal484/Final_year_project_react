@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
@@ -12,6 +12,52 @@ import { ToastContainer, toast } from "react-toastify";
 
 const About = () => {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [isLoading, setIsLoading] = useState(false);
+    
+    // Refs for animations
+    const sectionRefs = {
+        about: useRef(null),
+        mission: useRef(null),
+        coreValues: useRef(null),
+        testimonials: useRef(null),
+        contact: useRef(null)
+    };
+    
+    // Handle intersection observer for animations
+    useEffect(() => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('uc-visible');
+                }
+            });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        
+        // Observe all section refs
+        Object.values(sectionRefs).forEach(ref => {
+            if (ref.current) {
+                const elements = ref.current.querySelectorAll('.uc-fade-in');
+                elements.forEach(el => observer.observe(el));
+            }
+        });
+        
+        return () => {
+            Object.values(sectionRefs).forEach(ref => {
+                if (ref.current) {
+                    const elements = ref.current.querySelectorAll('.uc-fade-in');
+                    elements.forEach(el => observer.unobserve(el));
+                }
+            });
+        };
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,6 +66,8 @@ const About = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+        
         try {
             const response = await fetch("https://api.biznetusa.com/api/store-getintouch", {
                 method: "POST",
@@ -37,13 +85,15 @@ const About = () => {
                 toast.error("Failed to send your message. Please try again.");
             }
         } catch (error) {
-            alert("An error occurred. Please try again later.");
+            toast.error("An error occurred. Please try again later.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
         <>
-        <Helmet>
+            <Helmet>
                 <title>About UrbanCraft REAL ESTATE - Leading Real Estate Innovators</title>
                 <meta name="description" content="Learn about UrbanCraft REAL ESTATE's mission to lead the real estate market through innovation, integrity, and excellence. Discover our core values and how we empower our clients." />
                 <meta name="keywords" content="UrbanCraft REAL ESTATE, about UrbanCraft REAL ESTATE, UrbanCraft REAL ESTATE mission, UrbanCraft REAL ESTATE values, real estate innovation, professional real estate services" />
@@ -58,116 +108,151 @@ const About = () => {
                 <meta name="twitter:image" content={aboutImage1} />
                 <meta name="twitter:image:alt" content="About UrbanCraft REAL ESTATE Image - Real Estate Innovators" />
             </Helmet>
-            <ToastContainer />
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick pauseOnFocusLoss draggable pauseOnHover />
             <Header />
-            <main className="about">
+            <main className="uc-about-page">
                 {/* Hero Section */}
-                <section className="">
-                    <div className="container-fluid hero d-flex justify-content-center align-items-center flex-column">
-                        <h1 className="">Welcome to UrbanCraft REAL ESTATE</h1>
-                        <p className="">
+                <section className="uc-hero-section">
+                    <div className="container-fluid uc-hero-container d-flex justify-content-center align-items-center flex-column">
+                        <h1 className="uc-hero-title">Welcome to UrbanCraft REAL ESTATE</h1>
+                        <p className="uc-hero-subtitle">
                             Leading the Real Estate Market with Integrity and Innovation.
                         </p>
-                        <a href="#about" className="btn btn-primary ">
+                        <a href="#about" className="uc-hero-btn btn">
                             Learn More About Us
                         </a>
                     </div>
                 </section>
+                
                 {/* About Section */}
-                <section id="about" className="py-5">
+                <section id="about" ref={sectionRefs.about} className="uc-about-section py-5">
                     <div className="container">
-                        <h2 className="section-title ">About UrbanCraft REAL ESTATE</h2>
-                        <div className="row align-items-center">
+                        <h2 className="uc-section-title uc-fade-in">About UrbanCraft REAL ESTATE</h2>
+                        <div className="row align-items-center uc-fade-in">
                             <ImagewithText
-                                content=" At UrbanCraft REAL ESTATE, we’re revolutionizing the real estate industry by creating a smarter, faster, and more efficient way to connect professionals. Our platform is designed to bridge the gap between buyers, sellers, investors, and service providers, empowering them to achieve their goals through seamless collaboration and personalized solutions. "
+                                content="At UrbanCraft REAL ESTATE, we're revolutionizing the real estate industry by creating a smarter, faster, and more efficient way to connect professionals. Our platform is designed to bridge the gap between buyers, sellers, investors, and service providers, empowering them to achieve their goals through seamless collaboration and personalized solutions."
                                 imgSrc={aboutImage1}
                                 altText="About UrbanCraft REAL ESTATE"
                             />
                         </div>
                     </div>
                 </section>
-                <MissionVision />
+                
+                {/* Mission & Vision Section (Component) */}
+                <div ref={sectionRefs.mission}>
+                    <MissionVision />
+                </div>
+                
                 {/* Core Values Section */}
-                <section className="py-5 bg-light">
+                <section ref={sectionRefs.coreValues} className="uc-core-values py-5 bg-light">
                     <div className="container">
-                        <h2 className="section-title ">Our Core Values</h2>
+                        <h2 className="uc-section-title uc-fade-in">Our Core Values</h2>
                         <div className="row text-light">
-                            <CoreValueCard
-                                title="Integrity"
-                                text="We uphold transparency, honesty, and ethical practices in all our transactions, ensuring that our clients' interests are always our top priority."
-                            />
-                            <CoreValueCard
-                                title="Innovation"
-                                text="We continually embrace new trends and technologies to offer creative, cutting-edge solutions that meet the evolving demands of the real estate industry."
-                            />
-                            <CoreValueCard
-                                title="Excellence"
-                                text="We are committed to delivering outstanding results in every project, consistently striving for the highest standards of quality and client satisfaction."
-                            />
+                            <div className="col-md-4 mb-4 uc-fade-in">
+                                <CoreValueCard
+                                    title="Integrity"
+                                    text="We uphold transparency, honesty, and ethical practices in all our transactions, ensuring that our clients' interests are always our top priority."
+                                />
+                            </div>
+                            <div className="col-md-4 mb-4 uc-fade-in" style={{ animationDelay: '0.2s' }}>
+                                <CoreValueCard
+                                    title="Innovation"
+                                    text="We continually embrace new trends and technologies to offer creative, cutting-edge solutions that meet the evolving demands of the real estate industry."
+                                />
+                            </div>
+                            <div className="col-md-4 mb-4 uc-fade-in" style={{ animationDelay: '0.4s' }}>
+                                <CoreValueCard
+                                    title="Excellence"
+                                    text="We are committed to delivering outstanding results in every project, consistently striving for the highest standards of quality and client satisfaction."
+                                />
+                            </div>
                         </div>
                     </div>
                 </section>
-                <Testimonial />
+                
+                {/* Testimonial Section (Component) */}
+                <div ref={sectionRefs.testimonials}>
+                    <Testimonial />
+                </div>
+                
                 {/* Contact Section */}
-                <section id="contact" className="py-2 bg-light">
+                <section ref={sectionRefs.contact} id="contact" className="uc-contact-section py-5">
                     <div className="container">
-                        <h2 className="text-center mb-4">Get in Touch</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="row mb-3">
-                                <div className="col-md-6">
-                                    <label htmlFor="name" className="form-label">
-                                        Your Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="name"
-                                        id="name"
-                                        placeholder="Your Name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <div className="col-md-6">
-                                    <label htmlFor="email" className="form-label">
-                                        Your Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        className="form-control"
-                                        name="email"
-                                        id="email"
-                                        placeholder="Your Email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                    />
+                        <h2 className="uc-section-title uc-fade-in">Get in Touch</h2>
+                        <div className="row justify-content-center">
+                            <div className="col-lg-8">
+                                <div className="uc-contact-form uc-fade-in">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="row mb-4">
+                                            <div className="col-md-6 mb-3 mb-md-0">
+                                                <label htmlFor="name" className="uc-form-label form-label">
+                                                    Your Name
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    className="uc-form-control form-control"
+                                                    name="name"
+                                                    id="name"
+                                                    placeholder="Your Name"
+                                                    value={formData.name}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="col-md-6">
+                                                <label htmlFor="email" className="uc-form-label form-label">
+                                                    Your Email
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    className="uc-form-control form-control"
+                                                    name="email"
+                                                    id="email"
+                                                    placeholder="Your Email"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="mb-4">
+                                            <label htmlFor="message" className="uc-form-label form-label">
+                                                Your Message
+                                            </label>
+                                            <textarea
+                                                className="uc-form-control form-control"
+                                                name="message"
+                                                id="message"
+                                                placeholder="Your Message"
+                                                rows={5}
+                                                value={formData.message}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="text-center">
+                                            <button 
+                                                type="submit" 
+                                                className="uc-contact-btn"
+                                                disabled={isLoading}
+                                            >
+                                                {isLoading ? (
+                                                    <>
+                                                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                        Sending...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <i className="fas fa-paper-plane me-2"></i>
+                                                        Send Message
+                                                    </>
+                                                )}
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div className="row mb-3">
-                                <div className="col-md-12">
-                                    <label htmlFor="message" className="form-label">
-                                        Your Message
-                                    </label>
-                                    <textarea
-                                        className="form-control"
-                                        name="message"
-                                        id="message"
-                                        placeholder="Your Message"
-                                        rows={5}
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <button type="submit" className="btn btn-outline-info">
-                                    Send Message
-                                </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </section>
             </main>

@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--font_family);
 }
 
 html {
@@ -9,13 +10,16 @@ html {
 }
 
 :root {
-    --background_color: #0c2640;
-    --color: #09aab0;
+    --background_color: #0B0B45;
+    --color: #996C22 ;
     --color_white: white;
-    --hover_bg_color: #09aab0;
-    --color-gray: #f5f5f5;
-    --font_family: "Arial", sans-serif;
+    --hover_bg_color: #FFFB90;
+    --color-gray: #F5F5F5;
+    --font_family: "Poppins", sans-serif;
 }
+
+
+
 
 button {
     background-color: var(--background_color) !important;

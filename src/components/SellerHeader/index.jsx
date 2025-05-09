@@ -87,11 +87,11 @@ const SellerHeader = () => {
                                                             All Jobs
                                                         </Link>
                                                     </li>
-                                                    <li>
+                                                    {/* <li>
                                                         <Link className="dropdown-item" to="/HVHApply">
                                                             Real Estate Agents
                                                         </Link>
-                                                    </li>
+                                                    </li> */}
                                                     <li>
                                                         <Link
                                                             className="dropdown-item"
@@ -115,7 +115,7 @@ const SellerHeader = () => {
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li className="nav-item dropdown">
+                                            {/* <li className="nav-item dropdown">
                                                 <Link
                                                     className="nav-link dropdown-toggle btn-more-user-panel border-0 pt-2"
                                                     to="#"
@@ -131,27 +131,27 @@ const SellerHeader = () => {
                                                     aria-labelledby="navbarDropdown"
                                                 >
                                                     <li>
-                                                        <Link className="dropdown-item" to="javascript:void(0)">
+                                                        <Link className="dropdown-item" to="#">
                                                             Mission Values
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <Link className="dropdown-item" to="javascript:void(0)">
+                                                        <Link className="dropdown-item" to="#">
                                                             Diversity
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <Link className="dropdown-item" to="javascript:void(0)">
+                                                        <Link className="dropdown-item" to="#">
                                                             Life At UrbanCraft REAL ESTATE
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <Link className="dropdown-item" to="javascript:void(0)">
+                                                        <Link className="dropdown-item" to="#">
                                                             Community Impact
                                                         </Link>
                                                     </li>
                                                 </ul>
-                                            </li>
+                                            </li> */}
                                             <li className="nav-item">
                                                 <Link className="nav-link" to="/CareerAgent">
                                                     Career
@@ -172,7 +172,7 @@ const SellerHeader = () => {
                                             {/* login model */}
                                             {/*  */}
                                             <li className="nav-item">
-                                                <Link className="nav-link" to="javascript:void(0)">
+                                                <Link className="nav-link" to="#">
                                                     <i className="fa-regular fa-user" /> SignUp
                                                 </Link>
                                             </li>

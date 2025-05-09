@@ -10,7 +10,17 @@ const RealEstateTabs = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [isInputFocused, setIsInputFocused] = useState(false);
     const abortControllerRef = useRef(null);
+    const searchTimeout = useRef(null);
+
+    const tabOptions = [
+        { id: "buy", label: "Buy", icon: "fa-home" },
+        { id: "rent", label: "Rent", icon: "fa-key" },
+        { id: "sell", label: "Sell", icon: "fa-tag" },
+        { id: "mortgage", label: "Mortgage", icon: "fa-dollar-sign" },
+        { id: "estimate", label: "Estimate", icon: "fa-calculator" }
+    ];
 
     const fetchSearchResults = async (query) => {
         setLoading(true);
@@ -38,7 +48,7 @@ const RealEstateTabs = () => {
             if (axios.isCancel(err)) {
                 console.log("Request canceled:", err.message);
             } else {
-                setError("sorry nothing found");
+                setError("No properties found matching your search criteria");
                 setSearchResults([]);
             }
         } finally {
@@ -49,15 +59,38 @@ const RealEstateTabs = () => {
     const handleSearch = () => {
         if (!searchTerm.trim()) {
             setError("Please enter a search term");
+            setSearchResults([]);
             return;
         }
-        fetchSearchResults(searchTerm);
+
+        // Clear previous timeout
+        if (searchTimeout.current) {
+            clearTimeout(searchTimeout.current);
+        }
+
+        // Debounce search to avoid too many requests
+        searchTimeout.current = setTimeout(() => {
+            fetchSearchResults(searchTerm);
+        }, 500);
+    };
+
+    const handleInputChange = (e) => {
+        setSearchTerm(e.target.value);
+        if (e.target.value.trim().length > 2) {
+            handleSearch();
+        } else if (e.target.value.trim().length === 0) {
+            setSearchResults([]);
+            setError("");
+        }
     };
 
     useEffect(() => {
         return () => {
             if (abortControllerRef.current) {
                 abortControllerRef.current.abort();
+            }
+            if (searchTimeout.current) {
+                clearTimeout(searchTimeout.current);
             }
         };
     }, []);
@@ -66,92 +99,115 @@ const RealEstateTabs = () => {
         <>
             <Helmet>
                 <title>Real Estate Search | UrbanCraft REAL ESTATE</title>
+                <meta name="description" content="Find the perfect property with our easy-to-use search tool. Buy, rent, or sell properties with UrbanCraft REAL ESTATE." />
             </Helmet>
-            <div className="col-lg-5 pt-4 mb-4">
-                <div className="container steps_buttons_real justify-content-center d-flex align-content-center flex-column">
-                    <h1 className="text-start fs-2 fw-bold my-4">
-                        Find the right home at the right price
-                    </h1>
+
+            <div className="col-lg-6  pt-4 mb-4">
+                <div className="real-estate-search-container">
+                    <h1>Find the right home at the right price</h1>
 
                     {/* Navigation Tabs */}
-                    <ul
-                        className="nav nav-tabs mb-3 d-flex flex-wrap"
-                        id="realEstateTabs"
-                    >
-                        {["buy", "rent", "sell", "mortgage", "estimate"].map((tab) => (
-                            <li key={tab} className="nav-item mx-2" >
-                                <button
-                                    className={`nav-link w-100 text-center ${activeTab === tab ? "active" : ""
-                                        }`}
-                                    onClick={() => setActiveTab(tab)}
-                                >
-                                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                                </button>
-                            </li>
+                    <div className="tab-navigation">
+                        {tabOptions.map((tab) => (
+                            <button
+                                key={tab.id}
+                                className={`tab-button ${activeTab === tab.id ? "active" : ""}`}
+                                onClick={() => setActiveTab(tab.id)}
+                            >
+                                <i className={`fas ${tab.icon} me-2`}></i>
+                                {tab.label}
+                            </button>
                         ))}
-                    </ul>
+                    </div>
 
                     {/* Tab Content */}
-                    <div className="tab-content rounded-2">
-                        {["buy", "rent", "sell", "mortgage", "estimate"].map((tab) => (
+                    <div className="tab-content">
+                        {tabOptions.map((tab) => (
                             <div
-                                key={tab}
-                                className={`tab-pane fade ${activeTab === tab ? "show active" : ""
-                                    }`}
-                                id={tab}
+                                key={tab.id}
+                                className={`tab-pane ${activeTab === tab.id ? "active" : "d-none"}`}
+                                id={tab.id}
                                 role="tabpanel"
                             >
-                                <div className="search-bar overflow-hidden rounded-2">
-                                    <input
-                                        type="text"
-                                        className="form-control overflow-hidden"
-                                        placeholder={`Search for ${tab}`}
-                                        value={searchTerm}
-                                        onChange={(e) => {
-                                            setSearchTerm(e.target.value);
-                                            handleSearch();
-                                        }}
-                                    />
-                                    <button type="button" onClick={handleSearch} className="m-0">
-                                        <i className="fa-solid fa-magnifying-glass m-0" />
-                                    </button>
+                                <div className={`search-bar-wrapper ${isInputFocused ? "focused" : ""}`}>
+                                    <div className="search-bar">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder={`Search for ${tab.label.toLowerCase()} properties...`}
+                                            value={searchTerm}
+                                            onChange={handleInputChange}
+                                            onFocus={() => setIsInputFocused(true)}
+                                            onBlur={() => setIsInputFocused(false)}
+                                        />
+                                        <button type="button" onClick={handleSearch} aria-label="Search">
+                                            <i className="fa-solid fa-magnifying-glass" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Loading and Error Messages */}
-                    {loading && <p>Loading...</p>}
-                    {error && <p className="text-danger">{error}</p>}
+                    {loading && (
+                        <div className="loading-indicator">
+                            <div className="spinner"></div>
+                        </div>
+                    )}
+
+                    {error && (
+                        <div className="error-message">
+                            <i className="fa-solid fa-circle-exclamation"></i>
+                            {error}
+                        </div>
+                    )}
 
                     {/* Display Search Results */}
                     <div className="search-results">
                         {searchResults.length > 0 ? (
                             <ul className="list-group">
-                                {searchResults.slice(0, 3).map((property) => (
-                                    <Link to={`/ProductDetail/${property.id}`}>
-                                        <li
-                                            key={property.id}
-                                            className="list-group-item property-card text-decoration-none"
-                                        >
-                                            <h5 className="mb-2">{property.title}</h5>
-                                            <p className="text-truncate" title={property.desc}>
+                                {searchResults.slice(0, 3).map((property, index) => (
+                                    <Link
+                                        to={`/ProductDetail/${property.id}`}
+                                        key={property.id}
+                                        className="text-decoration-none"
+                                    >
+                                        <li className="list-group-item property-card">
+                                            <div className="property-image-wrapper">
+                                                <img
+                                                    src={property.image_url || `https://source.unsplash.com/random/600x400/?house,property&sig=${index}`}
+                                                    alt={property.title}
+                                                    className="property-image"
+                                                />
+                                            </div>
+
+                                            <div className="d-flex justify-content-between align-items-start mb-2">
+                                                <h5 className="mb-1">{property.title}</h5>
+                                                <span className="property-price">${property.price}</span>
+                                            </div>
+
+                                            <p className="text-truncate mb-2" title={property.desc}>
                                                 {property.desc.length > 100
                                                     ? `${property.desc.substring(0, 100)}...`
                                                     : property.desc}
                                             </p>
-                                            <p>
-                                                <strong>Location:</strong> {property.location}
-                                            </p>
-                                            <p>
-                                                <strong>Price:</strong> ${property.price}
-                                            </p>
+
+                                            <div className="property-location">
+                                                <i className="fa-solid fa-location-dot"></i>
+                                                {property.location}
+                                            </div>
                                         </li>
                                     </Link>
                                 ))}
                             </ul>
                         ) : (
-                            !loading && <p>No results found.</p>
+                            !loading && searchTerm.trim() !== "" && (
+                                <div className="no-results-found">
+                                    <i className="fa-solid fa-search me-2"></i>
+                                    No properties found. Try different keywords.
+                                </div>
+                            )
                         )}
                     </div>
                 </div>

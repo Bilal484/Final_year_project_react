@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import React, { useEffect, useState, useRef } from "react";
+import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { TranslateText, useTranslation } from "../../translation";
+import "./WhatsNewSection.css";
 
 const WhatsNewSection = () => {
-    const { translateBatch, t } = useTranslation()
+    const { translateBatch, t } = useTranslation();
     const [newsItems, setNewsItems] = useState([]);
     const [imagePath, setImagePath] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const sectionRef = useRef(null);
     const navigate = useNavigate();
 
     const handleReadMore = (id) => {
@@ -15,7 +19,31 @@ const WhatsNewSection = () => {
     };
 
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    entries[0].target.classList.add("wn-visible");
+                }
+            },
+            { threshold: 0.2 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
         const fetchLatestBlogs = async () => {
+            setIsLoading(true);
+            setError(null);
+            
             try {
                 const response = await fetch("https://api.biznetusa.com/api/get-latestblog");
                 const data = await response.json();
@@ -32,14 +60,25 @@ const WhatsNewSection = () => {
 
                     setNewsItems(translatedBlogs);
                     setImagePath(data.imagePath);
+                } else {
+                    setError("Failed to fetch latest blogs");
                 }
             } catch (error) {
                 console.error("Error fetching blogs:", error);
+                setError("An error occurred while fetching the latest blogs");
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchLatestBlogs();
     }, [translateBatch]);
+
+    // Format date function
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
     return (
         <>
@@ -57,39 +96,69 @@ const WhatsNewSection = () => {
                 <meta name="twitter:description" content="Stay updated with the latest blogs and news from UrbanCraft REAL ESTATE." />
                 <meta name="twitter:image" content="https://via.placeholder.com/150" />
             </Helmet>
-            <Container>
-                <h4 className="mb-4"><TranslateText>What's New</TranslateText></h4>
-                <hr className="mb-4" />
-                <Row className="gy-4">
-                    {newsItems.map((newsItem, index) => (
-                        <Col md={12} key={index}>
-                            <Card className="border-0 h-100">
-                                <Row className="g-0 align-items-center">
-                                    <Col xs={4}>
-                                        <Card.Img
-                                            src={
-                                                newsItem.images && newsItem.images.length > 0
-                                                    ? `${imagePath}/${newsItem.images[0].image}`
-                                                    : "https://via.placeholder.com/150"
-                                            }
-                                            alt={newsItem.title}
-                                            className="rounded"
-                                            onClick={() => handleReadMore(newsItem.id)}
-                                        />
-                                    </Col>
-                                    <Col xs={8}>
-                                        <Card.Body>
-                                            <Card.Title className="fs-6">
-                                                {newsItem.title}
-                                            </Card.Title>
-                                        </Card.Body>
-                                    </Col>
-                                </Row>
-                            </Card>
-                        </Col>
-                    ))}
-                </Row>
-            </Container>
+            
+            <div className="wn-section wn-animate" ref={sectionRef}>
+                <div className="wn-header">
+                    <h4 className="wn-title">
+                        <TranslateText>What's New</TranslateText>
+                    </h4>
+                    <div className="wn-line"></div>
+                </div>
+
+                {isLoading ? (
+                    <div className="wn-loading">
+                        <Spinner animation="border" variant="primary" size="sm" />
+                        {/* <p><TranslateText>Loading latest news...</TranslateText></p> */}
+                    </div>
+                ) : newsItems.length === 0 ? (
+                    <div className="wn-empty">
+                        <i className="fas fa-newspaper"></i>
+                        <p><TranslateText>No news available</TranslateText></p>
+                    </div>
+                ) : (
+                    <div className="wn-news-list">
+                        {newsItems.map((newsItem, index) => (
+                            <div 
+                                key={index} 
+                                className="wn-news-item"
+                                onClick={() => handleReadMore(newsItem.id)}
+                                style={{ animationDelay: `${index * 0.1}s` }}
+                            >
+                                <div className="wn-news-image-container">
+                                    <img
+                                        src={
+                                            newsItem.images && newsItem.images.length > 0
+                                                ? `${imagePath}/${newsItem.images[0].image}`
+                                                : "https://via.placeholder.com/150"
+                                        }
+                                        alt={newsItem.title}
+                                        className="wn-news-image"
+                                        loading="lazy"
+                                    />
+                                    <div className="wn-news-overlay"></div>
+                                </div>
+                                <div className="wn-news-content">
+                                    <h5 className="wn-news-title">{newsItem.title}</h5>
+                                    {newsItem.created_at && (
+                                        <div className="wn-news-date">
+                                            <i className="far fa-calendar-alt"></i>
+                                            <span>{formatDate(newsItem.created_at)}</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                        
+                        <button 
+                            className="wn-view-all-btn"
+                            onClick={() => navigate('/blog')}
+                        >
+                            <TranslateText>View All Articles</TranslateText>
+                            <i className="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                )}
+            </div>
         </>
     );
 };
