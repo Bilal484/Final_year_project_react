@@ -102,6 +102,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import ChatPage from './pages/ChatsWithUsers';
 import ProductComponent from './pages/ProductComponent';
 import ExecutiveLeaders from './components/ExecutiveLeaders';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
     const [userRole, setUserRole] = useState(null); // User role is null initially
@@ -117,6 +118,7 @@ function App() {
 
     return (
         <Router>
+        <ScrollToTop/>
             <div>
                 <Routes>
                     {/* Always show the Home route */}
