@@ -92,19 +92,19 @@ const SellerHeader = () => {
                                                             Real Estate Agents
                                                         </Link>
                                                     </li> */}
-                                                    <li>
+                                                    {/* <li>
                                                         <Link
                                                             className="dropdown-item"
                                                             to="/AssociateAgentIndependent"
                                                         >
                                                             Asociate Agent-Independent Constructor
                                                         </Link>
-                                                    </li>
-                                                    <li>
+                                                    </li> */}
+                                                    {/* <li>
                                                         <Link className="dropdown-item" to="#">
                                                             Title And Escrow Jobs
                                                         </Link>
-                                                    </li>
+                                                    </li> */}
                                                     <li>
                                                         <Link
                                                             className="dropdown-item"
@@ -152,14 +152,12 @@ const SellerHeader = () => {
                                                     </li>
                                                 </ul>
                                             </li> */}
-                                            <li className="nav-item">
+                                            {/* <li className="nav-item">
                                                 <Link className="nav-link" to="/CareerAgent">
                                                     Career
                                                 </Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                {/* Candidate Login Modal Button */}
-                                                {/* Candidate Login Modal Button */}
+                                            </li> */}
+                                            {/* <li className="nav-item">
                                                 <Link
                                                     className="nav-link"
                                                     to="#"
@@ -168,14 +166,14 @@ const SellerHeader = () => {
                                                 >
                                                     Candidate Login
                                                 </Link>
-                                            </li>
+                                            </li> */}
                                             {/* login model */}
                                             {/*  */}
-                                            <li className="nav-item">
+                                            {/* <li className="nav-item">
                                                 <Link className="nav-link" to="#">
                                                     <i className="fa-regular fa-user" /> SignUp
                                                 </Link>
-                                            </li>
+                                            </li> */}
                                             <li className="nav-item">
                                                 <Link className="nav-link" to="/SaveJob">
                                                     <i className="fa-regular fa-heart" /> Saved Jobs({totalFavJobs})

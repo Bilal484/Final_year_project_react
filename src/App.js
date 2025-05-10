@@ -26,6 +26,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import LicenseVerification from './pages/LinceVerifications';
 import AgentProfile from './pages/RealEstateAgents';
+import AgentSearch from './pages/RealEstateAgents/AgentSearch';
 import StartOffer from './pages/StartOffer';
 import OfferPage from './pages/FinalOffers';
 import ProductDetail from './pages/ProductDetail';
@@ -118,12 +119,11 @@ function App() {
 
     return (
         <Router>
-        <ScrollToTop/>
+            <ScrollToTop />
             <div>
                 <Routes>
                     {/* Always show the Home route */}
                     <Route path="/" element={<Home />} />
-
                     {/* Public Routes */}
                     <Route path="/Login" element={<Login />} />
                     <Route path="/SignUp" element={<SignUp />} />
@@ -132,7 +132,6 @@ function App() {
                     <Route path="/ExecutiveLeaders" element={<ExecutiveLeaders />} />
 
                     {/* Protected Routes */}
-
                     <>
                         <Route path="/Buy" element={<Buy />} />
                         <Route path="/Sell" element={<Sell />} />
@@ -154,9 +153,8 @@ function App() {
                         <Route path="/blog/:id" element={<SingleBlog />} />
                         <Route path="/FAQs" element={<FAQsPage />} />
                         <Route path="/Guides" element={<Guides />} />
-                        <Route path="/ProductMainDetail" element={<ProductMainDetail />} />
-                        <Route path="/Licenese-Verifications" element={<LicenseVerification />} />
-                        <Route path="/real-estate-agents/:agentName" element={<AgentProfile />} />
+                        <Route path="/ProductMainDetail" element={<ProductMainDetail />} />                        <Route path="/Licenese-Verifications" element={<LicenseVerification />} />
+                        <Route path="/agents" element={<Agent />} />
                         <Route path="/start-an-offer" element={<StartOffer />} />
                         <Route path="/Final-Offer" element={<OfferPage />} />
                         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
@@ -183,8 +181,8 @@ function App() {
                         <Route path="/SuccessfulApply" element={<SuccessfulApply />} />
                         <Route path="/TermandUse" element={<TermandUse />} />
                         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-                        <Route path='/Start-chat-with-znet'element={<ChatPage/>}/>
-                        <Route path='ProductComponent' element={<ProductComponent/>}/>
+                        <Route path='/Start-chat-with-znet' element={<ChatPage />} />
+                        <Route path='ProductComponent' element={<ProductComponent />} />
 
 
                         {/* Role-Based Protected Routes */}
@@ -200,7 +198,9 @@ function App() {
                                 <Route path="/Review" element={<Review />} />
                                 <Route path="/Offer" element={<Offer />} />
                                 <Route path="/Appointments" element={<Appointments />} />
-                                <Route path="/Agent" element={<Agent />} />
+                                <Route path="/Agent" element={<AgentSearch />} />
+                                <Route path="/agents/:id" element={<AgentProfile />} />
+
                             </>
                         )}
                         {/* Seller */}

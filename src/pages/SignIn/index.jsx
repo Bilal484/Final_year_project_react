@@ -33,24 +33,24 @@ const SignUp = () => {
     // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: { 
+        visible: {
             opacity: 1,
-            transition: { 
+            transition: {
                 when: "beforeChildren",
                 staggerChildren: 0.15
             }
         }
     };
-    
+
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
-        visible: { 
-            y: 0, 
+        visible: {
+            y: 0,
             opacity: 1,
-            transition: { 
-                type: "spring", 
-                stiffness: 300, 
-                damping: 24 
+            transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 24
             }
         }
     };
@@ -114,7 +114,7 @@ const SignUp = () => {
                     email: email,
                     password: uid, // Use UID as a placeholder password
                 }));
-                
+
                 toast.info(`Connected with ${provider}. Please complete your registration.`);
                 // Fetch roles and questions based on defaults or ask user to choose
                 fetchRoles();
@@ -306,21 +306,23 @@ const SignUp = () => {
             </Helmet>
             <main className="auth-background">
                 <div className="auth-container">
-                    <motion.div 
+                    <motion.div
                         className="auth-card signup-card"
                         initial="hidden"
                         animate="visible"
                         variants={containerVariants}
                     >
-                        <motion.div className="logo-container" variants={itemVariants}>
-                            <img
-                                src={ZnetLogo}
-                                alt="UrbanCraft REAL ESTATE Logo"
-                                className="auth-logo"
-                            />
+                        <motion.div className="logo-container " variants={itemVariants}>
+                            <Link to="/">
+                                <img
+                                    src={ZnetLogo}
+                                    alt="UrbanCraft REAL ESTATE Logo"
+                                    className="auth-logo"
+                                />
+                            </Link>
                             <div className="logo-shine"></div>
                         </motion.div>
-                        
+
                         <motion.div className="auth-tabs" variants={itemVariants}>
                             <Link
                                 className="auth-tab"
@@ -352,13 +354,13 @@ const SignUp = () => {
                                 <span className="step-name">Questions</span>
                             </div>
                         </motion.div>
-                        
-                        <motion.form 
+
+                        <motion.form
                             onSubmit={handleSubmit}
                             variants={itemVariants}
                         >
                             {currentStep === 1 && (
-                                <motion.div 
+                                <motion.div
                                     className="form-step"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -406,7 +408,7 @@ const SignUp = () => {
                                                 onChange={handleChange}
                                                 required
                                             />
-                                            <button 
+                                            <button
                                                 type="button"
                                                 className="password-toggle-btn"
                                                 onClick={() => setShowPassword(!showPassword)}
@@ -433,7 +435,7 @@ const SignUp = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="form-buttons">
                                         <button
                                             type="button"
@@ -443,12 +445,12 @@ const SignUp = () => {
                                             Next <i className="fas fa-arrow-right"></i>
                                         </button>
                                     </div>
-                                    
+
                                     <div className="social-login-container">
                                         <div className="social-divider">
                                             <span>Or sign up with</span>
                                         </div>
-                                        
+
                                         <div className="social-buttons">
                                             <button
                                                 type="button"
@@ -459,7 +461,7 @@ const SignUp = () => {
                                                 <i className="fab fa-google"></i>
                                                 <span className="social-btn-text">Google</span>
                                             </button>
-                                            
+
                                             <button
                                                 type="button"
                                                 onClick={() => handleSocialLogin(signInWithFacebook, "Facebook")}
@@ -469,7 +471,7 @@ const SignUp = () => {
                                                 <i className="fab fa-facebook-f"></i>
                                                 <span className="social-btn-text">Facebook</span>
                                             </button>
-                                            
+
                                             <button
                                                 type="button"
                                                 onClick={() => handleSocialLogin(signInWithApple, "Apple")}
@@ -483,9 +485,9 @@ const SignUp = () => {
                                     </div>
                                 </motion.div>
                             )}
-                            
+
                             {currentStep === 2 && (
-                                <motion.div 
+                                <motion.div
                                     className="form-step"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -500,7 +502,7 @@ const SignUp = () => {
                                                 <div
                                                     key={role.id}
                                                     className={`role-option ${parseInt(formData.role_id) === role.id ? 'selected' : ''}`}
-                                                    onClick={() => setFormData({...formData, role_id: role.id.toString()})}
+                                                    onClick={() => setFormData({ ...formData, role_id: role.id.toString() })}
                                                 >
                                                     <div className="role-icon">
                                                         {role.role_name === 'buyer' && <i className="fas fa-home"></i>}
@@ -524,7 +526,7 @@ const SignUp = () => {
                                             ))}
                                         </div>
                                     </div>
-                                    
+
                                     <div className="form-buttons">
                                         <button
                                             type="button"
@@ -544,9 +546,9 @@ const SignUp = () => {
                                     </div>
                                 </motion.div>
                             )}
-                            
+
                             {currentStep === 3 && (
-                                <motion.div 
+                                <motion.div
                                     className="form-step"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -686,7 +688,7 @@ const SignUp = () => {
                                             ))
                                         )}
                                     </div>
-                                    
+
                                     <div className="form-buttons">
                                         <button
                                             type="button"
@@ -715,7 +717,7 @@ const SignUp = () => {
                                 </motion.div>
                             )}
                         </motion.form>
-                        
+
                         <motion.div className="auth-footer" variants={itemVariants}>
                             <p>
                                 By signing up, you agree to our{" "}
@@ -726,7 +728,7 @@ const SignUp = () => {
                     </motion.div>
                 </div>
             </main>
-            <ToastContainer 
+            <ToastContainer
                 position="top-right"
                 autoClose={5000}
                 hideProgressBar={false}

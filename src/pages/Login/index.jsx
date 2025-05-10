@@ -23,15 +23,15 @@ const Login = () => {
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         when: "beforeChildren",
         staggerChildren: 0.2
       }
     }
   };
-  
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1 }
@@ -42,7 +42,7 @@ const Login = () => {
       .then(async (user) => {
         if (user) {
           const { email } = user;
-  
+
           try {
             // Verify email with API
             const response = await fetch("https://api.biznetusa.com/api/user-emailverify", {
@@ -52,14 +52,14 @@ const Login = () => {
               },
               body: JSON.stringify({ email }),
             });
-  
+
             if (!response.ok) {
               console.error("Response status:", response.status, response.statusText);
               throw new Error("Failed to verify user email.");
             }
-  
+
             const data = await response.json();
-  
+
             // Validate API response structure
             if (
               data &&
@@ -75,7 +75,7 @@ const Login = () => {
               localStorage.setItem("user_role", data.role_name.roles.role_name);
               localStorage.setItem("user_email", data.role_name.email);
               localStorage.setItem("user_name", data.role_name.name);
-  
+
               toast.success("Login successful!");
               navigate("/"); // Redirect after successful login
             } else {
@@ -94,7 +94,7 @@ const Login = () => {
         toast.error(`Login failed: ${error.message}`);
       });
   };
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -186,14 +186,15 @@ const Login = () => {
             variants={containerVariants}
           >
             <motion.div className="logo-container" variants={itemVariants}>
-              <img
+              <Link to="/"> <img
                 src={ZnetLogo}
                 alt="UrbanCraft REAL ESTATE Logo"
                 className="auth-logo"
               />
+              </Link>
               <div className="logo-shine"></div>
             </motion.div>
-            
+
             <motion.div className="auth-tabs" variants={itemVariants}>
               <Link
                 className="auth-tab auth-tab-active"
@@ -208,9 +209,9 @@ const Login = () => {
                 New Account
               </Link>
             </motion.div>
-            
-            <motion.form 
-              onSubmit={handleLogin} 
+
+            <motion.form
+              onSubmit={handleLogin}
               className="auth-form"
               variants={itemVariants}
             >
@@ -230,7 +231,7 @@ const Login = () => {
                   className="form-control"
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="password">
                   <i className="fas fa-lock"></i>
@@ -247,7 +248,7 @@ const Login = () => {
                     disabled={loading}
                     className="form-control"
                   />
-                  <button 
+                  <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="password-toggle-btn"
@@ -256,7 +257,7 @@ const Login = () => {
                   </button>
                 </div>
               </div>
-              
+
               <button
                 type="submit"
                 className="auth-submit-btn"
@@ -273,7 +274,7 @@ const Login = () => {
                   </>
                 )}
               </button>
-              
+
               <div className="forgot-password">
                 <Link to="/ForgotPassword">
                   <i className="fas fa-key me-1"></i>
@@ -281,15 +282,15 @@ const Login = () => {
                 </Link>
               </div>
             </motion.form>
-            
-            <motion.div 
+
+            <motion.div
               className="social-login-container"
               variants={itemVariants}
             >
               <div className="social-divider">
                 <span>Or connect with</span>
               </div>
-              
+
               <div className="social-buttons">
                 <button
                   onClick={() => handleSocialLogin(signInWithGoogle, "Google")}
@@ -299,7 +300,7 @@ const Login = () => {
                   <i className="fab fa-google"></i>
                   <span className="social-btn-text">Google</span>
                 </button>
-                
+
                 <button
                   onClick={() => handleSocialLogin(signInWithFacebook, "Facebook")}
                   className="social-btn facebook-btn"
@@ -308,7 +309,7 @@ const Login = () => {
                   <i className="fab fa-facebook-f"></i>
                   <span className="social-btn-text">Facebook</span>
                 </button>
-                
+
                 <button
                   onClick={() => handleSocialLogin(signInWithApple, "Apple")}
                   className="social-btn apple-btn"
@@ -319,8 +320,8 @@ const Login = () => {
                 </button>
               </div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="auth-footer"
               variants={itemVariants}
             >
@@ -333,7 +334,7 @@ const Login = () => {
           </motion.div>
         </div>
       </main>
-      <ToastContainer 
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}

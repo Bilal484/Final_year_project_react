@@ -3,6 +3,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from "react-helmet"; // Import Helmet for meta tags
+import './JoinAgent.css'; // Import the custom CSS file
 
 
 import SellerHeader from "../../../components/SellerHeader";
@@ -10,11 +11,9 @@ import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import { useNavigate } from "react-router-dom";
 
-const JoinAgent = () => {
-
-    const [email, setEmail] = useState("");
+const JoinAgent = () => {    const [email, setEmail] = useState("");
     const [frequency, setFrequency] = useState(null);
-    const [alertMessage, setAlertMessage] = useState("");
+    // Removed unused state variables
     const [jobs, setJobs] = useState([]);
     const [fiveJobs, setFiveJobs] = useState([]);
     const [favoritedJobs, setFavoritedJobs] = useState([]);
@@ -69,12 +68,29 @@ const JoinAgent = () => {
             toast.error("An error occurred while creating the job alert.");
         }
     };
-
-
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
-            setCurrentPage(page);
-            setFiveJobs(jobs.slice((page - 1) * jobsPerPage, page * jobsPerPage));
+            // Add smooth transition animation when changing pages
+            const jobsContainer = document.querySelector('.list-group');
+            if (jobsContainer) {
+                jobsContainer.style.opacity = '0';
+                jobsContainer.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    setCurrentPage(page);
+                    setFiveJobs(jobs.slice((page - 1) * jobsPerPage, page * jobsPerPage));
+                    
+                    // Restore visibility with animation after state updates
+                    setTimeout(() => {
+                        jobsContainer.style.opacity = '1';
+                        jobsContainer.style.transform = 'translateY(0)';
+                        jobsContainer.style.transition = 'all 300ms ease-out';
+                    }, 50);
+                }, 300);
+            } else {
+                setCurrentPage(page);
+                setFiveJobs(jobs.slice((page - 1) * jobsPerPage, page * jobsPerPage));
+            }
         }
     };
 
@@ -143,7 +159,7 @@ const JoinAgent = () => {
 
     return (
         <>
-        <Helmet>
+            <Helmet>
                 <title>All Jobs - Real Estate Opportunities</title>
                 <meta
                     name="description"
@@ -181,29 +197,31 @@ const JoinAgent = () => {
                     <div className="row">
                         <div className="col-md-4">
                             <div className="max-w-md mx-auto  bg-white  shadow-md">
-                                {/* <h2 class="text-lg font-semibold mb-4 text-black">Refine your search</h2> */}
-                                <div id="accordion " className="border p-2 ">
-                                    <div className="border-bottom ">
+                                {/* <h2 class="text-lg font-semibold mb-4 text-black">Refine your search</h2> */}                                <div id="accordion" className="border p-2">
+                                    <div className="border-bottom">
                                         <button
                                             className="d-flex justify-content-between align-items-center w-100 py-2 text-start text-black bg-white p-2 border-0"
-                                            onclick="toggleAccordion(event)"
+                                            data-bs-toggle="collapse" 
+                                            data-bs-target="#collapseRefine"
                                         >
                                             <span className="text-muted text-refine-search">
                                                 Refine Your Search
                                             </span>
-                                            {/* <span class="fs-4">+</span> */}
+                                            <span className="fs-4">+</span>
                                         </button>
-                                    </div>
-                                    <div className="border-bottom ">
+                                    </div>                                    <div className="border-bottom">
                                         <button
                                             className="d-flex justify-content-between align-items-center w-100 py-2 text-start text-black bg-white p-2 border-0"
-                                            onclick="toggleAccordion(event)"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseCategory"
+                                            aria-expanded="false"
+                                            aria-controls="collapseCategory"
                                         >
                                             <span>Category</span>
                                             <span className="fs-4">+</span>
                                         </button>
-                                        <div className="collapse pl-4">
-                                            <div className="p-2  text-dark  shadow-md">
+                                        <div id="collapseCategory" className="collapse pl-4">
+                                            <div className="p-2 text-dark shadow-md">
                                                 <div className="mb-4">
                                                     <input
                                                         type="text"
@@ -345,17 +363,19 @@ const JoinAgent = () => {
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="border-bottom ">
+                                    </div>                                    <div className="border-bottom">
                                         <button
                                             className="d-flex justify-content-between align-items-center w-100 py-2 text-start text-black bg-white p-2 border-0"
-                                            onclick="toggleAccordion(event)"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseState"
+                                            aria-expanded="false"
+                                            aria-controls="collapseState"
                                         >
                                             <span>State / Province</span>
                                             <span className="fs-4">+</span>
                                         </button>
-                                        <div className="collapse pl-4">
-                                            <div className="p-2  text-dark  shadow-md">
+                                        <div id="collapseState" className="collapse pl-4">
+                                            <div className="p-2 text-dark shadow-md">
                                                 <div className="mb-4">
                                                     <input
                                                         type="text"
@@ -469,17 +489,19 @@ const JoinAgent = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="border-bottom ">
+                                    </div>                                    <div className="border-bottom">
                                         <button
                                             className="d-flex justify-content-between align-items-center w-100 py-2 text-start text-black bg-white p-2 border-0"
-                                            onclick="toggleAccordion(event)"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseCity"
+                                            aria-expanded="false"
+                                            aria-controls="collapseCity"
                                         >
                                             <span>City</span>
                                             <span className="fs-4">+</span>
                                         </button>
-                                        <div className="collapse pl-4">
-                                            <div className="p-2  text-dark  shadow-md">
+                                        <div id="collapseCity" className="collapse pl-4">
+                                            <div className="p-2 text-dark shadow-md">
                                                 <div className="mb-4">
                                                     <input
                                                         type="text"
@@ -620,16 +642,18 @@ const JoinAgent = () => {
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="border-bottom">
+                                    </div>                                    <div className="border-bottom">
                                         <button
                                             className="d-flex justify-content-between align-items-center w-100 py-2 text-start text-black bg-white p-2 border-0"
-                                            onclick="toggleAccordion(event)"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseKeywords"
+                                            aria-expanded="false"
+                                            aria-controls="collapseKeywords"
                                         >
                                             <span>Keywords</span>
                                             <span className="fs-4">+</span>
                                         </button>
-                                        <div className="collapse pl-4">
+                                        <div id="collapseKeywords" className="collapse pl-4">
                                             <div className="mb-4 mt-2">
                                                 <input
                                                     type="text"
@@ -694,17 +718,19 @@ const JoinAgent = () => {
                                             Create Job Alert
                                         </button>
                                     </form>
-                                    <ToastContainer />
-                                    <a href="#" className="text-danger d-block text-center mt-3">
+                                    <ToastContainer />                                    <button 
+                                        className="text-danger d-block text-center mt-3 border-0 bg-transparent p-0 w-100" 
+                                        onClick={() => {/* Manage alerts function */}}
+                                    >
                                         Manage Alerts
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
 
 
                         </div>
                         {/* second column */}
-                        <div className="col-md-8 border p-2">
+                        <div className="col-md-8 job-listings-container p-3">
                             {/* Showing Results and Sort Options */}
                             <div className="d-flex justify-content-between align-items-center mb-3">
                                 <div>Showing {currentPage * jobsPerPage - jobsPerPage + 1}-{currentPage * jobsPerPage > jobs.length ? jobs.length : currentPage * jobsPerPage} of {jobs.length} results</div>
@@ -718,28 +744,32 @@ const JoinAgent = () => {
                             </div>
 
 
-                            {/* Active Filters */}
-                            <div className="d-flex align-items-center mb-3">
-                                <span className="badge bg-light text-dark border me-2">
-                                    Real Estate Agent
+                            {/* Active Filters */}                            <div className="d-flex align-items-center mb-3 active-filters">
+                                <span className="badge bg-light text-dark border me-2 filter-badge">
+                                    Real Estate Agent <i className="bi bi-x-circle"></i>
                                 </span>
-                                <a href="#" className="text-decoration-none text-danger">
+                                <button 
+                                    className="text-decoration-none text-danger border-0 bg-transparent p-0 clear-filters"
+                                    onClick={() => {/* Clear filters function */}}
+                                >
                                     Clear all
-                                </a>
+                                </button>
                             </div>
-                            {/* Job Listing */}
-
-                            <div className="list-group">
+                            {/* Job Listing */}                            <div className="list-group">
                                 {fiveJobs.length > 0 ? (
-                                    fiveJobs.map((job) => (
-                                        <div key={job.id} className="list-group-item border-0 border-bottom p-4">
+                                    fiveJobs.map((job, index) => (
+                                        <div 
+                                            key={job.id} 
+                                            className="list-group-item border-0 border-bottom p-4" 
+                                            style={{"--index": index}}
+                                        >
                                             <div className="d-flex justify-content-between align-items-center">
                                                 <div>
                                                     <h5 className="mb-1 fw-bold text-danger">{job.title}</h5>
                                                     <small>
-                                                        <a href="#" className="text-decoration-none text-primary">
+                                                        <span className="text-decoration-none text-primary">
                                                             {job.job_location.length > 0 ? `Available in ${job.job_location.length} locations` : "Location not specified"}
-                                                        </a>{" "}
+                                                        </span>{" "}
                                                         • {job.job_type || "Job type not specified"}{job.end_date}
                                                     </small>
                                                 </div>
@@ -771,11 +801,13 @@ const JoinAgent = () => {
                                 ) : (
                                     <p className="text-muted p-4">No jobs available at the moment.</p>
                                 )}
-                            </div>
-                            {/* Pagination */}
+                            </div>                            {/* Pagination */}
                             <nav aria-label="Page navigation" className="mt-4">
-                                <ul className="pagination justify-content-center">
-                                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                                <ul className="pagination">
+                                    <li 
+                                        className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}
+                                        style={{"--index": 0}}
+                                    >
                                         <button
                                             className="page-link"
                                             onClick={() => handlePageChange(currentPage - 1)}
@@ -784,7 +816,11 @@ const JoinAgent = () => {
                                         </button>
                                     </li>
                                     {Array.from({ length: totalPages }, (_, index) => (
-                                        <li key={index + 1} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+                                        <li 
+                                            key={index + 1} 
+                                            className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
+                                            style={{"--index": index + 1}}
+                                        >
                                             <button
                                                 className="page-link"
                                                 onClick={() => handlePageChange(index + 1)}
@@ -793,7 +829,10 @@ const JoinAgent = () => {
                                             </button>
                                         </li>
                                     ))}
-                                    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                                    <li 
+                                        className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}
+                                        style={{"--index": totalPages + 1}}
+                                    >
                                         <button
                                             className="page-link"
                                             onClick={() => handlePageChange(currentPage + 1)}

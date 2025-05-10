@@ -1,0 +1,418 @@
+:root {
+    --background_color: #0352D7;
+    --color: #FFDA47;
+    --color_white: white;
+    --hover_bg_color: #011333;
+    --color-gray: #F5F5F5;
+    --font_family: "Poppins", sans-serif;
+    --text-dark: #333333;
+    --text-muted: #6c757d;
+    --border-radius: 10px;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+    
+    /* Agent search specific variables */
+    --agent-card-bg: white;
+    --agent-text-primary: #333333;
+    --agent-text-secondary: #6c757d;
+    --agent-accent: var(--background_color);
+    --agent-accent-hover: var(--hover_bg_color);
+    --agent-border: #e5e5e5;
+}
+
+/* Hero Section */
+.agent-search-hero {
+    background: linear-gradient(rgba(3, 82, 215, 0.8), rgba(1, 19, 51, 0.9)),
+        url('../../assets/images/Owner-Dashboard/Sell with Redfin/AboutPremierDesktop.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 120px 30px;
+    color: var(--color_white);
+    text-align: center;
+}
+
+.agent-search-title {
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 800ms ease-out;
+}
+
+.agent-search-subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeIn 800ms ease-out forwards;
+    animation-delay: 300ms;
+}
+
+/* Search Container */
+.agent-search-container {
+    padding: 40px 20px;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.agent-search-input {
+    height: 60px;
+    border-radius: 50px;
+    padding-left: 25px;
+    font-size: 18px;
+    border: 2px solid var(--agent-border);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.agent-search-input:focus {
+    border-color: var(--agent-accent);
+    box-shadow: 0 0 0 0.25rem rgba(3, 82, 215, 0.15);
+    outline: none;
+}
+
+.agent-search-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 50px;
+    border-radius: 50px;
+    padding: 0 25px;
+    background-color: var(--agent-accent);
+    border-color: var(--agent-accent);
+    transition: var(--transition);
+}
+
+.agent-search-button:hover {
+    background-color: var(--agent-accent-hover);
+    border-color: var(--agent-accent-hover);
+    transform: translateY(-2px);
+}
+
+/* Dropdown Suggestions */
+.dropdown-suggestions {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
+    border: 1px solid var(--agent-border);
+    padding: 10px 0;
+    list-style: none;
+}
+
+.dropdown-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.agent-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.agent-suggestion-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.agent-info i {
+    font-size: 40px;
+    color: var(--text-muted);
+}
+
+.agent-details p {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.agent-details span {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Agent Results Section */
+.section-title {
+    color: var(--text-dark);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--agent-accent);
+    border-radius: 2px;
+}
+
+/* Agent Cards */
+.agent-card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 1px solid var(--agent-border);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    height: 100%;
+}
+
+.agent-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.12);
+    border-color: var(--agent-accent);
+}
+
+.agent-card-img-container {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.agent-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.agent-card:hover .agent-card-img {
+    transform: scale(1.05);
+}
+
+.agent-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.agent-role-badge {
+    background-color: var(--background_color);
+    color: var(--color_white);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.agent-card-body {
+    padding: 20px;
+    background-color: var(--agent-card-bg);
+}
+
+.agent-card-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--agent-text-primary);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.agent-card-contact {
+    margin-bottom: 20px;
+}
+
+.agent-card-contact p {
+    margin-bottom: 8px;
+    color: var(--agent-text-secondary);
+    font-size: 0.9rem;
+}
+
+.agent-card-contact p i {
+    margin-right: 8px;
+    color: var(--agent-accent);
+}
+
+.agent-contact-btn {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid var(--agent-accent);
+    color: var(--agent-accent);
+    padding: 10px;
+    font-weight: 600;
+    transition: var(--transition);
+    border-radius: 5px;
+}
+
+.agent-contact-btn:hover {
+    background-color: var(--agent-accent);
+    color: white;
+    border-color: var(--agent-accent);
+}
+
+/* No Results */
+.no-results {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.no-results i {
+    font-size: 3rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* Contact Agents Section */
+.contact-agents-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    margin-top: 50px;
+}
+
+.contact-agents-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.contact-agents-section p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.cta-button {
+    background-color: var(--agent-accent);
+    border-color: var(--agent-accent);
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    border-radius: 5px;
+}
+
+.cta-button:hover {
+    background-color: var(--agent-accent-hover);
+    border-color: var(--agent-accent-hover);
+    transform: translateY(-3px);
+}
+
+.contact-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--agent-accent);
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .agent-search-title {
+        font-size: 2.5rem;
+    }
+    
+    .contact-agents-section h2 {
+        font-size: 2rem;
+    }
+    
+    .contact-stats {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .agent-search-hero {
+        padding: 80px 20px;
+    }
+    
+    .agent-search-title {
+        font-size: 2rem;
+    }
+    
+    .agent-search-input {
+        height: 50px;
+        font-size: 16px;
+    }
+    
+    .agent-search-button {
+        height: 40px;
+        padding: 0 15px;
+        top: 5px;
+    }
+    
+    .contact-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .agent-card-img-container {
+        height: 180px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
