@@ -1,5 +1,38 @@
-.carousel-inner {
-    overflow: visible !important;
-    overflow-x: clip !important;
-    overflow-clip-margin: .25rem;
+.testimonial-section {
+  background-color: var(--background_color);
+  font-family: var(--font_family);
+  padding: 60px 0;
+}
+
+.section-title {
+  color: var(--hover_bg_color);
+  font-weight: 700;
+}
+
+.testimonial-description {
+  color: var(--color_white);
+  opacity: 0.85;
+  max-width: 750px;
+  margin: 0 auto 40px;
+}
+
+.card-test {
+  background-color: var(--color-gray);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.card-test:hover {
+  background-color: var(--hover_bg_color);
+  transform: translateX(-5px);
+}
+
+.testimonial {
+  color: #333;
+  font-style: italic;
+}
+
+.author-image {
+  font-weight: bold;
+  font-size: 1.2rem;
 }

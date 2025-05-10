@@ -1,157 +1,187 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import './testimonial.css'
+import "./testimonial.css";
 
 const testimonials = [
-    [
-        {
-            title: "Outstanding Service",
-            text: "UrbanCraft REAL ESTATE helped us find our dream home with exceptional service. Their professionalism, attention to detail, and dedication were truly outstanding. We couldn’t have asked for a better real estate partner.",
-            author: "Sarah L.",
-            role: "Home Buyer",
-            bgColor: "bg-primary",
-            initial: "S",
-        },
-        {
-            title: "Fantastic Support",
-            text: "The team at UrbanCraft REAL ESTATE always provided quick and effective support. They truly care about their clients and go above and beyond!",
-            author: "Fiona G.",
-            role: "First-Time Buyer",
-            bgColor: "bg-danger",
-            initial: "F",
-        },
-        {
-            title: "Exceeded Expectations",
-            text: "UrbanCraft REAL ESTATE exceeded our expectations in every aspect. From the initial consultation to closing the deal, they were attentive, responsive, and highly professional. Our investment process was seamless.",
-            author: "Emily W.",
-            role: "Investor",
-            bgColor: "bg-success",
-            initial: "E",
-        },
-    ],
-    [
-        {
-            title: "Highly Responsive",
-            text: "ZNet's responsiveness and attention to detail made the entire process smooth. They kept us informed every step of the way.",
-            author: "Henry K.",
-            role: "Investor",
-            bgColor: "bg-info",
-            initial: "H",
-        },
-        {
-            title: "Smooth & Stress-Free",
-            text: "We sold our property in no time, thanks to the expertise of UrbanCraft REAL ESTATE’s team. Their market knowledge and proactive approach made the process smooth and stress-free. Highly recommend!",
-            author: "Mark D.",
-            role: "Property Seller",
-            bgColor: "bg-secondary",
-            initial: "M",
-        },
-        {
-            title: "Impressive Results",
-            text: "We achieved fantastic results with UrbanCraft REAL ESTATE’s team. Their expertise and dedication were unmatched. Truly a great experience!",
-            author: "Irene T.",
-            role: "Property Seller",
-            bgColor: "bg-warning",
-            initial: "I",
-        },
-    ],
+  {
+    title: "Outstanding Service",
+    text: "UrbanCraft REAL ESTATE helped us find our dream home with exceptional service.",
+    author: "Sarah L.",
+    role: "Home Buyer",
+    initial: "S",
+  },
+  {
+    title: "Fantastic Support",
+    text: "The team always provided quick and effective support.",
+    author: "Fiona G.",
+    role: "First-Time Buyer",
+    initial: "F",
+  },
+  {
+    title: "Exceeded Expectations",
+    text: "UrbanCraft exceeded our expectations in every aspect.",
+    author: "Emily W.",
+    role: "Investor",
+    initial: "E",
+  },
+  {
+    title: "Highly Responsive",
+    text: "ZNet's responsiveness made the entire process smooth.",
+    author: "Henry K.",
+    role: "Investor",
+    initial: "H",
+  },
+  {
+    title: "Smooth & Stress-Free",
+    text: "We sold our property in no time, thanks to their expertise.",
+    author: "Mark D.",
+    role: "Property Seller",
+    initial: "M",
+  },
+  {
+    title: "Impressive Results",
+    text: "Fantastic results with unmatched dedication!",
+    author: "Irene T.",
+    role: "Property Seller",
+    initial: "I",
+  },
+  {
+    title: "Outstanding Service",
+    text: "UrbanCraft REAL ESTATE helped us find our dream home with exceptional service.",
+    author: "Sarah L.",
+    role: "Home Buyer",
+    initial: "S",
+  },
+  {
+    title: "Fantastic Support",
+    text: "The team always provided quick and effective support.",
+    author: "Fiona G.",
+    role: "First-Time Buyer",
+    initial: "F",
+  },
+  {
+    title: "Exceeded Expectations",
+    text: "UrbanCraft exceeded our expectations in every aspect.",
+    author: "Emily W.",
+    role: "Investor",
+    initial: "E",
+  },
+  {
+    title: "Highly Responsive",
+    text: "ZNet's responsiveness made the entire process smooth.",
+    author: "Henry K.",
+    role: "Investor",
+    initial: "H",
+  },
+  {
+    title: "Smooth & Stress-Free",
+    text: "We sold our property in no time, thanks to their expertise.",
+    author: "Mark D.",
+    role: "Property Seller",
+    initial: "M",
+  },
+  {
+    title: "Impressive Results",
+    text: "Fantastic results with unmatched dedication!",
+    author: "Irene T.",
+    role: "Property Seller",
+    initial: "I",
+  },
 ];
 
-const TestimonialCard = ({ title, text, author, role, bgColor, initial }) => {
-    const textColor = bgColor.replace("bg-", "text-");
-    return (
-        <>
-         <Helmet>
-                <meta charSet="utf-8" />
-                <title>What Our Clients Say | UrbanCraft REAL ESTATE</title>
-                <meta name="description" content="Read testimonials from satisfied clients of UrbanCraft REAL ESTATE. Learn about their experiences in finding homes, buying properties, and selling with ease." />
-                <meta property="og:title" content="What Our Clients Say | UrbanCraft REAL ESTATE" />
-                <meta property="og:description" content="Read testimonials from satisfied clients of UrbanCraft REAL ESTATE. Learn about their experiences in finding homes, buying properties, and selling with ease." />
-                <meta property="og:image" content="https://yourwebsite.com/images/testimonials-banner.jpg" /> {/* Example image for sharing */}
-                <meta property="og:url" content="https://yourwebsite.com/testimonials" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="What Our Clients Say | UrbanCraft REAL ESTATE" />
-                <meta name="twitter:description" content="Read testimonials from satisfied clients of UrbanCraft REAL ESTATE. Learn about their experiences in finding homes, buying properties, and selling with ease." />
-                <meta name="twitter:image" content="https://yourwebsite.com/images/testimonials-banner.jpg" /> {/* Example image for Twitter sharing */}
-            </Helmet>
-        <div className="col-md-4 d-flex align-items-stretch">
-            <div className="card bg-white p-4 shadow border-0 w-100 h-100 d-flex flex-column">
-                <h5 className={`fw-bold ${textColor} mb-3`}>{title}</h5>
-                <p className="testimonial text-muted mb-4 flex-grow-1">{`"${text}"`}</p>
-                <div className="d-flex align-items-center">
-                    <div
-                        className={`author-image rounded-circle ${bgColor} d-flex justify-content-center align-items-center text-white me-3`}
-                        style={{ width: "50px", height: "50px" }}
-                        aria-label="Author's Initial"
-                    >
-                        {initial}
-                    </div>
-                    <div>
-                        <h6 className="fw-bold mb-0">{author}</h6>
-                        <small className="text-muted">{role}</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </>
-    );
+const groupTestimonials = (data, groupSize) => {
+  let result = [];
+  for (let i = 0; i < data.length; i += groupSize) {
+    result.push(data.slice(i, i + groupSize));
+  }
+  return result;
 };
 
-
+const TestimonialCard = ({ title, text, author, role, initial }) => (
+  <div className="col-12 col-md-4 d-flex align-items-stretch">
+    <div className="card card-test  p-4 shadow w-100 h-100 d-flex flex-column">
+      <h5 className="fw-bold text-dark mb-3">{title}</h5>
+      <p className="testimonial mb-4 flex-grow-1">“{text}”</p>
+      <div className="d-flex align-items-center">
+        <div
+          className="author-image rounded-circle d-flex justify-content-center align-items-center text-white me-3"
+          style={{ width: "50px", height: "50px", backgroundColor: "var(--color)" }}
+        >
+          {initial}
+        </div>
+        <div>
+          <h6 className="fw-bold mb-0">{author}</h6>
+          <small className="text-muted">{role}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const Testimonial = () => {
-    return (
-        <section className="py-5 bg-light">
-            <div className="container">
-                <h2 className="section-title fw-bold h1 text-center mb-4">
-                    What Our Clients Say
-                </h2>
-                <p className="text-center text-muted mb-5">
-                    Hear directly from our satisfied clients about their experiences with UrbanCraft REAL ESTATE. We take pride in making real estate seamless and successful for everyone.
-                </p>
-                <div
-                    id="testimonialCarousel"
-                    className="carousel slide position-relative"
-                    data-bs-ride="carousel"
-                >
-                    <div className="carousel-inner" style={{ height: "100% !important" }}>
-                        {testimonials.map((group, index) => (
-                            <div
-                                key={index}
-                                className={`carousel-item ${index === 0 ? "active" : ""}`}
-                                style={{ height: "100%" }}
-                            >
-                                <div className="row g-3">
-                                    {group.map((testimonial, idx) => (
-                                        <TestimonialCard key={idx} {...testimonial} />
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <button
-                        className="carousel-control-prev position-absolute top-0"
-                        type="button"
-                        data-bs-target="#testimonialCarousel"
-                        data-bs-slide="prev"
-                    >
-                        <span className="carousel-control-prev-icon" aria-hidden="true" />
-                        <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button
-                        className="carousel-control-next position-absolute top-0"
-                        type="button"
-                        data-bs-target="#testimonialCarousel"
-                        data-bs-slide="next"
-                    >
-                        <span className="carousel-control-next-icon" aria-hidden="true" />
-                        <span className="visually-hidden">Next</span>
-                    </button>
+  const [grouped, setGrouped] = useState([]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768;
+      const groupSize = isMobile ? 1 : 3;
+      setGrouped(groupTestimonials(testimonials, groupSize));
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <section className="testimonial-section">
+      <Helmet>
+        <title>What Our Clients Say | UrbanCraft REAL ESTATE</title>
+        <meta name="description" content="Client testimonials for UrbanCraft REAL ESTATE." />
+      </Helmet>
+
+      <div className="container">
+        <h2 className="section-title text-center text-light mb-3">What Our Clients Say</h2>
+        <p className="testimonial-description text-center mb-5">
+          Hear from our clients about their experience with UrbanCraft REAL ESTATE.
+        </p>
+
+        <div id="testimonialCarousel" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-inner">
+            {grouped.map((group, index) => (
+              <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                <div className="row g-3">
+                  {group.map((testimonial, idx) => (
+                    <TestimonialCard key={idx} {...testimonial} />
+                  ))}
                 </div>
-            </div>
-        </section>
-    );
+              </div>
+            ))}
+          </div>
+
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            data-bs-slide="prev"
+          >
+            <span className="carousel-control-prev-icon" />
+            <span className="visually-hidden">Previous</span>
+          </button>
+
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            data-bs-slide="next"
+          >
+            <span className="carousel-control-next-icon" />
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Testimonial;
-
