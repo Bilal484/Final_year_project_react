@@ -10,10 +10,10 @@ html {
 }
 
 :root {
-    --background_color: #0B0B45;
-    --color: #996C22 ;
+    --background_color: #0352D7;
+    --color: #FFDA47 ;
     --color_white: white;
-    --hover_bg_color: #FFFB90;
+    --hover_bg_color: #011333;
     --color-gray: #F5F5F5;
     --font_family: "Poppins", sans-serif;
 }

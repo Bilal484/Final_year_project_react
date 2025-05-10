@@ -19,7 +19,7 @@ import Footer from "../../../components/Footer";
 const AssociateAgentIndependent = () => {
     return (
         <>
-        <Helmet>
+            <Helmet>
                 <title>Associate Agent Role - Join UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
