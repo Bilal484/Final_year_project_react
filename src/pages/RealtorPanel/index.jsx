@@ -82,7 +82,7 @@ const RealtorPanel = () => {
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Realtor Panel</title>
         <meta
           name="description"
@@ -314,7 +314,7 @@ const RealtorPanel = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
