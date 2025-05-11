@@ -213,7 +213,6 @@ function App() {
                                 <Route path="/AssociateAgentIndependent" element={<AssociateAgentIndependent />} />
                                 <Route path="/CandidateHome" element={<CandidateHome />} />
                                 <Route path="/CareerAgent" element={<CareerAgent />} />
-
                                 <Route path="/JobAlert" element={<JobAlert />} />
                                 <Route path="/TourRequest" element={<TourRequestPage />} />
                                 <Route path="/Property-Offers" element={<OffersPage />} />

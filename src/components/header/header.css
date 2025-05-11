@@ -855,7 +855,7 @@
   height: 2px;
   bottom: 0;
   left: 50%;
-  background-color: var(--background_color, #007bff);
+  /* background-color: var(--background_color, #007bff); */
   transition: all 0.3s ease;
 }
 

@@ -137,7 +137,7 @@ const SignUp = () => {
             if (response.ok) {
                 const availableRoles = data.roles || [];
 
-                const preferredRoles = ["seller", "buyer", "investor", "realtor"];
+                const preferredRoles = ["seller", "buyer", "contractor", "agent"];
 
                 const filteredRoles = preferredRoles
                     .map(preferred => availableRoles.find(role => role.role_name.toLowerCase() === preferred))
@@ -507,16 +507,16 @@ const SignUp = () => {
                                                     <div className="role-icon">
                                                         {role.role_name === 'buyer' && <i className="fas fa-home"></i>}
                                                         {role.role_name === 'seller' && <i className="fas fa-tags"></i>}
-                                                        {role.role_name === 'investor' && <i className="fas fa-chart-line"></i>}
-                                                        {role.role_name === 'realtor' && <i className="fas fa-key"></i>}
+                                                        {role.role_name === 'contractor' && <i className="fas fa-chart-line"></i>}
+                                                        {role.role_name === 'agent' && <i className="fas fa-key"></i>}
                                                     </div>
                                                     <div className="role-info">
                                                         <h4>{role.role_name}</h4>
                                                         <p>
                                                             {role.role_name === 'buyer' && "I'm looking to purchase property"}
                                                             {role.role_name === 'seller' && "I want to sell my property"}
-                                                            {role.role_name === 'investor' && "I'm interested in investment opportunities"}
-                                                            {role.role_name === 'realtor' && "I'm a real estate professional"}
+                                                            {role.role_name === 'contractor' && "I'm interested in contracting opportunities"}
+                                                            {role.role_name === 'agent' && "I'm a real estate professional"}
                                                         </p>
                                                     </div>
                                                     <div className="role-check">
