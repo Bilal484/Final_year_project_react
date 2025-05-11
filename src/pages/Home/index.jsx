@@ -177,9 +177,9 @@ const Home = () => {
                 )}
 
                 {/* Similar Users Modal */}
-                <Modal 
-                    show={showModal} 
-                    onHide={() => setShowModal(false)} 
+                <Modal
+                    // show={showModal} 
+                    onHide={() => setShowModal(false)}
                     centered
                     className="similar-users-modal"
                     backdrop="static"
@@ -228,8 +228,8 @@ const Home = () => {
                                 </div>
                                 <h5>No similar users found</h5>
                                 <p>We couldn't find any users matching your profile right now.</p>
-                                <Button 
-                                    variant="outline-secondary" 
+                                <Button
+                                    variant="outline-secondary"
                                     onClick={() => setShowModal(false)}
                                     className="dismiss-btn"
                                 >
@@ -244,8 +244,8 @@ const Home = () => {
                                 <small>Found {similarUsers.length} user{similarUsers.length !== 1 ? 's' : ''} with similar interests</small>
                             )}
                         </div>
-                        <Button 
-                            variant="secondary" 
+                        <Button
+                            variant="secondary"
                             onClick={() => setShowModal(false)}
                             className="close-btn"
                         >
@@ -274,7 +274,7 @@ const Home = () => {
 
                 <div className="container">
 
-                  <ExecutiveLeaders/>
+                    <ExecutiveLeaders />
                 </div>
             </main>
 

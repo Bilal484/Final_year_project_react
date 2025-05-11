@@ -1,0 +1,48 @@
+.tour-request-hero {
+    padding: 60px 0;
+    background-color: #0352D7;
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: #888;
+}
+
+.tour-request-container {
+    padding-top: 40px;
+}
+
+.tour-request-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tour-request-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.tour-request-date,
+.tour-request-contact {
+    font-size: 14px;
+    color: #555;
+}
+
+.tour-request-notes {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.tour-request-notes p {
+    margin: 0;
+}

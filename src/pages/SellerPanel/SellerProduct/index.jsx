@@ -123,6 +123,7 @@ const SellerProduct = () => {
                 formData.append("sq_ft", sqFt);
                 formData.append("about_section_title", aboutSectionTitle);
                 formData.append("description", overviewDescription);
+                formData.append("user_id", localStorage.getItem("user_id"));
 
                 const payload = {
                     p_id: selectedProduct ? selectedProduct.value : '',

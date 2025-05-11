@@ -104,6 +104,9 @@ import ChatPage from './pages/ChatsWithUsers';
 import ProductComponent from './pages/ProductComponent';
 import ExecutiveLeaders from './components/ExecutiveLeaders';
 import ScrollToTop from './components/ScrollToTop';
+import TourRequestPage from './pages/TourInPerson';
+import OffersPage from './pages/PropertyOffers';
+import BidsPage from './pages/BidsPage';
 
 function App() {
     const [userRole, setUserRole] = useState(null); // User role is null initially
@@ -212,6 +215,9 @@ function App() {
                                 <Route path="/CareerAgent" element={<CareerAgent />} />
 
                                 <Route path="/JobAlert" element={<JobAlert />} />
+                                <Route path="/TourRequest" element={<TourRequestPage />} />
+                                <Route path="/Property-Offers" element={<OffersPage />} />
+                                <Route path="/Property-Bids" element={<BidsPage />} />
                                 <Route path="/JoinTalentCommunity" element={<JoinTalentCommunity />} />
                                 <Route path="/SaveJob" element={<SaveJob />} />
                                 <Route path="/JoinAgent" element={<JoinAgent />} />
