@@ -83,10 +83,10 @@ const ProductMainDetail = () => {
                             </select>
                         </div>
                         <div className="d-flex my-2 f-row gap-2">
-                            <button className="btn text-nowrap btn-outline-info w-100">
+                            <button className="btn text-nowrap btn-outline-info">
                                 All filters
                             </button>
-                            <button className="btn text-nowrap btn-outline-danger w-100">
+                            <button className="btn text-nowrap btn-outline-danger">
                                 Save search
                             </button></div>
                         <div className="view-group">
