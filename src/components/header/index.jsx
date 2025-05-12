@@ -35,7 +35,7 @@ const Header = () => {
             { path: "/Review", label: "Reviews", icon: "⭐" },
             // { path: "/OwnerDashboard", label: "Owner Dashboard", icon: "📊" },
             { path: "/AccountSettings", label: "Account Settings", icon: "⚙️" },
-            { path: "/UserSetting", label: "User Setting", icon: "🔧" },
+            // { path: "/UserSetting", label: "User Setting", icon: "🔧" },
         ],
         2: [
             { path: "/SellerProduct", label: "Home", icon: "🏠" },

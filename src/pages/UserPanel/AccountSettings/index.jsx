@@ -1,258 +1,549 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Navbar, Nav, Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
+import {
+    Container,
+    Row,
+    Col,
+    Form,
+    Button,
+    Image,
+    Card,
+    Badge,
+    Toast,
+    Spinner
+} from "react-bootstrap";
+import TimezoneSelect from "react-timezone-select";
 import "./AccountSettings.css";
-import UserHeader from "../../../components/UserHeader";
+import SellerAgentHeader from "../../../components/SellerAgentHeader";
 import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
+import { signInWithGoogle, signInWithFacebook } from "../../../authMethods";
+import { useNavigate } from "react-router-dom";
+import { FaGoogle, FaFacebook, FaPhone, FaEnvelope, FaUser, FaClock, FaUserTie, FaCamera, FaSave, FaSignOutAlt } from "react-icons/fa";
 
 const AccountSettings = () => {
-  const [userData, setUserData] = useState({
-    name: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    phoneType: "Type",
-    userRole: "", 
-  });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState("");
+    const [user, setUser] = useState({
+        id: "",
+        name: "",
+        email: "",
+        user_role: "",
+        phone_number_type: "",
+        phone_number: "",
+        connect_with_facebook: null,
+        connect_with_google: null,
+        image: "",
+        agent_id: "",
+        timezone: "",
+    });
 
-  
-  const user_id = localStorage.getItem("user_id");
+    const navigate = useNavigate();
+    const [profileImage, setProfileImage] = useState(null);
+    const [errors, setErrors] = useState({});
+    const [userName, setUserName] = useState(null);
+    const [selectedTimezone, setSelectedTimezone] = useState(
+        Intl.DateTimeFormat().resolvedOptions().timeZone
+    );
+    const [agents, setAgents] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
+    const [toastVariant, setToastVariant] = useState("success");
+    const [imagePreview, setImagePreview] = useState(null);
+    const [activeTab, setActiveTab] = useState("profile");
 
-  
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`https://apitourism.today.alayaarts.com/api/user-profile/${user_id}`);
-        const data = response.data;
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            const userId = localStorage.getItem("user_id");
 
-        
-        setUserData({
-          name: data.name || "", 
-          firstName: data.first_name || "",
-          lastName: data.last_name || "",
-          email: data.email || "",
-          phone: data.phone || "",
-          phoneType: data.phone_type || "Type",
-          userRole: data.user_role || "", 
-        });
+            if (userId) {
+                try {
+                    const userResponse = await axios.get(`https://apitourism.today.alayaarts.com/api/user-profile/${userId}`);
+                    const { data } = userResponse;
+                    setUser((prevState) => ({
+                        ...prevState,
+                        ...data.allusers,
+                        timezone: data.allusers.timezone || selectedTimezone,
+                    }));
+                    setSelectedTimezone(data.allusers.timezone || selectedTimezone);
 
-        setLoading(false);
-      } catch (error) {
-        setError("Failed to fetch user data.");
-        setLoading(false);
-      }
+                    if (data.allusers.image) {
+                        setImagePreview(`https://apitourism.today.alayaarts.com/uploads/users/${data.allusers.image}`);
+                    }
+
+                    // Fetch all agents
+                    const agentsResponse = await axios.get("https://apitourism.today.alayaarts.com/api/all-agents");
+                    setAgents(agentsResponse.data.allusers || []);
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                    showToastMessage("Failed to load profile data", "danger");
+                } finally {
+                    setLoading(false);
+                }
+            } else {
+                setLoading(false);
+                navigate("/login");
+            }
+        };
+
+        fetchData();
+    }, [navigate, selectedTimezone]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setUser({ ...user, [name]: value });
+        // Clear error for this field when user starts typing
+        if (errors[name]) {
+            setErrors({ ...errors, [name]: null });
+        }
     };
 
-    if (user_id) {
-      fetchUserData();
-    } else {
-      setError("User not logged in.");
-      setLoading(false);
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setProfileImage(file);
+            // Create preview URL
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const showToastMessage = (message, variant = "success") => {
+        setToastMessage(message);
+        setToastVariant(variant);
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000);
+    };
+
+    const handleProfileUpdate = async () => {
+        try {
+            setLoading(true);
+            const userId = localStorage.getItem("user_id");
+            const formData = new FormData();
+
+            // Append all user fields to the FormData object
+            Object.keys(user).forEach((key) => {
+                if (user[key] !== undefined && user[key] !== null) {
+                    formData.append(key, user[key]);
+                }
+            });
+
+            // Append timezone
+            formData.append("timezone", selectedTimezone.value || selectedTimezone);
+
+            // Append the profile image if it exists
+            if (profileImage) {
+                formData.append("image", profileImage);
+            }
+
+            await axios.put(`https://apitourism.today.alayaarts.com/api/profile-update/${userId}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            showToastMessage("Profile updated successfully!");
+            setErrors({});
+        } catch (error) {
+            if (error.response && error.response.data.errors) {
+                setErrors(error.response.data.errors);
+                showToastMessage("Please correct the errors in the form", "danger");
+            } else {
+                showToastMessage("Failed to update profile", "danger");
+                console.error("Update error:", error);
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSocialLogin = (loginFunction, platform) => {
+        loginFunction()
+            .then((userCredential) => {
+                if (userCredential.user) {
+                    if (platform === "google") {
+                        setUser((prevState) => ({
+                            ...prevState,
+                            connect_with_google: userCredential.user.displayName || "Connected",
+                        }));
+                        showToastMessage("Connected with Google successfully!");
+                    } else if (platform === "facebook") {
+                        setUser((prevState) => ({
+                            ...prevState,
+                            connect_with_facebook: userCredential.user.displayName || "Connected",
+                        }));
+                        showToastMessage("Connected with Facebook successfully!");
+                    }
+                }
+            })
+            .catch((err) => {
+                console.error("Failed to connect:", err.message);
+                showToastMessage(`Failed to connect with ${platform}: ${err.message}`, "danger");
+            });
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("user_email");
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("user_name");
+        localStorage.removeItem("token");
+        setUserName(null);
+        navigate("/login");
+    };
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
+
+    if (loading && !user.name) {
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <Spinner animation="border" role="status" variant="primary">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>
+        );
     }
-  }, [user_id]);
 
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessage("");
-    setError("");
+    return (
+        <>
+            <Helmet>
+                <title>Account Settings | Candidate Profile</title>
+                <meta
+                    name="description"
+                    content="Manage your account settings, update your profile information, and configure preferences effortlessly on the Biurbancraft real estate Candidate platform."
+                />
+                <meta
+                    name="keywords"
+                    content="account settings, candidate profile, profile update, Biurbancraft real estate settings, user management, timezone selection"
+                />
+                <meta name="author" content="Biurbancraft real estate Team" />
+            </Helmet>
 
-    try {
-      const response = await axios.put(`https://apitourism.today.alayaarts.com/api/profile-update/${user_id}`, {
-        name: userData.name,
-        first_name: userData.firstName,
-        last_name: userData.lastName,
-        email: userData.email,
-        phone: userData.phone,
-        phone_type: userData.phoneType,
-        user_role: userData.userRole, 
-      });
-      setMessage("Profile updated successfully!");
-    } catch (error) {
-      
-      if (error.response && error.response.data.errors) {
-        setError(Object.values(error.response.data.errors).flat().join(", "));
-      } else {
-        setError("Failed to update profile.");
-      }
-    }
-  };
+            <Header />
+            <SellerAgentHeader />
 
-  
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [id]: value,
-    }));
-  };
-
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
-
-  return (
-    <>
-    <Helmet>
-        <title>Account Settings | UrbanCraft REAL ESTATE</title>
-        <meta
-          name="description"
-          content="Manage your account settings, update your profile, link accounts, and adjust preferences for a personalized experience on UrbanCraft REAL ESTATE."
-        />
-        <meta
-          name="keywords"
-          content="Account Settings, Profile Management, Linked Accounts, User Role, UrbanCraft REAL ESTATE"
-        />
-        <meta name="author" content="UrbanCraft REAL ESTATE" />
-        <meta property="og:title" content="Account Settings | UrbanCraft REAL ESTATE" />
-        <meta
-          property="og:description"
-          content="Easily manage your profile settings, linked accounts, and preferences with UrbanCraft REAL ESTATE's comprehensive account management tools."
-        />
-        <meta
-          property="og:image"
-          content="https://apitourism.today.alayaarts.com/uploads/account-settings-banner.jpg"
-        />
-        <meta property="og:url" content="https://apitourism.today.alayaarts.com/account-settings" />
-        <meta property="og:type" content="website" />
-      </Helmet>
-      <Header />
-      <UserHeader />
-      <div className="account-settings-container">
-            {/* Top Navigation Bar */}
-            <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
+            <div className="account-settings-hero">
+                <div className="overlay"></div>
                 <Container>
-                    <Navbar.Brand href="#home">Account Settings</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#profile">Profile</Nav.Link>
-                            <Nav.Link href="#group-settings">Group Settings</Nav.Link>
-                            <Nav.Link href="#linked-accounts">Linked Accounts</Nav.Link>
-                            <Nav.Link href="#touring-offers">Touring & Offers</Nav.Link>
-                            <Nav.Link href="#close-account">Close Account</Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
+                    <h1 className="text-white">Account Settings</h1>
+                    <p className="text-white">Manage your profile and preferences</p>
                 </Container>
-            </Navbar>
+            </div>
 
-            {/* Main Content */}
-            <Container>
-                <h2 className="text-center mb-4">Account Settings</h2>
+            <Container className="account-settings-container my-5">
+                <Toast
+                    show={showToast}
+                    onClose={() => setShowToast(false)}
+                    className="position-fixed top-0 end-0 m-4 z-index-toast"
+                    bg={toastVariant}
+                    text={toastVariant === "danger" ? "white" : "dark"}
+                >
+                    <Toast.Header closeButton>
+                        <strong className="me-auto">Notification</strong>
+                    </Toast.Header>
+                    <Toast.Body>{toastMessage}</Toast.Body>
+                </Toast>
 
-                <Form>
-                    {/* Full Name */}
-                    <Row className="mb-3">
-                        <Col md={12}>
-                            <Form.Group controlId="fullName">
-                                <Form.Label>Full Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter full name" />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-
-                    {/* First and Last Name, Email */}
-                    <Row className="mb-3">
-                        <Col md={4}>
-                            <Form.Group controlId="firstName">
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter first name" />
-                            </Form.Group>
-                        </Col>
-                        <Col md={4}>
-                            <Form.Group controlId="lastName">
-                                <Form.Label>Last Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter last name" />
-                            </Form.Group>
-                        </Col>
-                        <Col md={4}>
-                            <Form.Group controlId="email">
-                                <Form.Label>Email Address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-
-                    {/* Phone Number and User Role */}
-                    <Row className="mb-3">
-                        <Col md={6}>
-                            <Form.Group controlId="phone">
-                                <Form.Label>Phone Number</Form.Label>
-                                <div className="d-flex">
-                                    <Form.Select className="me-2">
-                                        <option>Type</option>
-                                        <option value="mobile">Mobile</option>
-                                        <option value="home">Home</option>
-                                    </Form.Select>
-                                    <Form.Control type="text" placeholder="Enter phone number" />
+                <Row>
+                    <Col lg={3} md={4} className="mb-4">
+                        <Card className="profile-sidebar">
+                            <Card.Body className="text-center">
+                                <div className="profile-image-container mb-3">
+                                    {imagePreview ? (
+                                        <Image
+                                            src={imagePreview}
+                                            alt="Profile"
+                                            className="profile-image"
+                                            roundedCircle
+                                        />
+                                    ) : (
+                                        <div className="profile-placeholder">
+                                            <FaUser size={40} />
+                                        </div>
+                                    )}
                                 </div>
-                            </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                            <Form.Group controlId="userRole">
-                                <Form.Label>User Role</Form.Label>
-                                <Form.Control type="text" placeholder="Enter user role" />
-                            </Form.Group>
-                        </Col>
-                    </Row>
+                                <h4>{user.name || "User"}</h4>
+                                <p className="text-muted">{user.email}</p>
+                                <Badge bg="primary" className="mb-3">{user.user_role || "Candidate"}</Badge>
 
-                    {/* Save Button */}
-                    <div className="text-end">
-                        <Button type="submit" variant="success">
-                            Save Updates
-                        </Button>
-                    </div>
-                </Form>
+                                <div className="sidebar-menu">
+                                    <Button
+                                        variant={activeTab === "profile" ? "primary" : "light"}
+                                        className="w-100 text-start mb-2 d-flex align-items-center"
+                                        onClick={() => handleTabChange("profile")}
+                                    >
+                                        <FaUser className="me-2" /> Profile Information
+                                    </Button>
+                                    <Button
+                                        variant={activeTab === "connections" ? "primary" : "light"}
+                                        className="w-100 text-start mb-2 d-flex align-items-center"
+                                        onClick={() => handleTabChange("connections")}
+                                    >
+                                        <FaGoogle className="me-2" /> Social Connections
+                                    </Button>
+                                    <Button
+                                        variant="outline-danger"
+                                        className="w-100 text-start d-flex align-items-center mt-4"
+                                        onClick={handleLogout}
+                                    >
+                                        <FaSignOutAlt className="me-2" /> Logout
+                                    </Button>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
 
-                {/* Additional Sections */}
-                <section id="group-settings" className="mt-5">
-                    <h4>Group Settings</h4>
-                    <p>Your Shared Search</p>
-                    <Button variant="light" className="mb-2">
-                        <i className="fa fa-heart" /> Add your search partner
-                    </Button>
-                </section>
+                    <Col lg={9} md={8}>
+                        <Card>
+                            <Card.Body>
+                                {activeTab === "profile" && (
+                                    <>
+                                        <h4 className="mb-4">Profile Information</h4>
+                                        <Form>
+                                            <Row>
+                                                <Col md={6}>
+                                                    <Form.Group controlId="formName" className="mb-3">
+                                                        <Form.Label>
+                                                            <FaUser className="me-2 text-primary" /> Full Name
+                                                        </Form.Label>
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="name"
+                                                            value={user.name || ""}
+                                                            onChange={handleInputChange}
+                                                            isInvalid={!!errors.name}
+                                                            placeholder="Enter your full name"
+                                                        />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            {errors.name && errors.name[0]}
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Col>
+                                                <Col md={6}>
+                                                    <Form.Group controlId="formEmail" className="mb-3">
+                                                        <Form.Label>
+                                                            <FaEnvelope className="me-2 text-primary" /> Email Address
+                                                        </Form.Label>
+                                                        <Form.Control
+                                                            type="email"
+                                                            name="email"
+                                                            value={user.email || ""}
+                                                            onChange={handleInputChange}
+                                                            isInvalid={!!errors.email}
+                                                            placeholder="Enter your email"
+                                                        />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            {errors.email && errors.email[0]}
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Col>
+                                            </Row>
 
-                <section id="linked-accounts" className="mt-5">
-                    <h4>Linked Accounts</h4>
-                    <div className="d-flex justify-content-center">
-                        <Button variant="primary" className="me-3">Connect Facebook</Button>
-                        <Button variant="secondary">Unlink Google</Button>
-                    </div>
-                </section>
+                                            <Row>
+                                                <Col md={6}>
+                                                    <Form.Group controlId="formPhoneNumberType" className="mb-3">
+                                                        <Form.Label>
+                                                            <FaPhone className="me-2 text-primary" /> Phone Type
+                                                        </Form.Label>
+                                                        <Form.Select
+                                                            name="phone_number_type"
+                                                            value={user.phone_number_type || ""}
+                                                            onChange={handleInputChange}
+                                                        >
+                                                            <option value="">Select type</option>
+                                                            <option value="Mobile">Mobile</option>
+                                                            <option value="Home">Home</option>
+                                                            <option value="Work">Work</option>
+                                                            <option value="Other">Other</option>
+                                                        </Form.Select>
+                                                    </Form.Group>
+                                                </Col>
+                                                <Col md={6}>
+                                                    <Form.Group controlId="formPhoneNumber" className="mb-3">
+                                                        <Form.Label>
+                                                            <FaPhone className="me-2 text-primary" /> Phone Number
+                                                        </Form.Label>
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="phone_number"
+                                                            value={user.phone_number || ""}
+                                                            onChange={handleInputChange}
+                                                            placeholder="Enter your phone number"
+                                                        />
+                                                    </Form.Group>
+                                                </Col>
+                                            </Row>
 
-                <section id="touring-offers" className="mt-5">
-                    <h4>Touring and Offers</h4>
-                    <div>
-                        <p>
-                            <Form.Label>Pre-Approval Letter</Form.Label>
-                            <span className="ms-2 text-muted">None specified</span>
-                            <Button variant="light" className="ms-3">Upload letter</Button>
-                        </p>
-                        <p>
-                            <Form.Label>Verify Your ID</Form.Label>
-                            <span className="ms-2 text-danger">Not yet verified</span>
-                            <Button variant="light" className="ms-3">Verify ID</Button>
-                        </p>
-                        <Form.Check type="checkbox" id="allowInsights" label="Allow offer insights" />
-                    </div>
-                </section>
+                                            <Row>
+                                                <Col md={6}>
+                                                    <Form.Group controlId="formAgentId" className="mb-3">
+                                                        <Form.Label>
+                                                            <FaUserTie className="me-2 text-primary" /> Assigned Agent
+                                                        </Form.Label>
+                                                        <Form.Select
+                                                            name="agent_id"
+                                                            value={user.agent_id || ""}
+                                                            onChange={handleInputChange}
+                                                        >
+                                                            <option value="">Select an agent</option>
+                                                            {agents.map((agent) => (
+                                                                <option key={agent.id} value={agent.id}>
+                                                                    {agent.name}
+                                                                </option>
+                                                            ))}
+                                                        </Form.Select>
+                                                    </Form.Group>
+                                                </Col>
+                                                <Col md={6}>
+                                                    <Form.Group controlId="formTimezone" className="mb-3">
+                                                        <Form.Label>
+                                                            <FaClock className="me-2 text-primary" /> Timezone
+                                                        </Form.Label>
+                                                        <TimezoneSelect
+                                                            value={selectedTimezone}
+                                                            onChange={setSelectedTimezone}
+                                                            className="timezone-select"
+                                                        />
+                                                    </Form.Group>
+                                                </Col>
+                                            </Row>
 
-                <section id="close-account" className="mt-5">
-                    <h4>Close Account</h4>
-                    <p className="text-danger">Delete Your Account</p>
-                </section>
+                                            <Form.Group controlId="formProfileImage" className="mb-4">
+                                                <Form.Label>
+                                                    <FaCamera className="me-2 text-primary" /> Profile Image
+                                                </Form.Label>
+                                                <div className="profile-upload-container">
+                                                    <div className="current-image">
+                                                        {imagePreview && (
+                                                            <Image
+                                                                src={imagePreview}
+                                                                alt="Profile Preview"
+                                                                className="image-preview"
+                                                                thumbnail
+                                                            />
+                                                        )}
+                                                    </div>
+                                                    <div className="upload-controls">
+                                                        <Form.Control
+                                                            type="file"
+                                                            onChange={handleImageChange}
+                                                            className="mb-2"
+                                                        />
+                                                        <small className="text-muted">
+                                                            Recommended size: 500x500 pixels (JPG, PNG)
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </Form.Group>
+
+                                            <div className="d-flex justify-content-end mt-4">
+                                                <Button
+                                                    variant="primary"
+                                                    onClick={handleProfileUpdate}
+                                                    disabled={loading}
+                                                    className="d-flex align-items-center"
+                                                >
+                                                    {loading ? (
+                                                        <>
+                                                            <Spinner
+                                                                as="span"
+                                                                animation="border"
+                                                                size="sm"
+                                                                role="status"
+                                                                aria-hidden="true"
+                                                                className="me-2"
+                                                            />
+                                                            <span>Saving...</span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <FaSave className="me-2" /> Save Changes
+                                                        </>
+                                                    )}
+                                                </Button>
+                                            </div>
+                                        </Form>
+                                    </>
+                                )}
+
+                                {activeTab === "connections" && (
+                                    <>
+                                        <h4 className="mb-4">Social Connections</h4>
+                                        <Card className="mb-4">
+                                            <Card.Body>
+                                                <div className="d-flex justify-content-between align-items-center">
+                                                    <div className="d-flex align-items-center">
+                                                        <div className="social-icon google-icon me-3">
+                                                            <FaGoogle size={24} />
+                                                        </div>
+                                                        <div>
+                                                            <h5 className="mb-0">Google</h5>
+                                                            <p className="text-muted mb-0">
+                                                                {user.connect_with_google
+                                                                    ? `Connected as ${user.connect_with_google}`
+                                                                    : "Connect your Google account"}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    {user.connect_with_google ? (
+                                                        <Badge bg="success">Connected</Badge>
+                                                    ) : (
+                                                        <Button
+                                                            variant="outline-primary"
+                                                            onClick={() => handleSocialLogin(signInWithGoogle, "google")}
+                                                        >
+                                                            <FaGoogle className="me-2" /> Connect
+                                                        </Button>
+                                                    )}
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+
+                                        <Card>
+                                            <Card.Body>
+                                                <div className="d-flex justify-content-between align-items-center">
+                                                    <div className="d-flex align-items-center">
+                                                        <div className="social-icon facebook-icon me-3">
+                                                            <FaFacebook size={24} />
+                                                        </div>
+                                                        <div>
+                                                            <h5 className="mb-0">Facebook</h5>
+                                                            <p className="text-muted mb-0">
+                                                                {user.connect_with_facebook
+                                                                    ? `Connected as ${user.connect_with_facebook}`
+                                                                    : "Connect your Facebook account"}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    {user.connect_with_facebook ? (
+                                                        <Badge bg="success">Connected</Badge>
+                                                    ) : (
+                                                        <Button
+                                                            variant="outline-primary"
+                                                            onClick={() => handleSocialLogin(signInWithFacebook, "facebook")}
+                                                        >
+                                                            <FaFacebook className="me-2" /> Connect
+                                                        </Button>
+                                                    )}
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                    </>
+                                )}
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
             </Container>
-        </div>
-      <Footer />
-    </>
-  );
+
+            <Footer />
+        </>
+    );
 };
 
 export default AccountSettings;

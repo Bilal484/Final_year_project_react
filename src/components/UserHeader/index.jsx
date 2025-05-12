@@ -100,11 +100,11 @@ const UserHeader = () => {
                                                         Account Setting
                                                     </Link>
                                                 </li>
-                                                <li>
+                                                {/* <li>
                                                     <Link className="dropdown-item" to="/UserSetting">
                                                         User Setting
                                                     </Link>
-                                                </li>
+                                                </li> */}
                                             </ul>
                                         </li>
                                     </ul>

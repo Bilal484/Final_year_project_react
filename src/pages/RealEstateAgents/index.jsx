@@ -376,7 +376,7 @@ const AgentProfile = () => {
               </div>
 
               {activeSection === "active" && (
-                <div className="col-lg-8 mx-auto d-flex flex-row">
+                <div className="col-lg-10 mx-auto d-flex flex-row">
                   <div
                     className="col-lg-5 d-flex flex-column align-items-center"
                     style={{ height: "480px", overflowY: "scroll" }}
@@ -390,7 +390,7 @@ const AgentProfile = () => {
               )}
 
               {activeSection === "sold" && (
-                <div className="col-lg-8 mx-auto d-flex flex-row">
+                <div className="col-lg-10 mx-auto d-flex flex-row">
                   <div
                     className="col-lg-5 d-flex flex-column align-items-center"
                     style={{ height: "480px", overflowY: "scroll" }}
@@ -404,7 +404,7 @@ const AgentProfile = () => {
               )}
 
               {activeSection === "bought" && (
-                <div className="col-lg-8 mx-auto d-flex flex-row">
+                <div className="col-lg-10 mx-auto d-flex flex-row">
                   <div
                     className="col-lg-5 d-flex flex-column align-items-center"
                     style={{ height: "480px", overflowY: "scroll" }}
@@ -448,14 +448,14 @@ const AgentProfile = () => {
                     ))}
                   </Carousel>
 
-                  <div className="carousel-controls">
+                  {/* <div className="carousel-controls">
                     <Button variant="link" className="control-btn">
                       <i className="fas fa-chevron-left"></i>
                     </Button>
                     <Button variant="link" className="control-btn">
                       <i className="fas fa-chevron-right"></i>
                     </Button>
-                  </div>
+                  </div> */}
 
                   <div className="carousel-pagination">
                     {reviews.map((_, index) => (
