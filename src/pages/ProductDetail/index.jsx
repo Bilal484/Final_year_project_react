@@ -19,7 +19,7 @@ import ShareListingModal from "../../components/SharePopup";
 const ProductDetail = () => {
   const { id } = useParams(); // Get the 'id' from URL params
   const [imagePath, setImagePth] = useState(
-    "https://api.biznetusa.com/uploads/products/"
+    "https://apitourism.today.alayaarts.com/uploads/products/"
   );
   const [productData, setProductData] = useState(null); // State to hold product data
   const [loading, setLoading] = useState(true); // State for loading indication
@@ -49,8 +49,8 @@ const ProductDetail = () => {
     const fetchProductData = async () => {
       try {
         const [productResponse, productImageResponse] = await Promise.all([
-          fetch("https://api.biznetusa.com/api/get-products"),
-          fetch("https://api.biznetusa.com/api/get-productimages"),
+          fetch("https://apitourism.today.alayaarts.com/api/get-products"),
+          fetch("https://apitourism.today.alayaarts.com/api/get-productimages"),
         ]);
 
         const productData = await productResponse.json();
@@ -109,7 +109,7 @@ const ProductDetail = () => {
     const fetchProductData = async () => {
       try {
         const response = await fetch(
-          `https://api.biznetusa.com/api/get-product/${id}`
+          `https://apitourism.today.alayaarts.com/api/get-product/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch product data");
@@ -173,11 +173,11 @@ const ProductDetail = () => {
         />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/product-image-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/product-image-placeholder.jpg"
         />
         <meta
           property="og:url"
-          content="https://biznetusa.com/product-detail"
+          content="https://apitourism.today.alayaarts.com/product-detail"
         />
         <meta property="og:type" content="product" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -191,7 +191,7 @@ const ProductDetail = () => {
         />
         <meta
           name="twitter:image"
-          content="https://api.biznetusa.com/uploads/product-image-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/product-image-placeholder.jpg"
         />
       </Helmet>
 
@@ -242,7 +242,7 @@ const ProductDetail = () => {
                       onClick={handleImageClick}
                     >
                       <img
-                        src={`${"https://api.biznetusa.com/uploads/products/"}/${
+                        src={`${"https://apitourism.today.alayaarts.com/uploads/products/"}/${
                           image.image
                         }`}
                         alt={`Image ${index + 1}`}

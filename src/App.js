@@ -196,7 +196,7 @@ function App() {
                                 <Route path="/UserSetting" element={<UserSetting />} />
                                 <Route path="/AccountSettings" element={<AccountSettings />} />
                                 <Route path="/OwnerDashboard" element={<OwnerDashboard />} />
-                                <Route path="/SavedSearches" element={<SavedSearches />} />
+                                {/* <Route path="/SavedSearches" element={<SavedSearches />} /> */}
                                 <Route path="/OpenHouseSchedule" element={<OpenHouseSchedule />} />
                                 <Route path="/Review" element={<Review />} />
                                 <Route path="/Offer" element={<Offer />} />
@@ -223,7 +223,7 @@ function App() {
                                 <Route path="/AccountSettingCandidate" element={<AccountSettingCandidate />} />
                                 <Route path="/CreateJob" element={<CreateJob />} />
                                 <Route path="/SellerProduct" element={<SellerProduct />} />
-                            </>
+                        </>
                         )}
                         {/* Agent */}
                         {userRole === '10' && (

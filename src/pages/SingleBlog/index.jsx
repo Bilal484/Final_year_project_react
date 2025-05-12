@@ -29,7 +29,7 @@ const SingleBlog = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await fetch(`https://api.biznetusa.com/api/get-blog/${id}`);
+                const response = await fetch(`https://apitourism.today.alayaarts.com/api/get-blog/${id}`);
                 const data = await response.json();
                 if (data.status === 200) {
                     setBlog(data.blogs);
@@ -77,7 +77,7 @@ const SingleBlog = () => {
                 <meta property="og:title" content={blog.title || "Blog"} />
                 <meta property="og:description" content={blog.desc ? blog.desc.replace(/<[^>]+>/g, "").substring(0, 200) : "Explore the latest updates and insights on Biznet."} />
                 <meta property="og:image" content={blog.images?.length > 0 ? `${imagePath}/${blog.images[0].image}` : "https://example.com/default-blog-image.jpg"} />
-                <meta property="og:url" content={`https://biznetusa.com/blog/${id}`} />
+                <meta property="og:url" content={`https://apitourism.today.alayaarts.com/blog/${id}`} />
                 <meta property="og:type" content="article" />
             </Helmet>
 

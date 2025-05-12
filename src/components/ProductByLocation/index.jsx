@@ -15,7 +15,7 @@ const GetLocation = () => {
 
   const fetchProducts = async (latitude, longitude) => {
     try {
-      const url = `https://api.biznetusa.com/api/getproduct/${longitude}/${latitude}`;
+      const url = `https://apitourism.today.alayaarts.com/api/getproduct/${longitude}/${latitude}`;
       const response = await axios.get(url);
       if (response.status === 200 && response.data.status === 200) {
         setProducts(response.data.products);

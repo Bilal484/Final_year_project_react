@@ -29,7 +29,7 @@ const Header = () => {
             { path: "/Agent", label: "Your Agent" },
             { path: "/Offer", label: "Offers" },
             { path: "/Review", label: "Reviews" },
-            { path: "/OwnerDashboard", label: "Owner Dashboard" },
+            // { path: "/OwnerDashboard", label: "Owner Dashboard" },
             { path: "/AccountSettings", label: "Account Settings" },
             { path: "/UserSetting", label: "User Setting" }
         ],
@@ -120,7 +120,7 @@ const Header = () => {
         const fetchCategories = async () => {
             try {
                 const response = await fetch(
-                    "https://api.biznetusa.com/api/get-category"
+                    "https://apitourism.today.alayaarts.com/api/get-category"
                 );
                 if (!response.ok) {
                     throw new Error("Failed to fetch categories");
@@ -139,7 +139,7 @@ const Header = () => {
                 ...prevState,
                 [categoryId]: true,
             }));
-            const response = await fetch(` https://api.biznetusa.com/api/subcategories/${categoryId}`);
+            const response = await fetch(` https://apitourism.today.alayaarts.com/api/subcategories/${categoryId}`);
             if (!response.ok) {
                 throw new Error("Failed to fetch subcategories");
             }
@@ -161,7 +161,7 @@ const Header = () => {
         const fetchSimilarUsers = async () => {
             try {
                 const response = await fetch(
-                    `https://api.biznetusa.com/api/getsimilarusers/${userId}`
+                    `https://apitourism.today.alayaarts.com/api/getsimilarusers/${userId}`
                 );
                 const data = await response.json();
                 if (data.status) {

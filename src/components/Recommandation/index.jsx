@@ -22,8 +22,8 @@ const Recommendations = () => {
         const fetchRecommendedProperties = async () => {
             try {
                 const [productResponse, productImageResponse] = await Promise.all([
-                    fetch("https://api.biznetusa.com/api/get-products"),
-                    fetch("https://api.biznetusa.com/api/get-productimages"),
+                    fetch("https://apitourism.today.alayaarts.com/api/get-products"),
+                    fetch("https://apitourism.today.alayaarts.com/api/get-productimages"),
                 ]);
 
                 const productData = await productResponse.json();
@@ -162,7 +162,7 @@ const Recommendations = () => {
                                                         </div>
                                                         <img
                                                             onClick={() => navigate(`/ProductDetail/${property.id}`)}
-                                                            src={`https://api.biznetusa.com/uploads/products/${image}`}
+                                                            src={`https://apitourism.today.alayaarts.com/uploads/products/${image}`}
                                                             alt={`Property ${property.id} Image ${index + 1}`}
                                                             className="d-block w-100"
                                                             style={{

@@ -47,11 +47,11 @@ const UserHeader = () => {
                                                 Favorites
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <Link className="nav-link" to="/SavedSearches">
                                                 Saved Searches
                                             </Link>
-                                        </li>
+                                        </li> */}
                                         <li className="nav-item">
                                             <Link className="nav-link" to="/OpenHouseSchedule">
                                                 Open House Schedule
@@ -77,11 +77,11 @@ const UserHeader = () => {
                                                 Reviews
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <Link className="nav-link" to="/OwnerDashboard">
                                                 Owner Dashboard
                                             </Link>
-                                        </li>
+                                        </li> */}
                                         {/* Dropdown */}
                                         <li className="nav-item dropdown">
                                             <Link

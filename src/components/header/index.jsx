@@ -27,13 +27,13 @@ const Header = () => {
     const menuItems = {
         1: [
             { path: "/Favorites", label: "Favorites", icon: "❤️" },
-            { path: "/SavedSearches", label: "Saved Searches", icon: "🔍" },
+            // { path: "/SavedSearches", label: "Saved Searches", icon: "🔍" },
             { path: "/OpenHouseSchedule", label: "Open House Schedule", icon: "🏠" },
             { path: "/Appointments", label: "Appointments", icon: "📅" },
             { path: "/Agent", label: "Your Agent", icon: "👤" },
             { path: "/Offer", label: "Offers", icon: "📝" },
             { path: "/Review", label: "Reviews", icon: "⭐" },
-            { path: "/OwnerDashboard", label: "Owner Dashboard", icon: "📊" },
+            // { path: "/OwnerDashboard", label: "Owner Dashboard", icon: "📊" },
             { path: "/AccountSettings", label: "Account Settings", icon: "⚙️" },
             { path: "/UserSetting", label: "User Setting", icon: "🔧" },
         ],
@@ -148,7 +148,7 @@ const Header = () => {
         const fetchCategories = async () => {
             try {
                 const response = await fetch(
-                    "https://api.biznetusa.com/api/get-category"
+                    "https://apitourism.today.alayaarts.com/api/get-category"
                 );
                 if (!response.ok) {
                     throw new Error("Failed to fetch categories");
@@ -170,7 +170,7 @@ const Header = () => {
                 [categoryId]: true,
             }));
             const response = await fetch(
-                `https://api.biznetusa.com/api/subcategories/${categoryId}`
+                `https://apitourism.today.alayaarts.com/api/subcategories/${categoryId}`
             );
             if (!response.ok) {
                 throw new Error("Failed to fetch subcategories");
@@ -196,7 +196,7 @@ const Header = () => {
             const fetchSimilarUsers = async () => {
                 try {
                     const response = await fetch(
-                        `https://api.biznetusa.com/api/getsimilarusers/${userId}`
+                        `https://apitourism.today.alayaarts.com/api/getsimilarusers/${userId}`
                     );
                     const data = await response.json();
                     if (data.status) {

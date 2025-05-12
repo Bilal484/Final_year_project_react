@@ -17,35 +17,96 @@ import {
     FaCalendarAlt,
     FaPhoneAlt,
     FaEnvelope,
+    FaSync
 } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TourRequestPage = () => {
     const [tourRequests, setTourRequests] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    // Fetching the tour request data from API
-    useEffect(() => {
-        const fetchTourRequests = async () => {
-            try {
-                const response = await fetch("https://api.biznetusa.com/api/get-tourinpersons");
-                const data = await response.json();
-                if (data.status === 200) {
-                    setTourRequests(data.tour_in_person);
-                }
-            } catch (error) {
-                console.error("Error fetching tour requests:", error);
-            } finally {
-                setLoading(false);
+    const [refreshing, setRefreshing] = useState(false);
+    
+    // Function to fetch tour requests data - extracted outside useEffect for reuse
+    const fetchTourRequests = async () => {
+        try {
+            if (!loading) setRefreshing(true);
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/get-tourinpersons");
+            const data = await response.json();
+            if (data.status === 200) {
+                // Process the tour requests to correctly set the approved status
+                const processedRequests = data.tour_in_person.map(request => ({
+                    ...request,
+                    // Set approved to true if approved_tour is 1, false otherwise
+                    approved: request.approved_tour === 1
+                }));
+                setTourRequests(processedRequests);
+                
+                // For debugging
+                console.log("Tour requests data:", processedRequests);
             }
-        };
-
+        } catch (error) {
+            console.error("Error fetching tour requests:", error);
+            toast.error("Failed to load tour requests");
+        } finally {
+            setLoading(false);
+            setRefreshing(false);
+        }
+    };
+      // Fetching the tour request data from API
+    useEffect(() => {
         fetchTourRequests();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const handleApproved = async (requestId) => {
+        try {
+            // Use the production API endpoint
+            const response = await fetch(`http://127.0.0.1:8000/api/approve-tour/${requestId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const result = await response.json();
+
+            if (result.status === 200) {
+                // Update the state immediately to reflect the change in approved_tour
+                setTourRequests((prevRequests) =>
+                    prevRequests.map((req) =>
+                        req.id === requestId ? { ...req, approved: true, approved_tour: 1 } : req
+                    )
+                );
+                // Show success message
+                toast.success("Tour request has been approved and email notification has been sent to Buyer!");
+                
+                // Refresh the data to ensure consistency with the server
+                setTimeout(() => fetchTourRequests(), 2000);
+            } else {
+                toast.error("Failed to approve the tour. Please try again.");
+                console.error("Failed to approve the tour:", result);
+            }
+
+        } catch (error) {
+            toast.error("Error connecting to server. Please try again later.");
+            console.error("Error approving tour:", error);
+        }
+    };
     // Loading state
     if (loading) {
         return (
             <>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 <Header />
                 <SellerAgentHeader />
                 <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
@@ -56,10 +117,20 @@ const TourRequestPage = () => {
                 <Footer />
             </>
         );
-    }
-
-    return (
+    } return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+
             <Helmet>
                 <title>Tour Requests - View All Tour Requests</title>
                 <meta
@@ -72,9 +143,7 @@ const TourRequestPage = () => {
             </Helmet>
 
             <Header />
-            <SellerAgentHeader />
-
-            <div className="tour-request-hero">
+            <SellerAgentHeader />            <div className="tour-request-hero">
                 <Container>
                     <Row>
                         <Col md={8} lg={6}>
@@ -84,6 +153,19 @@ const TourRequestPage = () => {
                                     View all the people who want to tour your house
                                 </p>
                             </div>
+                        </Col>
+                        <Col md={4} lg={6} className="d-flex justify-content-end align-items-center">                            <Button 
+                                variant="outline-light" 
+                                onClick={() => fetchTourRequests()}
+                                className="refresh-button"
+                            >
+                                {refreshing ? (
+                                    <Spinner animation="border" size="sm" className="me-2" />
+                                ) : (
+                                    <FaSync className="me-2" />
+                                )}
+                                Refresh Requests
+                            </Button>
                         </Col>
                     </Row>
                 </Container>
@@ -109,11 +191,21 @@ const TourRequestPage = () => {
                                             <p className="tour-request-contact">
                                                 <FaEnvelope /> {request.email}
                                             </p>
-                                        </div>
-                                        <div className="text-end">
-                                            <Button variant="outline-primary" size="sm">
-                                                Approve
+                                        </div>                                        <div className="text-end">
+                                            <Button
+                                                variant={request.approved ? "success" : "outline-primary"}
+                                                onClick={() => !request.approved && handleApproved(request.id)}
+                                                disabled={request.approved}
+                                                size="sm"
+                                                className={request.approved ? "approved-button" : ""}
+                                                title={request.approved ? "This tour request is already approved" : "Approve this tour request"}
+                                            >
+                                                {request.approved ? "Approved ✓" : "Approve"}
                                             </Button>
+                                            {/* Debug info - remove in production */}
+                                            {/* <div className="mt-1 small text-muted">
+                                                Status: {request.approved_tour === 1 ? '1 (Approved)' : '0 (Not approved)'}
+                                            </div> */}
                                         </div>
                                     </div>
                                     {request.notes && (

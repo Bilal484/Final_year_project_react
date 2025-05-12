@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 import { Carousel, Spinner, Tab, Tabs, Badge } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -12,79 +13,130 @@ import Notification, { useNotification } from "../../../components/Notification"
 
 
 const Appointments = () => {
-  const [notification, showNotification] = useNotification();
-  
-  const [tourInPerson, setTourInPerson] = useState([]);
+  const [notification, showNotification] = useNotification();  const [tourInPerson, setTourInPerson] = useState([]);
   const [tourOnVideoChat, setTourOnVideoChat] = useState([]);
   const [productData, setProductData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('inPerson');
-  useEffect(() => {
-    const userId = localStorage.getItem("user_id") || 2; // Get from localStorage or use default
-    const p_id = 13; // Default product ID
+  const [requestInProgress, setRequestInProgress] = useState(false);
 
-    // Fetch Tour In Person data
-    fetch(`https://api.biznetusa.com/api/get-tourinpersons/${userId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data && data.tour_in_person) {
-          setTourInPerson(data.tour_in_person);
-        } else {
-          setTourInPerson([]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching tour in person:", error);
-        showNotification("Error", `Error fetching tour in person: ${error.message}`);
-      });
+  const fetchTourOnVideoChat = useCallback(async () => {
+    try {
+      const userId = localStorage.getItem("user_id") || 2;
+      const response = await axios.get(
+        `https://apitourism.today.alayaarts.com/api/get-touronvideochat/${userId}`,
+        { timeout: 10000 }
+      );
 
-    // Fetch Tour On Video Chat data
-    fetch(`https://api.biznetusa.com/api/get-touronvideochat/${userId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data && data.tour_on_video_chat) {
-          setTourOnVideoChat(data.tour_on_video_chat);
-        } else {
-          setTourOnVideoChat([]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching tour on video chat:", error);
-        showNotification("Error", `Error fetching video chat tours: ${error.message}`);
-      });
-
-    // Fetch Product data (we'll use a sample p_id for now, you'll need to adjust this logic)
-    fetch(`https://api.biznetusa.com/api/get-product/${p_id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data && data.products) {
-          setProductData(data.products);
-        } else {
-          setProductData(null);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching product data:", error);
-        showNotification("Error", `Error fetching product data: ${error.message}`);
-      })
-      .finally(() => setLoading(false));
+      if (response.data && response.data.tour_on_video_chat) {
+        setTourOnVideoChat(response.data.tour_on_video_chat);
+      } else {
+        setTourOnVideoChat([]);
+      }
+    } catch (error) {
+      console.error("Error fetching video chat tours:", error?.message || "Network error");
+      setTourOnVideoChat([]);
+      // Use a delayed notification to prevent render loops
+      setTimeout(() => {
+        showNotification("Error", `Error fetching video chat tours: ${error?.message || "Network error"}`);
+      }, 100);
+    }
   }, [showNotification]);
-  // Format date to a more readable format
+
+  const fetchTourInPerson = useCallback(async () => {
+    try {
+      const userId = localStorage.getItem("user_id") || 2;
+      const response = await axios.get(
+        `https://apitourism.today.alayaarts.com/api/get-tourinpersons/${userId}`,
+        { timeout: 10000 }
+      );
+
+      if (response.data && response.data.tour_in_person) {
+        setTourInPerson(response.data.tour_in_person);
+      } else {
+        setTourInPerson([]);
+      }
+    } catch (error) {
+      console.error("Error fetching tour in person:", error?.message || "Network error");
+      setTourInPerson([]);
+
+      // Use setTimeout to avoid potential infinite update loops
+      setTimeout(() => {
+        showNotification("Error", `Error fetching tour in person: ${error?.message || "Network error"}`);
+      }, 100);
+    }  }, [showNotification]);
+
+  const fetchProduct = useCallback(async () => {
+    try {
+      // Use sample product ID or fetch product details based on tour information
+      const userId = localStorage.getItem("user_id") || 2;
+      const response = await axios.get(
+        `https://apitourism.today.alayaarts.com/api/get-product-details/${userId}`,
+        { timeout: 10000 }
+      );
+
+      if (response.data && response.data.product) {
+        setProductData(response.data.product);
+      } else {
+        setProductData(null);
+      }
+    } catch (error) {
+      console.error("Error fetching product data:", error?.message || "Network error");
+      setProductData(null);
+      // Use a delayed notification to prevent render loops
+      setTimeout(() => {
+        showNotification("Error", `Error fetching property details: ${error?.message || "Network error"}`);
+      }, 100);
+    }
+  }, [showNotification]);
+  //     setTimeout(() => {
+  //       showNotification("Error", `Error fetching product data: ${error?.message || "Network error"}`);
+  //     }, 100);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, [showNotification]);
+
+  useEffect(() => {
+    // Flag to prevent state updates after component unmount
+    let isMounted = true;
+
+    // Anti-pattern prevention: only fetch if not already in progress
+    if (!requestInProgress) {
+      setRequestInProgress(true);
+      setLoading(true);      // Execute all data fetches in parallel to minimize loading time
+      Promise.allSettled([
+        fetchTourInPerson(),
+        fetchTourOnVideoChat(),
+        fetchProduct()
+      ])
+        .then(results => {
+          if (!isMounted) return;          // Log any errors from the API calls
+          results.forEach((result, index) => {
+            if (result.status === 'rejected') {
+              const apis = ['In-person tours', 'Video chat tours', 'Property data'];
+              console.error(`Error in API call for ${apis[index]}:`, result.reason);
+            }
+          });
+        })
+        .catch(err => {
+          if (!isMounted) return;
+          console.error("Error in API calls:", err?.message);
+        })
+        .finally(() => {
+          if (isMounted) {
+            setRequestInProgress(false);
+          }
+        });
+    }
+
+    // Cleanup function to prevent state updates after unmounting
+    return () => {
+      isMounted = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array ensures this runs only once when component mounts
+
   const formatDate = (dateString) => {
     if (!dateString) return "Schedule to be determined";
     const date = new Date(dateString);
@@ -118,17 +170,13 @@ const Appointments = () => {
           property="og:description"
           content="Manage your real estate appointments and tours, including in-person and video chat options, with ease."
         />
-        <meta
-          property="og:image"
-          content="https://api.biznetusa.com/uploads/appointments-banner.jpg"
-        />
-        <meta property="og:url" content="https://biznetusa.com/appointments" />
+
         <meta property="og:type" content="website" />
       </Helmet>
-      
+
       <Header />
       <UserHeader />
-      
+
       <div className="appointments-container">
         <div className="container py-4">
           <div className="appointments-header mb-4">
@@ -171,7 +219,7 @@ const Appointments = () => {
                                 {appointment.not_sure_about_this_schedule ? "Schedule Pending" : "Confirmed"}
                               </Badge>
                             </div>
-                            
+
                             <div className="property-image">
                               {productData && productData.images && productData.images.length > 0 ? (
                                 <Carousel controls indicators>
@@ -179,7 +227,7 @@ const Appointments = () => {
                                     <Carousel.Item key={imgIndex}>
                                       <img
                                         className="d-block w-100"
-                                        src={`https://api.biznetusa.com/uploads/products/${image.image}`}
+                                        src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
                                         alt={`Property ${imgIndex + 1}`}
                                       />
                                     </Carousel.Item>
@@ -191,35 +239,35 @@ const Appointments = () => {
                                 </div>
                               )}
                             </div>
-                            
+
                             <div className="card-body">
                               <h3 className="property-title">
                                 {productData ? productData.title : `Property Tour`}
                               </h3>
-                              
+
                               <div className="appointment-info">
                                 <div className="info-item">
                                   <i className="bi bi-calendar-check"></i>
                                   <span>{formatDate(appointment.date)}</span>
                                 </div>
-                                
+
                                 <div className="info-item">
                                   <i className="bi bi-geo-alt"></i>
                                   <span>{productData ? productData.location : "Location unavailable"}</span>
                                 </div>
-                                
+
                                 <div className="info-item">
                                   <i className="bi bi-person-circle"></i>
                                   <span>{`${appointment.firstname || ''} ${appointment.lastname || ''}`}</span>
                                 </div>
                               </div>
-                              
+
                               {appointment.notes && (
                                 <div className="appointment-notes">
                                   <p><strong>Notes:</strong> {appointment.notes}</p>
                                 </div>
                               )}
-                              
+
                               <div className="appointment-actions mt-3">
                                 <button className="btn btn-outline-primary btn-sm me-2">
                                   <i className="bi bi-pencil me-1"></i> Edit
@@ -246,7 +294,7 @@ const Appointments = () => {
                     </div>
                   )}
                 </Tab>
-                
+
                 <Tab eventKey="videoChat" title={<span><i className="bi bi-camera-video me-2"></i>Video Chat Tours</span>}>
                   {tourOnVideoChat && tourOnVideoChat.length > 0 ? (
                     <div className="row">
@@ -259,7 +307,7 @@ const Appointments = () => {
                               </Badge>
                               <Badge bg="info" className="ms-2">Video Chat</Badge>
                             </div>
-                            
+
                             <div className="property-image">
                               {productData && productData.images && productData.images.length > 0 ? (
                                 <Carousel controls indicators>
@@ -267,7 +315,7 @@ const Appointments = () => {
                                     <Carousel.Item key={imgIndex}>
                                       <img
                                         className="d-block w-100"
-                                        src={`https://api.biznetusa.com/uploads/products/${image.image}`}
+                                        src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
                                         alt={`Property ${imgIndex + 1}`}
                                       />
                                     </Carousel.Item>
@@ -279,35 +327,34 @@ const Appointments = () => {
                                 </div>
                               )}
                             </div>
-                            
+
                             <div className="card-body">
                               <h3 className="property-title">
                                 {productData ? productData.title : `Virtual Property Tour`}
                               </h3>
-                              
+
                               <div className="appointment-info">
                                 <div className="info-item">
                                   <i className="bi bi-calendar-check"></i>
                                   <span>{formatDate(appointment.date)}</span>
                                 </div>
-                                
                                 <div className="info-item">
                                   <i className="bi bi-camera-video"></i>
-                                  <span>Video Tour Link: <a href="#">Join Meeting</a></span>
+                                  <span>Video Tour Link: <button className="btn-link p-0 border-0 bg-transparent text-primary">Join Meeting</button></span>
                                 </div>
-                                
+
                                 <div className="info-item">
                                   <i className="bi bi-person-circle"></i>
                                   <span>{`${appointment.firstname || ''} ${appointment.lastname || ''}`}</span>
                                 </div>
                               </div>
-                              
+
                               {appointment.notes && (
                                 <div className="appointment-notes">
                                   <p><strong>Notes:</strong> {appointment.notes}</p>
                                 </div>
                               )}
-                              
+
                               <div className="appointment-actions mt-3">
                                 <button className="btn btn-success btn-sm me-2">
                                   <i className="bi bi-camera-video me-1"></i> Join Call
@@ -338,7 +385,7 @@ const Appointments = () => {
                   )}
                 </Tab>
               </Tabs>
-              
+
               <div className="mt-5 p-4 bg-light rounded">
                 <h4><i className="bi bi-info-circle me-2"></i>Need Help?</h4>
                 <p>If you need to reschedule or have questions about your appointment, please contact us:</p>
@@ -376,7 +423,7 @@ const Appointments = () => {
           )}
         </div>
       </div>
-      
+
       <Footer />
     </>
   );

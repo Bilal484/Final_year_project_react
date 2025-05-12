@@ -5,142 +5,97 @@ import UserHeader from "../../../components/UserHeader";
 import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import axios from "axios";
-import { Carousel, Card, Button, Modal, Form } from "react-bootstrap"; // Import necessary components from React-Bootstrap
-import Notification, {useNotification} from "../../../components/Notification";
+import { Carousel, Card, Button, Modal } from "react-bootstrap";
 
 
-const Favorites = () => {
-    const [notification, showNotification] = useNotification(); // Destructure the returned values
+
+const Favorites = () => {  
   const [favorites, setFavorites] = useState([]);
-  const [userLists, setUserLists] = useState([]); // New state for storing user's lists
-  const [imagePath, setImagePath] = useState(""); // New state for storing image path
+  const [imagePath, setImagePath] = useState("https://apitourism.today.alayaarts.com/api/uploads/products");
   const [loading, setLoading] = useState(true);
-  const [loadingLists, setLoadingLists] = useState(true); // State to track if lists are loading
-  const [showNewListModal, setShowNewListModal] = useState(false); // State for controlling modal visibility
-  const [listName, setListName] = useState(""); // State for the new list name
-  const [isPrimaryList, setIsPrimaryList] = useState(false); // State for the checkbox
-  const [activeList, setActiveList] = useState(null); // State to track active list
-  const [errorMessage, setErrorMessage] = useState(""); // State to handle error messages
-  useEffect(() => {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+
+  const fetchFavoriteProducts = async () => {
     const userId = localStorage.getItem("user_id");
-    if (userId) {
-      // Fetch user lists
-      axios
-        .get(`https://api.biznetusa.com/api/get-new-list/${userId}`)
-        .then((response) => {
-          if (response.data && response.data.new_list) {
-            setUserLists(response.data.new_list);
-            
-            // Set default active list to the primary list if available
-            const primaryList = response.data.new_list.find(list => list.primarily_list === "1");
-            if (primaryList) {
-              setActiveList(primaryList.id);
-            } else if (response.data.new_list.length > 0) {
-              // Otherwise use the first list
-              setActiveList(response.data.new_list[0].id);
-            }
-          }
-          setLoadingLists(false);
-          
-          // For now keep the favorites as is - we'll update this later
-          if (response.data.favorites) {
-            setFavorites(response.data.favorites);
-          }
-          if (response.data.imagePath) {
-            setImagePath(response.data.imagePath);
-          }
-          setLoading(false);
-        })
-        .catch((error) => {
-          showNotification("Error fetching lists: " + (error.response?.data?.message || error.message));
-          setLoadingLists(false);
-          setLoading(false);
-        });
-    } else {
-      showNotification("User ID not found in localStorage");
-      setLoadingLists(false);
+    if (!userId) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      
+      const response = await axios.get(
+        `https://apitourism.today.alayaarts.com/api/get-fvtproducts/${userId}`,
+        { timeout: 10000 }
+      );
+      
+      if (response.data?.status === 200) {
+        setFavorites(response.data.products || []);
+        setImagePath(response.data.imagePath || "https://apitourism.today.alayaarts.com/api/uploads/products");
+      } else {
+        setFavorites([]);
+      }
+    } catch (error) {
+      console.error("Error fetching favorites:", error?.response?.data?.message || error?.message || "Network error");
+      setFavorites([]);
+    } finally {
       setLoading(false);
     }
-  }, [showNotification]);
-
-  // Function to handle saving the new list
-const handleSaveNewList = () => {
-  if (!listName.trim()) {
-    setErrorMessage("List name cannot be empty.");
-    return;
-  }
-
-  const userId = localStorage.getItem("user_id"); // Retrieve the user_id from localStorage
-
-  if (!userId) {
-    setErrorMessage("User ID is required. Please log in again.");
-    return;
-  }
-
-  const payload = {
-    name: listName,
-    primarily_list: isPrimaryList ? 1 : 0,
-    user_id: userId, // Add the user_id to the payload
   };
 
-  axios
-    .post("https://api.biznetusa.com/api/store-new-list", payload)
-    .then((response) => {
-      // Create a new list object
-      const newList = {
-        id: response.data.id || Date.now(), // use response ID if available, otherwise timestamp
-        user_id: parseInt(userId),
-        name: listName,
-        primarily_list: isPrimaryList ? "1" : "0",
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      };
+  useEffect(() => {
+    let isMounted = true;
+    
+    const loadInitialData = async () => {
+      if (!isMounted) return;
+      await fetchFavoriteProducts();
+    };
+
+    loadInitialData();
+    
+    return () => {
+      isMounted = false;
+    };
+  }, []); 
+
+  const removeFavorite = async (productId) => {
+    try {
+      const response = await axios.delete(
+        `https://apitourism.today.alayaarts.com/api/deletefvtproduct/${productId}`,
+        { timeout: 10000 }
+      );
       
-      // Update userLists state with the new list
-      setUserLists(prevLists => {
-        const updatedLists = [...prevLists, newList];
+      if (response.data?.status === 200) {
+        setFavorites(prevFavorites => 
+          prevFavorites.filter(favorite => favorite.id !== productId)
+        );
+        console.log("Favorite removed successfully");
+        fetchFavoriteProducts();
+      } else {
+        console.error("Failed to remove favorite:", response.data?.message || "Unknown error");
         
-        // If this is a primary list, update other lists to not be primary
-        if (isPrimaryList) {
-          return updatedLists.map(list => ({
-            ...list,
-            primarily_list: list.id === newList.id ? "1" : "0"
-          }));
-        }
-        
-        return updatedLists;
-      });
-      
-      // If this is the first list or it's primary, set it as active
-      if (isPrimaryList || userLists.length === 0) {
-        setActiveList(newList.id);
       }
+    } catch (error) {
+      console.error("Error removing favorite:", error?.response?.data?.message || error?.message || "Network error");
       
-      showNotification({
-        type: "success",
-        message: "List created successfully!"
-      });
-      
-      // Reset form and close modal
-      setListName("");
-      setIsPrimaryList(false);
-      setShowNewListModal(false);
-      setErrorMessage("");
-    })
-    .catch((error) => {
-      showNotification({
-        type: "error",
-        message: "Error creating list: " + (error.response?.data?.message || error.message)
-      });
-      setErrorMessage("Failed to create the list. Please try again.");
-    });
-};
+    } finally {
+      setShowDeleteConfirm(false);
+      setProductToDelete(null);
+    }
+  };
+
+  const handleDeleteClick = (product) => {
+    setProductToDelete(product);
+    setShowDeleteConfirm(true);
+  };
 
   return (
     <>
-      {notification.message && <Notification {...notification} />}
+      {/* {notification.message && <Notification {...notification} />} */}
 
-    <Helmet>
+      <Helmet>
         <title>Favorites | UrbanCraft REAL ESTATE</title>
         <meta
           name="description"
@@ -158,77 +113,39 @@ const handleSaveNewList = () => {
         />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/favorites-banner.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/favorites-banner.jpg"
         />
-        <meta property="og:url" content="https://biznetusa.com/favorites" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/favorites" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />
       <UserHeader />
       <div id="main-content">
-        <div className="container favourite-container">          <div className="favorites-header d-flex justify-content-between align-items-center mb-4">
+        <div className="container favourite-container">          
+          <div className="favorites-header d-flex justify-content-between align-items-center mb-4">
             <div className="header-title">
               <h2>Favorites</h2>
-              <button
-                className="text-muted ms-2 add-search-partner border-0 bg-transparent"
-                data-bs-toggle="modal"
-                data-bs-target="#userFavouriteSearchPartnerModal"
-              >
-                <i className="bi bi-person-plus-fill" /> Add search partner
-              </button>
             </div>
-            <div className="action-buttons d-flex align-items-center">
+            {/* <div className="action-buttons d-flex align-items-center">
               <button className="text-muted me-3 border-0 bg-transparent">
                 <i className="bi bi-download" /> Download all
               </button>
-              <button
-                className="btn btn-primary btn-sm"
-                onClick={() => setShowNewListModal(true)} // Open the modal on button click
-              >
-                <i className="bi bi-plus-circle" /> New list
-              </button>
-            </div>
-          </div>
-
-          {/* Display user lists */}
-          <div className="user-lists mb-4">
-            <h3 className="mb-3">My Lists</h3>
-            {loadingLists ? (
-              <p>Loading lists...</p>
-            ) : userLists.length > 0 ? (
-              <div className="list-tabs">
-                <ul className="nav nav-tabs">
-                  {userLists.map((list) => (
-                    <li className="nav-item" key={list.id}>
-                      <button
-                        className={`nav-link ${activeList === list.id ? 'active' : ''}`}
-                        onClick={() => setActiveList(list.id)}
-                      >
-                        {list.name}
-                        {list.primarily_list === "1" && (
-                          <span className="badge bg-success ms-2">Primary</span>
-                        )}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <div className="alert alert-info">
-                You don't have any lists yet. Create your first list to start saving favorites.
-              </div>
-            )}
+            </div> */}
           </div>
 
           {/* Display favorite items */}
           <div className="favorites-list">
             {loading ? (
-              <p>Loading favorites...</p>
+              <div className="d-flex justify-content-center my-5">
+                <div className="spinner-border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
             ) : favorites.length > 0 ? (
               <div className="row">
-                {favorites.map((favorite, index) => (
-                  <div key={index} className="col-md-4 mb-4">
-                    <Card className="favorite-card">
+                {favorites.map((favorite) => (
+                  <div key={favorite.id} className="col-md-4 mb-4">
+                    <Card className="favorite-card h-100">
                       <Carousel>
                         {favorite.images && favorite.images.length > 0 ? (
                           favorite.images.map((image, imgIndex) => (
@@ -236,16 +153,18 @@ const handleSaveNewList = () => {
                               <img
                                 className="d-block w-100 favorite-image"
                                 src={`${imagePath}${image.image}`}
-                                alt={`Slide ${imgIndex}`}
+                                alt={`${favorite.title} - ${imgIndex + 1}`}
+                                style={{ height: '200px', objectFit: 'cover' }}
                               />
                             </Carousel.Item>
                           ))
                         ) : (
                           <Carousel.Item>
                             <img
-                              className="d-block w-100 favorite-image bg-blue"
+                              className="d-block w-100 favorite-image"
                               src="/placeholder-image.png"
                               alt="Placeholder"
+                              style={{ height: '200px', objectFit: 'cover' }}
                             />
                           </Carousel.Item>
                         )}
@@ -253,88 +172,50 @@ const handleSaveNewList = () => {
 
                       <Card.Body>
                         <Card.Title>{favorite.title}</Card.Title>
-                        <Card.Text>{favorite.desc}</Card.Text>
-                        <Card.Text>{favorite.location}</Card.Text>
-                        <Card.Text>${favorite.price}</Card.Text>
-                        <Button variant="danger">
-                          <i className="bi bi-heart-fill"></i> Favorite
-                        </Button>
+                        <Card.Text className="text-truncate">{favorite.desc}</Card.Text>
+                        <Card.Text><i className="bi bi-geo-alt"></i> {favorite.location}</Card.Text>
+                        <Card.Text className="fw-bold">${Number(favorite.price).toLocaleString()}</Card.Text>
                       </Card.Body>
+                      <Card.Footer className="bg-white border-top-0">
+                        <Button 
+                          variant="outline-danger" 
+                          className="w-100"
+                          onClick={() => handleDeleteClick(favorite)}
+                        >
+                          <i className="bi bi-trash"></i> Remove from Favorites
+                        </Button>
+                      </Card.Footer>
                     </Card>
                   </div>
                 ))}
               </div>
             ) : (
-              <p>No favorites found.</p>
+              <div className="alert alert-info">
+                <i className="bi bi-info-circle me-2"></i>
+                You don't have any favorite properties yet. Browse properties and add them to your favorites!
+              </div>
             )}
           </div>
         </div>
-      </div>      {/* Modal for creating a new list */}
-      <Modal show={showNewListModal} onHide={() => setShowNewListModal(false)}>
-        <Modal.Header closeButton className="bg-light">
-          <Modal.Title>
-            <i className="bi bi-bookmarks me-2"></i>Create a New List
-          </Modal.Title>
+      </div>
+
+      {/* Delete confirmation modal */}
+      <Modal show={showDeleteConfirm} onHide={() => setShowDeleteConfirm(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Remove from Favorites</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
-          <Form>
-            <Form.Group controlId="listName" className="mb-3">
-              <Form.Label>
-                <i className="bi bi-list-ul me-2"></i>List Name
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter a name for your list"
-                value={listName}
-                onChange={(e) => setListName(e.target.value)}
-                maxLength="50"
-                className={listName.trim() ? "is-valid" : ""}
-                isInvalid={errorMessage && !listName.trim()}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a name for your list.
-              </Form.Control.Feedback>
-              <Form.Text className="text-muted">
-                Give your list a meaningful name to help you organize your favorites.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group controlId="primaryList" className="mt-4">
-              <Form.Check
-                type="checkbox"
-                label={
-                  <>
-                    <i className="bi bi-star-fill me-2 text-warning"></i>
-                    Make this my primary list
-                  </>
-                }
-                checked={isPrimaryList}
-                onChange={(e) => setIsPrimaryList(e.target.checked)}
-              />
-              <Form.Text className="text-muted ms-4 ps-1">
-                Your primary list will be shown by default when you visit your favorites.
-              </Form.Text>
-            </Form.Group>
-          </Form>
+          Are you sure you want to remove <strong>{productToDelete?.title}</strong> from your favorites?
         </Modal.Body>
         <Modal.Footer>
-          <Button 
-            variant="outline-secondary" 
-            onClick={() => {
-              setShowNewListModal(false);
-              setListName("");
-              setIsPrimaryList(false);
-              setErrorMessage("");
-            }}
-          >
-            <i className="bi bi-x me-1"></i> Cancel
+          <Button variant="secondary" onClick={() => setShowDeleteConfirm(false)}>
+            Cancel
           </Button>
           <Button 
-            variant="primary" 
-            onClick={handleSaveNewList}
-            disabled={!listName.trim()}
+            variant="danger" 
+            onClick={() => productToDelete && removeFavorite(productToDelete.id)}
           >
-            <i className="bi bi-save me-1"></i> Create List
+            Remove
           </Button>
         </Modal.Footer>
       </Modal>

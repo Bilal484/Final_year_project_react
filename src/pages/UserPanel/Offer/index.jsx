@@ -27,9 +27,9 @@ const Offer = () => {
         />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/offer-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/offer-placeholder.jpg"
         />
-        <meta property="og:url" content="https://biznetusa.com/my-offers" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/my-offers" />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content="My Offers | UrbanCraft REAL ESTATE" />
@@ -39,7 +39,7 @@ const Offer = () => {
         />
         <meta
           property="twitter:image"
-          content="https://api.biznetusa.com/uploads/offer-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/offer-placeholder.jpg"
         />
       </Helmet>
       <Header />

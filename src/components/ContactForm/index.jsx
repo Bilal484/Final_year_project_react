@@ -17,7 +17,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://api.biznetusa.com/api/store-getintouch', formData);
+      const response = await axios.post('https://apitourism.today.alayaarts.com/api/store-getintouch', formData);
       if (response.status === 200) {
         setToastMessage('Message sent successfully!');
         setToastVariant('success');

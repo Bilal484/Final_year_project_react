@@ -23,7 +23,7 @@ const Chat = ({ senderId, receiverId }) => {
     useEffect(() => {
         // Fetch messages
         axios
-            .get(`https://api.biznetusa.com/api/get-chat/${senderId}/${receiverId}`)
+            .get(`https://apitourism.today.alayaarts.com/api/get-chat/${senderId}/${receiverId}`)
             .then((response) => {
                 setMessages(response.data);
                 // Scroll to bottom after messages load
@@ -106,7 +106,7 @@ const Chat = ({ senderId, receiverId }) => {
 
             // Send to server
             axios
-                .post("https://api.biznetusa.com/api/storechat", messageData)
+                .post("https://apitourism.today.alayaarts.com/api/storechat", messageData)
                 .then((response) => {
                     // Replace temp message with actual message from server
                     setMessages((prev) =>

@@ -27,7 +27,7 @@ const ReviewManagement = () => {
     const reviewId = e.currentTarget.closest("li").dataset.key;
 
     try {
-      await axios.delete(`https://api.biznetusa.com/api/deletereview/${reviewId}`);
+      await axios.delete(`https://apitourism.today.alayaarts.com/api/deletereview/${reviewId}`);
       toast.success("Project deleted successfully!");
       fetchData();
     } catch (err) {
@@ -37,7 +37,7 @@ const ReviewManagement = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://api.biznetusa.com/api/get-reviews');
+      const response = await axios.get('https://apitourism.today.alayaarts.com/api/get-reviews');
       setReview(response.data.review_management);
       toast.success("Reviews Fetched Successfully");
     } catch (err) {
@@ -54,7 +54,7 @@ const ReviewManagement = () => {
     setMessage(""); // Clear previous messages
 
     try {
-      const response = await fetch("https://api.biznetusa.com/api/store-review", {
+      const response = await fetch("https://apitourism.today.alayaarts.com/api/store-review", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

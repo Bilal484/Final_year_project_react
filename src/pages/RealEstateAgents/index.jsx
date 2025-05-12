@@ -72,7 +72,7 @@ const AgentProfile = () => {
         if (id) {
           // First try to get the specific agent
           try {
-            const response = await axios.get(`https://api.biznetusa.com/api/agent/${id}`);
+            const response = await axios.get(`https://apitourism.today.alayaarts.com/api/agent/${id}`);
             if (response.data) {
               setAgent(response.data);
               setLoading(false);
@@ -83,7 +83,7 @@ const AgentProfile = () => {
           }
 
           // If the specific endpoint fails, get all agents and filter
-          const allResponse = await axios.get('https://api.biznetusa.com/api/all-agents');
+          const allResponse = await axios.get('https://apitourism.today.alayaarts.com/api/all-agents');
           if (allResponse.data && allResponse.data.allusers) {
             const foundAgent = allResponse.data.allusers.find(agent => agent.id.toString() === id.toString());
             if (foundAgent) {
@@ -94,7 +94,7 @@ const AgentProfile = () => {
           }
         } else {
           // If no ID provided, get all agents and use first one
-          const response = await axios.get('https://api.biznetusa.com/api/all-agents');
+          const response = await axios.get('https://apitourism.today.alayaarts.com/api/all-agents');
           if (response.data && response.data.allusers && response.data.allusers.length > 0) {
             const agentData = response.data.allusers.filter(agent => agent.user_role === "10");
             if (agentData.length > 0) {
@@ -272,7 +272,7 @@ const AgentProfile = () => {
                 </Col>
                 <Col xs={12} md={5} className="text-center">
                   <Image
-                    src={agent?.image ? `https://api.biznetusa.com/uploads/${agent.image}` : img1}
+                    src={agent?.image ? `https://apitourism.today.alayaarts.com/uploads/${agent.image}` : img1}
                     alt={agentData.name}
                     fluid
                     rounded

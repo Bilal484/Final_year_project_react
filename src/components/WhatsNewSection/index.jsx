@@ -45,7 +45,7 @@ const WhatsNewSection = () => {
             setError(null);
             
             try {
-                const response = await fetch("https://api.biznetusa.com/api/get-latestblog");
+                const response = await fetch("https://apitourism.today.alayaarts.com/api/get-latestblog");
                 const data = await response.json();
 
                 if (data.status === 200) {

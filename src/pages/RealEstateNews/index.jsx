@@ -54,7 +54,7 @@ const NewsSection = ({ onFetchFirstNews }) => {
 
     useEffect(() => {
         const fetchNews = async () => {
-            const response = await fetch('https://api.biznetusa.com/api/all-whatsnew');
+            const response = await fetch('https://apitourism.today.alayaarts.com/api/all-whatsnew');
             const data = await response.json();
             if (data.status === 200 && data.whatsnew) {
                 const formattedNews = data.whatsnew.map(news => ({
@@ -111,7 +111,7 @@ const RealEstateNews = () => {
     // Fetch article data for the ArticleSection
     useEffect(() => {
         const fetchArticles = async () => {
-            const response = await fetch('https://api.biznetusa.com/api/all-whatsnew');
+            const response = await fetch('https://apitourism.today.alayaarts.com/api/all-whatsnew');
             const data = await response.json();
             if (data.status === 200 && data.whatsnew) {
                 setArticleSections(data.whatsnew); // Save the article sections to state
@@ -182,7 +182,7 @@ const RealEstateNews = () => {
                                     title={section.title}
                                     image={
                                         section.images && section.images.length > 0
-                                            ? `https://api.biznetusa.com/uploads/whatsnew/${section.images[0].image}`
+                                            ? `https://apitourism.today.alayaarts.com/uploads/whatsnew/${section.images[0].image}`
                                             : AmericanFlag
                                     }
                                     articles={section.desc || "No description available"}

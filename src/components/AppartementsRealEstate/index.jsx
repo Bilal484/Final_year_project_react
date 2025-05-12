@@ -24,7 +24,7 @@ const AppartementsRealEstate = () => {
     const fetchCities = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://api.biznetusa.com/api/get-searchbyapartment");
+        const response = await axios.get("https://apitourism.today.alayaarts.com/api/get-searchbyapartment");
         setCities(response.data.apartment_by_city || []); // Set the cities from the 'apartment_by_city' array
         setError(null);
       } catch (error) {

@@ -24,7 +24,7 @@ const CityRealEstateList = () => {
     const fetchCities = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://api.biznetusa.com/api/get-searchbyhome");
+        const response = await axios.get("https://apitourism.today.alayaarts.com/api/get-searchbyhome");
         setCities(response.data.home_by_city || []); // Set the cities from the 'home_by_city' array
         setError(null);
       } catch (error) {

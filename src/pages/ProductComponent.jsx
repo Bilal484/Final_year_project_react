@@ -8,8 +8,8 @@ function ProductComponent() {
         const fetchProductData = async () => {
             try {
                 const [productResponse, productImageResponse] = await Promise.all([
-                    fetch("https://api.biznetusa.com/api/get-products"),
-                    fetch("https://api.biznetusa.com/api/get-productimages"),
+                    fetch("https://apitourism.today.alayaarts.com/api/get-products"),
+                    fetch("https://apitourism.today.alayaarts.com/api/get-productimages"),
                 ]);
 
                 const productData = await productResponse.json();

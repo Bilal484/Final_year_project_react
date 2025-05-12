@@ -246,7 +246,7 @@ const Contractors = () => {
           content="Explore professional services offered by contractors including residential and commercial construction, remodeling, and electrical work."
         />
         <meta property="og:image" content={Img01} />
-        <meta property="og:url" content="https://biznetusa.com/contractors" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/contractors" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />

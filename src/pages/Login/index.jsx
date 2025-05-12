@@ -45,7 +45,7 @@ const Login = () => {
 
           try {
             // Verify email with API
-            const response = await fetch("https://api.biznetusa.com/api/user-emailverify", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/user-emailverify", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const Login = () => {
     formData.append("password", password);
 
     try {
-      const response = await fetch("https://api.biznetusa.com/api/login", {
+      const response = await fetch("https://apitourism.today.alayaarts.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -138,7 +138,7 @@ const Login = () => {
 
   const fetchUserDetails = async (token) => {
     try {
-      const response = await fetch("https://api.biznetusa.com/api/user", {
+      const response = await fetch("https://apitourism.today.alayaarts.com/api/user", {
         method: "GET",
         headers: {
           Authorization: token,

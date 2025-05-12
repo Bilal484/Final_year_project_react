@@ -25,7 +25,7 @@ const AgentSearch = () => {
         const fetchAgents = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('https://api.biznetusa.com/api/all-agents');
+                const response = await axios.get('https://apitourism.today.alayaarts.com/api/all-agents');
 
                 if (response.data && response.data.allusers) {
                     // Filter out entries that don't have user_role === "10" (Agent)
@@ -159,7 +159,7 @@ const AgentSearch = () => {
                                             <div className="agent-info">
                                                 {agent.image ? (
                                                     <img
-                                                        src={`https://api.biznetusa.com/uploads/${agent.image}`}
+                                                        src={`https://apitourism.today.alayaarts.com/uploads/${agent.image}`}
                                                         alt={agent.name}
                                                         className="agent-suggestion-img"
                                                     />
@@ -209,7 +209,7 @@ const AgentSearch = () => {
                                                 <div className="agent-card-img-container">
                                                     <Card.Img
                                                         variant="top"
-                                                        src={agent.image ? `https://api.biznetusa.com/uploads/${agent.image}` : defaultAgentImage}
+                                                        src={agent.image ? `https://apitourism.today.alayaarts.com/uploads/${agent.image}` : defaultAgentImage}
                                                         className="agent-card-img"
                                                         alt={agent.name}
                                                     />

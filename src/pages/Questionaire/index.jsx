@@ -14,14 +14,14 @@ const Questionaire = () => {
     if (userId) {
       // Check if the questionnaire is completed
       axios
-        .get(`https://api.biznetusa.com/api/check-questionnaire-status/${userId}`)
+        .get(`https://apitourism.today.alayaarts.com/api/check-questionnaire-status/${userId}`)
         .then((response) => {
           if (response.data.status === true) {
             // If questionnaire is completed, redirect to "/"
             navigate("/");
           } else if (response.data.status === false) {
             // If not completed, fetch the questions
-            return axios.get(`https://api.biznetusa.com/api/get-questions/${userId}`);
+            return axios.get(`https://apitourism.today.alayaarts.com/api/get-questions/${userId}`);
           }
         })
         .then((response) => {

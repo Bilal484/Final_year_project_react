@@ -25,9 +25,9 @@ const TaskProgress = () => {
         />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/default-project-progress.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/default-project-progress.jpg"
         />
-        <meta property="og:url" content="https://biznetusa.com/task-progress" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/task-progress" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />

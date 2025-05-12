@@ -113,9 +113,9 @@ const ZnetLife = () => {
                 />
                 <meta
                     property="og:image"
-                    content="https://api.biznetusa.com/uploads/znet-life-placeholder.jpg"
+                    content="https://apitourism.today.alayaarts.com/uploads/znet-life-placeholder.jpg"
                 />
-                <meta property="og:url" content="https://biznetusa.com/znet-life" />
+                <meta property="og:url" content="https://apitourism.today.alayaarts.com/znet-life" />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="UrbanCraft REAL ESTATE Life | Love Where You Work" />
@@ -125,7 +125,7 @@ const ZnetLife = () => {
                 />
                 <meta
                     name="twitter:image"
-                    content="https://api.biznetusa.com/uploads/znet-life-placeholder.jpg"
+                    content="https://apitourism.today.alayaarts.com/uploads/znet-life-placeholder.jpg"
                 />
             </Helmet>
             <Header />

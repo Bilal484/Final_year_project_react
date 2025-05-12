@@ -43,7 +43,7 @@ const FeaturedSection = () => {
         
         try {
             const response = await fetch(
-                "https://api.biznetusa.com/api/get-featurrblog"
+                "https://apitourism.today.alayaarts.com/api/get-featurrblog"
             );
             const data = await response.json();
             

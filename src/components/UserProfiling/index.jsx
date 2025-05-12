@@ -60,7 +60,7 @@ const UserProfiling = ({ userRole, showModal, setShowModal }) => {
         };
 
         try {
-            const response = await fetch("https://api.biznetusa.com/api/store-userprofiling", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/store-userprofiling", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

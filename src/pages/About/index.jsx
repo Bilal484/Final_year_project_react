@@ -69,7 +69,7 @@ const About = () => {
         setIsLoading(true);
         
         try {
-            const response = await fetch("https://api.biznetusa.com/api/store-getintouch", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/store-getintouch", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

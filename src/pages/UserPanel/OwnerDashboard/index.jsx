@@ -28,9 +28,9 @@ const OwnerDashboard = () => {
                 />
                 <meta
                     property="og:image"
-                    content="https://api.biznetusa.com/uploads/owner-dashboard-placeholder.jpg"
+                    content="https://apitourism.today.alayaarts.com/uploads/owner-dashboard-placeholder.jpg"
                 />
-                <meta property="og:url" content="https://biznetusa.com/owner-dashboard" />
+                <meta property="og:url" content="https://apitourism.today.alayaarts.com/owner-dashboard" />
                 <meta property="og:type" content="website" />
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:title" content="Owner Dashboard | UrbanCraft REAL ESTATE" />
@@ -40,7 +40,7 @@ const OwnerDashboard = () => {
                 />
                 <meta
                     property="twitter:image"
-                    content="https://api.biznetusa.com/uploads/owner-dashboard-placeholder.jpg"
+                    content="https://apitourism.today.alayaarts.com/uploads/owner-dashboard-placeholder.jpg"
                 />
             </Helmet>
             <Header />

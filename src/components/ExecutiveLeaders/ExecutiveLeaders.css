@@ -329,7 +329,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--background_color);
+  background-color: var(--color);
   color: var(--color_white);
   padding: 12px 24px;
   border-radius: 30px;
@@ -341,10 +341,10 @@
 }
 
 .team-cta-button:hover {
-  background-color: var(--color);
+  background-color: var(--color_white);
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(153, 108, 34, 0.3);
-  color: var(--color_white);
+  color: var(--background_color);
 }
 
 .team-cta-button i {

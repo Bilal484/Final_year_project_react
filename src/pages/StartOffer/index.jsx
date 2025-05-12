@@ -11,7 +11,7 @@ const StartOffer = () => {
   const [loading, setLoading] = useState(false); // Manage loading state
   const [error, setError] = useState(""); // Manage error state
 
-  const imagePath = "https://api.biznetusa.com/uploads/products/";
+  const imagePath = "https://apitourism.today.alayaarts.com/uploads/products/";
   const navigate = useNavigate(); // Initialize useNavigate for navigation
 
   // Fetch products from the API based on user query
@@ -20,7 +20,7 @@ const StartOffer = () => {
     setError("");
 
     try {
-      const response = await axios.get(`https://api.biznetusa.com/api/getallproducts/${query}`);
+      const response = await axios.get(`https://apitourism.today.alayaarts.com/api/getallproducts/${query}`);
       if (response.data && response.data.products.length > 0) {
         setSuggestions(response.data.products); // Update suggestions with product data
       } else {
@@ -73,9 +73,9 @@ const StartOffer = () => {
         />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/default-thumbnail.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/default-thumbnail.jpg"
         />
-        <meta property="og:url" content="https://biznetusa.com/start-offer" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/start-offer" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />

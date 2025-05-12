@@ -12,7 +12,7 @@ const ScheduleProject = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get("https://api.biznetusa.com/api/get-schedules");
+      const response = await axios.get("https://apitourism.today.alayaarts.com/api/get-schedules");
       setSchedule(response.data.project_schedule);
     } catch (err) {
     }
@@ -22,7 +22,7 @@ const ScheduleProject = () => {
     const projectId = e.currentTarget.closest("li").dataset.key;
 
     try {
-      await axios.delete(`https://api.biznetusa.com/api/deleteschedule/${projectId}`);
+      await axios.delete(`https://apitourism.today.alayaarts.com/api/deleteschedule/${projectId}`);
       toast.success("Project deleted successfully!");
       fetchProjects();
     } catch (err) {
@@ -49,7 +49,7 @@ const ScheduleProject = () => {
     formData.append("assign_team_member", teamMembers);
 
     try {
-      const response = await axios.post("https://api.biznetusa.com/api/store-schedule", formData, {
+      const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-schedule", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

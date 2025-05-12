@@ -12,7 +12,7 @@ const OfferPage = () => {
     const { p_id } = location.state || {}; // Get the p_id from state
     const [productData, setProductData] = useState(null); // State for product data
     const [images, setImages] = useState([]); // State for images
-    const imagePath = "https://api.biznetusa.com/uploads/products/";
+    const imagePath = "https://apitourism.today.alayaarts.com/uploads/products/";
 
     const [formData, setFormData] = useState({
         phone: '',
@@ -25,7 +25,7 @@ const OfferPage = () => {
     useEffect(() => {
         const fetchProductData = async () => {
             try {
-                const response = await axios.get(`https://api.biznetusa.com/api/get-product/${p_id}`);
+                const response = await axios.get(`https://apitourism.today.alayaarts.com/api/get-product/${p_id}`);
                 setProductData(response.data.products);
                 setImages(response.data.products.images); // Set images from API response
             } catch (error) {
@@ -53,7 +53,7 @@ const OfferPage = () => {
                 comments: formData.comments,
                 how_much_you_offer: formData.offer
             };
-            await axios.post('https://api.biznetusa.com/api/store-start-offer', offerData);
+            await axios.post('https://apitourism.today.alayaarts.com/api/store-start-offer', offerData);
             alert('Offer submitted successfully!');
         } catch (error) {
             alert('There was an error submitting your offer. Please try again.');

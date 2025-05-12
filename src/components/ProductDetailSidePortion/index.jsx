@@ -33,7 +33,7 @@ const ProductDetailSidePortion = ({ p_id }) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch("https://api.biznetusa.com/api/all-users");
+                const response = await fetch("https://apitourism.today.alayaarts.com/api/all-users");
                 const data = await response.json();
                 if (response.ok) {
                     const usersMap = data.allusers.reduce((acc, user) => {
@@ -56,7 +56,7 @@ const ProductDetailSidePortion = ({ p_id }) => {
     useEffect(() => {
         const fetchOffers = async () => {
             try {
-                const response = await fetch("https://api.biznetusa.com/api/offers");
+                const response = await fetch("https://apitourism.today.alayaarts.com/api/offers");
                 const data = await response.json();
                 // Filter offers by product_id (p_id)
                 const filteredOffers = data.filter((offer) => offer.product_id == p_id);
@@ -93,7 +93,7 @@ const ProductDetailSidePortion = ({ p_id }) => {
 
         setIsSubmitting(true);
         try {
-            const response = await fetch("https://api.biznetusa.com/api/offers", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/offers", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -14,7 +14,7 @@ const RentByCity = () => {
     const fetchCities = async () => {
       try {
         const response = await axios.get(
-          "https://api.biznetusa.com/api/get-searchbyrent"
+          "https://apitourism.today.alayaarts.com/api/get-searchbyrent"
         );
         setCities(response.data.rent_by_city); // Set the cities from the 'home_by_city' array
       } catch (error) {}

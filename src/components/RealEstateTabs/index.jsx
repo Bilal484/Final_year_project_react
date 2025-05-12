@@ -35,7 +35,7 @@ const RealEstateTabs = () => {
 
         try {
             const response = await axios.get(
-                `https://api.biznetusa.com/api/get-searchproduct/${query}`,
+                `https://apitourism.today.alayaarts.com/api/get-searchproduct/${query}`,
                 { signal: controller.signal }
             );
             if (response.data.status) {

@@ -15,7 +15,7 @@ export const WebSocketProvider = ({ children }) => {
         // Configure Laravel Echo
         const echoInstance = new Echo({
             broadcaster: 'socket.io',
-            host: 'https://api.biznetusa.com:6001', // WebSocket server's URL
+            host: 'https://apitourism.today.alayaarts.com:6001', // WebSocket server's URL
             transports: ['websocket'], // Use WebSocket transport only
             forceTLS: true, // Ensure secure connection
             timeout: 10000, // Set a higher timeout (10 seconds)

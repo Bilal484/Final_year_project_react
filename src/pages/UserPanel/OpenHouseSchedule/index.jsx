@@ -18,7 +18,7 @@ const OpenHouseSchedule = () => {
     const userId = localStorage.getItem("user_id");
 
     // Fetch open house schedules from API
-    fetch(`https://api.biznetusa.com/api/get-tourinpersons/${userId}`)
+    fetch(`https://apitourism.today.alayaarts.com/api/get-tourinpersons/${userId}`)
       .then((response) => response.json())
       .then((data) => {
         const fetchedHouses = data.tour_in_person || [];
@@ -29,7 +29,7 @@ const OpenHouseSchedule = () => {
 
           // Fetch product details using the p_id of the first open house
           const p_id = firstHouse.p_id;
-          fetch(`https://api.biznetusa.com/api/get-product/${p_id}`)
+          fetch(`https://apitourism.today.alayaarts.com/api/get-product/${p_id}`)
             .then((response) => response.json())
             .then((productData) => {
               setProductData(productData.products);
@@ -62,9 +62,9 @@ const OpenHouseSchedule = () => {
         />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/open-house-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/open-house-placeholder.jpg"
         />
-        <meta property="og:url" content="https://biznetusa.com/open-house-schedule" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/open-house-schedule" />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content="Open House Schedule | UrbanCraft REAL ESTATE" />
@@ -74,7 +74,7 @@ const OpenHouseSchedule = () => {
         />
         <meta
           property="twitter:image"
-          content="https://api.biznetusa.com/uploads/open-house-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/open-house-placeholder.jpg"
         />
       </Helmet>
       <Header />
@@ -120,7 +120,7 @@ const OpenHouseSchedule = () => {
                       <Carousel.Item key={image.id}>
                         <img
                           className="d-block w-100"
-                          src={`https://api.biznetusa.com/uploads/products/${image.image}`}
+                          src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
                           alt={productData.title}
                           style={{
                             height: "300px",

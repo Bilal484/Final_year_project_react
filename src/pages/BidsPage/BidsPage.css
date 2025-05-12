@@ -12,6 +12,9 @@
   font-size: 18px;
   color: #888;
 }
+.greeting-text{
+  color: black;
+}
 
 .offers-page-container {
   padding-top: 40px;

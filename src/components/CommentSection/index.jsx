@@ -13,7 +13,7 @@ const CommentSection = ({ p_id }) => {
   // Fetch comments from the API
   const fetchComments = async () => {
     try {
-      const response = await axios.get(`https://api.biznetusa.com/api/get-productoverviewhomecomments?p_id=${p_id}`);
+      const response = await axios.get(`https://apitourism.today.alayaarts.com/api/get-productoverviewhomecomments?p_id=${p_id}`);
       if (response.status === 200) {
         setComments(response.data.overview_neighborhood_section_comments);
       } else {
@@ -34,7 +34,7 @@ const CommentSection = ({ p_id }) => {
 
     if (comment.trim()) {
       try {
-        const response = await axios.post('https://api.biznetusa.com/api/store-productoverviewhomecomment', {
+        const response = await axios.post('https://apitourism.today.alayaarts.com/api/store-productoverviewhomecomment', {
           p_id: p_id,
           user_id: user_id,
           comment: comment.trim(),
@@ -58,7 +58,7 @@ const CommentSection = ({ p_id }) => {
   // Delete a comment
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`https://api.biznetusa.com/api/deleteproductoverviewhomecomment/${id}`);
+      const response = await axios.delete(`https://apitourism.today.alayaarts.com/api/deleteproductoverviewhomecomment/${id}`);
       if (response.status === 200) {
         toast.success("Comment deleted successfully.");
         fetchComments(); // Refresh comments after deletion

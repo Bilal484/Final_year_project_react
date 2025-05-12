@@ -25,11 +25,11 @@ const UserSetting = () => {
                 />
                 <meta 
                     property="og:url" 
-                    content="https://biznetusa.com/user-settings" 
+                    content="https://apitourism.today.alayaarts.com/user-settings" 
                 />
                 <meta 
                     property="og:image" 
-                    content="https://api.biznetusa.com/uploads/user-settings-placeholder.jpg" 
+                    content="https://apitourism.today.alayaarts.com/uploads/user-settings-placeholder.jpg" 
                 />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +40,7 @@ const UserSetting = () => {
                 />
                 <meta 
                     name="twitter:image" 
-                    content="https://api.biznetusa.com/uploads/user-settings-placeholder.jpg" 
+                    content="https://apitourism.today.alayaarts.com/uploads/user-settings-placeholder.jpg" 
                 />
             </Helmet>
             <Header />

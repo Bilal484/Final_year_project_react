@@ -73,7 +73,7 @@ const AboutYourSelf = () => {
 
         try {
             const response = await fetch(
-                "https://api.biznetusa.com/api/store-tourinperson",
+                "https://apitourism.today.alayaarts.com/api/store-tourinperson",
                 {
                     method: "POST",
                     headers: {

@@ -40,7 +40,7 @@ const ProductAllCards = ({ products }) => {
                 />
                 <meta
                     property="og:image"
-                    content={`https://api.biznetusa.com/uploads/products/${prod[0]?.images[0]?.image || ""}`}
+                    content={`https://apitourism.today.alayaarts.com/uploads/products/${prod[0]?.images[0]?.image || ""}`}
                 />
                 <meta property="og:title" content={prod[0]?.title || "Browse Properties"} />
                 <meta property="og:description" content={prod[0]?.desc || "Explore the latest property listings."} />
@@ -56,7 +56,7 @@ const ProductAllCards = ({ products }) => {
                                             <Carousel.Item key={imgIndex}>
                                                 <img
                                                     onClick={() => navigate(`/ProductDetail/${product.id}`)}
-                                                    src={`https://api.biznetusa.com/uploads/products/${image.image}`}
+                                                    src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
                                                     alt={`Property ${product.title} - Image ${imgIndex + 1}`}
                                                     className="custom-card-img"
                                                 />

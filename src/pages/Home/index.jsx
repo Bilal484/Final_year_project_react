@@ -98,7 +98,7 @@ const Home = () => {
         if (!userId) return;
         try {
             const res = await axios.get(
-                `https://api.biznetusa.com/api/getsimilarusers/${userId}`
+                `https://apitourism.today.alayaarts.com/api/getsimilarusers/${userId}`
             );
             setSimilarUsers(res.data.similar_users || []);
             setShowModal(true)

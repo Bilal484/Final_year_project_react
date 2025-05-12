@@ -11,7 +11,7 @@ const ProjectInquiries = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://api.biznetusa.com/api/get-inquires");
+      const response = await axios.get("https://apitourism.today.alayaarts.com/api/get-inquires");
       setInquiry(response.data.project_inquires);
       toast.success("Inquiries fetched successfully");
     } catch (err) {
@@ -22,7 +22,7 @@ const ProjectInquiries = () => {
   const handleDelete = async (e) => {
     const inquiryId = e.currentTarget.closest("li").dataset.key;
     try {
-      await axios.delete(`https://api.biznetusa.com/api/deleteinquire/${inquiryId}`);
+      await axios.delete(`https://apitourism.today.alayaarts.com/api/deleteinquire/${inquiryId}`);
       toast.success("Inquiry deleted successfully");
       fetchData();
     } catch (err) {
@@ -42,7 +42,7 @@ const ProjectInquiries = () => {
     };
 
     try {
-      const response = await axios.post("https://api.biznetusa.com/api/store-inquire", payload, {
+      const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-inquire", payload, {
         headers: {
           "Content-Type": "application/json",
         },

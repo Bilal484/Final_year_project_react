@@ -20,7 +20,7 @@ const Agent = () => {
         setError("");
         try {
             const response = await axios.get(
-                `https://api.biznetusa.com/api/getuseragent/${query}`
+                `https://apitourism.today.alayaarts.com/api/getuseragent/${query}`
             );
             if (response.data && response.data.users.length > 0) {
                 setSuggestions(response.data.users);
@@ -70,9 +70,9 @@ const Agent = () => {
                 />
                 <meta
                     property="og:image"
-                    content="https://api.biznetusa.com/uploads/agent-search-banner.jpg"
+                    content="https://apitourism.today.alayaarts.com/uploads/agent-search-banner.jpg"
                 />
-                <meta property="og:url" content="https://biznetusa.com/agents" />
+                <meta property="og:url" content="https://apitourism.today.alayaarts.com/agents" />
                 <meta property="og:type" content="website" />
             </Helmet>
             <Header />

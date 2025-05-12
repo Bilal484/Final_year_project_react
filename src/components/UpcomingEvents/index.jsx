@@ -39,7 +39,7 @@ const UpcomingEvents = () => {
     const fetchEvents = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://api.biznetusa.com/api/all-upcomingevents');
+            const response = await fetch('https://apitourism.today.alayaarts.com/api/all-upcomingevents');
             const data = await response.json();
             if (data.status === 200) {
                 setEvents(data.upcomingevents.slice(0, 3));
@@ -81,7 +81,7 @@ const UpcomingEvents = () => {
         };
 
         try {
-            const response = await fetch('https://api.biznetusa.com/api/store-upcomingeventsregister', {
+            const response = await fetch('https://apitourism.today.alayaarts.com/api/store-upcomingeventsregister', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

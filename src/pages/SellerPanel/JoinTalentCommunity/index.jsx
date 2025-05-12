@@ -48,7 +48,7 @@ const JoinTalentCommunity = () => {
 
         try {
             const response = await axios.post(
-                "https://api.biznetusa.com/api/store-community",
+                "https://apitourism.today.alayaarts.com/api/store-community",
                 formPayload,
                 {
                     headers: {

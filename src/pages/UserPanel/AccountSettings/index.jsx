@@ -28,7 +28,7 @@ const AccountSettings = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`https://api.biznetusa.com/api/user-profile/${user_id}`);
+        const response = await axios.get(`https://apitourism.today.alayaarts.com/api/user-profile/${user_id}`);
         const data = response.data;
 
         
@@ -64,7 +64,7 @@ const AccountSettings = () => {
     setError("");
 
     try {
-      const response = await axios.put(`https://api.biznetusa.com/api/profile-update/${user_id}`, {
+      const response = await axios.put(`https://apitourism.today.alayaarts.com/api/profile-update/${user_id}`, {
         name: userData.name,
         first_name: userData.firstName,
         last_name: userData.lastName,
@@ -117,9 +117,9 @@ const AccountSettings = () => {
         />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/account-settings-banner.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/account-settings-banner.jpg"
         />
-        <meta property="og:url" content="https://biznetusa.com/account-settings" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/account-settings" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />

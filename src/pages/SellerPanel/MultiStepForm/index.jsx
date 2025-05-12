@@ -71,7 +71,7 @@ const MultiStepForm = () => {
     }
 
     try {
-      const response = await axios.post('https://api.biznetusa.com/api/store-job-my-info', {
+      const response = await axios.post('https://apitourism.today.alayaarts.com/api/store-job-my-info', {
         appy_for_job_id: formData.appyForJobId,
         f_name: formData.firstName,
         l_name: formData.lastName,
@@ -136,7 +136,7 @@ const MultiStepForm = () => {
         address_line_1: formData.addressLine1,
       };
 
-      const response = await axios.post('https://api.biznetusa.com/api/store-job-my-experience', payload, {
+      const response = await axios.post('https://apitourism.today.alayaarts.com/api/store-job-my-experience', payload, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -184,7 +184,7 @@ const MultiStepForm = () => {
         address_line_1: formData.addressLine1,
       };
 
-      const response = await axios.post('https://api.biznetusa.com/api/store-apply-job-application-questions', payload);
+      const response = await axios.post('https://apitourism.today.alayaarts.com/api/store-apply-job-application-questions', payload);
 
       if (response.status === 200) {
         toast.success('Application questions submitted successfully!', {

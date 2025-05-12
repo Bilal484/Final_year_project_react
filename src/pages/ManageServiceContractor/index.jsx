@@ -13,7 +13,7 @@ const ManageServiceContractor = () => {
   const handleDeleteService = async (e) => {
     const id = e.target.closest("li").dataset.key;
     try {
-      const response = await axios.delete(`https://api.biznetusa.com/api/deletemanageservice/${id}`);
+      const response = await axios.delete(`https://apitourism.today.alayaarts.com/api/deletemanageservice/${id}`);
       fetchData();
     } catch (err) {
     }
@@ -31,7 +31,7 @@ const ManageServiceContractor = () => {
     formData.append("status", e.target.serviceStatus.value);
 
     try {
-      const response = await axios.post("https://api.biznetusa.com/api/store-manageservice", formData, {
+      const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-manageservice", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -52,7 +52,7 @@ const ManageServiceContractor = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://api.biznetusa.com/api/get-manage-services");
+      const response = await axios.get("https://apitourism.today.alayaarts.com/api/get-manage-services");
       setService(response.data.manage_services);
     } catch (err) {
     }

@@ -7,11 +7,12 @@
 .hero-content h1 {
     font-size: 36px;
     font-weight: bold;
+    color: #fff;
 }
 
 .hero-subtitle {
     font-size: 18px;
-    color: #888;
+    color: white;
 }
 
 .tour-request-container {
@@ -28,6 +29,44 @@
 .tour-request-name {
     font-size: 18px;
     font-weight: bold;
+}
+
+/* Styling for the approved button */
+.approved-button {
+    cursor: default;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Add a checkmark icon animation */
+.approved-button:after {
+    content: " ✓";
+    opacity: 1;
+}
+
+/* Refresh button styling */
+.refresh-button {
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.refresh-button:hover {
+    background-color: white;
+    color: #0352D7;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.refresh-button:active i {
+    animation: spin 0.5s ease-in-out;
+}
+
+/* Button hover state */
+button:disabled {
+    opacity: 0.9 !important;
 }
 
 .tour-request-date,

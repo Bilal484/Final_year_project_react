@@ -13,7 +13,7 @@ const Contact = () => {
     useEffect(() => {
         const fetchFaqs = async () => {
             try {
-                const response = await fetch("https://api.biznetusa.com/api/all-mainfaqs");
+                const response = await fetch("https://apitourism.today.alayaarts.com/api/all-mainfaqs");
                 const data = await response.json();
                 if (data.status === 200) {
                     const formattedFaqs = data.mainfaqs.map((faq) => ({

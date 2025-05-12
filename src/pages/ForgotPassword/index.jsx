@@ -22,7 +22,7 @@ const ForgotPassword = () => {
         formData.append("email", email);
     
         try {
-            const response = await fetch("https://api.biznetusa.com/api/forgot-password", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/forgot-password", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",

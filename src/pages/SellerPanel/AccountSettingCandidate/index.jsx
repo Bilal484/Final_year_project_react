@@ -59,7 +59,7 @@ const AccountSettingCandidate = () => {
 
             if (userId) {
                 try {
-                    const userResponse = await axios.get(`https://api.biznetusa.com/api/user-profile/${userId}`);
+                    const userResponse = await axios.get(`https://apitourism.today.alayaarts.com/api/user-profile/${userId}`);
                     const { data } = userResponse;
                     setUser((prevState) => ({
                         ...prevState,
@@ -69,11 +69,11 @@ const AccountSettingCandidate = () => {
                     setSelectedTimezone(data.allusers.timezone || selectedTimezone);
 
                     if (data.allusers.image) {
-                        setImagePreview(`https://api.biznetusa.com/uploads/users/${data.allusers.image}`);
+                        setImagePreview(`https://apitourism.today.alayaarts.com/uploads/users/${data.allusers.image}`);
                     }
 
                     // Fetch all agents
-                    const agentsResponse = await axios.get("https://api.biznetusa.com/api/all-agents");
+                    const agentsResponse = await axios.get("https://apitourism.today.alayaarts.com/api/all-agents");
                     setAgents(agentsResponse.data.allusers || []);
                 } catch (error) {
                     console.error("Error fetching data:", error);
@@ -140,7 +140,7 @@ const AccountSettingCandidate = () => {
                 formData.append("image", profileImage);
             }
 
-            await axios.put(`https://api.biznetusa.com/api/profile-update/${userId}`, formData, {
+            await axios.put(`https://apitourism.today.alayaarts.com/api/profile-update/${userId}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

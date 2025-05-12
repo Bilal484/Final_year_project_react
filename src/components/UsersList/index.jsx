@@ -14,7 +14,7 @@ const UsersList = ({ onSelectUser }) => {
     useEffect(() => {
         const fetchSimilarUsers = async () => {
             try {
-                const response = await axios.get(`https://api.biznetusa.com/api/getsimilarusers/${userId}`);
+                const response = await axios.get(`https://apitourism.today.alayaarts.com/api/getsimilarusers/${userId}`);
                 const similarUsersData = response.data.similar_users ? response.data.similar_users.map(user => ({
                     ...user,
                     unread: 0,
@@ -34,7 +34,7 @@ const UsersList = ({ onSelectUser }) => {
         setActiveUser(user.user_id);
         onSelectUser(user);
         try {
-            await axios.post('https://api.biznetusa.com/api/mark-messages-read', {
+            await axios.post('https://apitourism.today.alayaarts.com/api/mark-messages-read', {
                 senderId: userId,
                 receiverId: user.user_id,
             });

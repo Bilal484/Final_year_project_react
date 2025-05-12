@@ -16,7 +16,7 @@ const CareerAgent = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("https://api.biznetusa.com/api/get-careers");
+            const response = await axios.get("https://apitourism.today.alayaarts.com/api/get-careers");
             setCareers(response.data.careers);
             toast.success("Data fetched successfully");
         } catch (err) {

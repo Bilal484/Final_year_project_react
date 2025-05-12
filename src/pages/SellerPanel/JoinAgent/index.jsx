@@ -35,7 +35,7 @@ const JoinAgent = () => {    const [email, setEmail] = useState("");
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const response = await axios.get("https://api.biznetusa.com/api/get-all-approve-job");
+                const response = await axios.get("https://apitourism.today.alayaarts.com/api/get-all-approve-job");
                 if (response.data.status === 200) {
                     setJobs(response.data.jobs);
                     setTotalPages(Math.ceil(response.data.jobs.length / jobsPerPage));
@@ -52,7 +52,7 @@ const JoinAgent = () => {    const [email, setEmail] = useState("");
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://api.biznetusa.com/api/store-email-alerts", {
+            const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-email-alerts", {
                 email: email,
                 get_emails: frequency,
             });
@@ -108,8 +108,8 @@ const JoinAgent = () => {    const [email, setEmail] = useState("");
 
         const isFavorited = favoritedJobs.includes(jobId);
         const endpoint = isFavorited
-            ? `https://api.biznetusa.com/api/removefvtjob/${jobId}`
-            : "https://api.biznetusa.com/api/store-fvt-job";
+            ? `https://apitourism.today.alayaarts.com/api/removefvtjob/${jobId}`
+            : "https://apitourism.today.alayaarts.com/api/store-fvt-job";
 
         try {
             let response;

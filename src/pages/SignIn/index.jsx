@@ -63,7 +63,7 @@ const SignUp = () => {
     const registerUser = async (payload) => {
         setIsLoading(true);
         try {
-            const response = await fetch("https://api.biznetusa.com/api/register", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -132,7 +132,7 @@ const SignUp = () => {
     const fetchRoles = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch("https://api.biznetusa.com/api/get-roles");
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/get-roles");
             const data = await response.json();
             if (response.ok) {
                 const availableRoles = data.roles || [];
@@ -158,7 +158,7 @@ const SignUp = () => {
         setIsLoading(true);
         try {
             const response = await fetch(
-                `https://api.biznetusa.com/api/get-questions/${roleName}`
+                `https://apitourism.today.alayaarts.com/api/get-questions/${roleName}`
             );
             const data = await response.json();
             if (response.ok) {

@@ -27,7 +27,7 @@ const Review = () => {
 
       try {
         // Fetch comments for the user
-        const commentsResponse = await axios.get(`https://api.biznetusa.com/api/get-productoverviewhomecomments`);
+        const commentsResponse = await axios.get(`https://apitourism.today.alayaarts.com/api/get-productoverviewhomecomments`);
         const commentData = commentsResponse.data;
 
         if (commentData && commentData.overview_neighborhood_section_comments) {
@@ -38,7 +38,7 @@ const Review = () => {
           const p_id = fetchedComments[0].p_id;
 
           // Fetch the product details using the p_id
-          const productResponse = await axios.get(`https://api.biznetusa.com/api/get-product/${p_id}`);
+          const productResponse = await axios.get(`https://apitourism.today.alayaarts.com/api/get-product/${p_id}`);
           setProduct(productResponse.data.products);
         } else {
           setComments([]);
@@ -70,10 +70,10 @@ const Review = () => {
           property="og:description"
           content="Check buyer comments and product details in UrbanCraft REAL ESTATE's Review section for efficient property management."
         />
-        <meta property="og:url" content="https://biznetusa.com/review" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/review" />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/review-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/review-placeholder.jpg"
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -84,7 +84,7 @@ const Review = () => {
         />
         <meta
           name="twitter:image"
-          content="https://api.biznetusa.com/uploads/review-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/review-placeholder.jpg"
         />
       </Helmet>
       <Header />
@@ -145,7 +145,7 @@ const Review = () => {
                                 <img
                                   className="d-block w-100"
                                   style={{height: '400px', objectFit: 'cover'}}
-                                  src={`https://api.biznetusa.com/uploads/products/${image.image}`}
+                                  src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
                                   alt={`${product.title} - Image ${index + 1}`}
                                 />
                                 <div className="carousel-caption d-none d-md-block">

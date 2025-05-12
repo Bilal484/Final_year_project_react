@@ -1,4 +1,6 @@
 /* Modern MainCards Component with Animations and Professional Design */
+@import url('./MainCards-offers.css');
+
 .main-cards-container {
   position: relative;
   font-family: var(--font_family);

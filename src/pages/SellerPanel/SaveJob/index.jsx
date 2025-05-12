@@ -39,8 +39,8 @@ const SaveJob = () => {
         const isFavorited = favouriteJob.some((job) => job.id === normalizedJobId);
 
         const endpoint = isFavorited
-            ? `https://api.biznetusa.com/api/removefvtjob/${normalizedJobId}`
-            : 'https://api.biznetusa.com/api/store-fvt-job';
+            ? `https://apitourism.today.alayaarts.com/api/removefvtjob/${normalizedJobId}`
+            : 'https://apitourism.today.alayaarts.com/api/store-fvt-job';
 
         try {
             let response;
@@ -78,7 +78,7 @@ const SaveJob = () => {
     const fetchFavouriteJobs = async () => {
         if (userId) {
             try {
-                const response = await axios.get(`https://api.biznetusa.com/api/get-fvt-job/${userId}`);
+                const response = await axios.get(`https://apitourism.today.alayaarts.com/api/get-fvt-job/${userId}`);
                 setFavouriteJob(response.data.fvt_jobs);
                 setFirstTen(response.data.fvt_jobs.slice(0, jobsPerPage));
                 setTotalPage(Math.ceil(response.data.fvt_jobs.length / jobsPerPage));

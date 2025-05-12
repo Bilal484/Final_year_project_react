@@ -39,7 +39,7 @@ const HVHApply = () => {
             setFormData((prevData) => ({ ...prevData, userId }));
         }
 
-        axios.get('https://api.biznetusa.com/api/get-jobs')
+        axios.get('https://apitourism.today.alayaarts.com/api/get-jobs')
             .then((response) => {
                 if (response.status === 200) {
                     setJobs(response.data.jobs);
@@ -108,7 +108,7 @@ const HVHApply = () => {
         }
 
         try {
-            const response = await axios.post('https://api.biznetusa.com/api/store-apply-for-job', {
+            const response = await axios.post('https://apitourism.today.alayaarts.com/api/store-apply-for-job', {
                 user_id: formData.userId,
                 job_id: formData.jobId,
                 f_name: formData.firstName,

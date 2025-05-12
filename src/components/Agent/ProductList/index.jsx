@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet"; // Import Helmet for adding meta tags
 
 const ProductAllCardsAgents = () => {
   const [properties, setProperties] = useState([]);
-  const imageBasePath = "https://api.biznetusa.com/uploads/products/"; // Define base path for images
+  const imageBasePath = "https://apitourism.today.alayaarts.com/uploads/products/"; // Define base path for images
 
   const location = useLocation();
   const navigate = useNavigate(); // Hook to navigate to another page
@@ -14,8 +14,8 @@ const ProductAllCardsAgents = () => {
     const fetchProductData = async () => {
       try {
         const [productResponse, productImageResponse] = await Promise.all([
-          fetch("https://api.biznetusa.com/api/get-products"),
-          fetch("https://api.biznetusa.com/api/get-productimages"),
+          fetch("https://apitourism.today.alayaarts.com/api/get-products"),
+          fetch("https://apitourism.today.alayaarts.com/api/get-productimages"),
         ]);
 
         const productData = await productResponse.json();

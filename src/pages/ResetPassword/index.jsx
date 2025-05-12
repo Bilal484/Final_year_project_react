@@ -51,7 +51,7 @@ const ResetPassword = () => {
         formData.append("password", newPassword);
 
         try {
-            const response = await fetch("https://api.biznetusa.com/api/reset-password", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/reset-password", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",

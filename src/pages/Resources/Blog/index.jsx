@@ -35,7 +35,7 @@ const Blog = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get("https://api.biznetusa.com/api/all-blogs");
+                const response = await axios.get("https://apitourism.today.alayaarts.com/api/all-blogs");
                 if (response.data.status === 200) {
                     setBlogs(response.data.blogs);
                     setImagePath(response.data.imagePath);

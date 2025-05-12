@@ -26,7 +26,7 @@ const JobAlert = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://api.biznetusa.com/api/store-email-alerts', {
+      const response = await axios.post('https://apitourism.today.alayaarts.com/api/store-email-alerts', {
         email,
         get_emails: getEmails,
         job_alert_name: jobAlertName,

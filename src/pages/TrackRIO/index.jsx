@@ -25,9 +25,9 @@ const TrackRIO = () => {
         />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/investment-roi-dashboard.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/investment-roi-dashboard.jpg"
         />
-        <meta property="og:url" content="https://biznetusa.com/track-roi" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/track-roi" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />

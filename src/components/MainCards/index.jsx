@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ShareListingModal from "../SharePopup";
@@ -8,17 +8,23 @@ import axios from "axios";
 import Notification, { useNotification } from "../../components/Notification";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import "./MainCards.css"; // Make sure to create this CSS file
+import { Modal, Button, Spinner } from "react-bootstrap";
+import "./MainCards.css";
+import { debounce } from "lodash";
+import pLimit from "p-limit";
+
+
+const limit = pLimit(2);
 
 const MainCards = () => {
     const [notification, showNotification] = useNotification();
-    const [productData, setProductData] = useState(null);
     const [shownProperties, setShownProperties] = useState([]);
     const [activeSection, setActiveSection] = useState("all");
     const [carouselIndex, setCarouselIndex] = useState({});
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(false);
+    const [apiError, setApiError] = useState(null);
     const [showShareModal, setShowShareModal] = useState(false);
     const [selectedProductSlug, setSelectedProductSlug] = useState(null);
     const [showMap, setShowMap] = useState({});
@@ -30,164 +36,353 @@ const MainCards = () => {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [animated, setAnimated] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
+    const [offersData, setOffersData] = useState({});
+    const [showOfferModal, setShowOfferModal] = useState(false);
+    const [selectedOffer, setSelectedOffer] = useState(null);
+    const [offerLoading, setOfferLoading] = useState(false);
 
-    // Create refs for scroll animations
     const sectionRef = useRef(null);
-
     const navigate = useNavigate();
     const numberOfProperties = 3;
 
-    // Retrieve userId from localStorage
     useEffect(() => {
         const storedUserId = localStorage.getItem("user_id");
         if (storedUserId) {
             setUserId(storedUserId);
         }
-        
-        // Set up scroll animation observer
+
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach(entry => {
+                entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        setAnimated(prev => ({ ...prev, [entry.target.dataset.id]: true }));
+                        setAnimated((prev) => ({ ...prev, [entry.target.dataset.id]: true }));
                     }
                 });
             },
             { threshold: 0.1 }
         );
-        
-        // Observe all property cards
-        document.querySelectorAll('.property-card').forEach(card => {
+
+        document.querySelectorAll(".property-card").forEach((card) => {
             observer.observe(card);
         });
-        
         return () => observer.disconnect();
     }, [shownProperties]);
 
-    // Fetch data for all sections
-    useEffect(() => {
-        const fetchAllData = async () => {
-            try {
-                await Promise.all([
-                    fetchFavorites(),
-                    fetchSoldProperties(),
-                    fetchRecentProperties(),
-                    fetchSalesProperties()
-                ]);
-            } catch (err) {
-                console.error("Error fetching data:", err);
-            }
-        };
-        
-        if (userId) {
-            fetchAllData();
-        } else {
-            fetchSoldProperties();
-            fetchRecentProperties();
-            fetchSalesProperties();
-        }
-    }, [userId]);
-
-    const handleSectionClick = (section) => {
-        setActiveSection(section);
-        
-        // Add animation when changing sections
-        if (sectionRef.current) {
-            sectionRef.current.classList.add('section-change-animation');
-            setTimeout(() => {
-                sectionRef.current.classList.remove('section-change-animation');
-            }, 500);
-        }
-    };
-
-    const fetchSalesProperties = async () => {
+    const fetchOffersForProperty = async (productId, signal) => {
         try {
-            const data = await axios.get(
-                "https://api.biznetusa.com/api/get-saleproperty"
-            );
-            setSalesProperties(data.data.products);
-        } catch (err) {
-            showNotification(err.message || "Failed to fetch Sales Properties");
-        }
-    };
-
-    const fetchRecentProperties = async () => {
-        try {
-            const data = await axios.get(
-                "https://api.biznetusa.com/api/get-recentproducts"
-            );
-            setRecentProperties(data.data.products);
-        } catch (err) {
-            showNotification(err || "Failed to fetch Recent Properties");
-        }
-    };
-
-    const fetchSoldProperties = async () => {
-        try {
-            const response = await fetch(
-                "https://api.biznetusa.com/api/get-soldproperty"
-            );
-            const data = await response.json();
-            if (data.status === 200) {
-                setSoldProperties(data.products);
-            }
-        } catch (err) { 
-            console.error("Error fetching sold properties:", err);
-        }
-    };
-    
-    const fetchFavorites = async () => {
-        try {
-            if (!userId) return;
+            setOfferLoading(true);
             const response = await axios.get(
-                `https://api.biznetusa.com/api/get-fvtproducts/${userId}`
+                `https://apitourism.today.alayaarts.com/api/get-start-offer/${productId}`,
+                { timeout: 30000, signal }
+            );
+            if (response.data.status === 200 && response.data.start_an_offer) {
+                return response.data.start_an_offer;
+            }
+            return [];
+        } catch (err) {
+            // if (err.name !== "AbortError") {
+            //     console.error(`Error fetching offers for property ${productId}:`, err?.message || "Network error");
+            // }
+            toast("Failed to load offers for this property", { type: "error" });
+            return [];
+        } finally {
+            setOfferLoading(false);
+        }
+    };
+
+    const handleOfferClick = async (propertyId) => {
+        const abortController = new AbortController();
+        try {
+            setOfferLoading(true);
+            const offers = await fetchOffersForProperty(propertyId, abortController.signal);
+            if (offers && offers.length > 0) {
+                setSelectedOffer(offers[0]);
+                setShowOfferModal(true);
+            } else {
+                toast("No offers found for this property", { type: "info" });
+            }
+        } catch (err) {
+            // if (err.name !== "AbortError") {
+            //     // console.error("Error fetching offer details:", err?.message || "Unknown error");
+            //     toast("Failed to load offer details", { type: "error" });
+            // }
+            toast("Failed to load offer details", { type: "error" });
+        } finally {
+            setOfferLoading(false);
+        }
+        return () => abortController.abort();
+    };
+
+    const handleSectionClick = useCallback(
+        debounce((section) => {
+            setActiveSection(section);
+            if (sectionRef.current) {
+                sectionRef.current.classList.add("section-change-animation");
+                setTimeout(() => {
+                    sectionRef.current.classList.remove("section-change-animation");
+                }, 500);
+            }
+        }, 300),
+        []
+    );
+
+    const fetchSalesProperties = useCallback(async (signal) => {
+        const cacheKey = "salesProperties";
+        if (localStorage.getItem(cacheKey)) {
+            setSalesProperties(JSON.parse(localStorage.getItem(cacheKey)));
+            return;
+        }
+        try {
+            const data = await axios.get(
+                "https://apitourism.today.alayaarts.com/api/get-saleproperty",
+                { timeout: 30000, signal }
+            );
+            const products = data.data.products || [];
+            localStorage.setItem(cacheKey, JSON.stringify(products));
+            setSalesProperties(products);
+        } catch (err) {
+            // if (err.name !== "AbortError") {
+            //     // console.error("Error fetching sales properties:", err.message);
+            //     setSalesProperties([]);
+            //     setTimeout(() => {
+            //         showNotification("Failed to fetch Sales Properties. Please try again later.");
+            //     }, 3000);
+            // }
+            // setSalesProperties([]);
+            setTimeout(() => {
+                showNotification("Failed to fetch Sales Properties. Please try again later.");
+            }, 3000);
+        }
+    }, [showNotification]);
+
+    const fetchRecentProperties = useCallback(async (signal) => {
+        const cacheKey = "recentProperties";
+        if (localStorage.getItem(cacheKey)) {
+            setRecentProperties(JSON.parse(localStorage.getItem(cacheKey)));
+            return;
+        }
+        try {
+            const data = await axios.get(
+                "https://apitourism.today.alayaarts.com/api/get-recentproducts",
+                { timeout: 30000, signal }
+            );
+            const products = data.data.products || [];
+            localStorage.setItem(cacheKey, JSON.stringify(products));
+            setRecentProperties(products);
+        } catch (err) {
+            // if (err.name !== "AbortError") {
+            //     // console.error("Error fetching recent properties:", err.message);
+
+            // }
+        }
+        setRecentProperties([]);
+        setTimeout(() => {
+            showNotification("Failed to fetch Recent Properties. Please try again later.");
+        }, 3000);
+    }, [showNotification]);
+
+    const fetchSoldProperties = useCallback(async (signal) => {
+        const cacheKey = "soldProperties";
+        if (localStorage.getItem(cacheKey)) {
+            setSoldProperties(JSON.parse(localStorage.getItem(cacheKey)));
+            return;
+        }
+        try {
+            const response = await axios.get(
+                "https://apitourism.today.alayaarts.com/api/get-soldproperty",
+                { timeout: 30000, signal }
             );
             if (response.data.status === 200) {
-                setFavoriteProperties(response.data.products || []);
+                const products = response.data.products;
+                localStorage.setItem(cacheKey, JSON.stringify(products));
+                setSoldProperties(products);
             }
         } catch (err) {
-            showNotification(err.message || "Failed to fetch favorite properties.");
+            if (err.name !== "AbortError") {
+                // console.error("Error fetching sold properties:", err.message);
+                setSoldProperties([]);
+            }
+        }
+    }, []);
+
+    const fetchFavorites = useCallback(async (signal) => {
+        if (!userId) return;
+        const cacheKey = `favoriteProperties_${userId}`;
+        if (localStorage.getItem(cacheKey)) {
+            setFavoriteProperties(JSON.parse(localStorage.getItem(cacheKey)));
+            return;
+        }
+        try {
+            const response = await axios.get(
+                `https://apitourism.today.alayaarts.com/api/get-fvtproducts/${userId}`,
+                { timeout: 30000, signal }
+            );
+            if (response.data.status === 200) {
+                const products = response.data.products || [];
+                localStorage.setItem(cacheKey, JSON.stringify(products));
+                setFavoriteProperties(products);
+            } else {
+                setFavoriteProperties([]);
+            }
+        } catch (err) {
+            if (err.name !== "AbortError") {
+                setError(true);
+                // console.error("Error fetching favorite properties:", err.message);
+                // setFavoriteProperties([]);
+                setTimeout(() => {
+                    showNotification("Failed to fetch favorite properties. Please try again later.");
+                }, 3000);
+            }
+        }
+    }, [userId, favoriteProperties]);
+
+    const fetchProductData = async (signal) => {
+        try {
+            setLoading(true);
+            const [productResponse, productImageResponse] = await Promise.all([
+                fetch("https://apitourism.today.alayaarts.com/api/get-products", { signal }),
+                fetch("https://apitourism.today.alayaarts.com/api/get-productimages", { signal }),
+            ]);
+
+            const productData = await productResponse.json();
+            const productImageData = await productImageResponse.json();
+
+            if (productData.status === 200 && productImageData.status === 200) {
+                const mergedProperties = productData.products.map((product) => {
+                    const images = productImageData.products
+                        .filter((image) => image.pd_id === product.id)
+                        .map((img) => img.image);
+                    return { ...product, images };
+                });
+                setProperties(mergedProperties);
+                setFilteredProperties(mergedProperties);
+                setShownProperties(mergedProperties.slice(0, 6));
+                const offersPromises = mergedProperties.slice(0, 6).map((property) =>
+                    limit(() => fetchOffersForProperty(property.id, signal))
+                );
+                const offersResults = await Promise.all(offersPromises);
+                const offersMap = {};
+                offersResults.forEach((offers, index) => {
+                    offersMap[mergedProperties[index].id] = offers;
+                });
+                setOffersData(offersMap);
+            } else {
+                throw new Error("Failed to load product or image data");
+            }
+        } catch (err) {
+            if (err.name !== "AbortError") {
+                setError(err.message || "An error occurred while fetching data");
+                console.error(err.message);
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
+    const fetchSectionData = useCallback(async (section, signal) => {
+        switch (section) {
+            case "favorites":
+                if (userId) await fetchFavorites(signal);
+                break;
+            case "sold":
+                await fetchSoldProperties(signal);
+                break;
+            case "new":
+                await fetchRecentProperties(signal);
+                break;
+            case "sales":
+                await fetchSalesProperties(signal);
+                break;
+            default:
+                break;
+        }
+    }, [userId, fetchFavorites, fetchSoldProperties, fetchRecentProperties, fetchSalesProperties]);
+
     useEffect(() => {
-        const fetchProductData = async () => {
-            try {
-                setLoading(true);
-                const [productResponse, productImageResponse] = await Promise.all([
-                    fetch("https://api.biznetusa.com/api/get-products"),
-                    fetch("https://api.biznetusa.com/api/get-productimages"),
-                ]);
+        const abortController = new AbortController();
+        let isMounted = true;
 
-                const productData = await productResponse.json();
-                const productImageData = await productImageResponse.json();
+        if (isMounted) {
+            fetchProductData(abortController.signal);
+        }
 
-                if (productData.status === 200 && productImageData.status === 200) {
-                    const mergedProperties = productData.products.map((product) => {
-                        const images = productImageData.products
-                            .filter((image) => image.pd_id === product.id)
-                            .map((img) => img.image);
-
-                        return { ...product, images };
-                    });
-
-                    setProperties(mergedProperties);
-                    setFilteredProperties(mergedProperties); // Set filtered properties initially
-                    setShownProperties(mergedProperties.slice(0, 12)); // Display the initial set
-                } else {
-                    throw new Error("Failed to load product or image data");
-                }
-            } catch (err) {
-                setError(err.message || "An error occurred while fetching data");
-                console.error(err.message);
-            } finally {
-                setLoading(false);
-            }
+        return () => {
+            isMounted = false;
+            abortController.abort();
         };
-
-        // Fetch all products regardless of login status
-        fetchProductData();
     }, []);
+
+    useEffect(() => {
+        const abortController = new AbortController();
+        let isMounted = true;
+
+        if (isMounted) {
+            fetchSectionData(activeSection, abortController.signal);
+        }
+
+        return () => {
+            isMounted = false;
+            abortController.abort();
+        };
+    }, [activeSection, fetchSectionData]);
+
+    const filterProperties = useCallback(
+        debounce(() => {
+            let filtered = [];
+
+            switch (activeSection) {
+                case "favorites":
+                    if (favoriteProperties && favoriteProperties.length > 0) {
+                        filtered = properties.filter((property) =>
+                            favoriteProperties.some((fav) => fav.id === property.id)
+                        );
+                    }
+                    break;
+                case "sold":
+                    if (soldProperties && soldProperties.length > 0) {
+                        filtered = properties.filter((property) =>
+                            soldProperties.some((sold) => sold.id === property.id)
+                        );
+                    }
+                    break;
+                case "new":
+                    if (recentProperties && recentProperties.length > 0) {
+                        filtered = properties.filter((property) =>
+                            recentProperties.some((recent) => recent.id === property.id)
+                        );
+                    }
+                    break;
+                case "sales":
+                    if (salesProperties && salesProperties.length > 0) {
+                        filtered = properties.filter((property) =>
+                            salesProperties.some((sales) => sales.id === property.id)
+                        );
+                    }
+                    break;
+                default:
+                    filtered = properties;
+                    break;
+            }
+
+            if (searchTerm.trim()) {
+                const term = searchTerm.toLowerCase();
+                filtered = filtered.filter(
+                    (property) =>
+                        property.title?.toLowerCase().includes(term) ||
+                        property.location?.toLowerCase().includes(term) ||
+                        property.desc?.toLowerCase().includes(term)
+                );
+            }
+
+            setFilteredProperties(filtered);
+            setShownProperties(filtered.slice(0, 6));
+        }, 300),
+        [activeSection, properties, favoriteProperties, soldProperties, recentProperties, salesProperties, searchTerm]
+    );
+
+    useEffect(() => {
+        filterProperties();
+    }, [filterProperties]);
 
     const handleSelect = (selectedIndex, propertyId) => {
         setCarouselIndex((prevState) => ({
@@ -213,65 +408,9 @@ const MainCards = () => {
         setSelectedProductSlug(null);
     };
 
-    useEffect(() => {
-        const filterProperties = () => {
-            let filtered = [];
-            
-            switch (activeSection) {
-                case "favorites":
-                    if (favoriteProperties && favoriteProperties.length > 0) {
-                        filtered = properties.filter((property) =>
-                            favoriteProperties.some((fav) => fav.id === property.id)
-                        );
-                    }
-                    break;
-                    
-                case "sold":
-                    if (soldProperties && soldProperties.length > 0) {
-                        filtered = properties.filter((property) =>
-                            soldProperties.some((sold) => sold.id === property.id)
-                        );
-                    }
-                    break;
-                    
-                case "new":
-                    if (recentProperties && recentProperties.length > 0) {
-                        filtered = properties.filter((property) =>
-                            recentProperties.some((recent) => recent.id === property.id)
-                        );
-                    }
-                    break;
-                    
-                case "sales":
-                    if (salesProperties && salesProperties.length > 0) {
-                        filtered = properties.filter((property) =>
-                            salesProperties.some((sales) => sales.id === property.id)
-                        );
-                    }
-                    break;
-                    
-                default:
-                    filtered = properties;
-                    break;
-            }
-            
-            // Apply search filter if search term exists
-            if (searchTerm.trim()) {
-                const term = searchTerm.toLowerCase();
-                filtered = filtered.filter(
-                    property => 
-                        property.title?.toLowerCase().includes(term) ||
-                        property.location?.toLowerCase().includes(term) ||
-                        property.desc?.toLowerCase().includes(term)
-                );
-            }
-            
-            setFilteredProperties(filtered);
-            setShownProperties(filtered.slice(0, 6));
-        };
-        
-        filterProperties();
-    }, [activeSection, properties, favoriteProperties, soldProperties, recentProperties, salesProperties, searchTerm]);
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
     const increaseShown = () => {
         if (shownProperties.length + numberOfProperties < filteredProperties.length) {
@@ -281,14 +420,8 @@ const MainCards = () => {
         } else if (shownProperties.length === filteredProperties.length) {
             setShownProperties(filteredProperties.slice(0, 6));
         } else {
-            setShownProperties(
-                filteredProperties.slice(0, filteredProperties.length)
-            );
+            setShownProperties(filteredProperties.slice(0, filteredProperties.length));
         }
-    };
-
-    const handleSearch = (e) => {
-        setSearchTerm(e.target.value);
     };
 
     return (
@@ -318,41 +451,45 @@ const MainCards = () => {
                 <ToastContainer />
                 <div className="section-header mb-4">
                     <h1 className="section-title">Explore Properties</h1>
-                    {/* <p className="section-subtitle">Find your perfect match from our curated collection</p> */}
                 </div>
-                
-                {/* Search Bar */}
+
+                {apiError && (
+                    <div className="error-container">
+                        <i className="fas fa-exclamation-circle error-icon"></i>
+                        <p>{apiError}</p>
+                        <button className="retry-btn" onClick={() => fetchSectionData(activeSection)}>
+                            Retry
+                        </button>
+                    </div>
+                )}
+
                 <div className="search-container mb-4">
                     <div className="search-wrapper">
                         <i className="fa fa-search search-icon"></i>
-                        <input 
-                            type="text" 
-                            placeholder="Search properties by location, title or description" 
+                        <input
+                            type="text"
+                            placeholder="Search properties by location, title or description"
                             value={searchTerm}
                             onChange={handleSearch}
                             className="search-input"
                         />
                         {searchTerm && (
-                            <button 
-                                className="clear-search" 
-                                onClick={() => setSearchTerm("")}
-                            >
+                            <button className="clear-search" onClick={() => setSearchTerm("")}>
                                 <i className="fa fa-times"></i>
                             </button>
                         )}
                     </div>
                 </div>
-                
-                {/* Filter Tabs */}
+
                 <div className="filter-tabs mb-4">
                     {[
-                        {id: "all", label: "All Properties", icon: "fa-th-large"},
-                        {id: "favorites", label: "Favorites", icon: "fa-heart"},
-                        {id: "new", label: "New Listings", icon: "fa-certificate"},
-                        {id: "sales", label: "Sales", icon: "fa-tag"},
-                        {id: "sold", label: "Sold", icon: "fa-check-circle"},
-                        {id: "open-house", label: "Open House", icon: "fa-door-open"},
-                        {id: "insights", label: "Insights", icon: "fa-chart-line"},
+                        { id: "all", label: "All Properties", icon: "fa-th-large" },
+                        { id: "favorites", label: "Favorites", icon: "fa-heart" },
+                        { id: "new", label: "New Listings", icon: "fa-certificate" },
+                        { id: "sales", label: "Sales", icon: "fa-tag" },
+                        { id: "sold", label: "Sold", icon: "fa-check-circle" },
+                        { id: "open-house", label: "Open House", icon: "fa-door-open" },
+                        { id: "insights", label: "Insights", icon: "fa-chart-line" },
                     ].map((section) => (
                         <button
                             key={section.id}
@@ -364,8 +501,7 @@ const MainCards = () => {
                         </button>
                     ))}
                 </div>
-                
-                {/* Properties Grid */}
+
                 <div className="properties-section" ref={sectionRef}>
                     {loading ? (
                         <div className="loading-container">
@@ -376,7 +512,7 @@ const MainCards = () => {
                         <div className="error-container">
                             <i className="fas fa-exclamation-circle error-icon"></i>
                             <p>{error}</p>
-                            <button className="retry-btn" onClick={() => window.location.reload()}>
+                            <button className="retry-btn" onClick={() => fetchProductData(new AbortController().signal)}>
                                 Retry
                             </button>
                         </div>
@@ -387,9 +523,9 @@ const MainCards = () => {
                                     <i className="fas fa-home no-properties-icon"></i>
                                     <h3>No properties found</h3>
                                     <p>
-                                        {activeSection !== "all" 
+                                        {activeSection !== "all"
                                             ? `You have no ${activeSection} properties. Try another category.`
-                                            : searchTerm 
+                                            : searchTerm
                                                 ? "No properties match your search. Try different keywords."
                                                 : "No properties available at the moment."
                                         }
@@ -397,16 +533,26 @@ const MainCards = () => {
                                 </div>
                             ) : (
                                 shownProperties.map((property) => (
-                                    <div
-                                        className="col-sm-6 col-lg-4 mb-4"
-                                        key={property.id}
-                                    >
-                                        <div 
-                                            className={`property-card ${animated[property.id] ? 'animate' : ''}`}
+                                    <div className="col-sm-6 col-lg-4 mb-4" key={property.id}>
+                                        <div
+                                            className={`property-card ${animated[property.id] ? "animate" : ""}`}
                                             data-id={property.id}
                                         >
                                             <div className="property-card-content">
                                                 <div className="property-media">
+                                                    {offersData[property.id]?.length > 0 && (
+                                                        <div
+                                                            className="offer-badge"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                handleOfferClick(property.id);
+                                                            }}
+                                                        >
+                                                            <i className="fas fa-tag"></i>
+                                                            ${Number(offersData[property.id][0]?.how_much_you_offer || 0).toLocaleString()}
+                                                        </div>
+                                                    )}
+
                                                     {!showMap[property.id] ? (
                                                         <div className="property-carousel">
                                                             <div className="carousel-inner">
@@ -418,7 +564,7 @@ const MainCards = () => {
                                                                         >
                                                                             <img
                                                                                 onClick={() => navigate(`/ProductDetail/${property.id}`)}
-                                                                                src={`https://api.biznetusa.com/uploads/products/${image}`}
+                                                                                src={`https://apitourism.today.alayaarts.com/uploads/products/${image}`}
                                                                                 alt={`Property ${property.title || property.id}`}
                                                                                 className="property-image"
                                                                             />
@@ -478,49 +624,55 @@ const MainCards = () => {
                                                             />
                                                         </div>
                                                     )}
-                                                    
+
                                                     <div className="property-media-controls">
                                                         <button
                                                             className="media-control-btn"
                                                             onClick={() => toggleMapView(property.id)}
                                                         >
-                                                            <i className={`fas ${showMap[property.id] ? 'fa-image' : 'fa-map-marker-alt'}`}></i>
+                                                            <i
+                                                                className={`fas ${showMap[property.id] ? "fa-image" : "fa-map-marker-alt"
+                                                                    }`}
+                                                            ></i>
                                                         </button>
                                                         <div className="property-indicators">
-                                                            {property.images.length > 0 && !showMap[property.id] && 
+                                                            {property.images.length > 0 &&
+                                                                !showMap[property.id] &&
                                                                 property.images.map((_, index) => (
-                                                                    <span 
+                                                                    <span
                                                                         key={index}
-                                                                        className={`indicator ${index === (carouselIndex[property.id] || 0) ? 'active' : ''}`}
+                                                                        className={`indicator ${index === (carouselIndex[property.id] || 0)
+                                                                                ? "active"
+                                                                                : ""
+                                                                            }`}
                                                                         onClick={() => handleSelect(index, property.id)}
                                                                     ></span>
-                                                                ))
-                                                            }
+                                                                ))}
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div className="property-details">
                                                     <div className="property-header">
                                                         <h3 className="property-price">
-                                                            ${Number(property.price).toLocaleString('en-GB')}
+                                                            ${Number(property.price).toLocaleString("en-GB")}
                                                         </h3>
                                                         <div className="property-actions">
-                                                            <button 
+                                                            <button
                                                                 className="action-btn share-btn"
                                                                 onClick={() => openShareModal(property.slug)}
                                                                 aria-label="Share property"
                                                             >
                                                                 <i className="fas fa-share-alt"></i>
                                                             </button>
-                                                            <FavoriteButton 
-                                                                userId={userId} 
+                                                            <FavoriteButton
+                                                                userId={userId}
                                                                 productId={property.id}
                                                                 className="action-btn favorite-btn"
                                                             />
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div className="property-features">
                                                         <div className="feature">
                                                             <i className="fas fa-bed feature-icon"></i>
@@ -538,22 +690,28 @@ const MainCards = () => {
                                                             <span className="feature-label">Sq Ft</span>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div className="property-location">
                                                         <i className="fas fa-map-marker-alt location-icon"></i>
                                                         <span>{property.location}</span>
                                                     </div>
-                                                    
+
                                                     <div className="property-cta">
                                                         <Link to="/Start-chat-with-znet" className="cta-btn chat-btn">
                                                             <i className="fas fa-comments"></i>
                                                             <span>Chat</span>
                                                         </Link>
-                                                        <a href={`tel:${property.phone || '1234567890'}`} className="cta-btn call-btn">
+                                                        <a
+                                                            href={`tel:${property.phone || "1234567890"}`}
+                                                            className="cta-btn call-btn"
+                                                        >
                                                             <i className="fas fa-phone-alt"></i>
                                                             <span>Call</span>
                                                         </a>
-                                                        <Link to={`/ProductDetail/${property.id}`} className="cta-btn details-btn">
+                                                        <Link
+                                                            to={`/ProductDetail/${property.id}`}
+                                                            className="cta-btn details-btn"
+                                                        >
                                                             <span>View Details</span>
                                                         </Link>
                                                     </div>
@@ -565,29 +723,125 @@ const MainCards = () => {
                             )}
                         </div>
                     )}
-                    
+
                     {!loading && shownProperties.length > 0 && shownProperties.length < filteredProperties.length && (
                         <div className="load-more-container">
-                            <button
-                                className="load-more-btn"
-                                onClick={increaseShown}
-                            >
+                            <button className="load-more-btn" onClick={increaseShown}>
                                 <span>Load More Properties</span>
                                 <i className="fas fa-chevron-down"></i>
                             </button>
                         </div>
                     )}
                 </div>
-                
+
                 <ShareListingModal
                     isOpen={showShareModal}
                     onClose={closeShareModal}
                     productSlug={selectedProductSlug}
                 />
+                <Modal
+                    show={showOfferModal}
+                    onHide={() => setShowOfferModal(false)}
+                    centered
+                    className="offer-details-modal"
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            <i className="fas fa-tag me-2"></i>
+                            Offer Details
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {offerLoading ? (
+                            <div className="text-center p-4">
+                                <Spinner animation="border" variant="primary" />
+                                <p className="mt-3">Loading offer details...</p>
+                            </div>
+                        ) : selectedOffer ? (
+                            <div className="offer-details">
+                                <div className="offer-amount mb-4">
+                                    <div className="offer-label">Offer Amount:</div>
+                                    <div className="offer-value price">
+                                        ${Number(selectedOffer.how_much_you_offer).toLocaleString()}
+                                    </div>
+                                </div>
+
+                                <div className="offer-info-grid">
+                                    <div className="offer-info-item">
+                                        <div className="info-icon">
+                                            <i className="fas fa-phone"></i>
+                                        </div>
+                                        <div className="info-content">
+                                            <div className="info-label">Contact Phone:</div>
+                                            <div className="info-value">{selectedOffer.phone}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="offer-info-item">
+                                        <div className="info-icon">
+                                            <i className="fas fa-shopping-cart"></i>
+                                        </div>
+                                        <div className="info-content">
+                                            <div className="info-label">Plan on Buying:</div>
+                                            <div className="info-value">
+                                                {selectedOffer.plan_on_buying === "1" ? "Yes" : "No"}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="offer-info-item">
+                                        <div className="info-icon">
+                                            <i className="fas fa-home"></i>
+                                        </div>
+                                        <div className="info-content">
+                                            <div className="info-label">Tour in Person:</div>
+                                            <div className="info-value">
+                                                {selectedOffer.tour_this_home_in_person === "1" ? "Yes" : "No"}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="offer-info-item">
+                                        <div className="info-icon">
+                                            <i className="fas fa-calendar"></i>
+                                        </div>
+                                        <div className="info-content">
+                                            <div className="info-label">Offer Date:</div>
+                                            <div className="info-value">
+                                                {new Date(selectedOffer.created_at).toLocaleDateString()}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {selectedOffer.comments && (
+                                    <div className="offer-comments mt-4">
+                                        <div className="comments-label">
+                                            <i className="fas fa-comment-alt me-2"></i> Comments:
+                                        </div>
+                                        <div className="comments-content">{selectedOffer.comments}</div>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div className="text-center p-4">
+                                <i className="fas fa-exclamation-circle text-warning display-4"></i>
+                                <p className="mt-3">No offer details available.</p>
+                            </div>
+                        )}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowOfferModal(false)}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={() => setShowOfferModal(false)}>
+                            Got it
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         </>
     );
 };
 
 export default MainCards;
-

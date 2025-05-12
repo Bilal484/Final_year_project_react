@@ -68,19 +68,19 @@ const SellerProduct = () => {
 
     // Fetch categories, homes, apartments, and rents on initial load
     useEffect(() => {
-        axios.get("https://api.biznetusa.com/api/get-category")
+        axios.get("https://apitourism.today.alayaarts.com/api/get-category")
             .then(response => setCategories(response.data.categories))
             .catch(error => showNotification("Error fetching categories:", error));
 
-        axios.get("https://api.biznetusa.com/api/get-searchbyhome")
+        axios.get("https://apitourism.today.alayaarts.com/api/get-searchbyhome")
             .then(response => setHomes(response.data.home_by_city))
             .catch(error => showNotification("Error fetching homes:", error));
 
-        axios.get("https://api.biznetusa.com/api/get-searchbyapartment")
+        axios.get("https://apitourism.today.alayaarts.com/api/get-searchbyapartment")
             .then(response => setApartments(response.data.apartment_by_city))
             .catch(error => showNotification("Error fetching apartments:", error));
 
-        axios.get("https://api.biznetusa.com/api/get-searchbyrent")
+        axios.get("https://apitourism.today.alayaarts.com/api/get-searchbyrent")
             .then(response => setRents(response.data.rent_by_city))
             .catch(error => showNotification("Error fetching rents:", error));
     }, []);
@@ -91,7 +91,7 @@ const SellerProduct = () => {
     }, []);
 
     const fetchProducts = () => {
-        axios.get(`https://api.biznetusa.com/api/get-products${agentId}`)
+        axios.get(`https://apitourism.today.alayaarts.com/api/get-products${agentId}`)
             .then(response => setProducts(response.data.products))
             .catch(error => showNotification("Error fetching products:", error));
     };
@@ -139,7 +139,7 @@ const SellerProduct = () => {
                     description: overviewDescription,
                 };
                 try {
-                    const response = await axios.post("https://api.biznetusa.com/api/store-productoverviewsale", payload);
+                    const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-productoverviewsale", payload);
                     if (response.status === 200) {
                         toast.success("Product overview submitted successfully!");
                     } else {
@@ -175,7 +175,7 @@ const SellerProduct = () => {
             formData.append("about_section_title", aboutSectionTitle);
             formData.append("description", overviewDescription);
 
-            const response = await axios.post("https://api.biznetusa.com/api/store-productoverviewsale", formData, {
+            const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-productoverviewsale", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -202,7 +202,7 @@ const SellerProduct = () => {
         imageFiles.forEach((file) => formData.append("image[]", file));
 
         try {
-            const response = await axios.post("https://api.biznetusa.com/api/store-productimage", formData, {
+            const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-productimage", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -228,7 +228,7 @@ const SellerProduct = () => {
         videoFiles.forEach((file) => formData.append("video[]", file));
 
         try {
-            const response = await axios.post("https://api.biznetusa.com/api/store-productvideo", formData, {
+            const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-productvideo", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -255,7 +255,7 @@ const SellerProduct = () => {
             formData.append("p_id", selectedProduct.value);
             formData.append("tag_name", tagName);
 
-            const response = await axios.post("https://api.biznetusa.com/api/store-productoverviewhome", formData, {
+            const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-productoverviewhome", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -284,7 +284,7 @@ const SellerProduct = () => {
             formData.append("title", iconTitle);
             formData.append("image", iconImage);
 
-            const response = await axios.post("https://api.biznetusa.com/api/store-productoverviewhomeicon", formData, {
+            const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-productoverviewhomeicon", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -324,7 +324,7 @@ const SellerProduct = () => {
         formData.append("image", floorImage);
 
         try {
-            const response = await axios.post("https://api.biznetusa.com/api/store-productfloorimage", formData, {
+            const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-productfloorimage", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -366,7 +366,7 @@ const SellerProduct = () => {
             // Retrieve the authentication token if required
             const token = localStorage.getItem('auth_token'); // Adjust the key as per your implementation
 
-            const response = await axios.delete(`https://api.biznetusa.com/api/deleteproduct/${productToDelete.id}`, {
+            const response = await axios.delete(`https://apitourism.today.alayaarts.com/api/deleteproduct/${productToDelete.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     ...(token && { Authorization: `Bearer ${token}` }), // Include the token if it exists

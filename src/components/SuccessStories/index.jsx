@@ -10,7 +10,7 @@ const SuccessStories = () => {
     useEffect(() => {
         const fetchSuccessStories = async () => {
             try {
-                const response = await axios.get("https://api.biznetusa.com/api/all-stories");
+                const response = await axios.get("https://apitourism.today.alayaarts.com/api/all-stories");
                 setSuccessStories(response.data.success_stories.slice(0, 3)); // Store success stories in an array
                 setLoading(false); // Set loading to false once data is fetched
             } catch (err) {
@@ -29,12 +29,12 @@ const SuccessStories = () => {
                 <meta name="description" content="Read success stories from our customers and see how they achieved their goals using our services." />
                 <meta property="og:title" content="Success Stories | Company Name" />
                 <meta property="og:description" content="Read success stories from our customers and see how they achieved their goals using our services." />
-                <meta property="og:image" content="https://api.biznetusa.com/uploads/placeholder-image.jpg" /> {/* Default image for social sharing */}
+                <meta property="og:image" content="https://apitourism.today.alayaarts.com/uploads/placeholder-image.jpg" /> {/* Default image for social sharing */}
                 <meta property="og:url" content="https://yourcompany.com/success-stories" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Success Stories | Company Name" />
                 <meta name="twitter:description" content="Read success stories from our customers and see how they achieved their goals using our services." />
-                <meta name="twitter:image" content="https://api.biznetusa.com/uploads/placeholder-image.jpg" />
+                <meta name="twitter:image" content="https://apitourism.today.alayaarts.com/uploads/placeholder-image.jpg" />
             </Helmet>
         <div className="container py-5">
             <h3 className="text-center mb-4 fw-bold display-5">Success Stories</h3>
@@ -66,7 +66,7 @@ const SuccessStories = () => {
                                     </p>
                                     <div className="d-flex justify-content-start align-items-center mt-auto">
                                         <img
-                                            src={`https://api.biznetusa.com/uploads/stories/${story.image}`}
+                                            src={`https://apitourism.today.alayaarts.com/uploads/stories/${story.image}`}
                                             alt={story.name}
                                             className="rounded-circle me-3"
                                             style={{ width: '60px', height: '60px' }}

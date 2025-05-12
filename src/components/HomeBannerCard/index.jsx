@@ -9,12 +9,12 @@ const HomeBannerCard = ({ isLarge = false }) => {
     const [banners, setBanners] = useState([]);
     const [activeIndex, setActiveIndex] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
-    const imagePath = 'https://api.biznetusa.com/uploads/banners/';
+    const imagePath = 'https://apitourism.today.alayaarts.com/uploads/banners/';
 
     useEffect(() => {
         const fetchBanners = async () => {
             try {
-                const response = await axios.get('https://api.biznetusa.com/api/get-banners');
+                const response = await axios.get('https://apitourism.today.alayaarts.com/api/get-banners');
                 setBanners(response.data.banners);
             } catch (error) {
                 console.error("Error fetching banners", error);

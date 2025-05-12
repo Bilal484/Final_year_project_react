@@ -11,54 +11,72 @@ const OffersPage = () => {
     const [offers, setOffers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [products, setProducts] = useState([]);
+    const [selectedProductId, setSelectedProductId] = useState(null);
     const [offerForm, setOfferForm] = useState({
         phone: "",
         how_much_you_offer: "",
         plan_on_buying: "1",
         tour_this_home_in_person: "1",
         comments: "",
+        p_id: selectedProductId,
     });
     const [selectedOffer, setSelectedOffer] = useState(null);
 
-    const userId = localStorage.getItem("user_id");
-
-    // Fetch offers data for the logged-in user
-    useEffect(() => {
-        const fetchOffers = async () => {
-            try {
-                const response = await fetch(`https://api.biznetusa.com/api/get-start-offer?user_id=${userId}`);
-                const data = await response.json();
-                if (data.status === 200) {
-                    setOffers(data.start_an_offer);
-                }
-            } catch (error) {
-                console.error("Error fetching offers:", error);
-            } finally {
-                setLoading(false);
+    const userId = localStorage.getItem("user_id");    // Fetch offers data for the logged-in user
+    const fetchOffers = async () => {
+        try {
+            const response = await fetch(`https://apitourism.today.alayaarts.com/api/get-start-offer?user_id=${userId}`);
+            const data = await response.json();
+            if (data.status === 200) {
+                setOffers(data.start_an_offer);
             }
-        };
+        } catch (error) {
+            console.error("Error fetching offers:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchOffers();
     }, [userId]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch("https://apitourism.today.alayaarts.com/api/get-products");
+                const data = await response.json();
+                if (data.status === 200) {
+                    setProducts(data.products);
+                }
+
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
+        };
+        // Fetch products data
+        fetchProducts();
+    }, []);
 
     // Create an offer
     const createOffer = async () => {
         try {
-            const response = await fetch("https://api.biznetusa.com/api/store-start-offer", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/store-start-offer", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     ...offerForm,
-                    p_id: 70, // Use an appropriate product ID
                     user_id: userId,
                 }),
             });
             const data = await response.json();
             if (data.status === 200) {
-                setOffers([...offers, data.start_an_offer]); // Add the new offer to the state
-                setShowModal(false); // Close the modal
+                setOffers([...offers, data.start_an_offer]);
+                setShowModal(false);
+                fetchOffers();
             }
         } catch (error) {
             console.error("Error creating offer:", error);
@@ -68,7 +86,7 @@ const OffersPage = () => {
     // Update an existing offer
     const updateOffer = async () => {
         try {
-            const response = await fetch(`https://api.biznetusa.com/api/update-start-offer/${selectedOffer.id}`, {
+            const response = await fetch(`https://apitourism.today.alayaarts.com/api/update-start-offer/${selectedOffer.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -94,7 +112,7 @@ const OffersPage = () => {
     // Delete an offer
     const deleteOffer = async (offerId) => {
         try {
-            const response = await fetch(`https://api.biznetusa.com/api/deletestartoffer/${offerId}`, {
+            const response = await fetch(`https://apitourism.today.alayaarts.com/api/deletestartoffer/${offerId}`, {
                 method: "DELETE",
             });
             const data = await response.json();
@@ -186,7 +204,8 @@ const OffersPage = () => {
                         <Col md={4} key={offer.id} className="mb-4">
                             <Card className="offer-card">
                                 <Card.Body>
-                                    <h5 className="offer-phone">{offer.phone}</h5>
+
+                                    <h5 className="offer-phone">{offer.phone ? offer.phone : "N/A"}</h5>
                                     <p className="offer-price">Offer: ${offer.how_much_you_offer}</p>
                                     <p className="offer-comments">Comments: {offer.comments}</p>
                                     <div className="d-flex justify-content-between">
@@ -211,6 +230,24 @@ const OffersPage = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
+                        <Form.Group controlId="formProduct">
+                            <Form.Label>Product</Form.Label>
+                            <Form.Control
+                                as="select"
+                                name="p_id"
+                                value={offerForm.p_id}
+                                onChange={handleInputChange}
+                            >
+                                <option value="">Select Product</option>
+                                {products.map(product => {
+                                    return (
+                                        <option key={product.id} value={product.id}>
+                                            {product.title}, Price : ${product.price}
+                                        </option>
+                                    )
+                                })}
+                            </Form.Control>
+                        </Form.Group>
                         <Form.Group controlId="formPhone">
                             <Form.Label>Phone</Form.Label>
                             <Form.Control

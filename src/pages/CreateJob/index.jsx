@@ -36,7 +36,7 @@ const CreateJob = () => {
         // Fetch career options from the API
         const fetchCareers = async () => {
             try {
-                const response = await axios.get("https://api.biznetusa.com/api/get-careers");
+                const response = await axios.get("https://apitourism.today.alayaarts.com/api/get-careers");
                 if (Array.isArray(response.data)) {
                     setCareerOptions(response.data);
                 } else if (response.data && Array.isArray(response.data.careers)) {
@@ -85,7 +85,7 @@ const CreateJob = () => {
         });
 
         try {
-            const response = await axios.post("https://api.biznetusa.com/api/store-job", formDataToSend, {
+            const response = await axios.post("https://apitourism.today.alayaarts.com/api/store-job", formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

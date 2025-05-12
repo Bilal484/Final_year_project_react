@@ -14,7 +14,7 @@ const BidsPage = () => {
     useEffect(() => {
         const fetchOffers = async () => {
             try {
-                const response = await fetch("https://api.biznetusa.com/api/offers/");
+                const response = await fetch("https://apitourism.today.alayaarts.com/api/offers/");
                 const data = await response.json();
                 console.log(data);
                 setOffers(data);  // Assuming "offers" is an array in the response
@@ -31,7 +31,7 @@ const BidsPage = () => {
     // Handle delete offer
     const handleDelete = async (offerId) => {
         try {
-            const response = await fetch(`https://api.biznetusa.com/api/offers/${offerId}`, {
+            const response = await fetch(`https://apitourism.today.alayaarts.com/api/offers/${offerId}`, {
                 method: "DELETE",
             });
             if (response.ok) {
@@ -49,7 +49,7 @@ const BidsPage = () => {
     // Handle reject offer
     const handleReject = async (offerId) => {
         try {
-            const response = await fetch(`https://api.biznetusa.com/api/offers/reject/${offerId}`, {
+            const response = await fetch(`https://apitourism.today.alayaarts.com/api/offers/reject/${offerId}`, {
                 method: "PUT",  // Assuming PUT request for updating the offer
                 headers: {
                     "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const BidsPage = () => {
                     <Row>
                         <Col md={8} lg={6}>
                             <div className="hero-content">
-                                <h1 className="greeting-text">View Offers</h1>
+                                <h1 className="greeting-text text-dark">View Offers</h1>
                                 <p className="hero-subtitle">All the bids placed for your property</p>
                             </div>
                         </Col>

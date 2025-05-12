@@ -33,11 +33,11 @@ const ProductMainDetail = () => {
             try {
                 let response;
                 if (cityId) {
-                    response = await axios.get(`https://api.biznetusa.com/api/get-filterbyhome/${cityId}`);
+                    response = await axios.get(`https://apitourism.today.alayaarts.com/api/get-filterbyhome/${cityId}`);
                 } else if (rentCityId) {
-                    response = await axios.get(`https://api.biznetusa.com/api/get-filterbyrent/${rentCityId}`);
+                    response = await axios.get(`https://apitourism.today.alayaarts.com/api/get-filterbyrent/${rentCityId}`);
                 } else if (appartmentId) {
-                    response = await axios.get(`https://api.biznetusa.com/api/get-filterbyapartment/${appartmentId}`);
+                    response = await axios.get(`https://apitourism.today.alayaarts.com/api/get-filterbyapartment/${appartmentId}`);
                 } else {
                     response = { data: { products: [] } };
                 }

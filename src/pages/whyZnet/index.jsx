@@ -28,11 +28,11 @@ const WhyZnet = () => {
                 />
                 <meta 
                     property="og:url" 
-                    content="https://biznetusa.com/why-znet" 
+                    content="https://apitourism.today.alayaarts.com/why-znet" 
                 />
                 <meta 
                     property="og:image" 
-                    content="https://api.biznetusa.com/uploads/why-znet-placeholder.jpg" 
+                    content="https://apitourism.today.alayaarts.com/uploads/why-znet-placeholder.jpg" 
                 />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
@@ -43,7 +43,7 @@ const WhyZnet = () => {
                 />
                 <meta 
                     name="twitter:image" 
-                    content="https://api.biznetusa.com/uploads/why-znet-placeholder.jpg" 
+                    content="https://apitourism.today.alayaarts.com/uploads/why-znet-placeholder.jpg" 
                 />
             </Helmet>
             <Header />

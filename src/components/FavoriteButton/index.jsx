@@ -13,7 +13,7 @@ const FavoriteButton = ({ userId, productId }) => {
             if (!userId || !productId) return;
 
             try {
-                const response = await fetch(`https://api.biznetusa.com/api/get-fvtproducts/${userId}`);
+                const response = await fetch(`https://apitourism.today.alayaarts.com/api/get-fvtproducts/${userId}`);
                 const data = await response.json();
 
                 if (response.ok && data.products) {
@@ -46,7 +46,7 @@ const FavoriteButton = ({ userId, productId }) => {
                     p_id: productId,
                 };
 
-                const response = await fetch("https://api.biznetusa.com/api/store-mfvtproducts", {
+                const response = await fetch("https://apitourism.today.alayaarts.com/api/store-mfvtproducts", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

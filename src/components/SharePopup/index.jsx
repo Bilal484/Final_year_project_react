@@ -10,7 +10,7 @@ const ShareListingModal = ({ isOpen, onClose, productSlug = "default-slug" }) =>
     const [loading, setLoading] = useState(false);
 
     // Base URL for the product link
-    const productLink = `https://api.biznetusa.com/products/${productSlug}`;
+    const productLink = `https://apitourism.today.alayaarts.com/products/${productSlug}`;
 
     // Function to validate email format
     const validateEmail = (email) => {
@@ -29,7 +29,7 @@ const ShareListingModal = ({ isOpen, onClose, productSlug = "default-slug" }) =>
         setLoading(true);
     
         try {
-            const response = await fetch("https://api.biznetusa.com/api/store-shareproduct", {
+            const response = await fetch("https://apitourism.today.alayaarts.com/api/store-shareproduct", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

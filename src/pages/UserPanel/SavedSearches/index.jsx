@@ -19,7 +19,7 @@ const SavedSearches = () => {
 
     if (userId) {
       // Fetch the saved searches for the specific user from the API
-      axios.get(`https://api.biznetusa.com/api/get-user-search/${userId}`)
+      axios.get(`https://apitourism.today.alayaarts.com/api/get-user-search/${userId}`)
         .then((response) => {
           if (response.data && response.data.user_search) {
             setSavedSearches(response.data.user_search);
@@ -46,7 +46,7 @@ const SavedSearches = () => {
     };
 
     // Call the update API
-    axios.put(`https://api.biznetusa.com/api/update-user-search/${currentSearch.id}`, updatedData)
+    axios.put(`https://apitourism.today.alayaarts.com/api/update-user-search/${currentSearch.id}`, updatedData)
       .then((response) => {
         // Update the search locally in the list
         setSavedSearches(savedSearches.map(search => 
@@ -61,7 +61,7 @@ const SavedSearches = () => {
 
   const handleDelete = (id) => {
     // Call the delete API
-    axios.delete(`https://api.biznetusa.com/api/deleteusersearch/${id}`)
+    axios.delete(`https://apitourism.today.alayaarts.com/api/deleteusersearch/${id}`)
       .then(() => {
         // Remove the search from the list after successful deletion
         setSavedSearches(savedSearches.filter(search => search.id !== id));
@@ -85,10 +85,10 @@ const SavedSearches = () => {
           property="og:description"
           content="Access and edit your saved property searches on UrbanCraft REAL ESTATE. Get instant notifications for new property listings."
         />
-        <meta property="og:url" content="https://biznetusa.com/saved-searches" />
+        <meta property="og:url" content="https://apitourism.today.alayaarts.com/saved-searches" />
         <meta
           property="og:image"
-          content="https://api.biznetusa.com/uploads/saved-search-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/saved-search-placeholder.jpg"
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -99,7 +99,7 @@ const SavedSearches = () => {
         />
         <meta
           name="twitter:image"
-          content="https://api.biznetusa.com/uploads/saved-search-placeholder.jpg"
+          content="https://apitourism.today.alayaarts.com/uploads/saved-search-placeholder.jpg"
         />
       </Helmet>
       <Header />
