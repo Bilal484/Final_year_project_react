@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet'; // Import Helmet
 import './InvestorsFooter.css';
-import Header from '../../components/header';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
 import investorHero from '../../assets/images/Owner-Dashboard/Sell with Redfin/MarketingIcon_cash_offer.png'

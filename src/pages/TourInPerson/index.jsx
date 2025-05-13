@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./TourRequestPage.css";
 import SellerAgentHeader from "../../components/SellerAgentHeader";
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 import {
@@ -61,13 +61,14 @@ const TourRequestPage = () => {
 
     const handleApproved = async (requestId) => {
         try {
-            // Use the production API endpoint
-            const response = await fetch(`http://127.0.0.1:8000/api/approve-tour/${requestId}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+            // Call the correct approval endpoint
+            const response = await fetch(
+                `https://apitourism.today.alayaarts.com/api/approve-tour/${requestId}`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
             const result = await response.json();
 
             if (result.status === 200) {

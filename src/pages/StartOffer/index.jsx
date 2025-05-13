@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
 import "./StartOffer.css"; // Custom CSS file for styling
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet"; // Import Helmet for meta tags
 const StartOffer = () => {

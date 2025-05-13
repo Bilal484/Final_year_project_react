@@ -4,7 +4,7 @@ import ImagewithText from "../../../components/ImagewithText";
 import aboutImage1 from "../../../assets/images/Developer.jpg";
 import ContactSection from "../../../components/ContactSection";
 import FinancialResults from "../../../components/FinancialResults";
-import Header from "../../../components/header";
+import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import img1 from "../../../assets/images/blog 01.jpg";
 

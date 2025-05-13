@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import Header from "../../../components/header";
+import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import FAQs from "../../../components/FAQs";
 

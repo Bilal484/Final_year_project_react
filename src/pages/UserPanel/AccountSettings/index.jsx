@@ -16,7 +16,7 @@ import {
 import TimezoneSelect from "react-timezone-select";
 import "./AccountSettings.css";
 import SellerAgentHeader from "../../../components/SellerAgentHeader";
-import Header from "../../../components/header";
+import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { signInWithGoogle, signInWithFacebook } from "../../../authMethods";
 import { useNavigate } from "react-router-dom";

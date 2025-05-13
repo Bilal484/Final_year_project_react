@@ -163,7 +163,7 @@ const Recommendations = () => {
                                                         <img
                                                             onClick={() => navigate(`/ProductDetail/${property.id}`)}
                                                             src={`https://apitourism.today.alayaarts.com/uploads/products/${image}`}
-                                                            alt={`Property ${property.id} Image ${index + 1}`}
+                                                            alt={`Property ${property.id} view ${index + 1}`}
                                                             className="d-block w-100"
                                                             style={{
                                                                 height: "250px",
@@ -246,6 +246,7 @@ const Recommendations = () => {
                                             style={{ border: 0 }}
                                             src={property.map_url}
                                             allowFullScreen
+                                            title={`Map location for ${property.location}`}
                                         />
                                     </div>
                                 )}

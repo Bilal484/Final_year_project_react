@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import img1 from "../../../assets/images/offer.png";
 import UserHeader from "../../../components/UserHeader";
-import Header from "../../../components/header";
+import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { Link } from "react-router-dom";
 

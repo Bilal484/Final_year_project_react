@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "./Favorites.css";
 import UserHeader from "../../../components/UserHeader";
-import Header from "../../../components/header";
+import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import axios from "axios";
 import { Carousel, Card, Button, Modal } from "react-bootstrap";

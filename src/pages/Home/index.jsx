@@ -10,7 +10,7 @@ import CityRealEstateList from "../../components/CityRealEstateList";
 import RealEstateTabs from "../../components/RealEstateTabs";
 import RentByCityList from "../../components/RentByCityList";
 import Footer from "../../components/Footer";
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import TaglineHeader from "../../components/TaglineHeader";
 import Testimonial from "../../components/Testimonial";
 import PurposeSection from "../../components/PurposeSection";
@@ -74,6 +74,7 @@ const Home = () => {
     };
 
     useEffect(() => {
+        console.log('Home component mounted/remounted. Initializing user data.');
         fetchUserRole();
         fetchUserId();
 
@@ -89,13 +90,12 @@ const Home = () => {
         };
     }, []);
 
-    useEffect(() => {
-        const storedUserId = localStorage.getItem("user_id");
-        setUserId(storedUserId || null);
-    }, []);
-
     const fetchSimilarUsers = useCallback(async () => {
-        if (!userId) return;
+        if (!userId) {
+            console.log('fetchSimilarUsers: Aborted, userId is null or falsy.');
+            return;
+        }
+        console.log('fetchSimilarUsers: Called with userId:', userId);
         try {
             const res = await axios.get(
                 `https://apitourism.today.alayaarts.com/api/getsimilarusers/${userId}`
@@ -109,8 +109,15 @@ const Home = () => {
     }, [userId]);
 
     useEffect(() => {
-        fetchSimilarUsers();
-    }, [userId]);
+        console.log('Home component: Effect for fetchSimilarUsers triggered. Current userId:', userId);
+        if (userId) {
+            fetchSimilarUsers();
+        } else {
+            // Clear data and hide modal if userId is not available (e.g., user logged out)
+            setSimilarUsers([]);
+            setShowModal(false);
+        }
+    }, [userId, fetchSimilarUsers]); // UPDATED: Added fetchSimilarUsers to dependencies and logic to handle null userId
 
     const handleUserSelect = (user) => {
         navigate(`/Start-chat-with-znet`, {
@@ -178,7 +185,7 @@ const Home = () => {
 
                 {/* Similar Users Modal */}
                 <Modal
-                    // show={showModal} 
+                    show={showModal} // CORRECTED: Uncommented and set the show prop
                     onHide={() => setShowModal(false)}
                     centered
                     className="similar-users-modal"

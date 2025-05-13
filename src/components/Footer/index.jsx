@@ -267,24 +267,24 @@ const Footer = () => {
                             <h6 className="footer-heading">Our Network</h6>
                             <ul className="footer-links">
                                 <li>
-                                    <a href="https://www.rent.com/" className="hover-link">
+                                    <Link to="" className="hover-link">
                                         Rent.com
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="https://www.apartmentguide.com/" className="hover-link">
+                                    <Link to="" className="hover-link">
                                         ApartmentGuide
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="https://bayequityhomeloans.com/" className="hover-link">
+                                    <Link to="" className="hover-link">
                                         Bay Equity Home Loans
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="https://www.titleforward.com/tf" className="hover-link">
+                                    <Link to="" className="hover-link">
                                         Title Forward
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
 
