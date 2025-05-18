@@ -5,7 +5,7 @@ import Developerimg from "../../../assets/images/Developer.jpg";
 import img1 from "../../../assets/images/bolg cara 10.jpg";
 import "../../../assets/css/Developers.css";
 import ServiceCards from "../../../components/ServiceCards";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import ServicesCardImage from "../../../components/ServicesCardImage";
 import img2 from "../../../assets/images/blog 06.jpg";

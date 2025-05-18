@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import ImagewithText from "../../../components/ImagewithText";
 import img from "../../../assets/images/blog 02.jpg";
 import PropertyCard from "../../../components/PropertyCard";
-import Header from '../../../components/Header';
+import Header from '../../../components/header';
 import Footer from '../../../components/Footer';
 import img1 from "../../../assets/images/blog 01.jpg";
 import { Link } from 'react-router-dom';

@@ -184,7 +184,7 @@ function App() {
                         <Route path="/SuccessfulApply" element={<SuccessfulApply />} />
                         <Route path="/TermandUse" element={<TermandUse />} />
                         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-                        <Route path='/Start-chat-with-znet' element={<ChatPage />} />
+                        <Route path='/chat' element={<ChatPage />} />
                         <Route path='ProductComponent' element={<ProductComponent />} />
 
 

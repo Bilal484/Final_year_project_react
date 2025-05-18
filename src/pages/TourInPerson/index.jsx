@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./TourRequestPage.css";
 import SellerAgentHeader from "../../components/SellerAgentHeader";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 import {
@@ -21,6 +21,7 @@ import {
 } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Check, CheckIcon, X } from "lucide-react";
 
 const TourRequestPage = () => {
     const [tourRequests, setTourRequests] = useState([]);
@@ -59,7 +60,7 @@ const TourRequestPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleApproved = async (requestId) => {
+    const handleApproved = async (requestId, val) => {
         try {
             // Call the correct approval endpoint
             const response = await fetch(
@@ -74,11 +75,16 @@ const TourRequestPage = () => {
             if (result.status === 200) {
                 setTourRequests((prevRequests) =>
                     prevRequests.map((req) =>
-                        req.id === requestId ? { ...req, approved: true, approved_tour: 1 } : req
+                        req.id === requestId ? { ...req, approved: val == 1, approved_tour: val } : req
                     )
                 );
                 // Show success message
-                toast.success("Tour request has been approved and email notification has been sent to Buyer!");
+                if (val == 1) {
+                    toast.success("Tour request has been approved and email notification has been sent to Buyer!");
+                } else {
+                    toast.success("Tour request has been rejected and email notification has been sent to Buyer!");
+                }
+
 
                 // Refresh the data to ensure consistency with the server
                 setTimeout(() => fetchTourRequests(), 2000);
@@ -192,18 +198,31 @@ const TourRequestPage = () => {
                                             <p className="tour-request-contact">
                                                 <FaEnvelope /> {request.email}
                                             </p>
-                                        </div>                                        <div className="text-end">
+                                        </div>
+                                        <div className="text-end">
                                             {/* Show Approve button only if not approved */}
-                                            {!request.approved && (
-                                                <Button
-                                                    variant="outline-primary"
-                                                    onClick={() => handleApproved(request.id)}
-                                                    title="Approve this tour request"
-                                                    size="sm"
-                                                >
-                                                    Approve
-                                                </Button>
+                                            {!(request.approved_tour == 1) && (
+                                                <>
+                                                    <Button
+                                                        variant="outline-primary"
+                                                        onClick={() => handleApproved(request.id, 1)}
+                                                        title="Approve this tour request"
+                                                        size="sm"
+                                                    >
+                                                        <Check />
+                                                    </Button>
+                                                </>
                                             )}
+
+                                            <Button
+                                                variant="outline-secondary"
+                                                onClick={() => handleApproved(request.id, 0)}
+                                                title="Approve this tour request"
+                                                size="sm"
+                                                className="ms-2"
+                                            >
+                                                <X size={24} />
+                                            </Button>
                                             {/* You can show a label or leave blank when approved */}
                                         </div>
                                     </div>

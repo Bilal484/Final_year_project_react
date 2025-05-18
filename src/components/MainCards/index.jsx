@@ -46,7 +46,7 @@ const MainCards = () => {
 
     const sectionRef = useRef(null);
     const navigate = useNavigate();
-    const numberOfProperties = 3;
+    const numberOfProperties = 10;
 
     useEffect(() => {
         const storedUserId = localStorage.getItem("user_id");
@@ -70,6 +70,7 @@ const MainCards = () => {
         });
         return () => observer.disconnect();
     }, [shownProperties]);
+
 
     const fetchOffersForProperty = async (productId, signal) => {
         try {
@@ -239,50 +240,13 @@ const MainCards = () => {
         }
     }, [userId, favoriteProperties]);
 
-    // const fetchProductData = async (signal) => {
-    //     try {
-    //         setLoading(true);
-    //         const [productResponse, productImageResponse] = await Promise.all([
-    //             fetch("https://apitourism.today.alayaarts.com/api/get-products", { signal }),
-    //             fetch("https://apitourism.today.alayaarts.com/api/get-productimages", { signal }),
-    //         ]);
-
-    //         const productData = await productResponse.json();
-    //         const productImageData = await productImageResponse.json();
-
-    //         if (productData.status === 200 && productImageData.status === 200) {
-    //             const mergedProperties = productData.products.map((product) => {
-    //                 const images = productImageData.products
-    //                     .filter((image) => image.pd_id === product.id)
-    //                     .map((img) => img.image);
-    //                 return { ...product, images };
-    //             });
-    //             setProperties(mergedProperties);
-    //             setFilteredProperties(mergedProperties);
-    //             setShownProperties(mergedProperties.slice(0, 6));
-    //             const offersPromises = mergedProperties.slice(0, 6).map((property) =>
-    //                 limit(() => fetchOffersForProperty(property.id, signal))
-    //             );
-    //             const offersResults = await Promise.all(offersPromises);
-    //             const offersMap = {};
-    //             offersResults.forEach((offers, index) => {
-    //                 offersMap[mergedProperties[index].id] = offers;
-    //             });
-    //             setOffersData(offersMap);
-    //         } else {
-    //             throw new Error("Failed to load product or image data");
-    //         }
-    //     } catch (err) {
-    //         if (err.name !== "AbortError") {
-    //             setError(err.message || "An error occurred while fetching data");
-    //             console.error(err.message);
-    //         }
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
     const fetchProductData = async (signal) => {
+
+        const props = JSON.parse(localStorage.getItem("properties"))
+
+        setShownProperties(props.slice(0, 6));
+        setProperties(props);
+        setFilteredProperties(props);
         try {
             setLoading(true);
             const [productResponse, productImageResponse] = await Promise.all([
@@ -300,9 +264,12 @@ const MainCards = () => {
                         .map((img) => img.image);
                     return { ...product, images };
                 });
-                setProperties(mergedProperties);
-                setFilteredProperties(mergedProperties);
-                setShownProperties(mergedProperties.slice(0, 6));
+                if (props !== productData.data) {
+                    localStorage.setItem("properties", JSON.stringify(productData.products))
+                    setProperties(productData.products);
+                    setFilteredProperties(productData.products);
+                    setShownProperties((productData.products).slice(0, 6));
+                }
 
                 // Load offers data
                 const offersPromises = mergedProperties.slice(0, 6).map((property) =>
@@ -329,6 +296,7 @@ const MainCards = () => {
             setLoading(false);
         }
     };
+
     const fetchUserProfilesFromProducts = useCallback(async (signal) => {
         const cacheKey = "userProfiles";
         if (localStorage.getItem(cacheKey)) {
@@ -345,17 +313,18 @@ const MainCards = () => {
             const productData = await productRes.json();
 
             if (productData.status === 200) {
-                // Extract unique user IDs from products
-                const userIds = [...new Set(productData.products.map(p => p.user_id))];
+                // Extract unique user IDs from products (filter out null values)
+                const userIds = [...new Set(productData.products
+                    .filter(p => p.user_id) // Filter out null user_ids
+                    .map(p => p.user_id))];
 
                 // Fetch user profiles for each user ID
                 const userProfilePromises = userIds.map(id =>
                     limit(() =>
-                        fetch(`https://apitourism.today.alayaarts.com/api/user-profile/${id}`, { signal })
+                        fetch(`https://api.biznetusa.com/api/user-profile/${id}`, { signal })
                             .then(res => res.json())
                     )
                 );
-
 
                 const userProfilesData = await Promise.all(userProfilePromises);
 
@@ -366,8 +335,6 @@ const MainCards = () => {
                         profilesMap[profile.allusers.id] = profile.allusers;
                     }
                 });
-
-                console.log("User Profiles:", profilesMap);
 
                 localStorage.setItem(cacheKey, JSON.stringify(profilesMap));
                 setUserProfiles(profilesMap);
@@ -381,6 +348,7 @@ const MainCards = () => {
             }
         }
     }, [showNotification]);
+
 
     const fetchSectionData = useCallback(async (section, signal) => {
         switch (section) {
@@ -650,7 +618,7 @@ const MainCards = () => {
                                     </p>
                                 </div>
                             ) : (
-                                shownProperties.map((property) => (
+                                shownProperties?.map((property) => (
                                     <div className="col-sm-6 col-lg-4 mb-4" key={property.id}>
                                         <div
                                             className={`property-card ${animated[property.id] ? "animate" : ""}`}
@@ -660,7 +628,7 @@ const MainCards = () => {
                                                 <div className="property-media">
                                                     {offersData[property.id]?.length > 0 && (
                                                         <div
-                                                            className="offer-badge"
+                                                            className="offer badge"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 handleOfferClick(property.id);
@@ -668,6 +636,18 @@ const MainCards = () => {
                                                         >
                                                             <i className="fas fa-tag"></i>
                                                             ${Number(offersData[property.id][0]?.how_much_you_offer || 0).toLocaleString()}
+                                                        </div>
+                                                    )}
+
+                                                    {property.user_id && userProfiles[property.user_id] && (
+                                                        <div className="user_info badge" style={{
+                                                            backgroundColor: "#6c757d",
+                                                            marginLeft: "5px",
+                                                            display: "inline-flex",
+                                                            alignItems: "center"
+                                                        }}>
+                                                            <i className="fas fa-user-circle mr-1"></i>
+                                                            {userProfiles[property.user_id].name}
                                                         </div>
                                                     )}
 
@@ -682,7 +662,7 @@ const MainCards = () => {
                                                                         >
                                                                             <img
                                                                                 onClick={() => navigate(`/ProductDetail/${property.id}`)}
-                                                                                src={`https://apitourism.today.alayaarts.com/uploads/products/${image}`}
+                                                                                src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
                                                                                 alt={`Property ${property.title || property.id}`}
                                                                                 className="property-image"
                                                                             />
@@ -815,7 +795,7 @@ const MainCards = () => {
                                                     </div>
 
                                                     <div className="property-cta">
-                                                        <Link to="/Start-chat-with-znet" className="cta-btn chat-btn">
+                                                        <Link to="/chat" className="cta-btn chat-btn">
                                                             <i className="fas fa-comments"></i>
                                                             <span>Chat</span>
                                                         </Link>

@@ -67,6 +67,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -143,7 +144,7 @@
 
 .chat-body {
     padding: 0;
-    height: calc(100% - 60px);
+    height: calc(90% - 60px);
     background-color: var(--card-bg);
 }
 
@@ -205,6 +206,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -215,9 +217,11 @@
     0% {
         box-shadow: 0 0 0 0 rgba(11, 11, 69, 0.3);
     }
+
     70% {
         box-shadow: 0 0 0 10px rgba(11, 11, 69, 0);
     }
+
     100% {
         box-shadow: 0 0 0 0 rgba(11, 11, 69, 0);
     }
@@ -228,11 +232,12 @@
     .chat-row {
         height: auto;
     }
-    
-    .users-card, .chat-window-card {
+
+    .users-card,
+    .chat-window-card {
         height: 500px;
     }
-    
+
     .chat-body {
         height: calc(100% - 60px);
     }

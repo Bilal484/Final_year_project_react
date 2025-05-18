@@ -8,7 +8,7 @@ import img05 from "../../../src/assets/images/blog 05.jpg";
 import img06 from "../../../src/assets/images/blog 06.jpg";
 import InvestorPanel from "../InvestorPanel";
 import InvestorHeader from "../../components/InvestorHeader";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 
 const RealEstateOpportunities = () => {

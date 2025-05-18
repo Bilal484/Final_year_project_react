@@ -10,7 +10,7 @@ import CityRealEstateList from "../../components/CityRealEstateList";
 import RealEstateTabs from "../../components/RealEstateTabs";
 import RentByCityList from "../../components/RentByCityList";
 import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import TaglineHeader from "../../components/TaglineHeader";
 import Testimonial from "../../components/Testimonial";
 import PurposeSection from "../../components/PurposeSection";
@@ -100,7 +100,7 @@ const Home = () => {
     }, [userId]);
 
     const handleUserSelect = (user) => {
-        navigate(`/Start-chat-with-znet`, {
+        navigate(`/chat`, {
             state: {
                 user_id: userId,
                 receiver_id: user.user_id,

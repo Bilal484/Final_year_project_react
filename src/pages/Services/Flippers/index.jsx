@@ -7,7 +7,7 @@ import Img01 from '../../../assets/images/sub2Deal 07.jpg'
 import Testimonial from '../../../components/Testimonial'
 import HousingSubscriptionForm from '../../../components/HousingSubscriptionForm'
 import Footer from '../../../components/Footer'
-import Header from '../../../components/Header'
+import Header from '../../../components/header'
 import { Helmet } from 'react-helmet';
 
 

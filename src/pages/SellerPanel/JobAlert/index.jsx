@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Offcanvas, Button, Form, Container, Row, Col, Alert, Card, Badge } from 'react-bootstrap';
 import SellerHeader from '../../../components/SellerHeader';
 import SellerAgentHeader from '../../../components/SellerAgentHeader';
-import Header from '../../../components/Header';
+import Header from '../../../components/header';
 import Footer from '../../../components/Footer';
 import './JobAlert.css';
 import axios from 'axios';

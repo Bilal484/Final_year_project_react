@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Chat from "../../components/Chat";
 import UsersList from "../../components/UsersList";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import { useLocation } from "react-router-dom";
 import "./ChatPage.css";

@@ -7,7 +7,7 @@ import img02 from "../../../assets/images/guide 02.jpg";
 import img03 from "../../../assets/images/guide 03.jpg";
 import img04 from "../../../assets/images/guide 04.jpg";
 import img05 from "../../../assets/images/guide 05.jpg";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 
 // FAQs Component

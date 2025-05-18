@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./BidsPage.css";
 import SellerAgentHeader from "../../components/SellerAgentHeader";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";

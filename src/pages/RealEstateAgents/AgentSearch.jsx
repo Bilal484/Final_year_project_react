@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Card, Button, Spinner } from 'react-bootstra
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import axios from 'axios';
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import './AgentSearch.css';
 import defaultAgentImage from '../../assets/images/real estate _12.jpg';

@@ -357,7 +357,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="text-muted" to="Start-chat-with-znet">
+                                        <Link className="text-muted" to="chat">
                                             Notifications
                                         </Link>
                                     </li>
@@ -414,7 +414,7 @@ const Header = () => {
                                                     similarUsers.map((user) => (
                                                         <Dropdown.Item
                                                             key={user.user_id}
-                                                            onClick={() => navigate("/Start-chat-with-znet")}
+                                                            onClick={() => navigate("/chat")}
                                                             className="notification-item bg-white"
                                                         >
                                                             <div className="bg-white">

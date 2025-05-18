@@ -7,7 +7,7 @@ import './JoinAgent.css'; // Import the custom CSS file
 
 
 import SellerHeader from "../../../components/SellerHeader";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import { useNavigate } from "react-router-dom";
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet'; // Import Helmet
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import Header from '../../components/header';
 import "./LicenseVerification.css"; 
 function LicenseVerification() {
     const [showModal, setShowModal] = useState(false);

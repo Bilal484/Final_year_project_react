@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Container, Card, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import Notification, { useNotification } from "../../components/Notification";
 import { TranslateText, LanguageSelector } from "../../translation";

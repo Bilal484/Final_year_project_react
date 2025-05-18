@@ -13,7 +13,7 @@ import img9 from "../../../assets/images/img_agent_career/H1-img-1.jpg";
 import img10 from "../../../assets/images/img_agent_career/H1-img-3.jpg";
 import img11 from "../../../assets/images/img_agent_career/kitchen-1543486_1920.jpg";
 import SellerHeader from "../../../components/SellerHeader";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 
 const AssociateAgentIndependent = () => {

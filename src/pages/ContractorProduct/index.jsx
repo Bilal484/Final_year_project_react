@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import Select from "react-select";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
