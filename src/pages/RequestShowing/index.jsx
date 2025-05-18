@@ -1,5 +1,4 @@
-// import img1 from "../../assets/images/PNG Logo Files/Transparent Logo.png";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./RequestShowing.css";
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
@@ -9,12 +8,13 @@ import { Helmet } from "react-helmet";
 
 const RequestShowing = () => {
   const [dates, setDates] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(""); // State to hold the selected date
-  const [isNotSure, setIsNotSure] = useState(false); // State to hold the checkbox value
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const [selectedDate, setSelectedDate] = useState(""); 
+  const [isNotSure, setIsNotSure] = useState(false);
+  const navigate = useNavigate();
 
   const location = useLocation();
-  const { p_id } = location.state || {}; // Access p_id from state
+  const { p_id } = location.state || {};
+
   useEffect(() => {
     // Get today's date and the next 4 days
     const today = dayjs();
@@ -26,27 +26,60 @@ const RequestShowing = () => {
   }, []);
 
   const selectDate = (date) => {
-    setSelectedDate(date); // Update selected date
+    setSelectedDate(date); 
+    // If a date is selected, uncheck the "not sure" checkbox
+    if (isNotSure) {
+      setIsNotSure(false);
+    }
   };
 
   const handleCheckboxChange = () => {
-    setIsNotSure(!isNotSure); // Toggle checkbox state
+    setIsNotSure(!isNotSure);
+    // If "not sure" is checked, clear any selected date
+    if (!isNotSure) {
+      setSelectedDate("");
+    }
   };
 
   const handleNextClick = () => {
-    // Send checkbox state as 1 or 0
     const checkboxValue = isNotSure ? 1 : 0;
-
-    // Navigate to the next page with the selected date and checkbox value
     navigate("/AboutYourSelf", {
       state: { date: selectedDate, notSure: checkboxValue, p_id: p_id },
     });
   };
 
+  // Function to handle the arrow navigation for dates
+  const handleDateNav = (direction) => {
+    const today = dayjs();
+    let newDates = [];
+    
+    if (direction === 'next') {
+      const lastDate = dayjs(dates[dates.length - 1]);
+      for (let i = 1; i <= 5; i++) {
+        newDates.push(lastDate.add(i, "day"));
+      }
+      setDates(newDates);
+    } else if (direction === 'prev') {
+      const firstDate = dayjs(dates[0]);
+      // Don't go before today
+      if (firstDate.diff(today, 'day') > 0) {
+        for (let i = 5; i >= 1; i--) {
+          const newDate = firstDate.subtract(i, "day");
+          if (newDate.isSame(today) || newDate.isAfter(today)) {
+            newDates.push(newDate);
+          }
+        }
+        if (newDates.length > 0) {
+          setDates(newDates);
+        }
+      }
+    }
+  };
+
   return (
     <>
-    <Helmet>
-        <title>Request Showing</title>
+      <Helmet>
+        <title>Request Showing | UrbanCraft Real Estate</title>
         <meta
           name="description"
           content="Schedule a tour with a partner agent or let us know if you're unsure about your schedule. Plan your next visit with ease."
@@ -55,68 +88,76 @@ const RequestShowing = () => {
           name="keywords"
           content="tour scheduling, partner agent, real estate tours, schedule flexibility"
         />
-        <meta name="author" content="Real Estate Solutions" />
+        <meta name="author" content="UrbanCraft Real Estate" />
       </Helmet>
       <Header />
-      <div className="container-fluid my-5">
-        <div className="container">
-          <div className="row ">
-            <div className="col-lg-8 mx-auto dic_date_responsive_child">
+      <div className="container my-5">
+        <div className="row">
+          <div className="col-lg-8 mx-auto">
+            <div className="request-showing-container">
               <h1 className="date-heading">Tour with a Partner Agent</h1>
-              <p>
+              <p className="request-showing-subtext">
                 Partner Agents work for other brokerages but share our
-                commitment to customer service.
+                commitment to exceptional customer service and property expertise.
               </p>
-              <a className="text-black" href="#">
-                Learn More
+              <a className="learn-more-link" href="#">
+                Learn More <i className="fas fa-arrow-right ml-1"></i>
               </a>
+              
               {/* Date Picker */}
-              <div className="row text-center mt-4">
+              <div className="date-picker-row">
                 <div className="d-flex flex-row overflow-y-hidden overflow-x-auto justify-content-center align-items-center">
-                  <div className="col-1 d-flex align-items-center justify-content-center date-nav">
+                  <div 
+                    className="date-nav" 
+                    onClick={() => handleDateNav('prev')}
+                  >
                     <i className="fas fa-chevron-left"></i>
                   </div>
 
                   {dates.map((date, index) => (
                     <div
                       key={index}
-                      className="col-md-2 day-card"
+                      className={`day-card ${selectedDate === date.format("YYYY-MM-DD") ? "selected" : ""}`}
                       onClick={() => selectDate(date.format("YYYY-MM-DD"))}
                     >
-                      {date.format("dddd").toUpperCase()}
-                      <br />
-                      <strong>{date.format("DD")}</strong>
-                      <br />
-                      {date.format("MMM").toUpperCase()}
+                      <div className="day-name">{date.format("dddd").toUpperCase()}</div>
+                      <div className="day-number">{date.format("DD")}</div>
+                      <div className="month-name">{date.format("MMM").toUpperCase()}</div>
                     </div>
                   ))}
 
-                  <div className="col-1 d-flex align-items-center justify-content-center date-nav">
+                  <div 
+                    className="date-nav" 
+                    onClick={() => handleDateNav('next')}
+                  >
                     <i className="fas fa-chevron-right"></i>
                   </div>
                 </div>
               </div>
+              
               <div className="separator">
                 <span>OR</span>
               </div>
-              <div className="form-check not-sure-checkbox">
+              
+              <div className="not-sure-checkbox">
                 <input
                   className="form-check-input"
                   type="checkbox"
                   id="flexCheckDefault"
-                  checked={isNotSure} // Control the checkbox state
-                  onChange={handleCheckboxChange} // Update state on change
+                  checked={isNotSure}
+                  onChange={handleCheckboxChange}
                 />
                 <label className="form-check-label" htmlFor="flexCheckDefault">
                   I'm not sure about my schedule yet
                 </label>
               </div>
-              {/* Button to navigate with the selected date */}
+              
               <button
-                className="btn btn-outline-info"
+                className="next-button"
                 onClick={handleNextClick}
+                disabled={!selectedDate && !isNotSure}
               >
-                Next
+                Next <i className="fas fa-arrow-right ml-2"></i>
               </button>
             </div>
           </div>
@@ -128,3 +169,5 @@ const RequestShowing = () => {
 };
 
 export default RequestShowing;
+
+

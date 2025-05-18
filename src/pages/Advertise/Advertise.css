@@ -105,7 +105,7 @@
     }
 
     .most-popular-badge {
-        background-color: #09aab0 !important;
+        background-color: #969696 !important;
         border-radius: 8px;
 
     }
@@ -145,11 +145,11 @@
     }
 
     .plan-features li i {
-        color: #09aab0;
+        color: #969696;
     }
 
     .btn-inquire {
-        background-color: #09aab0;
+        background-color: #969696;
         color: white;
         border: none;
     }
@@ -159,7 +159,7 @@
     }
 
     .custom-btn-card {
-        background-color: #09aab0;
+        background-color: #969696;
         color: white;
     }
 

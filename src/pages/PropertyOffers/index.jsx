@@ -14,6 +14,7 @@ const OffersPage = () => {
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [products, setProducts] = useState([]);
+    const [showNotification, setShowNotification] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [offerForm, setOfferForm] = useState({
         phone: "",

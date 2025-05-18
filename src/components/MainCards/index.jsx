@@ -37,9 +37,12 @@ const MainCards = () => {
     const [animated, setAnimated] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
     const [offersData, setOffersData] = useState({});
-    const [showOfferModal, setShowOfferModal] = useState(false);
-    const [selectedOffer, setSelectedOffer] = useState(null);
+    const [showOfferModal, setShowOfferModal] = useState(false); const [selectedOffer, setSelectedOffer] = useState(null);
     const [offerLoading, setOfferLoading] = useState(false);
+    const [userProfiles, setUserProfiles] = useState({});
+    const [showAgentModal, setShowAgentModal] = useState(false);
+    const [selectedAgent, setSelectedAgent] = useState(null);
+    const [agentLoading, setAgentLoading] = useState(false);
 
     const sectionRef = useRef(null);
     const navigate = useNavigate();
@@ -80,15 +83,15 @@ const MainCards = () => {
             }
             return [];
         } catch (err) {
-            // if (err.name !== "AbortError") {
-            //     console.error(`Error fetching offers for property ${productId}:`, err?.message || "Network error");
-            // }
             toast("Failed to load offers for this property", { type: "error" });
             return [];
         } finally {
             setOfferLoading(false);
         }
     };
+
+
+
 
     const handleOfferClick = async (propertyId) => {
         const abortController = new AbortController();
@@ -236,6 +239,49 @@ const MainCards = () => {
         }
     }, [userId, favoriteProperties]);
 
+    // const fetchProductData = async (signal) => {
+    //     try {
+    //         setLoading(true);
+    //         const [productResponse, productImageResponse] = await Promise.all([
+    //             fetch("https://apitourism.today.alayaarts.com/api/get-products", { signal }),
+    //             fetch("https://apitourism.today.alayaarts.com/api/get-productimages", { signal }),
+    //         ]);
+
+    //         const productData = await productResponse.json();
+    //         const productImageData = await productImageResponse.json();
+
+    //         if (productData.status === 200 && productImageData.status === 200) {
+    //             const mergedProperties = productData.products.map((product) => {
+    //                 const images = productImageData.products
+    //                     .filter((image) => image.pd_id === product.id)
+    //                     .map((img) => img.image);
+    //                 return { ...product, images };
+    //             });
+    //             setProperties(mergedProperties);
+    //             setFilteredProperties(mergedProperties);
+    //             setShownProperties(mergedProperties.slice(0, 6));
+    //             const offersPromises = mergedProperties.slice(0, 6).map((property) =>
+    //                 limit(() => fetchOffersForProperty(property.id, signal))
+    //             );
+    //             const offersResults = await Promise.all(offersPromises);
+    //             const offersMap = {};
+    //             offersResults.forEach((offers, index) => {
+    //                 offersMap[mergedProperties[index].id] = offers;
+    //             });
+    //             setOffersData(offersMap);
+    //         } else {
+    //             throw new Error("Failed to load product or image data");
+    //         }
+    //     } catch (err) {
+    //         if (err.name !== "AbortError") {
+    //             setError(err.message || "An error occurred while fetching data");
+    //             console.error(err.message);
+    //         }
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
     const fetchProductData = async (signal) => {
         try {
             setLoading(true);
@@ -257,6 +303,8 @@ const MainCards = () => {
                 setProperties(mergedProperties);
                 setFilteredProperties(mergedProperties);
                 setShownProperties(mergedProperties.slice(0, 6));
+
+                // Load offers data
                 const offersPromises = mergedProperties.slice(0, 6).map((property) =>
                     limit(() => fetchOffersForProperty(property.id, signal))
                 );
@@ -266,6 +314,9 @@ const MainCards = () => {
                     offersMap[mergedProperties[index].id] = offers;
                 });
                 setOffersData(offersMap);
+
+                // Also fetch user profiles
+                await fetchUserProfilesFromProducts(signal);
             } else {
                 throw new Error("Failed to load product or image data");
             }
@@ -278,6 +329,58 @@ const MainCards = () => {
             setLoading(false);
         }
     };
+    const fetchUserProfilesFromProducts = useCallback(async (signal) => {
+        const cacheKey = "userProfiles";
+        if (localStorage.getItem(cacheKey)) {
+            setUserProfiles(JSON.parse(localStorage.getItem(cacheKey)));
+            return;
+        }
+
+        try {
+            // First get products to extract user IDs
+            const productRes = await fetch(
+                'https://apitourism.today.alayaarts.com/api/get-products',
+                { signal }
+            );
+            const productData = await productRes.json();
+
+            if (productData.status === 200) {
+                // Extract unique user IDs from products
+                const userIds = [...new Set(productData.products.map(p => p.user_id))];
+
+                // Fetch user profiles for each user ID
+                const userProfilePromises = userIds.map(id =>
+                    limit(() =>
+                        fetch(`https://apitourism.today.alayaarts.com/api/user-profile/${id}`, { signal })
+                            .then(res => res.json())
+                    )
+                );
+
+
+                const userProfilesData = await Promise.all(userProfilePromises);
+
+                // Create a map of user ID to user profile
+                const profilesMap = {};
+                userProfilesData.forEach(profile => {
+                    if (profile.status === 200 && profile.allusers) {
+                        profilesMap[profile.allusers.id] = profile.allusers;
+                    }
+                });
+
+                console.log("User Profiles:", profilesMap);
+
+                localStorage.setItem(cacheKey, JSON.stringify(profilesMap));
+                setUserProfiles(profilesMap);
+            }
+        } catch (err) {
+            if (err.name !== "AbortError") {
+                console.error('Error fetching user profiles:', err);
+                setTimeout(() => {
+                    showNotification("Failed to fetch user profiles. Please try again later.");
+                }, 3000);
+            }
+        }
+    }, [showNotification]);
 
     const fetchSectionData = useCallback(async (section, signal) => {
         switch (section) {
@@ -421,6 +524,21 @@ const MainCards = () => {
             setShownProperties(filteredProperties.slice(0, 6));
         } else {
             setShownProperties(filteredProperties.slice(0, filteredProperties.length));
+        }
+    };
+
+    const handleAgentClick = async (userId) => {
+        if (!userId) return;
+
+        try {
+            setAgentLoading(true);
+            setSelectedAgent(userProfiles[userId]);
+            setShowAgentModal(true);
+        } catch (err) {
+            console.error('Error loading agent details:', err);
+            toast.error('Failed to load agent details');
+        } finally {
+            setAgentLoading(false);
         }
     };
 
@@ -642,8 +760,8 @@ const MainCards = () => {
                                                                     <span
                                                                         key={index}
                                                                         className={`indicator ${index === (carouselIndex[property.id] || 0)
-                                                                                ? "active"
-                                                                                : ""
+                                                                            ? "active"
+                                                                            : ""
                                                                             }`}
                                                                         onClick={() => handleSelect(index, property.id)}
                                                                     ></span>
@@ -712,8 +830,36 @@ const MainCards = () => {
                                                             to={`/ProductDetail/${property.id}`}
                                                             className="cta-btn details-btn"
                                                         >
-                                                            <span>View Details</span>
-                                                        </Link>
+                                                            <span>View Details</span>                                                        </Link>
+                                                    </div>
+
+                                                    {/* Property Agent Information */}
+                                                    <div className="property-agent">
+                                                        {property.user_id && userProfiles[property.user_id] && (
+                                                            <div
+                                                                className="agent-info"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    handleAgentClick(property.user_id);
+                                                                }}
+                                                            >
+                                                                <div className="agent-avatar">
+                                                                    {userProfiles[property.user_id].image ? (
+                                                                        <img
+                                                                            src={`https://apitourism.today.alayaarts.com/uploads/users/${userProfiles[property.user_id].image}`}
+                                                                            alt={`Agent ${userProfiles[property.user_id].name}`}
+                                                                            className="agent-image"
+                                                                        />
+                                                                    ) : (
+                                                                        <i className="fas fa-user-circle"></i>
+                                                                    )}
+                                                                </div>
+                                                                <div className="agent-details">
+                                                                    <span className="agent-name">{userProfiles[property.user_id].name}</span>
+                                                                    <span className="agent-role">{userProfiles[property.user_id].roles?.role_name || "Agent"}</span>
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>
@@ -836,8 +982,129 @@ const MainCards = () => {
                         </Button>
                         <Button variant="primary" onClick={() => setShowOfferModal(false)}>
                             Got it
-                        </Button>
-                    </Modal.Footer>
+                        </Button>                    </Modal.Footer>
+                </Modal>
+
+                {/* Agent Modal */}
+                <Modal
+                    show={showAgentModal}
+                    onHide={() => setShowAgentModal(false)}
+                    centered
+                    className="agent-details-modal"
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            <i className="fas fa-user-tie me-2"></i>
+                            Agent Profile
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {agentLoading ? (
+                            <div className="text-center p-4">
+                                <Spinner animation="border" variant="primary" />
+                                <p className="mt-3">Loading agent details...</p>
+                            </div>
+                        ) : selectedAgent ? (
+                            <div className="agent-details-content">
+                                <div className="agent-profile-header">
+                                    <div className="agent-profile-avatar">
+                                        {selectedAgent.image ? (
+                                            <img
+                                                src={`https://apitourism.today.alayaarts.com/uploads/users/${selectedAgent.image}`}
+                                                alt={`Agent ${selectedAgent.name}`}
+                                                className="agent-profile-image"
+                                            />
+                                        ) : (
+                                            <i className="fas fa-user-circle"></i>
+                                        )}
+                                    </div>
+                                    <div className="agent-profile-info">
+                                        <h3 className="agent-profile-name">{selectedAgent.name}</h3>
+                                        <p className="agent-profile-role">{selectedAgent.roles?.role_name || "Real Estate Agent"}</p>
+                                    </div>
+                                </div>
+
+                                <div className="agent-contact-info mt-4">
+                                    <h4 className="section-title">
+                                        <i className="fas fa-address-card me-2"></i>
+                                        Contact Information
+                                    </h4>
+                                    <div className="contact-grid">
+                                        {selectedAgent.email && (
+                                            <div className="contact-item">
+                                                <div className="contact-icon">
+                                                    <i className="fas fa-envelope"></i>
+                                                </div>
+                                                <div className="contact-detail">
+                                                    <span className="contact-label">Email:</span>
+                                                    <a href={`mailto:${selectedAgent.email}`} className="contact-value">
+                                                        {selectedAgent.email}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {selectedAgent.phone && (
+                                            <div className="contact-item">
+                                                <div className="contact-icon">
+                                                    <i className="fas fa-phone"></i>
+                                                </div>
+                                                <div className="contact-detail">
+                                                    <span className="contact-label">Phone:</span>
+                                                    <a href={`tel:${selectedAgent.phone}`} className="contact-value">
+                                                        {selectedAgent.phone}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {selectedAgent.bio && (
+                                    <div className="agent-bio mt-4">
+                                        <h4 className="section-title">
+                                            <i className="fas fa-user-tag me-2"></i>
+                                            About
+                                        </h4>
+                                        <p className="bio-content">{selectedAgent.bio}</p>
+                                    </div>
+                                )}
+
+                                <div className="agent-cta-buttons mt-4">
+                                    {selectedAgent.email && (
+                                        <Button
+                                            variant="primary"
+                                            className="contact-agent-btn"
+                                            onClick={() => window.location.href = `mailto:${selectedAgent.email}`}
+                                        >
+                                            <i className="fas fa-envelope me-2"></i>
+                                            Contact Agent
+                                        </Button>
+                                    )}
+
+                                    {selectedAgent.phone && (
+                                        <Button
+                                            variant="outline-primary"
+                                            className="call-agent-btn"
+                                            onClick={() => window.location.href = `tel:${selectedAgent.phone}`}
+                                        >
+                                            <i className="fas fa-phone me-2"></i>
+                                            Call Agent
+                                        </Button>
+                                    )}
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="text-center p-4">
+                                <i className="fas fa-exclamation-circle text-warning display-4"></i>
+                                <p className="mt-3">No agent details available.</p>
+                            </div>
+                        )}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowAgentModal(false)}>
+                            Close
+                        </Button>                    </Modal.Footer>
                 </Modal>
             </div>
         </>

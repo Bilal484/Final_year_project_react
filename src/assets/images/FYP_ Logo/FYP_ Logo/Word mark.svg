@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 715.75 213.63">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        fill: #969696;
+        font-family: Poppins-Regular, Poppins;
+        font-size: 70px;
+      }
+
+      .cls-6 {
+        fill: #fd593e;
+        font-family: Ibrand-Regular, Ibrand;
+        font-size: 153.3px;
+        stroke: #fd593e;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-7 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_23_copy" data-name="Layer 23 copy">
+    <text class="cls-6" transform="translate(1 131.3)"><tspan class="cls-1" x="0" y="0">U</tspan><tspan x="93.82" y="0">r</tspan><tspan class="cls-2" x="138.89" y="0">b</tspan><tspan class="cls-8" x="226.73" y="0">anC</tspan><tspan class="cls-7" x="494.69" y="0">r</tspan><tspan class="cls-4" x="535.93" y="0">a</tspan><tspan class="cls-3" x="620.86" y="0">f</tspan><tspan x="668.07" y="0">t</tspan></text>
+  </g>
+  <g id="Layer_24_copy" data-name="Layer 24 copy">
+    <text class="cls-5" transform="translate(152.68 204.05)"><tspan x="0" y="0">REAL ESTATE</tspan></text>
+  </g>
+</svg>

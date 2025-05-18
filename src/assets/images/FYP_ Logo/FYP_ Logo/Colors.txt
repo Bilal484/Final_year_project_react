@@ -1,0 +1,11 @@
+Color Pallete we have to use:
+
+
+#FD593E -Orange
+
+#969696 -Grey
+
+#1B1B1B -Black
+
+#DADADA  -LightGrey
+

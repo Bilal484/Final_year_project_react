@@ -15,7 +15,7 @@
         }
     
         .btn-investor {
-            border: 5px solid #09aab0;
+            border: 5px solid #969696;
             color: white;
             border-radius: 0;
             font-weight: 700;
@@ -25,8 +25,8 @@
         }
     
         .btn-investor:hover {
-            border: 5px solid #09aab0;
-            background:#09aab0;
+            border: 5px solid #969696;
+            background:#969696;
             color: white;
             border-radius: 0;
             font-weight: 700;
@@ -43,14 +43,14 @@
             font-weight: 600;
             font-size: 20px;
             margin-top: 20px;
-            color: #09aab0;
+            color: #969696;
     
     
         }
     
         .card:hover {
             border: none;
-            background: #09aab0;
+            background: #969696;
             color: white;
             transition: all 0.3s ease;
     
@@ -84,10 +84,10 @@
           .presentation-image {
             width: 100%;
             max-width: 900px;
-            border: 1px solid #09aab0;
+            border: 1px solid #969696;
             border-radius: 10px;
             overflow: hidden;
-            background-color:#09aab0;
+            background-color:#969696;
             position: relative;
           }
       
@@ -117,7 +117,7 @@
             width: 50px;
             text-align: center;
             margin: 0 10px;
-            border: 1px solid #09aab0;
+            border: 1px solid #969696;
             border-radius: 5px;
           }
       
@@ -128,7 +128,7 @@
           }
       
           .download-btn a {
-            background-color: #09aab0;
+            background-color: #969696;
             font-weight: 700;
             letter-spacing: 2px;
             color: white;
@@ -145,7 +145,7 @@
           }
 
           .btn-download{
-            background: #09aab0;
+            background: #969696;
             padding: 10px;
             color: white;
             font-weight: 700;

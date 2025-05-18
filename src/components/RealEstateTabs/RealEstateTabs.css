@@ -121,7 +121,9 @@
 .search-bar button {
   position: absolute;
   right: 5px;
-  top: 5px;
+  /* top: 5px;
+   */
+   height: 50px;
   bottom: 5px;
   width: 50px;
   border: none;

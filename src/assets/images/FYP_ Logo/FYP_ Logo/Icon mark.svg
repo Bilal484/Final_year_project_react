@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296.93 339.51">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #969696;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: #fd593e;
+        stroke-miterlimit: 10;
+        stroke-width: 38.3px;
+      }
+
+      .cls-2 {
+        fill: #fd593e;
+      }
+    </style>
+  </defs>
+  <g id="Layer_25_copy" data-name="Layer 25 copy">
+    <path class="cls-3" d="M273.24,157.34v119.05c0,22.06-18.73,39.95-41.83,39.95H65.91c-23.1,0-41.83-17.89-41.83-39.95v-119.05l19.07-18.88,105.51-104.46,105.51,104.46,19.07,18.88Z"/>
+  </g>
+  <g id="Layer_26_copy_7" data-name="Layer 26 copy 7">
+    <rect class="cls-1" x="102.82" y="174.11" width="39.4" height="39.4"/>
+  </g>
+  <g id="Layer_26_copy_6" data-name="Layer 26 copy 6">
+    <rect class="cls-1" x="149.65" y="174.43" width="39.4" height="39.4"/>
+  </g>
+  <g id="Layer_26_copy_5" data-name="Layer 26 copy 5">
+    <rect class="cls-1" x="102.82" y="219.96" width="39.4" height="39.4"/>
+  </g>
+  <g id="Layer_26_copy_4" data-name="Layer 26 copy 4">
+    <rect class="cls-1" x="149.65" y="220.29" width="39.4" height="39.4"/>
+  </g>
+  <g id="Layer_30_copy" data-name="Layer 30 copy">
+    <polygon class="cls-2" points="42.93 189.51 5 160.59 5 34 42.93 62.92 42.93 189.51"/>
+  </g>
+</svg>

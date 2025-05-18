@@ -1,11 +1,22 @@
-/* Modern Executive Leaders Component with Animations and Professional Design */
+/* Executive Leaders Component with Modern Design and Animations */
 
-/* ---- Leaders Section Container ---- */
-.leaders-section {
-  padding: 5rem 0;
-  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
-  position: relative;
-  overflow: hidden;
+/* Root variables for consistent styling */
+:root {
+  --primary-color: var(--background_color, #0b0b45);
+  --secondary-color: var(--color, #996c22);
+  --light-bg: #f8f9fa;
+  --dark-text: #333;
+  --light-text: #777;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  --transition-slow: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --transition-normal: all 0.3s ease;
+  --overlay-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  --badge-bg: rgba(153, 108, 34, 0.1);
+  --badge-color: var(--secondary-color, #996c22);
+  --card-border-radius: 12px;
+  --tag-bg: rgba(11, 11, 69, 0.08);
+  --tag-color: var(--primary-color, #0b0b45);
 }
 
 .leaders-section::before {
@@ -34,6 +45,7 @@
 /* ---- Section Header ---- */
 .section-header {
   text-align: center;
+  flex-direction: column;
   margin-bottom: 4rem;
   position: relative;
   z-index: 1;

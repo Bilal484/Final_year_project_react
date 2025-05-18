@@ -10,11 +10,11 @@ html {
 }
 
 :root {
-    --background_color: #0352D7;
-    --color: #FFDA47 ;
+    --background_color: #FD593E;
+    --color: #1B1B1B ;
     --color_white: white;
     --hover_bg_color: #011333;
-    --color-gray: #F5F5F5;
+    --color-gray: #DADADA;
     --font_family: "Poppins", sans-serif;
 }
 
@@ -28,7 +28,7 @@ button {
 }
 
 button:hover {
-    background-color: #09aab0 !important;
+    background-color: #969696 !important;
     color: white;
 }
 

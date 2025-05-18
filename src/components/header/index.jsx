@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./header.css";
-import imgLogo from "../../assets/favicon/Logo.png";
+import imgLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Word mark.svg";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ChevronDown, BellIcon, User, LogOut, Menu, X } from "lucide-react";
@@ -242,7 +242,7 @@ const Header = () => {
                             <div className="d-flex justify-content-between flex-row align-items-center small__div">
                                 <div className="nav-item logo-nav">
                                     <Link className="navbar-brand" to="/">
-                                        <img src={imgLogo} width="80" alt="UrbanCraft Logo" />
+                                        <img src={imgLogo} width="120" alt="UrbanCraft Logo" />
                                     </Link>
                                 </div>
 

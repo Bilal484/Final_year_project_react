@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        font-family: Poppins-Regular, Poppins;
+        font-size: 70px;
+      }
+
+      .cls-5, .cls-6 {
+        fill: #969696;
+      }
+
+      .cls-7 {
+        font-family: Ibrand-Regular, Ibrand;
+        font-size: 153.3px;
+        stroke-width: 2px;
+      }
+
+      .cls-7, .cls-8 {
+        stroke: #fd593e;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-7, .cls-9 {
+        fill: #fd593e;
+      }
+
+      .cls-10 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-6, .cls-9 {
+        stroke-width: 0px;
+      }
+
+      .cls-8 {
+        fill: #fff;
+        stroke-width: 38.3px;
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_23" data-name="Layer 23">
+    <text class="cls-7" transform="translate(788.32 1027.68)"><tspan class="cls-1" x="0" y="0">U</tspan><tspan x="93.82" y="0">r</tspan><tspan class="cls-2" x="138.89" y="0">b</tspan><tspan class="cls-11" x="226.73" y="0">anC</tspan><tspan class="cls-10" x="494.69" y="0">r</tspan><tspan class="cls-4" x="535.93" y="0">a</tspan><tspan class="cls-3" x="620.86" y="0">f</tspan><tspan x="668.07" y="0">t</tspan></text>
+  </g>
+  <g id="Layer_24" data-name="Layer 24">
+    <text class="cls-5" transform="translate(794.15 1100.42)"><tspan x="0" y="0">REAL ESTATE</tspan></text>
+  </g>
+  <g id="Layer_25" data-name="Layer 25">
+    <path class="cls-8" d="M717,941.92v119.05c0,22.06-18.73,39.95-41.83,39.95h-165.51c-23.1,0-41.83-17.89-41.83-39.95v-119.05l19.07-18.88,105.51-104.46,105.51,104.46,19.07,18.88Z"/>
+  </g>
+  <g id="Layer_26" data-name="Layer 26">
+    <rect class="cls-6" x="546.58" y="958.68" width="39.4" height="39.4"/>
+  </g>
+  <g id="Layer_26_copy" data-name="Layer 26 copy">
+    <rect class="cls-6" x="593.41" y="959.01" width="39.4" height="39.4"/>
+  </g>
+  <g id="Layer_26_copy_3" data-name="Layer 26 copy 3">
+    <rect class="cls-6" x="546.58" y="1004.54" width="39.4" height="39.4"/>
+  </g>
+  <g id="Layer_26_copy_2" data-name="Layer 26 copy 2">
+    <rect class="cls-6" x="593.41" y="1004.86" width="39.4" height="39.4"/>
+  </g>
+  <g id="Layer_30" data-name="Layer 30">
+    <polygon class="cls-9" points="486.69 974.09 448.76 945.17 448.76 818.58 486.69 847.5 486.69 974.09"/>
+  </g>
+</svg>

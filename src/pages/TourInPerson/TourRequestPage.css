@@ -1,6 +1,6 @@
 .tour-request-hero {
     padding: 60px 0;
-    background-color: #0352D7;
+    background-color: #FD593E;
     text-align: left;
 }
 
@@ -52,7 +52,7 @@
 
 .refresh-button:hover {
     background-color: white;
-    color: #0352D7;
+    color: #FD593E;
 }
 
 @keyframes spin {
