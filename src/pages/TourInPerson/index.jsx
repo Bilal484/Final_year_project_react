@@ -26,7 +26,7 @@ const TourRequestPage = () => {
     const [tourRequests, setTourRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
-    
+
     // Function to fetch tour requests data - extracted outside useEffect for reuse
     const fetchTourRequests = async () => {
         try {
@@ -41,7 +41,7 @@ const TourRequestPage = () => {
                     approved: request.approved_tour === 1
                 }));
                 setTourRequests(processedRequests);
-                
+
                 // For debugging
                 console.log("Tour requests data:", processedRequests);
             }
@@ -53,7 +53,7 @@ const TourRequestPage = () => {
             setRefreshing(false);
         }
     };
-      // Fetching the tour request data from API
+    // Fetching the tour request data from API
     useEffect(() => {
         fetchTourRequests();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,7 +72,6 @@ const TourRequestPage = () => {
             const result = await response.json();
 
             if (result.status === 200) {
-                // Update the state immediately to reflect the change in approved_tour
                 setTourRequests((prevRequests) =>
                     prevRequests.map((req) =>
                         req.id === requestId ? { ...req, approved: true, approved_tour: 1 } : req
@@ -80,7 +79,7 @@ const TourRequestPage = () => {
                 );
                 // Show success message
                 toast.success("Tour request has been approved and email notification has been sent to Buyer!");
-                
+
                 // Refresh the data to ensure consistency with the server
                 setTimeout(() => fetchTourRequests(), 2000);
             } else {
@@ -93,6 +92,7 @@ const TourRequestPage = () => {
             console.error("Error approving tour:", error);
         }
     };
+
     // Loading state
     if (loading) {
         return (
@@ -155,18 +155,18 @@ const TourRequestPage = () => {
                                 </p>
                             </div>
                         </Col>
-                        <Col md={4} lg={6} className="d-flex justify-content-end align-items-center">                            <Button 
-                                variant="outline-light" 
-                                onClick={() => fetchTourRequests()}
-                                className="refresh-button"
-                            >
-                                {refreshing ? (
-                                    <Spinner animation="border" size="sm" className="me-2" />
-                                ) : (
-                                    <FaSync className="me-2" />
-                                )}
-                                Refresh Requests
-                            </Button>
+                        <Col md={4} lg={6} className="d-flex justify-content-end align-items-center">                            <Button
+                            variant="outline-light"
+                            onClick={() => fetchTourRequests()}
+                            className="refresh-button"
+                        >
+                            {refreshing ? (
+                                <Spinner animation="border" size="sm" className="me-2" />
+                            ) : (
+                                <FaSync className="me-2" />
+                            )}
+                            Refresh Requests
+                        </Button>
                         </Col>
                     </Row>
                 </Container>
@@ -193,20 +193,18 @@ const TourRequestPage = () => {
                                                 <FaEnvelope /> {request.email}
                                             </p>
                                         </div>                                        <div className="text-end">
-                                            <Button
-                                                variant={request.approved ? "success" : "outline-primary"}
-                                                onClick={() => !request.approved && handleApproved(request.id)}
-                                                disabled={request.approved}
-                                                size="sm"
-                                                className={request.approved ? "approved-button" : ""}
-                                                title={request.approved ? "This tour request is already approved" : "Approve this tour request"}
-                                            >
-                                                {request.approved ? "Approved ✓" : "Approve"}
-                                            </Button>
-                                            {/* Debug info - remove in production */}
-                                            {/* <div className="mt-1 small text-muted">
-                                                Status: {request.approved_tour === 1 ? '1 (Approved)' : '0 (Not approved)'}
-                                            </div> */}
+                                            {/* Show Approve button only if not approved */}
+                                            {!request.approved && (
+                                                <Button
+                                                    variant="outline-primary"
+                                                    onClick={() => handleApproved(request.id)}
+                                                    title="Approve this tour request"
+                                                    size="sm"
+                                                >
+                                                    Approve
+                                                </Button>
+                                            )}
+                                            {/* You can show a label or leave blank when approved */}
                                         </div>
                                     </div>
                                     {request.notes && (

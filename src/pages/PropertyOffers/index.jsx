@@ -6,6 +6,8 @@ import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 import { Container, Row, Col, Card, Button, Form, Modal, Spinner } from "react-bootstrap";
 import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
+import axios from "axios";
+
 
 const OffersPage = () => {
     const [offers, setOffers] = useState([]);
@@ -43,18 +45,21 @@ const OffersPage = () => {
     }, [userId]);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch("https://apitourism.today.alayaarts.com/api/get-products");
-                const data = await response.json();
-                if (data.status === 200) {
-                    setProducts(data.products);
-                }
-
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            }
+        const fetchProducts = () => {
+            const currentUserId = localStorage.getItem("user_id");
+            axios
+                .get("https://apitourism.today.alayaarts.com/api/get-products")
+                .then((response) => {
+                    // Filter to include only products for this user and seller type
+                    const allProducts = response.data.products || [];
+                    const filtered = allProducts.filter(
+                        (p) => String(p.user_id) === currentUserId && p.user_type === "seller"
+                    );
+                    setProducts(filtered);
+                })
+                .catch((error) => showNotification("Error fetching products:", error));
         };
+
         // Fetch products data
         fetchProducts();
     }, []);
@@ -189,7 +194,7 @@ const OffersPage = () => {
                     <Row>
                         <Col md={8} lg={6}>
                             <div className="hero-content">
-                                <h1 className="greeting-text">Manage Your Offers</h1>
+                                <h1 className="greeting-text text-dark">Manage Your Offers</h1>
                                 <p className="hero-subtitle">View, create, update, or delete offers.</p>
                                 <Button variant="primary" onClick={() => openModal()}><FaPlus /> Add New Offer</Button>
                             </div>
