@@ -678,7 +678,7 @@ const MainCards = () => {
                                                                     <div className="carousel-item active">
                                                                         <img
                                                                             src={placeHolder}
-                                                                            alt="Placeholder"
+                                                                            alt="Dummy Image"
                                                                             className="property-image"
                                                                         />
                                                                     </div>
