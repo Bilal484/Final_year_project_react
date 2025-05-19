@@ -12,6 +12,7 @@ import { Modal, Button, Spinner } from "react-bootstrap";
 import "./MainCards.css";
 import { debounce } from "lodash";
 import pLimit from "p-limit";
+import placeHolder from "../../assets/images/blog 03.jpg"
 
 
 const limit = pLimit(2);
@@ -241,12 +242,15 @@ const MainCards = () => {
     }, [userId, favoriteProperties]);
 
     const fetchProductData = async (signal) => {
+        // Initialize props as an empty array if localStorage is null
+        const storedProps = localStorage.getItem("properties");
+        const props = storedProps ? JSON.parse(storedProps) : [];
 
-        const props = JSON.parse(localStorage.getItem("properties"))
+        // Only set state if props is a valid array
+        setShownProperties(Array.isArray(props) ? props.slice(0, 6) : []);
+        setProperties(Array.isArray(props) ? props : []);
+        setFilteredProperties(Array.isArray(props) ? props : []);
 
-        setShownProperties(props.slice(0, 6));
-        setProperties(props);
-        setFilteredProperties(props);
         try {
             setLoading(true);
             const [productResponse, productImageResponse] = await Promise.all([
@@ -264,11 +268,13 @@ const MainCards = () => {
                         .map((img) => img.image);
                     return { ...product, images };
                 });
-                if (props !== productData.data) {
-                    localStorage.setItem("properties", JSON.stringify(productData.products))
+
+                // Update localStorage and state only if data has changed
+                if (JSON.stringify(props) !== JSON.stringify(productData.products)) {
+                    localStorage.setItem("properties", JSON.stringify(productData.products));
                     setProperties(productData.products);
                     setFilteredProperties(productData.products);
-                    setShownProperties((productData.products).slice(0, 6));
+                    setShownProperties(productData.products.slice(0, 6));
                 }
 
                 // Load offers data
@@ -282,7 +288,7 @@ const MainCards = () => {
                 });
                 setOffersData(offersMap);
 
-                // Also fetch user profiles
+                // Fetch user profiles
                 await fetchUserProfilesFromProducts(signal);
             } else {
                 throw new Error("Failed to load product or image data");
@@ -671,7 +677,7 @@ const MainCards = () => {
                                                                 ) : (
                                                                     <div className="carousel-item active">
                                                                         <img
-                                                                            src="/placeholder.jpg"
+                                                                            src={placeHolder}
                                                                             alt="Placeholder"
                                                                             className="property-image"
                                                                         />

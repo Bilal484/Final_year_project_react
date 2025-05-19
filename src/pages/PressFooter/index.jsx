@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet'; // Import Helmet
 import './PressFooter.css';
-import Header from '../../components/header';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
 import pressHeroImage from '../../assets/images/premier.jpg';

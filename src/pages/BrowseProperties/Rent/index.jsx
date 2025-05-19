@@ -6,7 +6,7 @@ import SellersCard from "../../../components/SellersCard";
 import CityRealEstateList from "../../../components/CityRealEstateList";
 import PropertyCard from "../../../components/PropertyCard"
 import Footer from "../../../components/Footer"
-import Header from "../../../components/header"
+import Header from "../../../components/Header"
 import FAQs from "../../../components/FAQs";
 import img1 from "../../../assets/images/blog 01.jpg";
 import img2 from "../../../assets/images/blog 02.jpg";

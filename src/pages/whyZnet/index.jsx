@@ -5,7 +5,7 @@ import ImageWithText from "../../components/ImagewithText";
 import img1 from "../../assets/images/blog 04.jpg"
 import img2 from "../../assets/images/blog 05.jpg"
 import img3 from "../../assets/images/blog 27.jpg"
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 const WhyZnet = () => {

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import MonthlyPerformanceChart from "../../components/MonthlyPerformanceChart";
 import YearlyPerformanceChart from "../../components/YearlyPerformanceChart";
 import InvestorHeader from "../../components/InvestorHeader";
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 const AnalyticsPerformace = () => {
