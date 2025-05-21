@@ -115,9 +115,8 @@ const TaskProgress = () => {
             <div className="col-md-6">
               <div className="card">
                 <div className="card-header">Budget Tracking</div>
-                <div className="card-body">
-                  <p className="card-text">Total Budget: $500,000</p>
-                  <p className="card-text">Spent So Far: $325,000</p>
+                <div className="card-body">                  <p className="card-text">Total Budget: Rs 500,000</p>
+                  <p className="card-text">Spent So Far: Rs 325,000</p>
                   <div className="progress mb-2">
                     <div
                       className="progress-bar bg-info"

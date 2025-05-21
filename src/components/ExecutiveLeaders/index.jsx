@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import './ExecutiveLeaders.css';
 
+import UserProfiling from "../../assets/images/FYP_ Logo/FYP_ Logo/image_reashi.jpg";
+import UserProfiling1 from "../../assets/images/FYP_ Logo/FYP_ Logo/bilal.png";
+import UserProfiling2 from "../../assets/images/FYP_ Logo/FYP_ Logo/zain.jpg";
+
 const ExecutiveLeaders = () => {
   const [animated, setAnimated] = useState({});
   const leadersRef = useRef(null);
@@ -12,8 +16,8 @@ const ExecutiveLeaders = () => {
       id: 1,
       name: "M. Bilal",
       title: "Backend Developer",
-      image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-      description: "Experienced backend developer specializing in Laravel. Developed robust APIs for this real estate platform and ensured seamless integration with the frontend. Passionate about building scalable and secure backend solutions.",
+      image: [UserProfiling1],
+      description: " Developed robust APIs for this real estate platform and ensured seamless integration with the frontend. Passionate about building scalable and secure backend solutions.",
       badge: "Backend",
       expertise: ["Laravel", "API Development", "Database Design", "RESTful Services"],
       socials: {
@@ -26,8 +30,8 @@ const ExecutiveLeaders = () => {
       id: 2,
       name: "Rashid Nazeer",
       title: "UI/UX & Frontend Developer",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-      description: "Skilled UI/UX designer and frontend developer who created the beautiful interface for this platform. Led the design process and implemented responsive layouts in React while integrating backend APIs.",
+      image: [UserProfiling],
+      description: "Working on  UI/UX Design and frontend  who created the beautiful interface for this platform. Led the design process and implemented responsive layouts in React while integrating backend APIs.",
       badge: "UI/UX",
       expertise: ["React.js", "UI Design", "Responsive Design", "API Integration"],
       socials: {
@@ -40,8 +44,8 @@ const ExecutiveLeaders = () => {
       id: 3,
       name: "Zain Ali",
       title: "Frontend Developer",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-      description: "Talented React developer who worked on API integration and frontend implementation. Focused on creating interactive components and ensuring a smooth user experience across the platform.",
+      image: [UserProfiling2],
+      description: "Working on  API integration and frontend implementation. Focused on creating interactive components and ensuring a smooth user experience across the platform.",
       badge: "Frontend",
       expertise: ["React.js", "State Management", "Component Design", "API Integration"],
       socials: {

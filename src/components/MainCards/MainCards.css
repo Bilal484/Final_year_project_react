@@ -727,13 +727,13 @@
 .agent-profile-name {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color);
+  color: white !important;
   margin-bottom: 5px;
 }
 
 .agent-profile-role {
   font-size: 1rem;
-  color: #777;
+  color: white !important;
   margin-bottom: 0;
 }
 
@@ -743,7 +743,7 @@
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  color: var(--color);
+  color: white;
 }
 
 .section-title i {

@@ -641,7 +641,7 @@ const MainCards = () => {
                                                             }}
                                                         >
                                                             <i className="fas fa-tag"></i>
-                                                            ${Number(offersData[property.id][0]?.how_much_you_offer || 0).toLocaleString()}
+                                                            Rs {Number(offersData[property.id][0]?.how_much_you_offer || 0).toLocaleString()}
                                                         </div>
                                                     )}
 
@@ -759,7 +759,7 @@ const MainCards = () => {
                                                 <div className="property-details">
                                                     <div className="property-header">
                                                         <h3 className="property-price">
-                                                            ${Number(property.price).toLocaleString("en-GB")}
+                                                            Rs {Number(property.price).toLocaleString("en-GB")}
                                                         </h3>
                                                         <div className="property-actions">
                                                             <button
@@ -894,7 +894,7 @@ const MainCards = () => {
                                 <div className="offer-amount mb-4">
                                     <div className="offer-label">Offer Amount:</div>
                                     <div className="offer-value price">
-                                        ${Number(selectedOffer.how_much_you_offer).toLocaleString()}
+                                        Rs {Number(selectedOffer.how_much_you_offer).toLocaleString()}
                                     </div>
                                 </div>
 
@@ -1004,14 +1004,14 @@ const MainCards = () => {
                                             <i className="fas fa-user-circle"></i>
                                         )}
                                     </div>
-                                    <div className="agent-profile-info">
+                                    <div className="agent-profile-info text-white">
                                         <h3 className="agent-profile-name">{selectedAgent.name}</h3>
                                         <p className="agent-profile-role">{selectedAgent.roles?.role_name || "Real Estate Agent"}</p>
                                     </div>
                                 </div>
 
                                 <div className="agent-contact-info mt-4">
-                                    <h4 className="section-title">
+                                    <h4 className="section-title text-white">
                                         <i className="fas fa-address-card me-2"></i>
                                         Contact Information
                                     </h4>
@@ -1090,7 +1090,8 @@ const MainCards = () => {
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowAgentModal(false)}>
                             Close
-                        </Button>                    </Modal.Footer>
+                        </Button>
+                    </Modal.Footer>
                 </Modal>
             </div>
         </>

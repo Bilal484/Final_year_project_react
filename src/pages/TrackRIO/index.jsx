@@ -83,21 +83,21 @@ const TrackRIO = () => {
             <tbody>
               <tr>
                 <td>Tech Startup</td>
-                <td>$10,000</td>
+                <td>Rs 10,000</td>
                 <td>
                   <span className="roi-positive">+12%</span>
                 </td>
               </tr>
               <tr>
                 <td>Real Estate</td>
-                <td>$25,000</td>
+                <td>Rs 25,000</td>
                 <td>
                   <span className="roi-negative">-4%</span>
                 </td>
               </tr>
               <tr>
                 <td>Energy Fund</td>
-                <td>$15,000</td>
+                <td>Rs 15,000</td>
                 <td>
                   <span className="roi-positive">+8%</span>
                 </td>

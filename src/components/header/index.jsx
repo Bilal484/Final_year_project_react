@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./header.css";
-import imgLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Word mark.svg";
+import imgLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Header Logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ChevronDown, BellIcon, User, LogOut, Menu, X } from "lucide-react";
@@ -31,7 +31,7 @@ const Header = () => {
             { path: "/OpenHouseSchedule", label: "Open House Schedule", icon: "🏠" },
             { path: "/Appointments", label: "Appointments", icon: "📅" },
             { path: "/Agent", label: "Your Agent", icon: "👤" },
-            { path: "/Offer", label: "Offers", icon: "📝" },
+            { path: "/start-an-offer", label: "Offers", icon: "📝" },
             { path: "/Review", label: "Reviews", icon: "⭐" },
             // { path: "/OwnerDashboard", label: "Owner Dashboard", icon: "📊" },
             { path: "/AccountSettings", label: "Account Settings", icon: "⚙️" },

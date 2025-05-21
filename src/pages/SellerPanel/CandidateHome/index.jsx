@@ -82,23 +82,21 @@ const CandidateHome = () => {
       company: "Urban Properties Inc.",
       location: "New York, NY",
       posted: "2 days ago",
-      salary: "$70,000 - $90,000"
+      salary: "Rs 70,000 - Rs 90,000"
     },
     {
-      id: 2,
-      title: "Property Manager",
+      id: 2,      title: "Property Manager",
       company: "Elevation Realty",
       location: "San Francisco, CA",
       posted: "3 days ago",
-      salary: "$65,000 - $85,000"
+      salary: "Rs 65,000 - Rs 85,000"
     },
     {
-      id: 3,
-      title: "Mortgage Broker",
+      id: 3,      title: "Mortgage Broker",
       company: "FinWell Solutions",
       location: "Remote",
       posted: "1 day ago",
-      salary: "$80,000 - $110,000"
+      salary: "Rs 80,000 - Rs 110,000"
     }
   ];
 

@@ -27,7 +27,7 @@ const Header = () => {
             { path: "/OpenHouseSchedule", label: "Open House Schedule" },
             { path: "/Appointments", label: "Appointments" },
             { path: "/Agent", label: "Your Agent" },
-            { path: "/Offer", label: "Offers" },
+            { path: "/start-an-offer", label: "Offers" },
             { path: "/Review", label: "Reviews" },
             // { path: "/OwnerDashboard", label: "Owner Dashboard" },
             { path: "/AccountSettings", label: "Account Settings" },

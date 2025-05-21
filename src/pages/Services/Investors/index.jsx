@@ -149,7 +149,7 @@ const Investors = () => {
                   </div>
                   <div className="col">
                     <div className="bg-white p-4 rounded shadow-sm">
-                      <h3 className="h2 fw-semibold">$281B</h3>
+                      <h3 className="h2 fw-semibold">Rs 281B</h3>
                       <hr className="border-2 border-success my-2" />
                       <p className="text-muted">
                         Worth of homes bought or sold by our customers through

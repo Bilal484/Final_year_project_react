@@ -312,10 +312,9 @@ const ProductDetail = () => {
                       {productData?.location || "Location not available"}{" "}
                       {/* Fallback for undefined location */}
                     </h5>
-                    <div className="d-flex justify-content-between ">
-                      <div className="price">
+                    <div className="d-flex justify-content-between ">                      <div className="price">
                         <h6 className="price-tag fs-4 fw-bold">
-                          ${productData?.price || "N/A"}
+                          Rs {productData?.price || "N/A"}
                         </h6>{" "}
                         {/* Fallback for price */}
                         <p className="text-muted fs-14">

@@ -29,6 +29,8 @@ import { Carousel } from 'react-bootstrap';
 import '../Home/Home.css';
 import ExecutiveLeaders from "../../components/ExecutiveLeaders";
 // import bilal from "../../assets/images/Bilal.jpg"
+import UserProfiling from "../../assets/images/FYP_ Logo/FYP_ Logo/image_reashi.jpg";
+import UserProfiling1 from "../../assets/images/FYP_ Logo/FYP_ Logo/bilal.png";
 
 
 const Home = () => {
@@ -44,7 +46,7 @@ const Home = () => {
             "title": "M Bilal Irshad",
             "role": "Lead Developer, React Engineer, PHP Developer",
             "description": "M Bilal Irshad is a skilled Lead Developer with expertise in React and PHP. Passionate about building scalable web applications, Bilal combines deep technical knowledge with innovative problem-solving.",
-            "image": "https://via.placeholder.com/300x300?text=bilal"
+            "image": { UserProfiling1 }
         },
         {
             "title": "Shayan Zulifqar",
@@ -56,7 +58,7 @@ const Home = () => {
             "title": "Rashid",
             "role": "Web Designer",
             "description": "Rashid is a creative Web Designer who specializes in designing engaging and user-friendly websites. Focused on aesthetics and functionality, Rashid transforms ideas into stunning digital interfaces.",
-            "image": "https://via.placeholder.com/300x300?text=Rashid"
+            "image": { UserProfiling }
         },
     ]);
     const [loading, setLoading] = useState(true);
@@ -170,11 +172,11 @@ const Home = () => {
                 {userId ? (
                     <div className="container-fluid px-4 pb-4 g-0 rounded bg-light">
                         <div id="anas__pava" className="d-flex">
-                            <RealEstateTabs />
-                            <HomeBannerCard
+                            <RealEstateTabs />                          
+                              <HomeBannerCard
                                 images={propertyImages}
                                 location="Chevy Chase, MD"
-                                price="$3,599,000"
+                                price="Rs 3,599,000"
                                 title="UrbanCraft REAL ESTATE PREMIER LISTING"
                             />
                         </div>

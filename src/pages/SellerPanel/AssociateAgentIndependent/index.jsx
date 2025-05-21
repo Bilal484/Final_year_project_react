@@ -23,7 +23,7 @@ const AssociateAgentIndependent = () => {
                 <title>Associate Agent Role - Join UrbanCraft REAL ESTATE</title>
                 <meta
                     name="description"
-                    content="Earn up to $120 per home tour as an Associate Agent with UrbanCraft REAL ESTATE. Work on your schedule and build your real estate career."
+                    content="Earn up to Rs 120 per home tour as an Associate Agent with UrbanCraft REAL ESTATE. Work on your schedule and build your real estate career."
                 />
                 <meta name="keywords" content="UrbanCraft REAL ESTATE Associate Agent, real estate jobs, home tours, flexible schedule" />
                 <meta name="author" content="UrbanCraft REAL ESTATE Team" />
@@ -43,7 +43,7 @@ const AssociateAgentIndependent = () => {
                 <section className="associate-agent-section bg-color-talent-community text-start">
                     <div className="associate-agent mb-5 ">
                         <h1 className="associate-agent-title ">
-                            Earn Up to $120 Per <br /> Home Tour You Host
+                            Earn Up to Rs 120 Per <br /> Home Tour You Host
                         </h1>
                         <h5 className="w-50 ">
                             Show homes, attend inspections, and more as an Associate Agent
@@ -182,7 +182,7 @@ const AssociateAgentIndependent = () => {
                                         <h5 className="card-title">Become a UrbanCraft REAL ESTATE Lead Agent</h5>
                                         <p className="card-text">
                                             Lead Agents are UrbanCraft REAL ESTATE employees who help customers buy
-                                            and sell homes. They can earn $100K after their first year
+                                            and sell homes. They can earn Rs 100K after their first year
                                             and get the tools and training to become top producers.
                                         </p>
                                         <a href="#" className="fw-bold">
@@ -267,7 +267,7 @@ const AssociateAgentIndependent = () => {
                                         </li>
                                         <li className="list-group-item bg-transparent ">
                                             <h6 className="fw-bold">Pay</h6>
-                                            <p>~$100,000+ by second year*</p>
+                                            <p>~Rs 100,000+ by second year*</p>
                                         </li>
                                     </ul>
                                     <div className="card-body text-center">
@@ -332,7 +332,7 @@ const AssociateAgentIndependent = () => {
                                         </li>
                                         <li className="list-group-item bg-transparent ">
                                             <h6 className="fw-bold">Pay</h6>
-                                            <p>Up to $120 per tour</p>
+                                            <p>Up to Rs 120 per tour</p>
                                         </li>
                                     </ul>
                                 </div>

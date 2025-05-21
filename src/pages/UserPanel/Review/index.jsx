@@ -116,7 +116,7 @@ const Review = () => {
                 {/* Product Header */}
                 <div className="card-header bg-light d-flex justify-content-between align-items-center p-3">
                   <h3 className="m-0 fw-bold text-primary">{product.title}</h3>
-                  <span className="badge bg-success fs-5">${Number(product.price).toLocaleString()}</span>
+                  <span className="badge bg-success fs-5">Rs {Number(product.price).toLocaleString()}</span>
                 </div>
 
                 <div className="card-body p-0">

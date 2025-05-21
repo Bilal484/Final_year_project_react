@@ -174,7 +174,7 @@ const Favorites = () => {
                         <Card.Title>{favorite.title}</Card.Title>
                         <Card.Text className="text-truncate">{favorite.desc}</Card.Text>
                         <Card.Text><i className="bi bi-geo-alt"></i> {favorite.location}</Card.Text>
-                        <Card.Text className="fw-bold">${Number(favorite.price).toLocaleString()}</Card.Text>
+                        <Card.Text className="fw-bold">Rs {Number(favorite.price).toLocaleString()}</Card.Text>
                       </Card.Body>
                       <Card.Footer className="bg-white border-top-0">
                         <Button 

@@ -71,9 +71,8 @@ const ProductAllCards = ({ products }) => {
                                             />
                                         </Carousel.Item>
                                     )}
-                                </Carousel>
-                                <Card.Body>
-                                    <h5 className="fw-bold text-primary">${product.price}</h5>
+                                </Carousel>                                <Card.Body>
+                                    <h5 className="fw-bold text-primary">Rs {product.price}</h5>
                                     <p className="text-muted">{product.location || "Location not available"}</p>
                                     <p className="text-truncate">{product.desc || "No description available"}</p>
                                     <Button

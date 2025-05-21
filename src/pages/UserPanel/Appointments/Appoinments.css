@@ -68,14 +68,24 @@
 .no-image {
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #e9ecef;
+  padding: 20px;
+  text-align: center;
 }
 
 .no-image i {
   font-size: 3rem;
   color: #adb5bd;
+  margin-bottom: 10px;
+}
+
+.no-image p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 /* Property info styling */
@@ -89,6 +99,7 @@
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 

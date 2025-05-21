@@ -158,7 +158,6 @@ function App() {
                         <Route path="/Guides" element={<Guides />} />
                         <Route path="/ProductMainDetail" element={<ProductMainDetail />} />                        <Route path="/Licenese-Verifications" element={<LicenseVerification />} />
                         <Route path="/agents" element={<Agent />} />
-                        <Route path="/start-an-offer" element={<StartOffer />} />
                         <Route path="/Final-Offer" element={<OfferPage />} />
                         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
                         <Route path="/RequestShowing" element={<RequestShowing />} />
@@ -188,6 +187,7 @@ function App() {
                         <Route path='ProductComponent' element={<ProductComponent />} />
 
 
+
                         {/* Role-Based Protected Routes */}
                         {/* Buyer */}
                         {userRole === '1' && (
@@ -200,6 +200,7 @@ function App() {
                                 <Route path="/OpenHouseSchedule" element={<OpenHouseSchedule />} />
                                 <Route path="/Review" element={<Review />} />
                                 <Route path="/Offer" element={<Offer />} />
+                                <Route path="/start-an-offer" element={<StartOffer />} />
                                 <Route path="/Appointments" element={<Appointments />} />
                                 <Route path="/Agent" element={<AgentSearch />} />
                                 <Route path="/agents/:id" element={<AgentProfile />} />
@@ -223,7 +224,7 @@ function App() {
                                 <Route path="/AccountSettingCandidate" element={<AccountSettingCandidate />} />
                                 <Route path="/CreateJob" element={<CreateJob />} />
                                 <Route path="/SellerProduct" element={<SellerProduct />} />
-                        </>
+                            </>
                         )}
                         {/* Agent */}
                         {userRole === '10' && (
