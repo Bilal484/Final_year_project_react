@@ -115,7 +115,7 @@ const TourRequestPage = () => {
                     pauseOnHover
                 />
                 <Header />
-                <SellerAgentHeader />
+                {/* <SellerAgentHeader /> */}
                 <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
                     <Spinner animation="border" role="status" variant="primary">
                         <span className="visually-hidden">Loading...</span>
@@ -150,7 +150,7 @@ const TourRequestPage = () => {
             </Helmet>
 
             <Header />
-            <SellerAgentHeader />            <div className="tour-request-hero">
+            {/* <SellerAgentHeader /> */}            <div className="tour-request-hero">
                 <Container>
                     <Row>
                         <Col md={8} lg={6}>

@@ -167,7 +167,7 @@ const OffersPage = () => {
         return (
             <>
                 <Header />
-                <SellerAgentHeader />
+                {/* <SellerAgentHeader /> */}
                 <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
                     <Spinner animation="border" role="status" variant="primary">
                         <span className="visually-hidden">Loading...</span>
@@ -188,7 +188,7 @@ const OffersPage = () => {
             </Helmet>
 
             <Header />
-            <SellerAgentHeader />
+            {/* <SellerAgentHeader /> */}
 
             <div className="offers-page-hero">
                 <Container>

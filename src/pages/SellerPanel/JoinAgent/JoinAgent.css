@@ -288,9 +288,9 @@ body {
     opacity: 0;
     animation-fill-mode: forwards;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     border: 1px solid #f0f0f0 !important;
-    padding: 1.5rem !important;
+    /* padding: 1.5rem !important; */
 }
 
 .list-group-item::before {

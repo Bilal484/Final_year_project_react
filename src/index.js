@@ -7,6 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+/* Icon Integrations */
+// External CSS should be added to the HTML file
+// For example, add these to public/index.html:
 
 
 

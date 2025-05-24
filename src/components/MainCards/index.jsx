@@ -44,6 +44,11 @@ const MainCards = () => {
     const [showAgentModal, setShowAgentModal] = useState(false);
     const [selectedAgent, setSelectedAgent] = useState(null);
     const [agentLoading, setAgentLoading] = useState(false);
+    const [userProductsMap, setUserProductsMap] = useState({});
+    // Image modal states
+    const [showImageModal, setShowImageModal] = useState(false);
+    const [selectedProperty, setSelectedProperty] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const sectionRef = useRef(null);
     const navigate = useNavigate();
@@ -107,10 +112,6 @@ const MainCards = () => {
                 toast("No offers found for this property", { type: "info" });
             }
         } catch (err) {
-            // if (err.name !== "AbortError") {
-            //     // console.error("Error fetching offer details:", err?.message || "Unknown error");
-            //     toast("Failed to load offer details", { type: "error" });
-            // }
             toast("Failed to load offer details", { type: "error" });
         } finally {
             setOfferLoading(false);
@@ -146,14 +147,6 @@ const MainCards = () => {
             localStorage.setItem(cacheKey, JSON.stringify(products));
             setSalesProperties(products);
         } catch (err) {
-            // if (err.name !== "AbortError") {
-            //     // console.error("Error fetching sales properties:", err.message);
-            //     setSalesProperties([]);
-            //     setTimeout(() => {
-            //         showNotification("Failed to fetch Sales Properties. Please try again later.");
-            //     }, 3000);
-            // }
-            // setSalesProperties([]);
             setTimeout(() => {
                 showNotification("Failed to fetch Sales Properties. Please try again later.");
             }, 3000);
@@ -277,6 +270,8 @@ const MainCards = () => {
                     setShownProperties(productData.products.slice(0, 6));
                 }
 
+
+
                 // Load offers data
                 const offersPromises = mergedProperties.slice(0, 6).map((property) =>
                     limit(() => fetchOffersForProperty(property.id, signal))
@@ -303,10 +298,23 @@ const MainCards = () => {
         }
     };
 
+    // Modified fetchUserProfilesFromProducts function to properly match products with agent user_ids
     const fetchUserProfilesFromProducts = useCallback(async (signal) => {
         const cacheKey = "userProfiles";
+        const productCacheKey = "userProductsMap";
+
+        // Clear cache to force refresh of data (uncomment these lines to reset the data)
+        // localStorage.removeItem(cacheKey);
+        // localStorage.removeItem(productCacheKey);
+
+        // Try to get user profiles and user products from cache first
         if (localStorage.getItem(cacheKey)) {
             setUserProfiles(JSON.parse(localStorage.getItem(cacheKey)));
+
+            // Also load the user-products mapping if available
+            if (localStorage.getItem(productCacheKey)) {
+                setUserProductsMap(JSON.parse(localStorage.getItem(productCacheKey)));
+            }
             return;
         }
 
@@ -319,15 +327,66 @@ const MainCards = () => {
             const productData = await productRes.json();
 
             if (productData.status === 200) {
+                // Get product images to merge with products
+                const productImagesRes = await fetch(
+                    'https://apitourism.today.alayaarts.com/api/get-productimages',
+                    { signal }
+                );
+                const productImagesData = await productImagesRes.json();
+
+                // Create a map of product ID to images
+                const productImagesMap = {};
+                if (productImagesData.status === 200) {
+                    productImagesData.products.forEach(image => {
+                        // Make sure we convert pd_id to a string for consistent comparison
+                        const pdId = String(image.pd_id);
+                        if (!productImagesMap[pdId]) {
+                            productImagesMap[pdId] = [];
+                        }
+                        productImagesMap[pdId].push(image);
+                    });
+                }
+
                 // Extract unique user IDs from products (filter out null values)
                 const userIds = [...new Set(productData.products
                     .filter(p => p.user_id) // Filter out null user_ids
-                    .map(p => p.user_id))];
+                    .map(p => String(p.user_id)))]; // Convert to string for consistency
+
+                // Create a map of user ID to their associated products
+                const userProductsMapping = {};
+
+                // Group products by user_id and add images
+                productData.products.forEach(product => {
+                    if (product.user_id) {
+                        // Convert to string for consistent comparison
+                        const userIdStr = String(product.user_id);
+                        const productIdStr = String(product.id);
+
+                        if (!userProductsMapping[userIdStr]) {
+                            userProductsMapping[userIdStr] = [];
+                        }
+
+                        // Add images to the product
+                        const productWithImages = {
+                            ...product,
+                            images: productImagesMap[productIdStr] || []
+                        };
+
+                        userProductsMapping[userIdStr].push(productWithImages);
+                    }
+                });
+
+                console.log("User IDs in products:", userIds);
+                console.log("User Products Mapping:", userProductsMapping);
+
+                // Store in state and localStorage
+                setUserProductsMap(userProductsMapping);
+                localStorage.setItem(productCacheKey, JSON.stringify(userProductsMapping));
 
                 // Fetch user profiles for each user ID
                 const userProfilePromises = userIds.map(id =>
                     limit(() =>
-                        fetch(`https://api.biznetusa.com/api/user-profile/${id}`, { signal })
+                        fetch(`https://apitourism.today.alayaarts.com/api/user-profile/${id}`, { signal })
                             .then(res => res.json())
                     )
                 );
@@ -338,7 +397,9 @@ const MainCards = () => {
                 const profilesMap = {};
                 userProfilesData.forEach(profile => {
                     if (profile.status === 200 && profile.allusers) {
-                        profilesMap[profile.allusers.id] = profile.allusers;
+                        // Convert ID to string for consistent comparison
+                        const userIdStr = String(profile.allusers.id);
+                        profilesMap[userIdStr] = profile.allusers;
                     }
                 });
 
@@ -354,6 +415,7 @@ const MainCards = () => {
             }
         }
     }, [showNotification]);
+
 
 
     const fetchSectionData = useCallback(async (section, signal) => {
@@ -489,6 +551,10 @@ const MainCards = () => {
         setSearchTerm(e.target.value);
     };
 
+    const handleImageSelect = (index) => {
+        setCurrentImageIndex(index);
+    };
+
     const increaseShown = () => {
         if (shownProperties.length + numberOfProperties < filteredProperties.length) {
             setShownProperties(
@@ -506,8 +572,17 @@ const MainCards = () => {
 
         try {
             setAgentLoading(true);
-            setSelectedAgent(userProfiles[userId]);
+            // Convert to string for consistent comparison
+            const userIdStr = String(userId);
+            setSelectedAgent({
+                ...userProfiles[userIdStr],
+                id: userIdStr // Explicitly set the ID to ensure it matches
+            });
             setShowAgentModal(true);
+
+            // Debug what products we have for this agent
+            console.log("Selected agent ID:", userIdStr);
+            console.log("Products for this agent:", userProductsMap[userIdStr]);
         } catch (err) {
             console.error('Error loading agent details:', err);
             toast.error('Failed to load agent details');
@@ -515,6 +590,71 @@ const MainCards = () => {
             setAgentLoading(false);
         }
     };
+
+    // Image modal functions
+    const openImageModal = (property, imageIndex = 0) => {
+        setSelectedProperty(property);
+        setCurrentImageIndex(imageIndex);
+        setShowImageModal(true);
+    };
+
+    const closeImageModal = () => {
+        setShowImageModal(false);
+        setSelectedProperty(null);
+        setCurrentImageIndex(0);
+    };
+
+    const nextImage = () => {
+        if (selectedProperty && selectedProperty.images.length > 0) {
+            setCurrentImageIndex((prev) => 
+                prev === selectedProperty.images.length - 1 ? 0 : prev + 1
+            );
+        }
+    };
+
+    const prevImage = () => {
+        if (selectedProperty && selectedProperty.images.length > 0) {
+            setCurrentImageIndex((prev) => 
+                prev === 0 ? selectedProperty.images.length - 1 : prev - 1
+            );
+        }
+    };
+
+    const goToImage = (index) => {
+        setCurrentImageIndex(index);
+    };
+
+    // Keyboard navigation for image modal
+    useEffect(() => {
+        const handleKeyPress = (e) => {
+            if (!showImageModal) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    prevImage();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    nextImage();
+                    break;
+                case 'Escape':
+                    e.preventDefault();
+                    closeImageModal();
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        if (showImageModal) {
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [showImageModal, selectedProperty]);
 
     return (
         <>
@@ -630,9 +770,16 @@ const MainCards = () => {
                                             className={`property-card ${animated[property.id] ? "animate" : ""}`}
                                             data-id={property.id}
                                         >
-                                            <div className="property-card-content">
-                                                <div className="property-media">
-                                                    {offersData[property.id]?.length > 0 && (
+                                            <div className="property-card-content">                                                    <div className="property-media">
+                                                        {/* Photo count indicator */}
+                                                        {property.images.length > 1 && (
+                                                            <div className="photo-count-badge">
+                                                                <i className="fas fa-images"></i>
+                                                                <span>{property.images.length}</span>
+                                                            </div>
+                                                        )}
+
+                                                        {offersData[property.id]?.length > 0 && (
                                                         <div
                                                             className="offer badge"
                                                             onClick={(e) => {
@@ -665,12 +812,12 @@ const MainCards = () => {
                                                                         <div
                                                                             className={`carousel-item ${index === (carouselIndex[property.id] || 0) ? "active" : ""}`}
                                                                             key={index}
-                                                                        >
-                                                                            <img
-                                                                                onClick={() => navigate(`/ProductDetail/${property.id}`)}
+                                                                        >                                                                            <img
+                                                                                onClick={() => openImageModal(property, index)}
                                                                                 src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
                                                                                 alt={`Property ${property.title || property.id}`}
                                                                                 className="property-image"
+                                                                                style={{ cursor: 'pointer' }}
                                                                             />
                                                                         </div>
                                                                     ))
@@ -801,7 +948,7 @@ const MainCards = () => {
                                                     </div>
 
                                                     <div className="property-cta">
-                                                        <Link to="/chat" className="cta-btn chat-btn">
+                                                        {/* <Link to="/chat" className="cta-btn chat-btn">
                                                             <i className="fas fa-comments"></i>
                                                             <span>Chat</span>
                                                         </Link>
@@ -811,7 +958,7 @@ const MainCards = () => {
                                                         >
                                                             <i className="fas fa-phone-alt"></i>
                                                             <span>Call</span>
-                                                        </a>
+                                                        </a> */}
                                                         <Link
                                                             to={`/ProductDetail/${property.id}`}
                                                             className="cta-btn details-btn"
@@ -968,10 +1115,12 @@ const MainCards = () => {
                         </Button>
                         <Button variant="primary" onClick={() => setShowOfferModal(false)}>
                             Got it
-                        </Button>                    </Modal.Footer>
+                        </Button>
+                    </Modal.Footer>
                 </Modal>
 
                 {/* Agent Modal */}
+
                 <Modal
                     show={showAgentModal}
                     onHide={() => setShowAgentModal(false)}
@@ -1056,6 +1205,56 @@ const MainCards = () => {
                                     </div>
                                 )}
 
+                                {/* Agent's Property Listings */}
+                                {selectedAgent && selectedAgent.id && userProductsMap[selectedAgent.id] && userProductsMap[selectedAgent.id].length > 0 ? (
+                                    <div className="agent-listings mt-4">
+                                        <h4 className="section-title">
+                                            <i className="fas fa-home me-2"></i>
+                                            Agent's Listings ({userProductsMap[selectedAgent.id].length})
+                                        </h4>
+                                        <div className="agent-listings-grid">
+                                            {userProductsMap[selectedAgent.id].map(product => (
+                                                <div key={product.id} className="agent-listing-item"
+                                                    onClick={() => {
+                                                        setShowAgentModal(false);
+                                                        navigate(`/ProductDetail/${product.id}`);
+                                                    }}>
+                                                    <div className="listing-thumbnail">
+                                                        {product.images && product.images.length > 0 ? (
+                                                            <img
+                                                                src={`https://apitourism.today.alayaarts.com/uploads/products/${product.images[0].image}`}
+                                                                alt={product.title}
+                                                                onError={(e) => {
+                                                                    e.target.onerror = null;
+                                                                    e.target.src = placeHolder;
+                                                                }}
+                                                            />
+                                                        ) : (
+                                                            <img src={placeHolder} alt="Property" />
+                                                        )}
+                                                    </div>
+                                                    <div className="listing-details">
+                                                        <h5 className="listing-title">{product.title || "Untitled Property"}</h5>
+                                                        <p className="listing-price">Rs {Number(product.price).toLocaleString()}</p>
+                                                        <p className="listing-id small text-muted">ID: {product.id}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="no-listings mt-4">
+                                        <h4 className="section-title">
+                                            <i className="fas fa-home me-2 text-white"></i>
+                                            Agent's Listings
+                                        </h4>
+                                        <div className="no-listings-message">
+                                            <i className="fas fa-exclamation-circle me-2"></i>
+                                            This agent has no active listings at the moment.
+                                        </div>
+                                    </div>
+                                )}
+
                                 <div className="agent-cta-buttons mt-4">
                                     {selectedAgent.email && (
                                         <Button
@@ -1092,6 +1291,194 @@ const MainCards = () => {
                             Close
                         </Button>
                     </Modal.Footer>
+                </Modal>
+
+                {/* Image Modal */}
+                <Modal
+                    show={showImageModal}
+                    onHide={closeImageModal}
+                    centered
+                    className="image-modal"
+                >
+                    <Modal.Body>
+                        {selectedProperty && (
+                            <div className="image-modal-content">
+                                <div className="image-carousel">
+                                    <div className="carousel-inner">
+                                        {selectedProperty.images.length > 0 ? (
+                                            selectedProperty.images.map((image, index) => (
+                                                <div
+                                                    className={`carousel-item ${index === currentImageIndex ? "active" : ""}`}
+                                                    key={index}
+                                                >
+                                                    <img
+                                                        src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
+                                                        alt={`Property ${selectedProperty.title || selectedProperty.id}`}
+                                                        className="d-block w-100"
+                                                    />
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="carousel-item active">
+                                                <img
+                                                    src={placeHolder}
+                                                    alt="Dummy Image"
+                                                    className="d-block w-100"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {selectedProperty.images.length > 1 && (
+                                        <div className="carousel-controls">
+                                            <button
+                                                className="carousel-control prev"
+                                                onClick={() =>
+                                                    handleImageSelect(
+                                                        currentImageIndex === 0
+                                                            ? selectedProperty.images.length - 1
+                                                            : currentImageIndex - 1
+                                                    )
+                                                }
+                                            >
+                                                <i className="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button
+                                                className="carousel-control next"
+                                                onClick={() =>
+                                                    handleImageSelect(
+                                                        (currentImageIndex + 1) % selectedProperty.images.length
+                                                    )
+                                                }
+                                            >
+                                                <i className="fas fa-chevron-right"></i>
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="image-modal-footer">
+                                    <div className="image-thumbnails">
+                                        {selectedProperty.images.map((image, index) => (
+                                            <div
+                                                key={index}
+                                                className={`thumbnail ${index === currentImageIndex ? "active" : ""}`}
+                                                onClick={() => handleImageSelect(index)}
+                                            >
+                                                <img
+                                                    src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
+                                                    alt={`Thumbnail ${index + 1}`}
+                                                    className="thumbnail-image"
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={closeImageModal}>
+                            Close
+                        </Button>                    </Modal.Footer>
+                </Modal>
+
+                {/* Enhanced Image Modal */}
+                <Modal
+                    show={showImageModal}
+                    onHide={closeImageModal}
+                    centered
+                    size="xl"
+                    className="image-modal"
+                >
+                    <Modal.Header closeButton className="border-0">
+                        <Modal.Title className="text-white">
+                            <i className="fas fa-images me-2"></i>
+                            Property Images {selectedProperty && selectedProperty.images.length > 1 && 
+                                `(${currentImageIndex + 1} of ${selectedProperty.images.length})`}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="p-0">
+                        {selectedProperty && selectedProperty.images.length > 0 && (
+                            <div className="image-modal-content">
+                                <div className="main-image-container">
+                                    <img
+                                        src={`https://apitourism.today.alayaarts.com/uploads/products/${selectedProperty.images[currentImageIndex].image}`}
+                                        alt={`Property ${selectedProperty.title || selectedProperty.id}`}
+                                        className="main-modal-image"
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = placeHolder;
+                                        }}
+                                    />
+                                    
+                                    {selectedProperty.images.length > 1 && (
+                                        <>
+                                            <button 
+                                                className="modal-nav-btn prev-btn"
+                                                onClick={prevImage}
+                                                aria-label="Previous image"
+                                            >
+                                                <i className="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button 
+                                                className="modal-nav-btn next-btn"
+                                                onClick={nextImage}
+                                                aria-label="Next image"
+                                            >
+                                                <i className="fas fa-chevron-right"></i>
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
+
+                                {selectedProperty.images.length > 1 && (
+                                    <div className="thumbnail-strip">
+                                        <div className="thumbnails-container">
+                                            {selectedProperty.images.map((image, index) => (
+                                                <div
+                                                    key={index}
+                                                    className={`thumbnail ${index === currentImageIndex ? 'active' : ''}`}
+                                                    onClick={() => goToImage(index)}
+                                                >
+                                                    <img
+                                                        src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
+                                                        alt={`Thumbnail ${index + 1}`}
+                                                        onError={(e) => {
+                                                            e.target.onerror = null;
+                                                            e.target.src = placeHolder;
+                                                        }}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="image-modal-info">
+                                    <div className="property-quick-info">
+                                        <h5 className="property-title">{selectedProperty.title || 'Property Details'}</h5>
+                                        <p className="property-price">Rs {Number(selectedProperty.price).toLocaleString("en-GB")}</p>
+                                        <p className="property-location">
+                                            <i className="fas fa-map-marker-alt me-2"></i>
+                                            {selectedProperty.location}
+                                        </p>
+                                    </div>
+                                    <Button 
+                                        variant="primary" 
+                                        onClick={() => {
+                                            closeImageModal();
+                                            navigate(`/ProductDetail/${selectedProperty.id}`);
+                                        }}
+                                        className="view-details-btn"
+                                    >
+                                        <i className="fas fa-eye me-2"></i>
+                                        View Property Details
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
+                    </Modal.Body>
                 </Modal>
             </div>
         </>

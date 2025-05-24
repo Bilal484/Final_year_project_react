@@ -64,7 +64,7 @@ const JobAlert = () => {
         <meta name="author" content="UrbanCraft REAL ESTATE" />
       </Helmet>
       <Header />
-      <SellerAgentHeader />
+      {/* <SellerAgentHeader /> */}
       
       {/* Page header */}
       <div className="bg-light py-4 mb-4 border-bottom">

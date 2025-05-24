@@ -144,7 +144,7 @@ const Howtowork = () => {
                     </div>
                 </section>
                 {/* Meet Our Agents Section */}
-                <div className="agent-parent">
+                {/* <div className="agent-parent">
                     <div className="container agents-section align-items-center">
                         <h2 className="display-5 fw-bold text-center mb-5">Meet Our Agents</h2>
                         <div className="divider mb-4" />
@@ -242,7 +242,7 @@ const Howtowork = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <Footer />
             </div>
 

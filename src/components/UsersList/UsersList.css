@@ -1,5 +1,4 @@
 :root {
-    
     /* User list specific variables */
     --user-active-bg: rgba(11, 11, 69, 0.1);
     --user-hover-bg: rgba(153, 108, 34, 0.1);
@@ -8,19 +7,31 @@
     --avatar-text: var(--color_white);
     --search-bg: var(--color-gray);
     --user-transition: all 0.3s ease;
+    
+    /* Role-specific colors */
+    --seller-color: #e74c3c;
+    --buyer-color: #3498db;
+    --agent-color: #2ecc71;
 }
 
 /* Container Styles */
 .users-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: calc(100vh - 180px); /* Match the chat window height */
+    max-height: calc(100vh - 180px); 
+    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: var(--chat-border-radius);
+    box-shadow: var(--chat-box-shadow);
+    margin-right: 1rem;
 }
 
 /* Search Container */
 .search-container {
     position: relative;
     margin-bottom: 1rem;
+    margin-top: 10px;
 }
 
 .search-input {
@@ -46,13 +57,38 @@
     opacity: 0.6;
 }
 
+/* Role-based tabs */
+.user-role-tabs {
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--user-border);
+}
+
+.user-role-tabs .nav-link {
+    border: none;
+    color: #555;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    transition: var(--user-transition);
+    cursor: pointer;
+}
+
+.user-role-tabs .nav-link.active {
+    color: var(--color);
+    font-weight: 600;
+    border-bottom: 2px solid var(--color);
+    background-color: transparent;
+}
+
 /* User List */
 .user-list {
     overflow-y: auto;
     border-radius: 8px;
     border: none;
-    height: calc(100% - 60px);
+    height: calc(100% - 100px); /* Account for search box and tabs */
+    flex: 1;
     animation: fadeIn 0.5s ease;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(153, 108, 34, 0.3) transparent;
 }
 
 @keyframes fadeIn {
@@ -128,6 +164,15 @@
     transition: var(--user-transition);
 }
 
+.user-avatar-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
 .active-user .user-avatar {
     background-color: var(--color);
     transform: scale(1.05);
@@ -140,6 +185,36 @@
 .user-name {
     font-weight: 500;
     margin-bottom: 3px;
+}
+
+.user-role {
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.user-role small {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* Role-specific styling */
+.user-list-item[data-role="Seller"] .user-role small,
+.user-list-item[data-role="seller"] .user-role small {
+    color: var(--seller-color);
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+.user-list-item[data-role="Buyer"] .user-role small,
+.user-list-item[data-role="buyer"] .user-role small {
+    color: var(--buyer-color);
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.user-list-item[data-role="Agent"] .user-role small,
+.user-list-item[data-role="agent"] .user-role small {
+    color: var(--agent-color);
+    background-color: rgba(46, 204, 113, 0.1);
 }
 
 .user-status {

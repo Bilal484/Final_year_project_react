@@ -107,6 +107,7 @@ import ScrollToTop from './components/ScrollToTop';
 import TourRequestPage from './pages/TourInPerson';
 import OffersPage from './pages/PropertyOffers';
 import BidsPage from './pages/BidsPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
     const [userRole, setUserRole] = useState(null); // User role is null initially
@@ -183,7 +184,11 @@ function App() {
                         <Route path="/SuccessfulApply" element={<SuccessfulApply />} />
                         <Route path="/TermandUse" element={<TermandUse />} />
                         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-                        <Route path='/chat' element={<ChatPage />} />
+                        <Route path='/chat' element={
+                            <ProtectedRoute>
+                                <ChatPage />
+                            </ProtectedRoute>
+                        } />
                         <Route path='ProductComponent' element={<ProductComponent />} />
 
 

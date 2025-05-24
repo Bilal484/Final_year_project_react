@@ -21,7 +21,7 @@ const SuccessfulApply = () => {
         <meta name="author" content="UrbanCraft REAL ESTATE" />
       </Helmet>
       <Header />
-      <SellerAgentHeader />
+      {/* <SellerAgentHeader /> */}
       <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
         {/* Icon */}
         <div className="mb-4">

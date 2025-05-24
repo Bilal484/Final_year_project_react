@@ -225,7 +225,7 @@ const AccountSettingCandidate = () => {
             </Helmet>
 
             <Header />
-            <SellerAgentHeader />
+            {/* <SellerAgentHeader /> */}
 
             <div className="account-settings-hero">
                 <div className="overlay"></div>

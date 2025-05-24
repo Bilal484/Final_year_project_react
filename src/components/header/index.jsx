@@ -3,8 +3,9 @@ import "./header.css";
 import imgLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Header Logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { ChevronDown, BellIcon, User, LogOut, Menu, X } from "lucide-react";
-import { Dropdown, Modal, Button } from "react-bootstrap";
+import { ChevronDown, BellIcon, User, LogOut, Menu, X, MessageCircle } from "lucide-react";
+import { Dropdown, Modal, Button, Badge } from "react-bootstrap";
+import { hasChatAccess, getTotalUnreadMessages, USER_ROLES } from "../../services/chatAPI";
 
 const Header = () => {
     const [userMenu, setUserMenu] = useState([]);
@@ -22,6 +23,7 @@ const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const headerRef = useRef(null);
+    const [unreadMessageCount, setUnreadMessageCount] = useState(0);
 
     const userId = localStorage.getItem("user_id");
     const menuItems = {
@@ -89,6 +91,25 @@ const Header = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    // Fetch unread message count for chat button
+    useEffect(() => {
+        const fetchUnreadCount = async () => {
+            if (userId) {
+                const result = await getTotalUnreadMessages(userId);
+                if (result.success) {
+                    setUnreadMessageCount(result.count);
+                }
+            }
+        };
+
+        fetchUnreadCount();
+
+        // Set up interval to periodically check for new messages
+        const interval = setInterval(fetchUnreadCount, 30000); // Check every 30 seconds
+
+        return () => clearInterval(interval);
+    }, [userId]);
 
     // Set user information
     useEffect(() => {
@@ -209,6 +230,30 @@ const Header = () => {
 
             fetchSimilarUsers();
         }
+    }, [userId]);
+
+    // Check chat access and get total unread messages
+    const [chatAccess, setChatAccess] = useState(false);
+    const [totalUnreadMessages, setTotalUnreadMessages] = useState(0);
+
+    useEffect(() => {
+        const checkChatAccess = async () => {
+            if (userId) {
+                try {
+                    const hasAccess = await hasChatAccess(userId);
+                    setChatAccess(hasAccess);
+
+                    if (hasAccess) {
+                        const unreadMessages = await getTotalUnreadMessages(userId);
+                        setTotalUnreadMessages(unreadMessages);
+                    }
+                } catch (error) {
+                    console.error("Error checking chat access:", error);
+                }
+            }
+        };
+
+        checkChatAccess();
     }, [userId]);
 
     return (
@@ -418,53 +463,68 @@ const Header = () => {
                                             <button className="btn btn-primary">Login / SignUp</button>
                                         </Link>
                                     ) : (
-                                        <li className="nav-item dropdown list-unstyled">
-                                            <Link
-                                                className="nav-link dropdown-toggle d-flex align-items-center"
-                                                to="#"
-                                                id="userDropdown"
-                                                role="button"
-                                                data-bs-toggle="dropdown"
-                                                aria-expanded="false"
-                                            >
-                                                <div className="user-avatar me-2 d-flex align-items-center justify-content-center">
-                                                    <User size={18} />
-                                                </div>
-                                                {userName}
-                                            </Link>
-                                            <ul
-                                                className="dropdown-menu two-column-dropdown p-2 mt-2"
-                                                aria-labelledby="userDropdown"
-                                            >
-                                                <div className="dropdown-column">
-                                                    <div className="dropdown-grid">
-                                                        {userMenu.length > 0 ? (
-                                                            userMenu.map((item, index) => (
-                                                                <li key={index}>
-                                                                    <Link to={item.path} className="dropdown-item d-flex align-items-center">
-                                                                        <span className="me-2">{item.icon}</span>
-                                                                        {item.label}
-                                                                    </Link>
-                                                                </li>
-                                                            ))
-                                                        ) : (
-                                                            <li className="dropdown-item text-muted">
-                                                                No menu available
-                                                            </li>
+                                        <>
+                                            {/* Chat Button - Only visible for agents, buyers, and sellers */}
+                                            {hasChatAccess(userRole) && (
+                                                <Link to="/chat" className="chat-button-wrapper me-3">
+                                                    <Button variant="outline-primary" className="chat-button">
+                                                        <MessageCircle size={20} />
+                                                        {unreadMessageCount > 0 && (
+                                                            <Badge pill bg="danger" className="chat-badge">
+                                                                {unreadMessageCount > 9 ? '9+' : unreadMessageCount}
+                                                            </Badge>
                                                         )}
-                                                        <li>
-                                                            <button
-                                                                className="dropdown-item d-flex align-items-center"
-                                                                onClick={handleLogout}
-                                                            >
-                                                                <LogOut size={16} className="me-2" />
-                                                                Logout
-                                                            </button>
-                                                        </li>
+                                                    </Button>
+                                                </Link>
+                                            )}
+                                            <li className="nav-item dropdown list-unstyled">
+                                                <Link
+                                                    className="nav-link dropdown-toggle d-flex align-items-center"
+                                                    to="#"
+                                                    id="userDropdown"
+                                                    role="button"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                >
+                                                    <div className="user-avatar me-2 d-flex align-items-center justify-content-center">
+                                                        <User size={18} />
                                                     </div>
-                                                </div>
-                                            </ul>
-                                        </li>
+                                                    {userName}
+                                                </Link>
+                                                <ul
+                                                    className="dropdown-menu two-column-dropdown p-2 mt-2"
+                                                    aria-labelledby="userDropdown"
+                                                >
+                                                    <div className="dropdown-column">
+                                                        <div className="dropdown-grid">
+                                                            {userMenu.length > 0 ? (
+                                                                userMenu.map((item, index) => (
+                                                                    <li key={index}>
+                                                                        <Link to={item.path} className="dropdown-item d-flex align-items-center">
+                                                                            <span className="me-2">{item.icon}</span>
+                                                                            {item.label}
+                                                                        </Link>
+                                                                    </li>
+                                                                ))
+                                                            ) : (
+                                                                <li className="dropdown-item text-muted">
+                                                                    No menu available
+                                                                </li>
+                                                            )}
+                                                            <li>
+                                                                <button
+                                                                    className="dropdown-item d-flex align-items-center"
+                                                                    onClick={handleLogout}
+                                                                >
+                                                                    <LogOut size={16} className="me-2" />
+                                                                    Logout
+                                                                </button>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </li>
+                                        </>
                                     )}
                                 </div>
                             </div>

@@ -186,8 +186,8 @@ const Home = () => {
                 )}
 
                 {/* Similar Users Modal */}
-                <Modal
-                    show={showModal} // CORRECTED: Uncommented and set the show prop
+                {/* <Modal
+                    show={showModal} 
                     onHide={() => setShowModal(false)}
                     centered
                     className="similar-users-modal"
@@ -261,7 +261,7 @@ const Home = () => {
                             Close
                         </Button>
                     </Modal.Footer>
-                </Modal>
+                </Modal> */}
 
                 {userId ? (
                     <>

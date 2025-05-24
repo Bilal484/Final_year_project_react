@@ -45,10 +45,10 @@
 }
 
 /* Refresh button styling */
-.refresh-button {
+/* .refresh-button {
     border: 2px solid white;
     transition: all 0.3s ease;
-}
+} */
 
 .refresh-button:hover {
     background-color: white;

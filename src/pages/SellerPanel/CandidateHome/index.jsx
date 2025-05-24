@@ -105,7 +105,7 @@ const CandidateHome = () => {
     return (
       <>
         <Header />
-        <SellerAgentHeader />
+        {/* <SellerAgentHeader /> */}
         <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
           <Spinner animation="border" role="status" variant="primary">
             <span className="visually-hidden">Loading...</span>
@@ -138,7 +138,7 @@ const CandidateHome = () => {
       </Helmet>
 
       <Header />
-      <SellerAgentHeader />
+      {/* {/* <SellerAgentHeader /> */} 
 
       <div className="candidate-home-hero">
         <Container>

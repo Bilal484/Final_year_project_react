@@ -193,79 +193,89 @@ const ProductDetail = () => {
           name="twitter:image"
           content="https://apitourism.today.alayaarts.com/uploads/product-image-placeholder.jpg"
         />
-      </Helmet>
-
-      <Header />
-      <main>
-        <div className="container-fluid ">
-          <nav className="position-sticky top-0 product-nav ">
+      </Helmet>      <Header />
+      <main className="product-detail-container">
+        <div className="container-fluid">
+          <nav className="product-nav animate-fadeIn">
             <div className="container d-flex flex-wrap justify-content-between">
-              <ul>
+              <ul className="animate-slideInLeft delay-200">
                 <li>
-                  <a href="#overview">Overview</a>{" "}
-                </li>
-                <li>
-                  <a href="#neighbor">Neighborhood</a>{" "}
-                </li>
-                <li>
-                  <a href="#Property_section">Property details</a>{" "}
-                </li>
-                <li>
-                  <a href="#Sale_section">Sales & tax history</a>{" "}
-                </li>
-                <li>
-                  <a href="#Climate_scetion">Climate</a>{" "}
-                </li>
-              </ul>
-              <ul>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-heart me-2"></i>Favorite
+                  <a href="#overview" className="hover-lift">
+                    <i className="fas fa-home"></i>Overview
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    <i className="fa fa-share me-2"></i>share
+                  <a href="#neighbor" className="hover-lift">
+                    <i className="fas fa-map-marker-alt"></i>Neighborhood
+                  </a>
+                </li>
+                <li>
+                  <a href="#Property_section" className="hover-lift">
+                    <i className="fas fa-building"></i>Property details
+                  </a>
+                </li>
+                <li>
+                  <a href="#Sale_section" className="hover-lift">
+                    <i className="fas fa-chart-line"></i>Sales & tax history
+                  </a>
+                </li>
+                <li>
+                  <a href="#Climate_scetion" className="hover-lift">
+                    <i className="fas fa-cloud-sun"></i>Climate
+                  </a>
+                </li>
+              </ul>
+              <ul className="animate-slideInRight delay-300">
+                <li>
+                  <a href="#" className="hover-lift">
+                    <i className="fas fa-heart"></i>Favorite
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover-lift">
+                    <i className="fas fa-share-alt"></i>Share
                   </a>
                 </li>
               </ul>
             </div>
-          </nav>
-          <div id="overview" className="container-fluid mt-3  firs_top_portion">
+          </nav>          <div id="overview" className="container-fluid firs_top_portion">
             <>
-              <div className="row g-3">
+              <div className="row g-3 animate-fadeInUp delay-400">
                 {/* Map through the first three images */}
                 {productData?.images.slice(0, 3).map((image, index) => (
-                  <div className="col-md-4 position-relative" key={image.id}>
+                  <div
+                    className={`col-md-4 position-relative animate-fadeInUp delay-${500 + index * 100}`}
+                    key={image.id}
+                  >
                     <div
-                      className="card custom-card"
+                      className="card custom-card hover-lift"
                       onClick={handleImageClick}
                     >
                       <img
-                        src={`${"https://apitourism.today.alayaarts.com/uploads/products/"}/${
-                          image.image
-                        }`}
-                        alt={`Image ${index + 1}`}
+                        src={`${"https://apitourism.today.alayaarts.com/uploads/products/"}/${image.image
+                          }`}
+                        alt={`Property Image ${index + 1}`}
+                        loading={index === 0 ? "eager" : "lazy"}
                       />
                       {index === 0 && (
-                        <span className="tag-label">OPEN SUN, 12PM TO 2PM</span>
-                      )}
-                      {index === 2 && (
-                        <div className="photo-btn">
-                          <i className="bi bi-camera" />{" "}
+                        <span className="tag-label animate-slideInLeft delay-800">
+                          OPEN SUN, 12PM TO 2PM
+                        </span>
+                      )}                      {index === 2 && (
+                        <div className="photo-btn animate-slideInRight delay-900">
+                          <i className="bi bi-camera-fill" />
                           {productData?.images.length} photos
                         </div>
                       )}
                       {index === 0 && (
                         <div className="custom-btn-group d-flex justify-content-start mt-2 p-2">
-                          <button className="btn me-2">
-                            <i className="bi bi-file-earmark-text" /> Floor
-                            Plans
+                          <button className="btn me-2 hover-scale">
+                            <i className="bi bi-file-earmark-text" /> Floor Plans
                           </button>
-                          <button className="btn me-2">
+                          <button className="btn me-2 hover-scale">
                             <i className="bi bi-house-door" /> Street View
                           </button>
-                          <button className="btn ">
+                          <button className="btn hover-scale">
                             <i className="bi bi-pencil-square" /> Redesign
                           </button>
                         </div>
@@ -300,101 +310,112 @@ const ProductDetail = () => {
                 </Modal.Body>
               </Modal>
             </>
-          </div>
-          {/* ============================= below portion ==================== */}
-          <div className="container my-4">
+          </div>          {/* Property Details Section */}
+          <div className="container my-4 animate-fadeInUp delay-600">
             <div className="row Listing_Details">
               {/* Left Column: Listing Details */}
-              <div className="col-lg-8  scroll_section">
-                <div className="card mb-4">
+              <div className="col-lg-8 scroll_section">
+                <div className="card mb-4 hover-lift animate-fadeInUp delay-700">
                   <div className="card-body p-5">
-                    <h5 className="card-title mb-3">
-                      {productData?.location || "Location not available"}{" "}
-                      {/* Fallback for undefined location */}
-                    </h5>
-                    <div className="d-flex justify-content-between ">                      <div className="price">
-                        <h6 className="price-tag fs-4 fw-bold">
-                          Rs {productData?.price || "N/A"}
-                        </h6>{" "}
-                        {/* Fallback for price */}
-                        <p className="text-muted fs-14">
-                          Est.{" "}
-                          {productData?.overview_sales?.[0]?.est_price || "N/A"}{" "}
-                          {/* Optional chaining for nested fields */}
-                        </p>
-                      </div>
-                      <div className="gap-5 d-flex flex-row mb-3">
-                        <div className="d-flex flex-column fs-6 text-muted">
-                          <strong className="fs-4 text-dark">
+                    <div className="price animate-fadeInUp delay-900">
+                      <h5 className="card-title mb-3 animate-fadeInUp delay-800">
+                        <i className="fas fa-map-marker-alt me-2 text-primary"></i>
+                        {productData?.location || "Location not available"}
+                      </h5>
+                      <h6 className="price-tag fs-4 fw-bold" style={{marginTop: "-10px"}}>
+                        Rs {productData?.price || "N/A"}
+                      </h6>
+                      <p className="text-muted fs-14">
+                        <i className="fas fa-calculator me-1"></i>
+                        Est. {productData?.overview_sales?.[0]?.est_price || "N/A"}
+                      </p>
+                    </div>
+
+                    <div className="d-flex justify-content-between flex-wrap">
+
+                      <div className="property-stats-container animate-fadeInUp delay-1000">
+                        <div className="property-stat hover-lift">
+                          <div className="stat-value">
                             {productData?.overview_sales?.[0]?.beds || "N/A"}
-                          </strong>
-                          Beds
+                          </div>
+                          <div className="stat-label">
+                            <i className="fas fa-bed me-1"></i>Beds
+                          </div>
                         </div>
-                        <div className="d-flex flex-column fs-6 text-muted">
-                          <strong className="fs-4 text-dark">
+                        <div className="property-stat hover-lift">
+                          <div className="stat-value">
                             {productData?.overview_sales?.[0]?.bath || "N/A"}
-                          </strong>
-                          Baths
+                          </div>
+                          <div className="stat-label">
+                            <i className="fas fa-bath me-1"></i>Baths
+                          </div>
                         </div>
-                        <div className="d-flex flex-column fs-6 text-muted">
-                          <strong className="fs-4 text-dark">
+                        <div className="property-stat hover-lift">
+                          <div className="stat-value">
                             {productData?.overview_sales?.[0]?.sq_ft || "N/A"}
-                          </strong>
-                          Sq Ft {/* Correct property for Sq Ft */}
+                          </div>
+                          <div className="stat-label">
+                            <i className="fas fa-ruler-combined me-1"></i>Sq Ft
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="card mt-4 px-2 py-4">
-                  <div className="p-4">
-                    Rates have dropped <br /> Lower rates mean lower monthly
-                    payments
+                </div>                <div className="info-card hover-lift animate-fadeInUp delay-800">
+                  <div className="d-flex align-items-center mb-3">
+                    <div className="feature-icon me-3">
+                      <i className="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                      <h6 className="mb-1 fw-bold text-success">Great News!</h6>
+                      <p className="mb-0 text-muted">Rates have dropped - Lower rates mean lower monthly payments</p>
+                    </div>
                   </div>
                 </div>
-                <div className="card mt-4 px-3 py-4 shadow-sm">
-                  <div className="p-4">
-                    <h5 className="fw-bold">About this home</h5>
-                    <p>{productData?.desc}</p>
+                <div className="info-card hover-lift animate-fadeInUp delay-900">
+                  <div className="mb-4">
+                    <h5 className="section-heading">
+                      <i className="fas fa-home me-2"></i>About this home
+                    </h5>
+                    <p className="text-muted">{productData?.desc}</p>
                   </div>
 
-                  <div className="row d-flex justify-content-start">
+                  <div className="row">
                     {productData?.overview_home_tags?.map((tag, index) => (
                       <div
                         key={index}
-                        className="col-12 col-sm-6 d-flex justify-content-start mb-3"
+                        className={`col-12 col-sm-6 mb-3 animate-fadeInUp delay-${1000 + index * 100}`}
                       >
-                        <p className="px-3">
-                          <i className="fas fa-tag text-muted me-2"></i>{" "}
-                          {tag.tag_name}
-                        </p>
+                        <div className="tag-item hover-lift">
+                          <i className="fas fa-tag text-accent me-2"></i>
+                          <span className="tag-text">{tag.tag_name}</span>
+                        </div>
                       </div>
                     ))}
-                  </div>
-
-                  <div className="mt-4 px-3">
-                    <p className="mb-1">
-                      Listed by <strong>Kristen Gebhart</strong> • Northrop
-                      Realty •
-                      <a href="tel:3025392900" className="text-primary ms-1">
-                        302-539-2900
-                      </a>{" "}
-                      (broker)
-                    </p>
-                    <p>
-                      Znet checked:{" "}
-                      <span className="text-primary">2 minutes ago</span> (Sept
-                      10, 2024 at 3:59pm)
-                    </p>
-                    <p className="text-muted">
-                      Source: BRIGHT MLS #MDWO2022874
-                    </p>
+                  </div>                  <div className="mt-4 px-3">
+                    <div className="broker-info animate-fadeInUp delay-1200">
+                      <p className="mb-1">
+                        Listed by <strong>Kristen Gebhart</strong> • Northrop
+                        Realty •
+                        <a href="tel:3025392900" className="text-primary ms-1 hover-underline">
+                          302-539-2900
+                        </a>{" "}
+                        (broker)
+                      </p>
+                      <p className="listing-update">
+                        Znet checked:{" "}
+                        <span className="text-primary">2 minutes ago</span> (Sept
+                        10, 2024 at 3:59pm)
+                      </p>
+                      <p className="text-muted source-info">
+                        Source: BRIGHT MLS #MDWO2022874
+                      </p>
+                    </div>
                   </div>
 
                   <Row className="justify-content-center text-center">
                     <Col xs={12} sm={6} md={6} lg={6}>
-                      <Card className="mb-4 border-0 shadow">
+                      <Card className="agent-card mb-4 border-0 shadow-sm hover-lift animate-fadeInUp delay-1300">
                         <Card.Body className="d-flex align-items-center">
                           <Link
                             to={`/real-estate-agents/tiffeny-meyers`}
@@ -403,15 +424,15 @@ const ProductDetail = () => {
                             <img
                               src={img1}
                               alt="Tiffeny Meyers"
-                              className="rounded-circle me-3"
+                              className="agent-avatar rounded-circle me-3"
                               width="80"
                               height="80"
                             />
                             <div>
-                              <Card.Title className="mb-0">
+                              <Card.Title className="agent-name mb-0">
                                 Tiffeny Meyers
                               </Card.Title>
-                              <Card.Text className="text-muted">
+                              <Card.Text className="agent-company text-muted">
                                 Znet Corporation
                               </Card.Text>
                             </div>
@@ -421,7 +442,7 @@ const ProductDetail = () => {
                     </Col>
 
                     <Col xs={12} sm={6} md={6} lg={6}>
-                      <Card className="mb-4 border-0 shadow">
+                      <Card className="agent-card mb-4 border-0 shadow-sm hover-lift animate-fadeInUp delay-1400">
                         <Card.Body className="d-flex align-items-center">
                           <Link
                             to={`/real-estate-agents/daniel-csuk`}
@@ -430,15 +451,15 @@ const ProductDetail = () => {
                             <img
                               src={img2}
                               alt="Daniel Csuk"
-                              className="rounded-circle me-3"
+                              className="agent-avatar rounded-circle me-3"
                               width="80"
                               height="80"
                             />
                             <div>
-                              <Card.Title className="mb-0">
+                              <Card.Title className="agent-name mb-0">
                                 Daniel Csuk
                               </Card.Title>
-                              <Card.Text className="text-muted">
+                              <Card.Text className="agent-company text-muted">
                                 Znet Corporation
                               </Card.Text>
                             </div>
@@ -450,29 +471,32 @@ const ProductDetail = () => {
 
                   <Row className="text-center mt-3">
                     <Col>
-                      <p className="text-muted">
-                        Znet checked:{" "}
-                        <span className="text-primary">
-                          1 minute ago (Oct 29, 2024 at 11:26am)
-                        </span>
-                        <br />
-                        <small>
-                          Source: MRED as Distributed by MLS Grid #12097522
-                        </small>
-                      </p>
+                      <div className="source-info animate-fadeInUp delay-1500">
+                        <p className="text-muted">
+                          Znet checked:{" "}
+                          <span className="text-primary">
+                            1 minute ago (Oct 29, 2024 at 11:26am)
+                          </span>
+                          <br />
+                          <small>
+                            Source: MRED as Distributed by MLS Grid #12097522
+                          </small>
+                        </p>
+                      </div>
                     </Col>
                   </Row>
-                </div>
-                {/* Commute */}
-                <div className="card px-3 mt-4">
+                </div>                {/* Commute */}
+                <div className="info-card commute-section mt-4 animate-fadeInUp delay-1600">
                   <div className="p-4">
-                    <h3 className="mt-3">Commute</h3>
-                    <div className="mx-auto py-3">
+                    <h3 className="section-heading mt-3">
+                      <i className="fas fa-route me-2"></i>Commute
+                    </h3>
+                    <div className="map-container mx-auto py-3">
                       <iframe
                         src={productData?.map_url}
                         width={700}
                         height={300}
-                        className="img-fluid"
+                        className="modern-map img-fluid"
                         style={{ border: 0 }}
                         allowFullScreen=""
                         loading="lazy"
@@ -485,16 +509,16 @@ const ProductDetail = () => {
                 {productData?.id && <CommentSection p_id={productData.id} />}
                 {/*Payment calculator  */}
 
-                <PaymentCalculator />
-
-                <div className="card p-5 rounded-lg mt-4">
-                  <h2 className="h5 fw-bold mb-4">Additional resources</h2>
-                  <div className="accordion" id="resourcesAccordion">
+                <PaymentCalculator />                <div className="info-card additional-resources mt-4 animate-fadeInUp delay-1700">
+                  <h2 className="section-heading h5 fw-bold mb-4">
+                    <i className="fas fa-plus-circle me-2"></i>Additional resources
+                  </h2>
+                  <div className="modern-accordion" id="resourcesAccordion">
                     {/* Down payment assistance */}
-                    <div className="accordion-item border-0">
+                    <div className="accordion-item modern-accordion-item border-0">
                       <h2 className="accordion-header" id="headingOne">
                         <button
-                          className="accordion-button collapsed"
+                          className="modern-accordion-button accordion-button collapsed"
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target="#collapseOne"
@@ -511,11 +535,11 @@ const ProductDetail = () => {
                         aria-labelledby="headingOne"
                         data-bs-parent="#resourcesAccordion"
                       >
-                        <div className="accordion-body">
+                        <div className="modern-accordion-body accordion-body">
                           Programs may be available.{" "}
                           <a
                             href="#"
-                            className="text-decoration-none text-info small"
+                            className="text-decoration-none text-primary small hover-underline"
                           >
                             Learn more
                           </a>
@@ -523,10 +547,10 @@ const ProductDetail = () => {
                       </div>
                     </div>
                     {/* Mortgage rates */}
-                    <div className="accordion-item border-0">
+                    <div className="accordion-item modern-accordion-item border-0">
                       <h2 className="accordion-header" id="headingTwo">
                         <button
-                          className="accordion-button collapsed"
+                          className="modern-accordion-button accordion-button collapsed"
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target="#collapseTwo"
@@ -543,16 +567,16 @@ const ProductDetail = () => {
                         aria-labelledby="headingTwo"
                         data-bs-parent="#resourcesAccordion"
                       >
-                        <div className="accordion-body">
+                        <div className="modern-accordion-body accordion-body">
                           View current mortgage rates for this home.
                         </div>
                       </div>
                     </div>
                     {/* Electricity and solar */}
-                    <div className="accordion-item border-0">
+                    <div className="accordion-item modern-accordion-item border-0">
                       <h2 className="accordion-header" id="headingThree">
                         <button
-                          className="accordion-button collapsed"
+                          className="modern-accordion-button accordion-button collapsed"
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target="#collapseThree"
@@ -569,16 +593,16 @@ const ProductDetail = () => {
                         aria-labelledby="headingThree"
                         data-bs-parent="#resourcesAccordion"
                       >
-                        <div className="accordion-body">
+                        <div className="modern-accordion-body accordion-body">
                           Est. $273/month, save $111 with rooftop solar.
                         </div>
                       </div>
                     </div>
                     {/* Internet */}
-                    <div className="accordion-item border-0">
+                    <div className="accordion-item modern-accordion-item border-0">
                       <h2 className="accordion-header" id="headingFour">
                         <button
-                          className="accordion-button collapsed"
+                          className="modern-accordion-button accordion-button collapsed"
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target="#collapseFour"
@@ -594,7 +618,7 @@ const ProductDetail = () => {
                         aria-labelledby="headingFour"
                         data-bs-parent="#resourcesAccordion"
                       >
-                        <div className="accordion-body">
+                        <div className="modern-accordion-body accordion-body">
                           You may need to disable ad blockers to view Internet
                           info.
                         </div>
@@ -605,35 +629,40 @@ const ProductDetail = () => {
                     Provided by Down Payment Resource, RateUpdate.com, Wattbuy,
                     and AllConnect
                   </p>
-                </div>
-                <div className="card p-5 rounded-lg mt-4 ">
-                  <h2 className="h5 fw-bold mb-4">Additional services</h2>
+                </div>                <div className="info-card additional-services mt-4 animate-fadeInUp delay-1800">
+                  <h2 className="section-heading h5 fw-bold mb-4">
+                    <i className="fas fa-concierge-bell me-2"></i>Additional services
+                  </h2>
                   {/* Internet Deals Section */}
-                  <div className="d-flex justify-content-between mb-2">
-                    <div>
-                      <h3 className="h6 fw-semibold">
+                  <div className="service-item d-flex justify-content-between align-items-center mb-4 hover-lift">
+                    <div className="service-content">
+                      <h3 className="service-title h6 fw-semibold">
+                        <i className="fas fa-wifi me-2 text-primary"></i>
                         Find internet deals in your area
                       </h3>
-                      <p className="text-muted">
+                      <p className="service-description text-muted">
                         Get a great deal on fast wifi
                       </p>
                     </div>
-                    <div className="text-muted text-end">
-                      <span>Advertisement</span>
-                      <span className="fw-semibold">xfinity</span>
+                    <div className="service-badge text-muted text-end">
+                      <span className="badge-label">Advertisement</span>
+                      <span className="brand-name fw-semibold">xfinity</span>
                     </div>
                   </div>
                   {/* Free Credit Report Section */}
-                  <div className="d-flex justify-content-between">
-                    <div>
-                      <h3 className="h6 fw-semibold">Free Credit Report</h3>
-                      <p className="text-muted">
+                  <div className="service-item d-flex justify-content-between align-items-center hover-lift">
+                    <div className="service-content">
+                      <h3 className="service-title h6 fw-semibold">
+                        <i className="fas fa-chart-line me-2 text-success"></i>
+                        Free Credit Report
+                      </h3>
+                      <p className="service-description text-muted">
                         Get your credit report for free
                       </p>
                     </div>
-                    <div className="text-muted text-end">
-                      <span>Advertisement</span>
-                      <span className="fw-semibold">credit sesame</span>
+                    <div className="service-badge text-muted text-end">
+                      <span className="badge-label">Advertisement</span>
+                      <span className="brand-name fw-semibold">credit sesame</span>
                     </div>
                   </div>
                 </div>
@@ -871,7 +900,7 @@ const ProductDetail = () => {
                       </div>
                       <div className="fw-semibold">Sold (MLS) (Closed)</div>
                       <div>
-                        <div className="fs-5 fw-bold">$549,990</div>
+                        <div className="fs-5 fw-bold">RS 549,990</div>
                         <span className="text-muted">Price</span>
                       </div>
                     </li>
@@ -882,7 +911,7 @@ const ProductDetail = () => {
                       </div>
                       <div className="fw-semibold">Pending</div>
                       <div>
-                        <div className="fs-5 fw-bold">$549,990</div>
+                        <div className="fs-5 fw-bold">RS 549,990</div>
                         <span className="text-muted">Price</span>
                       </div>
                     </li>
@@ -904,7 +933,7 @@ const ProductDetail = () => {
                       </div>
                       <div className="fw-semibold">Price Changed</div>
                       <div>
-                        <div className="fs-5 fw-bold">$549,990</div>
+                        <div className="fs-5 fw-bold">RS 549,990</div>
                         <span className="text-muted">Price</span>
                       </div>
                     </li>
@@ -1209,13 +1238,12 @@ const ProductDetail = () => {
                   <h2 className="h4">Znet Estimate for 10 128th St #5</h2>
                   <p className="text-muted">
                     Znet has the most accurate online home estimate
-                  </p>
-                  <h3 className="display-6">$725,861</h3>
-                  <p className="text-muted">+$961 over list price of $725K</p>
+                  </p>                  <h3 className="display-6">Rs 72,58,61,000</h3>
+                  <p className="text-muted">+Rs 96,100 over list price of Rs 72.5 Lakhs</p>
                   <h4 className="mt-4">Nearby comparable homes</h4>
                   <p className="text-muted">
                     The Znet Estimate uses 6 recent nearby sales, priced between
-                    $540K to $745K.
+                    Rs 54 Lakhs to Rs 74.5 Lakhs.
                   </p>
                   <div className="row row-cols-1 row-cols-md-2 g-4 mt-4">
                     <div className="col">
@@ -1417,7 +1445,7 @@ const ProductDetail = () => {
           {/* product */}
           <div className="container py-4">
             <div className="row">
-             <MainCards/>
+              <MainCards />
             </div>
           </div>
           <ShareListingModal
