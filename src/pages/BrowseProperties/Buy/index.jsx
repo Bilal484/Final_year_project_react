@@ -117,15 +117,15 @@ const Buy = () => {
                             <div className="d-flex">
                                 <select className="form-select me-2" id="priceMin">
                                     <option selected="">No min</option>
-                                    <option value={1}>$100</option>
-                                    <option value={2}>$200</option>
-                                    <option value={3}>$300</option>
+                                    <option value={1}>RS 100</option>
+                                    <option value={2}>RS 200</option>
+                                    <option value={3}>RS 300</option>
                                 </select>
                                 <select className="form-select" id="priceMax">
                                     <option selected="">No max</option>
-                                    <option value={1}>$500</option>
-                                    <option value={2}>$1000</option>
-                                    <option value={3}>$2000</option>
+                                    <option value={1}>RS 500</option>
+                                    <option value={2}>RS 1000</option>
+                                    <option value={3}>RS 2000</option>
                                 </select>
                             </div>
                         </div>

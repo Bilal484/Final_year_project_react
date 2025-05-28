@@ -114,7 +114,7 @@ const JoinTalentCommunity = () => {
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
             </Helmet>
             <Header />
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <div className="join-our-talent-community">
                 <section className="join-talent-community-section bg-color-talent-community text-start">
                     <div className="join-talent-community mb-5">

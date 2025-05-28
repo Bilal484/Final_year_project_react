@@ -121,7 +121,7 @@ const SaveJob = () => {
                 <meta name="author" content="UrbanCraft REAL ESTATE" />
             </Helmet>
             <Header />
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <ToastContainer />
             <div className="save-job">
                 <section className="save-job-section bg-color-talent-community text-start">

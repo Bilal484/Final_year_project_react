@@ -72,11 +72,11 @@ const UserHeader = () => {
                                                 Offers
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <Link className="nav-link" to="/Review">
                                                 Reviews
                                             </Link>
-                                        </li>
+                                        </li> */}
                                         {/* <li className="nav-item">
                                             <Link className="nav-link" to="/OwnerDashboard">
                                                 Owner Dashboard

@@ -78,7 +78,7 @@ const OpenHouseSchedule = () => {
         />
       </Helmet>
       <Header />
-      <UserHeader />
+      {/* <UserHeader /> */}
       <div className="Home-parent">
         <div id="main-content">
           <div className="container mt-5 text-center container-open-house">

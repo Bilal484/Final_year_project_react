@@ -112,7 +112,7 @@ const CreateJob = () => {
                 <meta name="twitter:description" content="Explore new career opportunities by posting jobs on BizNetUSA." />
             </Helmet>
             <Header />
-            <SellerHeader />,
+            {/* <SellerHeader /> */},
             <div className="py-3">
                 <div className="create-job-container">
                     <ToastContainer />

@@ -114,7 +114,7 @@ const AgentSearch = () => {
             </Helmet>
 
             <Header />
-            <UserHeader />
+            {/* {/* <UserHeader /> */} 
 
             <div className="agent-search-hero">
                 <Container>

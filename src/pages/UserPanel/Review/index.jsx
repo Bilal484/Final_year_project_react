@@ -88,7 +88,7 @@ const Review = () => {
         />
       </Helmet>
       <Header />
-      <UserHeader />      <div id="main-content" className="mt-5 py-5">
+      {/* <UserHeader /> */}      <div id="main-content" className="mt-5 py-5">
         <div className="container">
           {loading ? (
             <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>

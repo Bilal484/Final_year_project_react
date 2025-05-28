@@ -103,7 +103,7 @@ const SavedSearches = () => {
         />
       </Helmet>
       <Header />
-      <UserHeader />
+      {/* <UserHeader /> */}
       <div className="container container-saved-searches mt-5">
         <div className="row">
           <div className="col-12">

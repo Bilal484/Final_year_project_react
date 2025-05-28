@@ -28,7 +28,7 @@ const Header = () => {
             { path: "/Appointments", label: "Appointments" },
             { path: "/Agent", label: "Your Agent" },
             { path: "/start-an-offer", label: "Offers" },
-            { path: "/Review", label: "Reviews" },
+            // { path: "/Review", label: "Reviews" },
             // { path: "/OwnerDashboard", label: "Owner Dashboard" },
             { path: "/AccountSettings", label: "Account Settings" },
             // { path: "/UserSetting", label: "User Setting" }

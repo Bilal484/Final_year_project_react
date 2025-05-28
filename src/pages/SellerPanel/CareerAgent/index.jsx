@@ -48,7 +48,7 @@ const CareerAgent = () => {
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <Header />
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <ToastContainer />
             <div className="career-agent">
                 <section className="header-section-career-agent">

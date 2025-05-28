@@ -119,7 +119,7 @@ const Favorites = () => {
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />
-      <UserHeader />
+      {/* <UserHeader /> */}
       <div id="main-content">
         <div className="container favourite-container">          
           <div className="favorites-header d-flex justify-content-between align-items-center mb-4">

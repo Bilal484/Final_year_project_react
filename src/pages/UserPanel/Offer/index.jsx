@@ -43,7 +43,7 @@ const Offer = () => {
         />
       </Helmet>
       <Header />
-      <UserHeader />
+      {/* <UserHeader /> */}
       <div id="main-content">
         <div className="parent-user-offer">
           <div className="container container-user-offer">

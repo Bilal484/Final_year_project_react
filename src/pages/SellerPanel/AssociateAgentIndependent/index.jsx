@@ -38,7 +38,7 @@ const AssociateAgentIndependent = () => {
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <Header />
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <div className="associate-agent">
                 <section className="associate-agent-section bg-color-talent-community text-start">
                     <div className="associate-agent mb-5 ">

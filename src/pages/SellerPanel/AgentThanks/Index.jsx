@@ -31,7 +31,7 @@ const AgentThanks = () => {
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <Header />
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <main>
                 <div className="container main-thanku">
                     <div className="bg-light p-4 rounded shadow-sm mx-auto text-center">

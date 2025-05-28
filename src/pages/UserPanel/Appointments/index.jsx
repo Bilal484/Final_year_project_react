@@ -229,7 +229,7 @@ const Appointments = () => {
       </Helmet>
 
       <Header />
-      <UserHeader />
+      {/* <UserHeader /> */}
 
       <div className="appointments-container">
         <div className="container py-4">

@@ -27,7 +27,7 @@ const AllTeam = () => {
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <Header />
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <div className="all-team">
                 <section className="all-team-header-section">
                     <div className="all-team full-screen-overlay-hero">

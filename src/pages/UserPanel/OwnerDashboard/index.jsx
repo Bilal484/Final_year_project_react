@@ -44,7 +44,7 @@ const OwnerDashboard = () => {
                 />
             </Helmet>
             <Header />
-            <UserHeader />
+            {/* <UserHeader /> */}
             <div className="owner-dashboaed-parent py-5 mt-5 ">
                 <div id="main-content">
                     {/* ==========Nav tab============= */}

@@ -62,7 +62,7 @@
     }
     
     .join-us-btn {
-        background-color: var(--color) !important;
+        /* background-color: var(--color) !important; */
         color: var(--hover_bg_color) !important;
         font-weight: 600;
         border: none;

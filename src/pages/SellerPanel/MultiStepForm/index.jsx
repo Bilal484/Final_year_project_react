@@ -241,7 +241,7 @@ const MultiStepForm = () => {
         />
         <meta name="author" content="UrbanCraft REAL ESTATE" />
       </Helmet>
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <div className="step-content" id="step-1-content">
               <h2 className="text-xl font-semibold text-foreground mb-4">
                 My Information
@@ -449,7 +449,7 @@ const MultiStepForm = () => {
       case 2:
         return (
           <>
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <div className="step-content" id="step-2-content">
               <h2 className="text-xl font-semibold text-foreground mb-4">
                 My Experience
@@ -520,7 +520,7 @@ const MultiStepForm = () => {
       case 3:
         return (
           <>
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <div className="step-content" id="step-3-content">
               <h2 className="text-xl font-semibold text-foreground mb-4">
                 Application Questions
@@ -629,7 +629,7 @@ const MultiStepForm = () => {
       case 4:
         return (
           <>
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <div className="step-content" id="step-4-content">
               <h2 className="text-xl font-semibold text-foreground mb-4">
                 Review

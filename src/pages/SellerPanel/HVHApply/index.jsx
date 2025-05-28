@@ -214,7 +214,7 @@ const HVHApply = () => {
                 <meta name="author" content="UrbanCraft REAL ESTATE" />
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
             </Helmet>            <Header />
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <main className="parent-hvh-apply mt-5">
                 <div className="application-header text-center">
                     <h1 className="application-title">Job Application</h1>

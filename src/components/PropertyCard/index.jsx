@@ -151,7 +151,7 @@ const PropertyCard = ({ id, price, images, beds, baths, area, address, descripti
                     {/* Property Details */}
                     <div className="uc-property-content">
                         <div className="uc-property-price">
-                            <h3>${formattedPrice}</h3>
+                            <h3>Rs {formattedPrice}</h3>
                         </div>
 
                         <div className="uc-property-details">

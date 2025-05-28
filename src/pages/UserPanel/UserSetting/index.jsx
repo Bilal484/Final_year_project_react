@@ -44,7 +44,7 @@ const UserSetting = () => {
                 />
             </Helmet>
             <Header />
-            <UserHeader />
+            {/* <UserHeader /> */}
             <div className="parent-user-setting">
                 <div id="main-content">
                     <section className="container mt-5 container-user-setting">

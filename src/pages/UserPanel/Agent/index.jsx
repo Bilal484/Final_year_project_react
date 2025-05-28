@@ -76,7 +76,7 @@ const Agent = () => {
                 <meta property="og:type" content="website" />
             </Helmet>
             <Header />
-            <UserHeader />
+            {/* <UserHeader /> */}
             <div className="Agent-parent">
                 <div id="main-content">
                     <div className="container mt-5 text-center container-agent">

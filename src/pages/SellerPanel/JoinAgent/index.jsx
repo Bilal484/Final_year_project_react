@@ -177,7 +177,7 @@ const JoinAgent = () => {    const [email, setEmail] = useState("");
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <Header />
-            <SellerHeader />
+            {/* <SellerHeader /> */}
             <div className="parent-join-agent">
                 <div className="full-screen-overlay-hero">
                     <h1 className="custom-title-display-heading">Real Estate All Jobs</h1>

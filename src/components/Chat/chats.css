@@ -1,5 +1,3 @@
-/* Enhanced chat styling with root variables and animations */
-
 :root {
     /* Chat-specific variables */
     --chat-sender-bg: var(--background_color);
@@ -447,7 +445,7 @@
 }
 
 /* Animation for the refresh button */
-.refresh-button {
+/* .refresh-button {
     transition: transform 0.3s ease;
 }
 
@@ -457,7 +455,7 @@
 
 .refresh-button.loading {
     animation: spin 1s linear infinite;
-}
+} */
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
