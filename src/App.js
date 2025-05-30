@@ -26,7 +26,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import LicenseVerification from './pages/LinceVerifications';
 import AgentProfile from './pages/RealEstateAgents';
-import AgentSearch from './pages/RealEstateAgents/AgentSearch';
+import AgentSearch from './pages/AgentSearch';
 import StartOffer from './pages/StartOffer';
 import OfferPage from './pages/FinalOffers';
 import ProductDetail from './pages/ProductDetail';

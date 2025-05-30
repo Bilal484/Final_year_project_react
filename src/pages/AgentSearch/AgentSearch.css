@@ -1,6 +1,6 @@
 :root {
     --background_color: #FD593E;
-    --color: #1B1B1B ;
+    --color: #1B1B1B;
     --color_white: white;
     --hover_bg_color: #011333;
     --color-gray: #F5F5F5;
@@ -10,7 +10,7 @@
     --border-radius: 10px;
     --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s ease;
-    
+
     /* Agent search specific variables */
     --agent-card-bg: white;
     --agent-text-primary: #333333;
@@ -351,6 +351,7 @@
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -361,6 +362,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -371,11 +373,11 @@
     .agent-search-title {
         font-size: 2.5rem;
     }
-    
+
     .contact-agents-section h2 {
         font-size: 2rem;
     }
-    
+
     .contact-stats {
         margin-top: 30px;
     }
@@ -385,22 +387,22 @@
     .agent-search-hero {
         padding: 80px 20px;
     }
-    
+
     .agent-search-title {
         font-size: 2rem;
     }
-    
+
     .agent-search-input {
         height: 50px;
         font-size: 16px;
     }
-    
+
     .agent-search-button {
         height: 40px;
         padding: 0 15px;
         top: 5px;
     }
-    
+
     .contact-stats {
         flex-direction: column;
         gap: 20px;
@@ -411,7 +413,7 @@
     .agent-card-img-container {
         height: 180px;
     }
-    
+
     .section-title {
         font-size: 1.5rem;
     }

@@ -9,7 +9,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import './AgentSearch.css';
 import defaultAgentImage from '../../assets/images/real estate _12.jpg';
-import UserHeader from '../../components/UserHeader';
+// import UserHeader from '../../components/UserHeader';
 
 const AgentSearch = () => {
     const [agents, setAgents] = useState([]);
