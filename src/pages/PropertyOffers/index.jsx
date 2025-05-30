@@ -24,18 +24,31 @@ const OffersPage = () => {
         comments: "",
         p_id: selectedProductId,
     });
-    const [selectedOffer, setSelectedOffer] = useState(null);
-
-    const userId = localStorage.getItem("user_id");    // Fetch offers data for the logged-in user
+    const [selectedOffer, setSelectedOffer] = useState(null);    const userId = localStorage.getItem("user_id");
+      // Helper function to get product name by ID
+    const getProductNameById = (productId) => {
+        if (!productId || productId === 'N/A') {
+            return "Unknown Product";
+        }
+        const product = products.find(p => String(p.id) === String(productId));
+        return product ? product.title : "Unknown Product";
+    };    // Fetch offers data for the logged-in user
     const fetchOffers = async () => {
         try {
-            const response = await fetch(`https://apitourism.today.alayaarts.com/api/get-start-offer?user_id=${userId}`);
+            const response = await fetch(`https://apitourism.today.alayaarts.com/api/get-start-offer-user/${userId}`);
             const data = await response.json();
-            if (data.status === 200) {
-                setOffers(data.start_an_offer);
+            if (data.status === 200 && data.start_an_offer) {
+                // Ensure we have a valid array and filter out any null/undefined items
+                const validOffers = Array.isArray(data.start_an_offer) 
+                    ? data.start_an_offer.filter(offer => offer && typeof offer === 'object')
+                    : [];
+                setOffers(validOffers);
+            } else {
+                setOffers([]);
             }
         } catch (error) {
             console.error("Error fetching offers:", error);
+            setOffers([]); // Set empty array on error
         } finally {
             setLoading(false);
         }
@@ -43,22 +56,18 @@ const OffersPage = () => {
 
     useEffect(() => {
         fetchOffers();
-    }, [userId]);
-
-    useEffect(() => {
+    }, [userId]);    useEffect(() => {
         const fetchProducts = () => {
-            const currentUserId = localStorage.getItem("user_id");
             axios
                 .get("https://apitourism.today.alayaarts.com/api/get-products")
                 .then((response) => {
-                    // Filter to include only products for this user and seller type
+                    // Get all products since offers might reference products from any user
                     const allProducts = response.data.products || [];
-                    const filtered = allProducts.filter(
-                        (p) => String(p.user_id) === currentUserId && p.user_type === "seller"
-                    );
-                    setProducts(filtered);
+                    console.log("All Products for offer matching:", allProducts);
+                    
+                    setProducts(allProducts);
                 })
-                .catch((error) => showNotification("Error fetching products:", error));
+                .catch((error) => console.error("Error fetching products:", error));
         };
 
         // Fetch products data
@@ -202,18 +211,27 @@ const OffersPage = () => {
                         </Col>
                     </Row>
                 </Container>
-            </div>
-
-            <Container className="offers-page-container">
+            </div>            <Container className="offers-page-container">
                 <Row>
-                    {offers.map((offer) => (
+                    {offers && offers.length > 0 ? offers
+                        .filter(offer => offer && offer.id) // Filter out null/undefined offers
+                        .map((offer) => (
                         <Col md={4} key={offer.id} className="mb-4">
                             <Card className="offer-card">
                                 <Card.Body>
-
+                                    <h4 className="offer-property-name text-primary mb-2">
+                                        Property: {getProductNameById(offer.p_id || 'N/A')}
+                                    </h4>
+                                    {/* <p className="text-muted mb-2">Product Price: {offer.pri || 'N/A'}</p> */}
                                     <h5 className="offer-phone">{offer.phone ? offer.phone : "N/A"}</h5>
-                                    <p className="offer-price">Offer: ${offer.how_much_you_offer}</p>
-                                    <p className="offer-comments">Comments: {offer.comments}</p>
+                                    <p className="offer-price">Offer: Rs {offer.how_much_you_offer || '0'}</p>
+                                    <p className="offer-comments">Comments: {offer.comments || 'No comments'}</p>
+                                    <p className="text-muted">
+                                        <small>
+                                            Plan to buy: {offer.plan_on_buying === "1" ? "Yes" : "No"}   <br />
+                                            Tour home: {offer.tour_this_home_in_person === "1" ? "Yes" : "No"}
+                                        </small>
+                                    </p>
                                     <div className="d-flex justify-content-between">
                                         <Button variant="outline-secondary" size="sm" onClick={() => openModal(offer)}>
                                             <FaEdit /> Edit
@@ -222,10 +240,17 @@ const OffersPage = () => {
                                             <FaTrashAlt /> Delete
                                         </Button>
                                     </div>
+                                 
                                 </Card.Body>
                             </Card>
                         </Col>
-                    ))}
+                    )) : (
+                        <Col md={12}>
+                            <div className="text-center">
+                                <p>No offers found.</p>
+                            </div>
+                        </Col>
+                    )}
                 </Row>
             </Container>
 
@@ -237,7 +262,7 @@ const OffersPage = () => {
                 <Modal.Body>
                     <Form>
                         <Form.Group controlId="formProduct">
-                            <Form.Label>Product</Form.Label>
+                            <Form.Label className="text-white">Product</Form.Label>
                             <Form.Control
                                 as="select"
                                 name="p_id"
@@ -255,7 +280,7 @@ const OffersPage = () => {
                             </Form.Control>
                         </Form.Group>
                         <Form.Group controlId="formPhone">
-                            <Form.Label>Phone</Form.Label>
+                            <Form.Label className="text-white">Phone</Form.Label>
                             <Form.Control
                                 type="text"
                                 name="phone"
@@ -264,7 +289,7 @@ const OffersPage = () => {
                             />
                         </Form.Group>
                         <Form.Group controlId="formHowMuch">
-                            <Form.Label>Offer Amount</Form.Label>
+                            <Form.Label className="text-white">Offer Amount</Form.Label>
                             <Form.Control
                                 type="number"
                                 name="how_much_you_offer"
@@ -273,7 +298,7 @@ const OffersPage = () => {
                             />
                         </Form.Group>
                         <Form.Group controlId="formPlanBuying">
-                            <Form.Label>Plan on Buying</Form.Label>
+                            <Form.Label className="text-white">Plan on Buying</Form.Label>
                             <Form.Control
                                 as="select"
                                 name="plan_on_buying"
@@ -285,7 +310,7 @@ const OffersPage = () => {
                             </Form.Control>
                         </Form.Group>
                         <Form.Group controlId="formTour">
-                            <Form.Label>Tour This Home</Form.Label>
+                            <Form.Label className="text-white">Tour This Home</Form.Label>
                             <Form.Control
                                 as="select"
                                 name="tour_this_home_in_person"
@@ -297,7 +322,7 @@ const OffersPage = () => {
                             </Form.Control>
                         </Form.Group>
                         <Form.Group controlId="formComments">
-                            <Form.Label>Comments</Form.Label>
+                            <Form.Label className="text-white">Comments</Form.Label>
                             <Form.Control
                                 as="textarea"
                                 rows={3}

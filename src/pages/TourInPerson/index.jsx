@@ -27,8 +27,9 @@ const TourRequestPage = () => {
     const [tourRequests, setTourRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
-
-    // Function to fetch tour requests data - extracted outside useEffect for reuse
+    
+    // Get current user's ID from localStorage to filter requests
+    const currentUserId = localStorage.getItem("user_id");    // Function to fetch tour requests data - extracted outside useEffect for reuse
     const fetchTourRequests = async () => {
         try {
             if (!loading) setRefreshing(true);
@@ -41,10 +42,16 @@ const TourRequestPage = () => {
                     // Set approved to true if approved_tour is 1, false otherwise
                     approved: request.approved_tour === 1
                 }));
-                setTourRequests(processedRequests);
+                
+                // Filter requests to show only those for the current seller's properties
+                const filteredRequests = processedRequests.filter(request => 
+                    request.seller_id === currentUserId
+                );
+                
+                setTourRequests(filteredRequests);
 
                 // For debugging
-                console.log("Tour requests data:", processedRequests);
+                console.log("Filtered tour requests data:", filteredRequests);
             }
         } catch (error) {
             console.error("Error fetching tour requests:", error);
@@ -156,26 +163,27 @@ const TourRequestPage = () => {
                         <Col md={8} lg={6}>
                             <div className="hero-content">
                                 <h1 className="greeting-text">Tour Requests</h1>
-                                <p className="hero-subtitle">
+                                <p className="hero-subtitle  text-white">
                                     View all the people who want to tour your house
                                 </p>
                             </div>
                         </Col>
-                        <Col md={4} lg={6} className="d-flex justify-content-end align-items-center">                            <Button
-                            variant="outline-light"
-                            onClick={() => fetchTourRequests()}
-                            className="refresh-button"
-                        >
-                            {refreshing ? (
-                                <Spinner animation="border" size="sm" className="me-2" />
-                            ) : (
-                                <FaSync className="me-2" />
-                            )}
-                            Refresh Requests
-                        </Button>
+                        <Col md={4} lg={6} className="d-flex justify-content-end align-items-center">
+                            <Button
+                                variant="outline-light"
+                                onClick={() => fetchTourRequests()}
+                                className="refresh-button"
+                            >
+                                {refreshing ? (
+                                    <Spinner animation="border" size="sm" className="me-2" />
+                                ) : (
+                                    <FaSync className="me-2" />
+                                )}
+                                Refresh Requests
+                            </Button>
                         </Col>
                     </Row>
-                </Container>
+                </Container> 
             </div>
 
             <Container className="tour-request-container">

@@ -23,12 +23,11 @@ const AboutYourSelf = () => {
         agreement_committing_to_work_with_agent: "",
     });    const [loading, setLoading] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
-    const [submitError, setSubmitError] = useState(null);
-
-    const location = useLocation(); // Get the location object
+    const [submitError, setSubmitError] = useState(null);    const location = useLocation(); // Get the location object
     const selectedDate = location.state?.date; // Access the date from state
     const notSure = location.state?.notSure;
     const p_id = location.state?.p_id;
+    const seller_id = location.state?.seller_id; // Get seller_id from state
     const userId = localStorage.getItem("user_id"); // Get user_id from local storage
 
     const handleModalClose = () => setShowModal(false);
@@ -59,6 +58,7 @@ const AboutYourSelf = () => {
         const payload = {
             p_id: p_id,
             user_id: userId,
+            seller_id: seller_id,
             date: selectedDate,
             not_sure_about_this_schedule: notSure,
             ...formData,

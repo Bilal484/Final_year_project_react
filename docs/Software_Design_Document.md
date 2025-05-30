@@ -2429,7 +2429,8 @@ classDiagram
         +string employment_status
         +string purchase_home_or_investing_property
         +string buy_home_or_investing_property
-        +boolean opening_working_with_private_lender        +string familiar_with_buy_or_investing_property
+        +boolean opening_working_with_private_lender       
+         +string familiar_with_buy_or_investing_property
         +boolean bought_house_before
         +timestamp created_at
         

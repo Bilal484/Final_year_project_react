@@ -11,6 +11,8 @@ const ProductDetailSidePortion = ({ p_id }) => {
     const [message, setMessage] = useState("");
     const [offers, setOffers] = useState([]);
     const [users, setUsers] = useState({}); // To store users as a key-value map with id as key
+    const [productData, setProductData] = useState(null); // To store product data
+    const [sellerId, setSellerId] = useState(null); // To store seller ID
 
     // Generate dates dynamically
     const getUpcomingDates = () => {
@@ -24,10 +26,30 @@ const ProductDetailSidePortion = ({ p_id }) => {
         return dates;
     };
 
-    const dates = getUpcomingDates();
-
-    // Get the user id from localStorage
+    const dates = getUpcomingDates();    // Get the user id from localStorage
     const userId = localStorage.getItem("user_id");
+
+    // Fetch product data to get seller information
+    useEffect(() => {
+        const fetchProductData = async () => {
+            if (!p_id) return;
+            
+            try {
+                const response = await fetch(`https://apitourism.today.alayaarts.com/api/get-product/${p_id}`);
+                const data = await response.json();
+                if (response.ok && data.status === 200) {
+                    setProductData(data.products);
+                    setSellerId(data.products.user_id); // Extract seller_id from product's user_id
+                } else {
+                    console.error("Failed to fetch product data");
+                }
+            } catch (error) {
+                console.error("Error fetching product data:", error);
+            }
+        };
+
+        fetchProductData();
+    }, [p_id]);
 
     // Fetch all users first
     useEffect(() => {
@@ -157,8 +179,7 @@ const ProductDetailSidePortion = ({ p_id }) => {
                         <button className="btn">
                             <i className="fa fa-mobile fs-6 me-1"></i>Tour via video chat
                         </button>
-                    </div>
-                    <Link to="/RequestShowing" state={{ p_id }}> {/* Pass p_id through state */}
+                    </div>                    <Link to="/RequestShowing" state={{ p_id, seller_id: sellerId }}> {/* Pass p_id and seller_id through state */}
                         <button className="btn req_btn w-100">Request showing</button>
                     </Link>
                     <p className="mt-1 fs-13 mb-1">It's free, cancel anytime</p>

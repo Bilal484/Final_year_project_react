@@ -11,9 +11,8 @@ const RequestShowing = () => {
   const [selectedDate, setSelectedDate] = useState(""); 
   const [isNotSure, setIsNotSure] = useState(false);
   const navigate = useNavigate();
-
   const location = useLocation();
-  const { p_id } = location.state || {};
+  const { p_id, seller_id } = location.state || {};
 
   useEffect(() => {
     // Get today's date and the next 4 days
@@ -40,11 +39,10 @@ const RequestShowing = () => {
       setSelectedDate("");
     }
   };
-
   const handleNextClick = () => {
     const checkboxValue = isNotSure ? 1 : 0;
     navigate("/AboutYourSelf", {
-      state: { date: selectedDate, notSure: checkboxValue, p_id: p_id },
+      state: { date: selectedDate, notSure: checkboxValue, p_id: p_id, seller_id: seller_id },
     });
   };
 
