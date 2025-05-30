@@ -22,7 +22,6 @@ const About = () => {
         testimonials: useRef(null),
         contact: useRef(null)
     };
-    
     // Handle intersection observer for animations
     useEffect(() => {
         const observerOptions = {
