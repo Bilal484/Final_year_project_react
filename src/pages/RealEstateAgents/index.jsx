@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Card, Button, Row, Col, Image, Carousel, Spinner } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./AgentProfile.css";
 import img2 from "../../assets/images/Owner-Dashboard/Sell with Redfin/PresidentsClub_NoYear.svg";
@@ -179,7 +179,7 @@ const AgentProfile = () => {
         <meta name="author" content="UrbanCraft Premier" />
       </Helmet>
 
-      <Header />
+      {/* <Header /> */}
 
       {loading ? (
         <div className="loading-container">
