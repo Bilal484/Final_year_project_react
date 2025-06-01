@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Helmet } from 'react-helmet';
 import "./ClientCommunication.css";
 // import SellerHeader from "../../components/ContractorHeader";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 
 const ClientCommunication = () => {

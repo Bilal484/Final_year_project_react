@@ -6,7 +6,7 @@ import FeaturedSection from "../../../components/FeaturedSection";
 import WhatsNewSection from "../../../components/WhatsNewSection";
 import HousingSubscriptionForm from "../../../components/HousingSubscriptionForm";
 import "../../../assets/css/Blog.css";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { TranslateText, LanguageSelector } from "../../../translation";

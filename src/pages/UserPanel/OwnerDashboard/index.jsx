@@ -5,7 +5,7 @@ import img02 from "../../../../src/assets/images/Owner-Dashboard/sign.jpg";
 import img03 from "../../../../src/assets/images/Owner-Dashboard/flyers.jpg";
 import img04 from "../../../../src/assets/images/Owner-Dashboard/home-active.jpg";
 // import UserHeader from "../../../components/UserHeader";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 
 const OwnerDashboard = () => {

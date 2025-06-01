@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Image, Carousel, Card } from 'react-bootstrap';
 import './OfferPage.css'; // Ensure this file includes styles for responsiveness and layout
-import Header from '../../components/Header';
+import Header from '../../components/header';
 import Footer from '../../components/Footer';
 import axios from 'axios';
 import { Helmet } from 'react-helmet'; // Import Helmet

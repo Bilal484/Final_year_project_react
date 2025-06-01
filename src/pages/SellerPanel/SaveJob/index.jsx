@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 // import SellerHeader from "../../../components/SellerHeader";
 import img1 from "../../../assets/images/img_agent_career/save-job-2.png";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import axios from "axios";
 import { FaHeart } from "react-icons/fa";

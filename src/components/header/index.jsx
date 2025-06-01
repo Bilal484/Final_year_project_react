@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import "./Header.css";
+import "./header.css";
 import imgLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Header Logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";

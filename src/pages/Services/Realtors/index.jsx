@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import "../../../assets/css/realtors.css";
 import ImagewithText from "../../../components/ImagewithText";
 import ContactSection from "../../../components/ContactSection";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import PropertyCard from "../../../components/PropertyCard";
 import Testimonials from "../../../components/Testimonial";

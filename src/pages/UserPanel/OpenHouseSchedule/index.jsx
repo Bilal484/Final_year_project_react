@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./OpenHouseSchedule.css";
 import img01 from "../../../../src/assets/images/Home copy.png";
 // import UserHeader from "../../../components/UserHeader";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 
 const OpenHouseSchedule = () => {

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import List from "../../components/List";
 import Split from "../../components/Split";
 import Map from "../../components/Map";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import "./ProductMainDetail.css";
 import { useLocation } from "react-router-dom";

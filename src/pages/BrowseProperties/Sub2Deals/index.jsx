@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from 'react-helmet';
 import FAQs from "../../../components/FAQs";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import "./Sub2Deals.css";
 import Sub2DealCard from '../../../components/Sub2DealCard';

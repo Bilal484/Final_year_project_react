@@ -2,7 +2,7 @@ import React from "react";
 import { FaUser, FaBullhorn, FaBriefcase, FaUserPlus, FaHome, FaHandshake } from "react-icons/fa";
 import "./Advertise.css"; // Update your CSS file to match the styles below
 import { Helmet } from "react-helmet";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import FAQs from "../../components/FAQs";
 import { Link } from "react-router-dom";
