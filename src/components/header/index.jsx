@@ -96,6 +96,7 @@ const Header = () => {
 
     // Fetch unread message count for chat button
     const fetchUnreadCount = useCallback(async () => {
+        const userId = localStorage.getItem("user_id")
         if (userId) {
             const result = await getTotalUnreadMessages(userId);
             if (result.success) {
@@ -111,7 +112,7 @@ const Header = () => {
         const interval = setInterval(fetchUnreadCount, 30000); // Check every 30 seconds
 
         return () => clearInterval(interval);
-    }, [userId]);
+    }, []);
 
     // Set user information
     useEffect(() => {
