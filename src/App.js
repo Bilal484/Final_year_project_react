@@ -157,7 +157,8 @@ function App() {
                         <Route path="/blog/:id" element={<SingleBlog />} />
                         <Route path="/FAQs" element={<FAQsPage />} />
                         <Route path="/Guides" element={<Guides />} />
-                        <Route path="/ProductMainDetail" element={<ProductMainDetail />} />                        <Route path="/Licenese-Verifications" element={<LicenseVerification />} />
+                        <Route path="/ProductMainDetail" element={<ProductMainDetail />} />
+                        <Route path="/Licenese-Verifications" element={<LicenseVerification />} />
                         <Route path="/agents" element={<Agent />} />
                         <Route path="/Final-Offer" element={<OfferPage />} />
                         <Route path="/ProductDetail/:id" element={<ProductDetail />} />

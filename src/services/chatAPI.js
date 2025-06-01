@@ -1,4 +1,5 @@
 import axios from 'axios';
+import apiCache from './apiCacheService';
 
 const BASE_URL = 'https://apitourism.today.alayaarts.com/api';
 
@@ -259,12 +260,20 @@ export const getUnreadCount = async (senderId, receiverId) => {
         const sId = parseInt(senderId);
         const rId = parseInt(receiverId);
         
-        const response = await axios.get(`${BASE_URL}/unread-messages/${sId}/${rId}`);
-        return { 
-            success: true, 
-            data: response.data,
-            count: response.data?.unread_messages || 0
-        };
+        // Create a cache key based on the sender and receiver IDs
+        const cacheKey = `unread-messages-${sId}-${rId}`;
+        
+        // Use the cache service to fetch or reuse data
+        const result = await apiCache.get(cacheKey, async () => {
+            const response = await axios.get(`${BASE_URL}/unread-messages/${sId}/${rId}`);
+            return { 
+                success: true, 
+                data: response.data,
+                count: response.data?.unread_messages || 0
+            };
+        });
+        
+        return result;
     } catch (error) {
         console.error('Error fetching unread count:', error);
         return { 
@@ -279,11 +288,17 @@ export const getUnreadCount = async (senderId, receiverId) => {
 // Get unread messages for a specific conversation
 export const getConversationUnreadCount = async (senderId, receiverId) => {
     try {
-        const response = await axios.get(`${BASE_URL}/unread-messages/${senderId}/${receiverId}`);
-        return { 
-            success: true, 
-            count: response.data.unread_messages || 0
-        };
+        // Create a cache key based on the sender and receiver IDs
+        const cacheKey = `unread-messages-${senderId}-${receiverId}`;
+        
+        // Use the cache service to fetch or reuse data
+        return await apiCache.get(cacheKey, async () => {
+            const response = await axios.get(`${BASE_URL}/unread-messages/${senderId}/${receiverId}`);
+            return { 
+                success: true, 
+                count: response.data.unread_messages || 0
+            };
+        });
     } catch (error) {
         console.error(`Error fetching unread messages between ${senderId} and ${receiverId}:`, error);
         return { success: false, count: 0, error: error.message };
@@ -320,30 +335,40 @@ export const getRoleDisplayName = (roleId) => {
 // Get total unread messages for a user
 export const getTotalUnreadMessages = async (userId) => {
     try {
-        // Get all users that might have sent messages to this user
-        const usersResponse = await axios.get(`${BASE_URL}/all-users`);
-        const allUsers = usersResponse.data.allusers;
+        // Create a cache key for this specific user's total unread messages
+        const cacheKey = `total-unread-messages-${userId}`;
         
-        // Create an array of promises for parallel execution
-        const unreadPromises = allUsers
-            .filter(user => user.id !== parseInt(userId)) // Skip self
-            .map(user => {
-                // For each other user, check unread messages they sent to current user
-                return axios.get(`${BASE_URL}/unread-messages/${user.id}/${userId}`)
-                    .then(response => response.data?.unread_messages || 0)
-                    .catch(() => 0); // Return 0 if request fails for this user
-            });
-        
-        // Execute all promises in parallel for better performance
-        const unreadCounts = await Promise.all(unreadPromises);
-        
-        // Sum up all unread counts
-        const totalUnread = unreadCounts.reduce((sum, count) => sum + count, 0);
-        
-        return { 
-            success: true, 
-            count: totalUnread 
-        };
+        // Use the cache service to fetch or reuse data with a 60 second cache lifetime
+        return await apiCache.get(cacheKey, async () => {
+            // Get all users that might have sent messages to this user
+            const usersResponse = await axios.get(`${BASE_URL}/all-users`);
+            const allUsers = usersResponse.data.allusers;
+            
+            // Create an array of promises for parallel execution
+            const unreadPromises = allUsers
+                .filter(user => user.id !== parseInt(userId)) // Skip self
+                .map(user => {
+                    // For each other user, check unread messages they sent to current user
+                    const unreadCacheKey = `unread-messages-${user.id}-${userId}`;
+                    
+                    // Use cache for individual requests too
+                    return apiCache.get(unreadCacheKey, async () => {
+                        const response = await axios.get(`${BASE_URL}/unread-messages/${user.id}/${userId}`);
+                        return response.data?.unread_messages || 0;
+                    }).catch(() => 0); // Return 0 if request fails for this user
+                });
+            
+            // Execute all promises in parallel for better performance
+            const unreadCounts = await Promise.all(unreadPromises);
+            
+            // Sum up all unread counts
+            const totalUnread = unreadCounts.reduce((sum, count) => sum + count, 0);
+            
+            return { 
+                success: true, 
+                count: totalUnread 
+            };
+        }, 60000); // 60 second cache for total unread
     } catch (error) {
         console.error('Error fetching total unread count:', error);
         return { success: false, count: 0, error: error.message };

@@ -5,6 +5,7 @@ import ShareListingModal from "../SharePopup";
 import './recommandation.css';
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import images1 from "../../assets/images/blog 05.jpg"; 
 
 const Recommendations = () => {
     const [recommendedProperties, setRecommendedProperties] = useState([]);
@@ -176,7 +177,7 @@ const Recommendations = () => {
                                             ) : (
                                                 <div className="carousel-item active">
                                                     <img
-                                                        src="/placeholder.jpg"
+                                                        src={images1}
                                                         alt="Placeholder"
                                                         className="d-block w-100"
                                                         style={{ height: "250px", objectFit: "cover" }}

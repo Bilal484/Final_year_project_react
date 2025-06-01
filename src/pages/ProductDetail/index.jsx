@@ -238,7 +238,8 @@ const ProductDetail = () => {
                 </li>
               </ul>
             </div>
-          </nav>          <div id="overview" className="container-fluid firs_top_portion">
+          </nav>       
+             <div id="overview" className="container-fluid firs_top_portion">
             <>
               <div className="row g-3 animate-fadeInUp delay-400">
                 {/* Map through the first three images */}

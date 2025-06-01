@@ -10,7 +10,7 @@ import {
   signInWithApple,
 } from "../../authMethods";
 import '../../firebaseConfig';
-import ZnetLogo from "../../assets/favicon/Logo.png";
+import ZnetLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Header Logo.png";
 import { motion } from "framer-motion";
 
 const Login = () => {

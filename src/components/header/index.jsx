@@ -4,6 +4,8 @@ import imgLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Header Logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ChevronDown, BellIcon, User, LogOut, Menu, X, MessageCircle } from "lucide-react";
+import { FaComments, FaChevronDown, FaUser, FaSignOutAlt, FaBars, FaTimes } from "react-icons/fa";
+import { BsChatFill, BsChatDotsFill } from "react-icons/bs";
 import { Dropdown, Modal, Button, Badge } from "react-bootstrap";
 import { hasChatAccess, getTotalUnreadMessages, USER_ROLES } from "../../services/chatAPI";
 
@@ -28,9 +30,9 @@ const Header = () => {
     const userId = localStorage.getItem("user_id");
     const menuItems = {
         1: [
+            { path: "/OpenHouseSchedule", label: "Open House Schedule", icon: "🏠" },
             { path: "/Favorites", label: "Favorites", icon: "❤️" },
             // { path: "/SavedSearches", label: "Saved Searches", icon: "🔍" },
-            { path: "/OpenHouseSchedule", label: "Open House Schedule", icon: "🏠" },
             { path: "/Appointments", label: "Appointments", icon: "📅" },
             { path: "/Agent", label: "Your Agent", icon: "👤" },
             { path: "/start-an-offer", label: "Offers", icon: "📝" },
@@ -59,7 +61,7 @@ const Header = () => {
             // { path: "/SaveJob", label: "Save Job" },
         ],
         10: [
-            { path: "/Agent", label: "Your Agent" },
+            // { path: "/Agent", label: "Your Agent" },
             { path: "/AccountSettingCandidate", label: "Account Setting Candidate" },
         ],
         14: [
@@ -468,7 +470,7 @@ const Header = () => {
                                             {hasChatAccess(userRole) && (
                                                 <Link to="/chat" className="chat-button-wrapper me-3">
                                                     <Button variant="outline-primary" className="chat-button">
-                                                        <MessageCircle size={20} />
+                                                        <FaComments size={20} className="chat-icon" />
                                                         {unreadMessageCount > 0 && (
                                                             <Badge pill bg="danger" className="chat-badge">
                                                                 {unreadMessageCount > 9 ? '9+' : unreadMessageCount}

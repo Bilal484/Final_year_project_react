@@ -4,12 +4,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
+import { 
+    FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash, FaCheckCircle, 
+    FaArrowRight, FaArrowLeft, FaGoogle, FaFacebookF, FaApple, 
+    FaUserTag, FaHome, FaTags, FaChartLine, FaKey, FaQuestionCircle, 
+    FaCloudUploadAlt 
+} from "react-icons/fa";
 import {
     signInWithGoogle,
     signInWithFacebook,
     signInWithApple,
 } from "../../authMethods";
-import ZnetLogo from "../../assets/favicon/Logo.png";
+import ZnetLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Header Logo.png";
 import { motion } from "framer-motion";
 
 const SignUp = () => {
@@ -137,7 +143,7 @@ const SignUp = () => {
             if (response.ok) {
                 const availableRoles = data.roles || [];
 
-                const preferredRoles = ["seller", "buyer", "contractor", "agent"];
+                const preferredRoles = ["seller", "buyer", "agent"];
 
                 const filteredRoles = preferredRoles
                     .map(preferred => availableRoles.find(role => role.role_name.toLowerCase() === preferred))
@@ -365,10 +371,9 @@ const SignUp = () => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                >
-                                    <div className="form-group">
+                                >                                    <div className="form-group">
                                         <label htmlFor="name">
-                                            <i className="fas fa-user"></i> Full Name
+                                            <FaUser /> Full Name
                                         </label>
                                         <input
                                             type="text"
@@ -382,7 +387,7 @@ const SignUp = () => {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="email">
-                                            <i className="fas fa-envelope"></i> Email Address
+                                            <FaEnvelope /> Email Address
                                         </label>
                                         <input
                                             type="email"
@@ -393,10 +398,9 @@ const SignUp = () => {
                                             onChange={handleChange}
                                             required
                                         />
-                                    </div>
-                                    <div className="form-group">
+                                    </div>                                    <div className="form-group">
                                         <label htmlFor="password">
-                                            <i className="fas fa-lock"></i> Password
+                                            <FaLock /> Password
                                         </label>
                                         <div className="password-input-container">
                                             <input
@@ -413,36 +417,33 @@ const SignUp = () => {
                                                 className="password-toggle-btn"
                                                 onClick={() => setShowPassword(!showPassword)}
                                             >
-                                                <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                                                {showPassword ? <FaEyeSlash /> : <FaEye />}
                                             </button>
-                                        </div>
-                                        <div className="password-requirements">
+                                        </div>                                        <div className="password-requirements">
                                             <div className="req-item">
-                                                <i className="fas fa-check-circle"></i>
+                                                <FaCheckCircle />
                                                 <span>At least 8 characters</span>
                                             </div>
                                             <div className="req-item">
-                                                <i className="fas fa-check-circle"></i>
+                                                <FaCheckCircle />
                                                 <span>Mix of letters and numbers</span>
                                             </div>
                                             <div className="req-item">
-                                                <i className="fas fa-check-circle"></i>
+                                                <FaCheckCircle />
                                                 <span>At least 1 special character</span>
                                             </div>
                                             <div className="req-item">
-                                                <i className="fas fa-check-circle"></i>
+                                                <FaCheckCircle />
                                                 <span>At least 1 uppercase letter</span>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div className="form-buttons">
+                                    </div>                                    <div className="form-buttons">
                                         <button
                                             type="button"
                                             className="auth-submit-btn"
                                             onClick={nextStep}
                                         >
-                                            Next <i className="fas fa-arrow-right"></i>
+                                            Next <FaArrowRight />
                                         </button>
                                     </div>
 
@@ -451,14 +452,13 @@ const SignUp = () => {
                                             <span>Or sign up with</span>
                                         </div>
 
-                                        <div className="social-buttons">
-                                            <button
+                                        <div className="social-buttons">                                            <button
                                                 type="button"
                                                 onClick={() => handleSocialLogin(signInWithGoogle, "Google")}
                                                 className="social-btn google-btn"
                                                 disabled={isLoading}
                                             >
-                                                <i className="fab fa-google"></i>
+                                                <FaGoogle />
                                                 <span className="social-btn-text">Google</span>
                                             </button>
 
@@ -468,7 +468,7 @@ const SignUp = () => {
                                                 className="social-btn facebook-btn"
                                                 disabled={isLoading}
                                             >
-                                                <i className="fab fa-facebook-f"></i>
+                                                <FaFacebookF />
                                                 <span className="social-btn-text">Facebook</span>
                                             </button>
 
@@ -478,7 +478,7 @@ const SignUp = () => {
                                                 className="social-btn apple-btn"
                                                 disabled={isLoading}
                                             >
-                                                <i className="fab fa-apple"></i>
+                                                <FaApple />
                                                 <span className="social-btn-text">Apple</span>
                                             </button>
                                         </div>
@@ -492,10 +492,9 @@ const SignUp = () => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                >
-                                    <div className="form-group role-selection">
+                                >                                    <div className="form-group role-selection">
                                         <label htmlFor="role_id">
-                                            <i className="fas fa-user-tag"></i> Select Your Role
+                                            <FaUserTag /> Select Your Role
                                         </label>
                                         <div className="role-options">
                                             {roles.map((role) => (
@@ -505,10 +504,10 @@ const SignUp = () => {
                                                     onClick={() => setFormData({ ...formData, role_id: role.id.toString() })}
                                                 >
                                                     <div className="role-icon">
-                                                        {role.role_name === 'buyer' && <i className="fas fa-home"></i>}
-                                                        {role.role_name === 'seller' && <i className="fas fa-tags"></i>}
-                                                        {role.role_name === 'contractor' && <i className="fas fa-chart-line"></i>}
-                                                        {role.role_name === 'agent' && <i className="fas fa-key"></i>}
+                                                        {role.role_name === 'buyer' && <FaHome />}
+                                                        {role.role_name === 'seller' && <FaTags />}
+                                                        {role.role_name === 'contractor' && <FaChartLine />}
+                                                        {role.role_name === 'agent' && <FaKey />}
                                                     </div>
                                                     <div className="role-info">
                                                         <h4>{role.role_name}</h4>
@@ -520,20 +519,18 @@ const SignUp = () => {
                                                         </p>
                                                     </div>
                                                     <div className="role-check">
-                                                        {parseInt(formData.role_id) === role.id && <i className="fas fa-check-circle"></i>}
+                                                        {parseInt(formData.role_id) === role.id && <FaCheckCircle />}
                                                     </div>
                                                 </div>
                                             ))}
                                         </div>
-                                    </div>
-
-                                    <div className="form-buttons">
+                                    </div>                                    <div className="form-buttons">
                                         <button
                                             type="button"
                                             className="auth-back-btn"
                                             onClick={prevStep}
                                         >
-                                            <i className="fas fa-arrow-left"></i> Back
+                                            <FaArrowLeft /> Back
                                         </button>
                                         <button
                                             type="button"
@@ -541,7 +538,7 @@ const SignUp = () => {
                                             onClick={nextStep}
                                             disabled={!formData.role_id}
                                         >
-                                            Next <i className="fas fa-arrow-right"></i>
+                                            Next <FaArrowRight />
                                         </button>
                                     </div>
                                 </motion.div>
@@ -555,9 +552,8 @@ const SignUp = () => {
                                     exit={{ opacity: 0 }}
                                 >
                                     <div className="questions-container">
-                                        {questions.length === 0 ? (
-                                            <div className="no-questions">
-                                                <i className="fas fa-question-circle"></i>
+                                        {questions.length === 0 ? (                                            <div className="no-questions">
+                                                <FaQuestionCircle />
                                                 <p>No questions available for this role.</p>
                                             </div>
                                         ) : (
@@ -675,10 +671,9 @@ const SignUp = () => {
                                                         )}
 
                                                     {/* File upload */}
-                                                    {question?.question?.includes("upload") && (
-                                                        <div className="file-upload-container">
+                                                    {question?.question?.includes("upload") && (                                                        <div className="file-upload-container">
                                                             <label className="file-upload">
-                                                                <i className="fas fa-cloud-upload-alt"></i>
+                                                                <FaCloudUploadAlt />
                                                                 <span>Upload File</span>
                                                                 <input type="file" />
                                                             </label>
@@ -687,15 +682,13 @@ const SignUp = () => {
                                                 </div>
                                             ))
                                         )}
-                                    </div>
-
-                                    <div className="form-buttons">
+                                    </div>                                    <div className="form-buttons">
                                         <button
                                             type="button"
                                             className="auth-back-btn"
                                             onClick={prevStep}
                                         >
-                                            <i className="fas fa-arrow-left"></i> Back
+                                            <FaArrowLeft /> Back
                                         </button>
                                         <button
                                             type="submit"
@@ -709,7 +702,7 @@ const SignUp = () => {
                                                 </>
                                             ) : (
                                                 <>
-                                                    Complete Registration <i className="fas fa-check-circle"></i>
+                                                    Complete Registration <FaCheckCircle />
                                                 </>
                                             )}
                                         </button>

@@ -6,10 +6,10 @@ import { useSocket } from "../../SocketContext";
 import { 
     sendMessage as sendChatMessage, 
     getMessages, 
-    markMessagesAsRead, 
     getRoleDisplayName,
     USER_ROLES
 } from "../../services/chatAPI";
+import { debouncedMarkMessagesAsRead } from "../../services/messageHelpers";
 
 const Chat = ({ senderId, receiverId }) => {
     const [messages, setMessages] = useState([]);
@@ -51,10 +51,9 @@ const Chat = ({ senderId, receiverId }) => {
                 setMessages(result.data || []);
                 // Scroll to bottom after messages load
                 setTimeout(scrollToBottom, 100);
-                
-                // Mark messages as read when conversation is opened
+                  // Mark messages as read when conversation is opened - using our debounced version
                 try {
-                    await markMessagesAsRead(sId, rId);
+                    await debouncedMarkMessagesAsRead(sId, rId);
                 } catch (readError) {
                     console.error("Error marking messages as read:", readError);
                     // Continue even if marking as read fails
@@ -105,11 +104,10 @@ const Chat = ({ senderId, receiverId }) => {
 
                 // Show notification for new messages if they're not from the current user
                 if (message.sender_id !== parseInt(senderId)) {
-                    setShowNotification(true);
-                    setTimeout(() => setShowNotification(false), 3000);
+                    setShowNotification(true);                    setTimeout(() => setShowNotification(false), 3000);
                     
-                    // Mark the newly received message as read
-                    markMessagesAsRead(senderId, receiverId);
+                    // Mark the newly received message as read using our debounced function
+                    debouncedMarkMessagesAsRead(senderId, receiverId);
                 }
 
                 // Scroll to bottom when new message arrives
