@@ -134,10 +134,11 @@ const MainCards = () => {
 
     const fetchSalesProperties = useCallback(async (signal) => {
         const cacheKey = "salesProperties";
-        if (localStorage.getItem(cacheKey)) {
-            setSalesProperties(JSON.parse(localStorage.getItem(cacheKey)));
-            return;
-        }
+        // if (localStorage.getItem(cacheKey)) {
+        //     setShownProperties(JSON.parse(localStorage.getItem(cacheKey)))
+        //     setSalesProperties(JSON.parse(localStorage.getItem(cacheKey)));
+        //     return;
+        // }
         try {
             const data = await axios.get(
                 "https://apitourism.today.alayaarts.com/api/get-saleproperty",
@@ -146,6 +147,7 @@ const MainCards = () => {
             const products = data.data.products || [];
             localStorage.setItem(cacheKey, JSON.stringify(products));
             setSalesProperties(products);
+            setShownProperties(products);
         } catch (err) {
             setTimeout(() => {
                 showNotification("Failed to fetch Sales Properties. Please try again later.");
@@ -155,25 +157,27 @@ const MainCards = () => {
 
     const fetchRecentProperties = useCallback(async (signal) => {
         const cacheKey = "recentProperties";
-        if (localStorage.getItem(cacheKey)) {
-            setRecentProperties(JSON.parse(localStorage.getItem(cacheKey)));
-            return;
-        }
+        // if (localStorage.getItem(cacheKey)) {
+        //     setRecentProperties(JSON.parse(localStorage.getItem(cacheKey)));
+        //     setShownProperties(JSON.parse(localStorage.getItem(cacheKey)))
+        //     return;
+        // }
         try {
             const data = await axios.get(
                 "https://apitourism.today.alayaarts.com/api/get-recentproducts",
                 { timeout: 30000, signal }
             );
-            const products = data.data.products || [];
+
+            const products = data.data.products;
             localStorage.setItem(cacheKey, JSON.stringify(products));
             setRecentProperties(products);
+            setShownProperties(products);
         } catch (err) {
             // if (err.name !== "AbortError") {
             //     // console.error("Error fetching recent properties:", err.message);
 
             // }
         }
-        setRecentProperties([]);
         setTimeout(() => {
             showNotification("Failed to fetch Recent Properties. Please try again later.");
         }, 3000);
@@ -181,10 +185,11 @@ const MainCards = () => {
 
     const fetchSoldProperties = useCallback(async (signal) => {
         const cacheKey = "soldProperties";
-        if (localStorage.getItem(cacheKey)) {
-            setSoldProperties(JSON.parse(localStorage.getItem(cacheKey)));
-            return;
-        }
+        // if (localStorage.getItem(cacheKey)) {
+        //     setSoldProperties(JSON.parse(localStorage.getItem(cacheKey)));
+        //     setShownProperties(JSON.parse(localStorage.getItem(cacheKey)))
+        //     return;
+        // }
         try {
             const response = await axios.get(
                 "https://apitourism.today.alayaarts.com/api/get-soldproperty",
@@ -194,6 +199,7 @@ const MainCards = () => {
                 const products = response.data.products;
                 localStorage.setItem(cacheKey, JSON.stringify(products));
                 setSoldProperties(products);
+                setShownProperties(products);
             }
         } catch (err) {
             if (err.name !== "AbortError") {
@@ -208,6 +214,7 @@ const MainCards = () => {
         const cacheKey = `favoriteProperties_${userId}`;
         if (localStorage.getItem(cacheKey)) {
             setFavoriteProperties(JSON.parse(localStorage.getItem(cacheKey)));
+            setShownProperties(JSON.parse(localStorage.getItem(cacheKey)))
             return;
         }
         try {
@@ -219,6 +226,7 @@ const MainCards = () => {
                 const products = response.data.products || [];
                 localStorage.setItem(cacheKey, JSON.stringify(products));
                 setFavoriteProperties(products);
+                setShownProperties(products)
             } else {
                 setFavoriteProperties([]);
             }
@@ -226,10 +234,8 @@ const MainCards = () => {
             if (err.name !== "AbortError") {
                 setError(true);
                 // console.error("Error fetching favorite properties:", err.message);
-                // setFavoriteProperties([]);
-                setTimeout(() => {
-                    showNotification("Failed to fetch favorite properties. Please try again later.");
-                }, 3000);
+                setFavoriteProperties([]);
+                showNotification("Failed to fetch favorite properties. Please try again later.");
             }
         }
     }, [userId, favoriteProperties]);
@@ -455,6 +461,8 @@ const MainCards = () => {
         const abortController = new AbortController();
         let isMounted = true;
 
+        console.log(activeSection)
+
         if (isMounted) {
             fetchSectionData(activeSection, abortController.signal);
         }
@@ -463,7 +471,7 @@ const MainCards = () => {
             isMounted = false;
             abortController.abort();
         };
-    }, [activeSection, fetchSectionData]);
+    }, [activeSection]);
 
     const filterProperties = useCallback(
         debounce(() => {
@@ -606,7 +614,7 @@ const MainCards = () => {
 
     const nextImage = () => {
         if (selectedProperty && selectedProperty.images.length > 0) {
-            setCurrentImageIndex((prev) => 
+            setCurrentImageIndex((prev) =>
                 prev === selectedProperty.images.length - 1 ? 0 : prev + 1
             );
         }
@@ -614,7 +622,7 @@ const MainCards = () => {
 
     const prevImage = () => {
         if (selectedProperty && selectedProperty.images.length > 0) {
-            setCurrentImageIndex((prev) => 
+            setCurrentImageIndex((prev) =>
                 prev === 0 ? selectedProperty.images.length - 1 : prev - 1
             );
         }
@@ -628,8 +636,8 @@ const MainCards = () => {
     useEffect(() => {
         const handleKeyPress = (e) => {
             if (!showImageModal) return;
-            
-            switch(e.key) {
+
+            switch (e.key) {
                 case 'ArrowLeft':
                     e.preventDefault();
                     prevImage();
@@ -771,137 +779,137 @@ const MainCards = () => {
                                             data-id={property.id}
                                         >
                                             <div className="property-card-content">                                                    <div className="property-media">
-                                                        {/* Photo count indicator */}
-                                                        {property.images.length > 1 && (
-                                                            <div className="photo-count-badge">
-                                                                <i className="fas fa-images"></i>
-                                                                <span>{property.images.length}</span>
-                                                            </div>
-                                                        )}
+                                                {/* Photo count indicator */}
+                                                {property.images.length > 1 && (
+                                                    <div className="photo-count-badge">
+                                                        <i className="fas fa-images"></i>
+                                                        <span>{property.images.length}</span>
+                                                    </div>
+                                                )}
 
-                                                        {offersData[property.id]?.length > 0 && (
-                                                        <div
-                                                            className="offer badge"
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                handleOfferClick(property.id);
-                                                            }}
-                                                        >
-                                                            <i className="fas fa-tag"></i>
-                                                            Rs {Number(offersData[property.id][0]?.how_much_you_offer || 0).toLocaleString()}
-                                                        </div>
-                                                    )}
+                                                {offersData[property.id]?.length > 0 && (
+                                                    <div
+                                                        className="offer badge"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleOfferClick(property.id);
+                                                        }}
+                                                    >
+                                                        <i className="fas fa-tag"></i>
+                                                        Rs {Number(offersData[property.id][0]?.how_much_you_offer || 0).toLocaleString()}
+                                                    </div>
+                                                )}
 
-                                                    {property.user_id && userProfiles[property.user_id] && (
-                                                        <div className="user_info badge" style={{
-                                                            backgroundColor: "#6c757d",
-                                                            marginLeft: "5px",
-                                                            display: "inline-flex",
-                                                            alignItems: "center"
-                                                        }}>
-                                                            <i className="fas fa-user-circle mr-1"></i>
-                                                            {userProfiles[property.user_id].name}
-                                                        </div>
-                                                    )}
+                                                {property.user_id && userProfiles[property.user_id] && (
+                                                    <div className="user_info badge" style={{
+                                                        backgroundColor: "#6c757d",
+                                                        marginLeft: "5px",
+                                                        display: "inline-flex",
+                                                        alignItems: "center"
+                                                    }}>
+                                                        <i className="fas fa-user-circle mr-1"></i>
+                                                        {userProfiles[property.user_id].name}
+                                                    </div>
+                                                )}
 
-                                                    {!showMap[property.id] ? (
-                                                        <div className="property-carousel">
-                                                            <div className="carousel-inner">
-                                                                {property.images.length > 0 ? (
-                                                                    property.images.map((image, index) => (
-                                                                        <div
-                                                                            className={`carousel-item ${index === (carouselIndex[property.id] || 0) ? "active" : ""}`}
-                                                                            key={index}
-                                                                        >                                                                            <img
-                                                                                onClick={() => openImageModal(property, index)}
-                                                                                src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
-                                                                                alt={`Property ${property.title || property.id}`}
-                                                                                className="property-image"
-                                                                                style={{ cursor: 'pointer' }}
-                                                                            />
-                                                                        </div>
-                                                                    ))
-                                                                ) : (
-                                                                    <div className="carousel-item active">
-                                                                        <img
-                                                                            src={placeHolder}
-                                                                            alt="Dummy Image"
+                                                {!showMap[property.id] ? (
+                                                    <div className="property-carousel">
+                                                        <div className="carousel-inner">
+                                                            {property.images.length > 0 ? (
+                                                                property.images.map((image, index) => (
+                                                                    <div
+                                                                        className={`carousel-item ${index === (carouselIndex[property.id] || 0) ? "active" : ""}`}
+                                                                        key={index}
+                                                                    >                                                                            <img
+                                                                            onClick={() => openImageModal(property, index)}
+                                                                            src={`https://apitourism.today.alayaarts.com/uploads/products/${image.image}`}
+                                                                            alt={`Property ${property.title || property.id}`}
                                                                             className="property-image"
+                                                                            style={{ cursor: 'pointer' }}
                                                                         />
                                                                     </div>
-                                                                )}
-                                                            </div>
-
-                                                            {property.images.length > 1 && (
-                                                                <div className="carousel-controls">
-                                                                    <button
-                                                                        className="carousel-control prev"
-                                                                        onClick={() =>
-                                                                            handleSelect(
-                                                                                (carouselIndex[property.id] || 0) === 0
-                                                                                    ? property.images.length - 1
-                                                                                    : (carouselIndex[property.id] || 0) - 1,
-                                                                                property.id
-                                                                            )
-                                                                        }
-                                                                    >
-                                                                        <i className="fas fa-chevron-left"></i>
-                                                                    </button>
-                                                                    <button
-                                                                        className="carousel-control next"
-                                                                        onClick={() =>
-                                                                            handleSelect(
-                                                                                (carouselIndex[property.id] || 0) + 1 >=
-                                                                                    property.images.length
-                                                                                    ? 0
-                                                                                    : (carouselIndex[property.id] || 0) + 1,
-                                                                                property.id
-                                                                            )
-                                                                        }
-                                                                    >
-                                                                        <i className="fas fa-chevron-right"></i>
-                                                                    </button>
+                                                                ))
+                                                            ) : (
+                                                                <div className="carousel-item active">
+                                                                    <img
+                                                                        src={placeHolder}
+                                                                        alt="Dummy Image"
+                                                                        className="property-image"
+                                                                    />
                                                                 </div>
                                                             )}
                                                         </div>
-                                                    ) : (
-                                                        <div className="map-container">
-                                                            <iframe
-                                                                width="100%"
-                                                                height="100%"
-                                                                frameBorder="0"
-                                                                src={property.map_url}
-                                                                allowFullScreen
-                                                            />
-                                                        </div>
-                                                    )}
 
-                                                    <div className="property-media-controls">
-                                                        <button
-                                                            className="media-control-btn"
-                                                            onClick={() => toggleMapView(property.id)}
-                                                        >
-                                                            <i
-                                                                className={`fas ${showMap[property.id] ? "fa-image" : "fa-map-marker-alt"
-                                                                    }`}
-                                                            ></i>
-                                                        </button>
-                                                        <div className="property-indicators">
-                                                            {property.images.length > 0 &&
-                                                                !showMap[property.id] &&
-                                                                property.images.map((_, index) => (
-                                                                    <span
-                                                                        key={index}
-                                                                        className={`indicator ${index === (carouselIndex[property.id] || 0)
-                                                                            ? "active"
-                                                                            : ""
-                                                                            }`}
-                                                                        onClick={() => handleSelect(index, property.id)}
-                                                                    ></span>
-                                                                ))}
-                                                        </div>
+                                                        {property.images.length > 1 && (
+                                                            <div className="carousel-controls">
+                                                                <button
+                                                                    className="carousel-control prev"
+                                                                    onClick={() =>
+                                                                        handleSelect(
+                                                                            (carouselIndex[property.id] || 0) === 0
+                                                                                ? property.images.length - 1
+                                                                                : (carouselIndex[property.id] || 0) - 1,
+                                                                            property.id
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    <i className="fas fa-chevron-left"></i>
+                                                                </button>
+                                                                <button
+                                                                    className="carousel-control next"
+                                                                    onClick={() =>
+                                                                        handleSelect(
+                                                                            (carouselIndex[property.id] || 0) + 1 >=
+                                                                                property.images.length
+                                                                                ? 0
+                                                                                : (carouselIndex[property.id] || 0) + 1,
+                                                                            property.id
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    <i className="fas fa-chevron-right"></i>
+                                                                </button>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                ) : (
+                                                    <div className="map-container">
+                                                        <iframe
+                                                            width="100%"
+                                                            height="100%"
+                                                            frameBorder="0"
+                                                            src={property.map_url}
+                                                            allowFullScreen
+                                                        />
+                                                    </div>
+                                                )}
+
+                                                <div className="property-media-controls">
+                                                    <button
+                                                        className="media-control-btn"
+                                                        onClick={() => toggleMapView(property.id)}
+                                                    >
+                                                        <i
+                                                            className={`fas ${showMap[property.id] ? "fa-image" : "fa-map-marker-alt"
+                                                                }`}
+                                                        ></i>
+                                                    </button>
+                                                    <div className="property-indicators">
+                                                        {property.images.length > 0 &&
+                                                            !showMap[property.id] &&
+                                                            property.images.map((_, index) => (
+                                                                <span
+                                                                    key={index}
+                                                                    className={`indicator ${index === (carouselIndex[property.id] || 0)
+                                                                        ? "active"
+                                                                        : ""
+                                                                        }`}
+                                                                    onClick={() => handleSelect(index, property.id)}
+                                                                ></span>
+                                                            ))}
                                                     </div>
                                                 </div>
+                                            </div>
 
                                                 <div className="property-details">
                                                     <div className="property-header">
@@ -1394,7 +1402,7 @@ const MainCards = () => {
                     <Modal.Header closeButton className="border-0">
                         <Modal.Title className="text-white">
                             <i className="fas fa-images me-2"></i>
-                            Property Images {selectedProperty && selectedProperty.images.length > 1 && 
+                            Property Images {selectedProperty && selectedProperty.images.length > 1 &&
                                 `(${currentImageIndex + 1} of ${selectedProperty.images.length})`}
                         </Modal.Title>
                     </Modal.Header>
@@ -1411,17 +1419,17 @@ const MainCards = () => {
                                             e.target.src = placeHolder;
                                         }}
                                     />
-                                    
+
                                     {selectedProperty.images.length > 1 && (
                                         <>
-                                            <button 
+                                            <button
                                                 className="modal-nav-btn prev-btn"
                                                 onClick={prevImage}
                                                 aria-label="Previous image"
                                             >
                                                 <i className="fas fa-chevron-left"></i>
                                             </button>
-                                            <button 
+                                            <button
                                                 className="modal-nav-btn next-btn"
                                                 onClick={nextImage}
                                                 aria-label="Next image"
@@ -1464,8 +1472,8 @@ const MainCards = () => {
                                             {selectedProperty.location}
                                         </p>
                                     </div>
-                                    <Button 
-                                        variant="primary" 
+                                    <Button
+                                        variant="primary"
                                         onClick={() => {
                                             closeImageModal();
                                             navigate(`/ProductDetail/${selectedProperty.id}`);

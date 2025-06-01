@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import "./header.css";
 import imgLogo from "../../assets/images/FYP_ Logo/FYP_ Logo/Header Logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -95,16 +95,16 @@ const Header = () => {
     }, []);
 
     // Fetch unread message count for chat button
-    useEffect(() => {
-        const fetchUnreadCount = async () => {
-            if (userId) {
-                const result = await getTotalUnreadMessages(userId);
-                if (result.success) {
-                    setUnreadMessageCount(result.count);
-                }
+    const fetchUnreadCount = useCallback(async () => {
+        if (userId) {
+            const result = await getTotalUnreadMessages(userId);
+            if (result.success) {
+                setUnreadMessageCount(result.count);
             }
-        };
+        }
+    }, []);
 
+    useEffect(() => {
         fetchUnreadCount();
 
         // Set up interval to periodically check for new messages
