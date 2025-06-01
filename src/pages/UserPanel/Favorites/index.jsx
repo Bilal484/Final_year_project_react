@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "./Favorites.css";
-import UserHeader from "../../../components/UserHeader";
-import Header from "../../../components/Header";
+// // import UserHeader from "../../../components/UserHeader";  // Commented out
+import Header from "../../../components/Header";  // Use main Header instead
 import Footer from "../../../components/Footer";
 import axios from "axios";
 import { Carousel, Card, Button, Modal } from "react-bootstrap";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { IoMdCloseCircle } from "react-icons/io";
-import ContractorHeader from "../../components/ContractorHeader";
+// import SellerHeader from "../../components/ContractorHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import axios from "axios";
@@ -92,7 +92,7 @@ const ScheduleProject = () => {
         />
       </Helmet>
       <Header />
-      <ContractorHeader />
+      {/* <ContractorHeader /> */}
       <div className="container my-3">
         {/* Schedule Projects */}
         <div id="scheduleProjects" className="mb-5">

@@ -4,7 +4,7 @@ import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./OpenHouseSchedule.css";
 import img01 from "../../../../src/assets/images/Home copy.png";
-import UserHeader from "../../../components/UserHeader";
+// import UserHeader from "../../../components/UserHeader";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 

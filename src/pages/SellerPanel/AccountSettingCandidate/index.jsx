@@ -15,7 +15,7 @@ import {
 } from "react-bootstrap";
 import TimezoneSelect from "react-timezone-select";
 import "./AccountSettingCandidate.css";
-import SellerAgentHeader from "../../../components/SellerAgentHeader";
+// import SellerHeader from "../../../components/SellerAgentHeader";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { signInWithGoogle, signInWithFacebook } from "../../../authMethods";

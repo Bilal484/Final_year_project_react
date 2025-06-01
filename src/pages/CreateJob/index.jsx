@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./CreateJob.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import SellerHeader from "../../components/SellerHeader";
+// import SellerHeader from "../../components/SellerHeader";
 import { Helmet } from 'react-helmet';
 
 const CreateJob = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import ContractorHeader from "../../components/ContractorHeader";
+// import SellerHeader from "../../components/ContractorHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
@@ -31,7 +31,7 @@ const TaskProgress = () => {
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />
-      <ContractorHeader />
+      {/* <ContractorHeader /> */}
       <div className="container my-4">
         <h2>Track Project Progress</h2>
         {/* Project Overview Section */}

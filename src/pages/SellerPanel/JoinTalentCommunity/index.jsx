@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import "./JoinTalentCommunity.css";
-import SellerHeader from "../../../components/SellerHeader";
+// import SellerHeader from "../../../components/SellerHeader";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import 'react-toastify/dist/ReactToastify.css';

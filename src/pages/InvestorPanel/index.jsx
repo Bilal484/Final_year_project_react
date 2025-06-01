@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from 'react-helmet'; // Import Helmet
-import InvestorHeader from "../../components/InvestorHeader";
+// import SellerHeader from "../../components/InvestorHeader";
 import "./InvestorPanel.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -24,7 +24,7 @@ const InvestorPanel = () => {
         <meta name="keywords" content="investor, investment dashboard, real estate, financial investments, portfolio management" />
       </Helmet>
       <Header />
-      <InvestorHeader />
+      {/* <InvestorHeader /> */}
       <div className="container my-4">
         <div className="row">
           {/* Manage Investment Listings */}

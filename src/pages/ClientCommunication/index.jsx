@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Helmet } from 'react-helmet';
 import "./ClientCommunication.css";
-import ContractorHeader from "../../components/ContractorHeader";
+// import SellerHeader from "../../components/ContractorHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -113,7 +113,7 @@ const ClientCommunication = () => {
         <meta name="twitter:description" content="Engage and support your clients with our comprehensive communication tools." />
       </Helmet>
       <Header />
-      <ContractorHeader />
+      {/* <ContractorHeader /> */}
       <main>
         <div className="container my-3">
           <div id="clientCommunication" className="mb-5">

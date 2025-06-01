@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet';
-import ContractorHeader from "../../components/ContractorHeader";
+// import SellerHeader from "../../components/ContractorHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import axios from "axios";
@@ -72,7 +72,7 @@ const ProjectInquiries = () => {
         <meta name="keywords" content="project management, client inquiries, business projects, contractor services, project tracking, BizNetUSA" />
       </Helmet>
       <Header />
-      <ContractorHeader />
+      {/* <ContractorHeader /> */}
       <div className="container my-3">
         {/* Project Inquiries */}
         <div id="projectInquiries" className="mb-5">

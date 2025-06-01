@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import "./UserSetting.css";
-import UserHeader from "../../../components/UserHeader";
+// import UserHeader from "../../../components/UserHeader";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 

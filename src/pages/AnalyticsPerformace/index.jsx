@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from 'react-helmet';
 import MonthlyPerformanceChart from "../../components/MonthlyPerformanceChart";
 import YearlyPerformanceChart from "../../components/YearlyPerformanceChart";
-import InvestorHeader from "../../components/InvestorHeader";
+// import SellerHeader from "../../components/InvestorHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -24,7 +24,7 @@ const AnalyticsPerformace = () => {
                 <meta name="twitter:image" content="/path/to/image.jpg" />  {/* Ensure you replace this with an actual image path */}
             </Helmet>
             <Header />
-            <InvestorHeader />
+            {/* <InvestorHeader /> */}
             <div className="container my-4">
                 <div className="row">
                     <div className="col-lg-6">

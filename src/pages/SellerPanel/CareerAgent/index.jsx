@@ -3,7 +3,7 @@ import "./CareerAgent.css";
 import img1 from "../../../assets/images/img_agent_career/H1-img-2.jpg";
 import img2 from "../../../assets/images/img_agent_career/H1-img-3.jpg";
 import img3 from "../../../assets/images/img_agent_career/H1-img-1.jpg";
-import SellerHeader from "../../../components/SellerHeader";
+// import SellerHeader from "../../../components/SellerHeader";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import axios from "axios";

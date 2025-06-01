@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import InvestorHeader from "../../components/InvestorHeader";
+// import SellerHeader from "../../components/InvestorHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -31,7 +31,7 @@ const TrackRIO = () => {
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />
-      <InvestorHeader />
+      {/* <InvestorHeader /> */}
       {/* Track ROI Section */}
       <div className="container mt-5">
         <h2 className="text-center mb-4">Track Return on Investment (ROI)</h2>

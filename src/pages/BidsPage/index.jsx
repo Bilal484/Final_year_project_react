@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./BidsPage.css";
-import SellerAgentHeader from "../../components/SellerAgentHeader";
+// import SellerHeader from "../../components/SellerAgentHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";

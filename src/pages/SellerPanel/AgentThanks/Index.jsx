@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet"; // Import Helmet for meta tags
 import { useParams, Link } from "react-router-dom"; // Import useParams and Link
 import img1 from "../../..//assets/images/agent-sold.jpg";
-import SellerHeader from "../../../components/SellerHeader";
+// import SellerHeader from "../../../components/SellerHeader";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 

@@ -247,16 +247,16 @@ const Footer = () => {
 
                             <h6 className="footer-heading mt-4">Connect With Us</h6>
                             <div className="social-icons d-flex gap-3 mt-2 flex-wrap flex-row "> 
-                                <a href="https://www.facebook.com/share/18XKUtcGCC/?mibextid=wwXIfr" className="social-icon" aria-label="Facebook">
+                                <a href="#" className="social-icon" aria-label="Facebook">
                                     <i className="fa-brands fa-facebook-f"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/in/zhara-fernandez-256b8b148?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="social-icon" aria-label="LinkedIn">
+                                <a href="#" className="social-icon" aria-label="LinkedIn">
                                     <i className="fa-brands fa-linkedin-in"></i>
                                 </a>
-                                <a href="https://www.instagram.com/zharanashvillerealtor_/profilecard/?igsh=d2o1cXh4OW40cnIw" className="social-icon" aria-label="Instagram">
+                                <a href="#" className="social-icon" aria-label="Instagram">
                                     <i className="fa-brands fa-instagram"></i>
                                 </a>
-                                <a href="https://twitter.com/urbancraft" className="social-icon" aria-label="Twitter">
+                                <a href="#" className="social-icon" aria-label="Twitter">
                                     <i className="fa-brands fa-twitter"></i>
                                 </a>
                             </div>

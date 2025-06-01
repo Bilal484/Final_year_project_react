@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Offcanvas, Button, Form, Container, Row, Col, Alert, Card, Badge } from 'react-bootstrap';
-import SellerHeader from '../../../components/SellerHeader';
-import SellerAgentHeader from '../../../components/SellerAgentHeader';
+// import SellerHeader from '../../../components/SellerHeader';
+// import SellerHeader from '../../../components/SellerAgentHeader';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import './JobAlert.css';

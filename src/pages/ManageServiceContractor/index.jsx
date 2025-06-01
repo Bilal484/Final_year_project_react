@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet'; // Import Helmet
-import ContractorHeader from "../../components/ContractorHeader";
+// import SellerHeader from "../../components/ContractorHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import axios from "axios";
@@ -70,7 +70,7 @@ const ManageServiceContractor = () => {
         <meta name="keywords" content="manage services, contractor services, service management" />
       </Helmet>
       <Header />
-      <ContractorHeader />
+      {/* <ContractorHeader /> */}
       <div className="container mt-4">
         {/* Service Listings */}
         <div id="serviceListings" className="mb-5">

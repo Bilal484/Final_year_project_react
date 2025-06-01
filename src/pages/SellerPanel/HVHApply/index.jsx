@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./HVHApply.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import SellerHeader from "../../../components/SellerHeader";
+// import SellerHeader from "../../../components/SellerHeader";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { ToastContainer, toast } from "react-toastify";

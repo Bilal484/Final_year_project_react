@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet"; // Import Helmet for meta tags
 
 
 import "./AllJob.css";
-import SellerHeader from "../../../components/SellerHeader";
+// import SellerHeader from "../../../components/SellerHeader";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { useNavigate } from "react-router-dom";

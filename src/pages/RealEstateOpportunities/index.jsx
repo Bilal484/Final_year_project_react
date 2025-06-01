@@ -7,7 +7,7 @@ import img04 from "../../../src/assets/images/blog 04.jpg";
 import img05 from "../../../src/assets/images/blog 05.jpg";
 import img06 from "../../../src/assets/images/blog 06.jpg";
 import InvestorPanel from "../InvestorPanel";
-import InvestorHeader from "../../components/InvestorHeader";
+// import SellerHeader from "../../components/InvestorHeader";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -31,7 +31,7 @@ const RealEstateOpportunities = () => {
         <meta name="author" content="Real Estate Insights" />
       </Helmet>
       <Header />
-      <InvestorHeader />
+      {/* <InvestorHeader /> */}
       <div className="container my-5">
         <h2 className=" mb-4">Real Estate Investment Opportunities</h2>
 

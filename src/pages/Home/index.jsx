@@ -11,7 +11,7 @@ import RealEstateTabs from "../../components/RealEstateTabs";
 import RentByCityList from "../../components/RentByCityList";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import TaglineHeader from "../../components/TaglineHeader";
+// import SellerHeader from "../../components/TaglineHeader";
 import Testimonial from "../../components/Testimonial";
 import PurposeSection from "../../components/PurposeSection";
 import ProcessSection from "../../components/ProcessSection";
