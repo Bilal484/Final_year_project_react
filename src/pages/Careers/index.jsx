@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import './Careers.css';
-import Header from '../../components/Header';
+import Header from '../../components/header';
 import Footer from '../../components/Footer';
 import ImageWithText from '../../components/ImagewithText';
 import img01 from '../../assets/images/Owner-Dashboard/photography.jpg';

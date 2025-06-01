@@ -28,7 +28,7 @@ import {
     BsHouseDoor,
 } from "react-icons/bs";
 import { FaCheck, FaTimes } from "react-icons/fa";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 
 

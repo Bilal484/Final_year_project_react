@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import img1 from "../../assets/images/real estate _12.jpg";
 import img2 from "../../assets/images/real estate _16.jpg";
 import img3 from "../../assets/images/real estate _18.jpg";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import ProductDetailSidePortion from "../../components/ProductDetailSidePortion";
 import { Row, Col, Card, Modal } from "react-bootstrap";

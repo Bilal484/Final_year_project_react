@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import "../../../assets/css/Lenders.css";
 import img01 from "../../../assets/images/sub2Deal 07.jpg";

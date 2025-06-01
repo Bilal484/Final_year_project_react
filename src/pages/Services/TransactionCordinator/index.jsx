@@ -2,7 +2,7 @@ import React from "react";
 import "./TransactionCordinator.css";
 import LatestNews from "../../../components/LatestNews";
 import FinancialResults from "../../../components/FinancialResults";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import ImagewithText from "../../../components/ImagewithText";
 
 import Footer from "../../../components/Footer";

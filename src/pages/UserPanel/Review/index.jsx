@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 // import UserHeader from "../../../components/UserHeader";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import Footer from "../../../components/Footer";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';

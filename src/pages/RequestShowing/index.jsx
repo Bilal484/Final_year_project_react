@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./RequestShowing.css";
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 

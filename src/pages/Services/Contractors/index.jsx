@@ -33,7 +33,7 @@ import blog33 from "../../../assets/images/blog 33.jpg";
 
 import ImageWithText from "../../../components/ImagewithText";
 import CoreValueCard from "../../../components/CoreValueCard";
-import Header from "../../../components/Header";
+import Header from "../../../components/header";
 import ContactForm from "../../../components/ContactForm";
 import ServicesCardImage from "../../../components/ServicesCardImage";
 import Footer from "../../../components/Footer";
