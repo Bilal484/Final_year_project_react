@@ -172,8 +172,8 @@ const Home = () => {
                 {userId ? (
                     <div className="container-fluid px-4 pb-4 g-0 rounded bg-light">
                         <div id="anas__pava" className="d-flex">
-                            <RealEstateTabs />                          
-                              <HomeBannerCard
+                            <RealEstateTabs />
+                            <HomeBannerCard
                                 images={propertyImages}
                                 location="Chevy Chase, MD"
                                 price="Rs 3,599,000"
@@ -184,84 +184,6 @@ const Home = () => {
                 ) : (
                     <HomeBannerCard isLarge={true} />
                 )}
-
-                {/* Similar Users Modal */}
-                {/* <Modal
-                    show={showModal} 
-                    onHide={() => setShowModal(false)}
-                    centered
-                    className="similar-users-modal"
-                    backdrop="static"
-                >
-                    <Modal.Header closeButton className="similar-users-header">
-                        <Modal.Title className="d-flex align-items-center">
-                            <i className="fas fa-users me-2"></i>
-                            Similar Users
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body className="similar-users-body">
-                        {similarUsers.length > 0 ? (
-                            <ListGroup variant="flush" className="similar-users-list">
-                                {similarUsers.map((user) => (
-                                    <ListGroup.Item
-                                        key={user.user_id}
-                                        className="similar-user-item"
-                                    >
-                                        <div className="similar-user-content">
-                                            <div className="similar-user-avatar">
-                                                {user.name[0].toUpperCase()}
-                                            </div>
-                                            <div className="similar-user-info">
-                                                <h6 className="similar-user-name">{user.name}</h6>
-                                                <small className="similar-user-status">
-                                                    <span className="status-dot online"></span>
-                                                    Available to chat
-                                                </small>
-                                            </div>
-                                            <Button
-                                                variant="primary"
-                                                className="chat-btn"
-                                                onClick={() => handleUserSelect(user)}
-                                            >
-                                                <i className="fas fa-comment-dots me-2"></i>
-                                                Chat Now
-                                            </Button>
-                                        </div>
-                                    </ListGroup.Item>
-                                ))}
-                            </ListGroup>
-                        ) : (
-                            <div className="no-users-found">
-                                <div className="no-users-icon">
-                                    <i className="fas fa-search"></i>
-                                </div>
-                                <h5>No similar users found</h5>
-                                <p>We couldn't find any users matching your profile right now.</p>
-                                <Button
-                                    variant="outline-secondary"
-                                    onClick={() => setShowModal(false)}
-                                    className="dismiss-btn"
-                                >
-                                    Dismiss
-                                </Button>
-                            </div>
-                        )}
-                    </Modal.Body>
-                    <Modal.Footer className="similar-users-footer">
-                        <div className="users-count">
-                            {similarUsers.length > 0 && (
-                                <small>Found {similarUsers.length} user{similarUsers.length !== 1 ? 's' : ''} with similar interests</small>
-                            )}
-                        </div>
-                        <Button
-                            variant="secondary"
-                            onClick={() => setShowModal(false)}
-                            className="close-btn"
-                        >
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </Modal> */}
 
                 {userId ? (
                     <>
