@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 // import SellerHeader from "../../components/InvestorHeader";
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 const TrackRIO = () => {

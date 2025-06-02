@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { IoMdCloseCircle } from "react-icons/io";
 // import SellerHeader from "../../components/ContractorHeader";
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import axios from "axios";
 import { toast } from "react-toastify";

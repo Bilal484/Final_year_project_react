@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet'; // Import Helmet
 import './HelpCenter.css';
-import Header from '../../components/header';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
 import ContactForm from '../../components/ContactForm';

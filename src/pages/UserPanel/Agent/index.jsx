@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Agent.css";
 import img01 from "../../../../src/assets/images/Agent.png";
 // import UserHeader from "../../../components/UserHeader";
-import Header from "../../../components/header";
+import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 
 const Agent = () => {
